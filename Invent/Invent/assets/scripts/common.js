@@ -125,3 +125,33 @@ function OnSuccess(response) {
 function OnFailure(response) {
     alert("Error occured.");
 }
+function GridInitializer(colDef) {
+    var gridOptions = {
+        enableSorting: true,
+        enableFilter: false,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: true,
+        debug: true,
+        rowSelection: 'multiple',
+        enableColResize: true,
+        rowGroupPanelShow: 'always',
+        pivotPanelShow: 'always',
+        enableRangeSelection: true,
+        columnDefs: colDef,
+        pagination: true,
+        paginationPageSize: 10,
+        paginationNumberFormatter: function (params) {
+            return '[' + params.value.toLocaleString() + ']';
+        },
+        onFirstDataRendered: onFirstDataRendered
+    };
+   
+    return gridOptions;
+}
+function onPageSizeChanged(newPageSize) {
+    var value = document.getElementById('page-size').value;
+    gridOptions.api.paginationSetPageSize(Number(value));
+}
+function onFirstDataRendered(params) {
+    params.api.sizeColumnsToFit();
+}

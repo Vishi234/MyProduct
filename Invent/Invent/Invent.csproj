@@ -136,6 +136,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\ag-grid.css" />
+    <Content Include="assets\css\ag-grid\ag-grid.css" />
+    <Content Include="assets\css\ag-grid\ag-theme-balham.css" />
     <Content Include="assets\css\ag-theme-balham.css" />
     <Content Include="assets\css\all.css" />
     <Content Include="assets\css\all.min.css" />
@@ -181,6 +183,7 @@
     <Content Include="assets\img\loading.gif" />
     <Content Include="assets\img\user-img.png" />
     <Content Include="assets\scripts\ag-grid-nostyle.min.js" />
+    <Content Include="assets\scripts\ag-grid\ag-grid.min.noStyle.js" />
     <Content Include="assets\scripts\common.js" />
     <Content Include="assets\scripts\daterangepicker.min.js" />
     <Content Include="assets\scripts\jquery-1.10.2.min.js" />
