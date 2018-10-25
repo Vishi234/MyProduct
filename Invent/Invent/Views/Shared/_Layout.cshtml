@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+@{ Invent.Models.Entity.User.UserEntity user = (Invent.Models.Entity.User.UserEntity)HttpContext.Current.Session["UserEntity"]; }
+<html>
+<head>
+    @*<meta charset="utf-8" name="viewport" content="width=device-width" />*@
+    <title>@ViewBag.Title</title>
+    <link href="~/assets/css/all.css" rel="stylesheet" />
+    <script src="~/assets/scripts/fontawesome.js"></script>
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
+    <link href="~/assets/css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/daterangepicker.css" />
+    <link href="~/assets/css/jquery.toast.min.css" rel="stylesheet" />
+    <link href="~/assets/css/jquery.selectBox.css" rel="stylesheet" />
+</head>
+<body>
+    @if (user != null)
+    {
+        <div class="header">
+            <div class="container-fluid">
+                <div class="nav-menu">
+                    <ul>
+                        <li><a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "nav-menu-active" : "")" href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+                        <li><a class="@(ViewContext.RouteData.Values["Action"].ToString() == "All_Orders" ? "nav-menu-active" : "")" href="@Url.Action("All_Orders","Orders")">Orders</a></li>
+                        <li><a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Shipment" ? "nav-menu-active" : "")" href="javascript:void(0)">Shipment</a></li>
+                        <li><a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Returns" ? "nav-menu-active" : "")" href="javascript:void(0)">Returns</a></li>
+                        <li><a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Tools" ? "nav-menu-active" : "")" href="javascript:void(0)">Tools</a></li>
+                    </ul>
+                </div>
+                <div class="searchbox">
+                    <input type="text" onkeyup="this.setAttribute('value', this.value);" value="" class="form-control" />
+                    <i class="fa fa-search"></i>
+                </div>
+                <div class="right-nav-menu">
+                    <ul>
+                        <li><a href="javascript:void(0)"><i class="fa fa-question-circle"></i></a></li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-bell"></i>
+                                <span class="not-count">3</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="user-dtl"><i class="far fa-user-circle"></i> <span>Web Desingner's Hub <i class="fa fa-angle-down"></i></span></a>
+                            <div class="top-sub-menu">
+                                <div class="arrow_box"></div>
+                                <div class="top-sub-menu-inner">
+                                    <div class="pro-base">
+                                        <div class="pro-img">
+                                            <img src="~/assets/img/user-img.png" />
+                                        </div>
+                                        <div class="pro-name">
+                                            <span class="pro-user-name">Vishal Singh</span>
+                                            <span class="pro-user-email">wd2vteam@gmail.com</span>
+                                            <span class="pro-user-setting"><a href="javascript:void(0)">Profile & Preferences</a></span>
+                                        </div>
+                                    </div>
+                                    <div class="pro-menu">
+                                        <ul>
+                                            <li><a href="javascript:void(0)">Account & Billing</a></li>
+                                            <li><a href="javascript:void(0)">Configuration</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="pro-footer">
+                                        <span class="pull-left"><a href="@Url.Action("Logout","Auth")">Sign out</a></span>
+                                        <span class="pull-right"><a href="javascript:void(0)">Privacy policy</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main-body">
+            <div class="container">
+                <div class="row">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <footer></footer>
+        <div id="progress" class="modal">
+            <div class="center">
+                <img src="~/assets/img/loading.gif" />
+            </div>
+        </div>
+        <input type="hidden" id="hfUserId" value="@user.UserID" />
+        <input type="hidden" id="hfStatus" value="@user.Status" />
+        <input type="hidden" id="hfVerified" value="@user.Verified" />
+    }
+
+    <script src="~/assets/scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="~/assets/scripts/moment.min.js"></script>
+    <script type="text/javascript" src="~/assets/scripts/daterangepicker.min.js"></script>
+    <script src="~/assets/scripts/all.min.js"></script>
+    <script src="~/assets/scripts/jquery.validate.js"></script>
+    <script src="~/assets/scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/assets/scripts/umd/popper.min.js"></script>
+    <script src="~/assets/scripts/bootstrap.min.js"></script>
+    <script src="~/assets/scripts/jquery.toast.min.js"></script>
+    <script src="~/assets/scripts/jquery.selectBox.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".user-dtl").click(function () {
+                $(this).toggleClass("right-menu-active");
+                $(".top-sub-menu").toggleClass("show");
+            })
+            $('select').selectBox();
+            @if(user==null)
+        {
+           <text>
+            window.location.href = "@Url.Action("Login","Auth")"
+            </text>
+        }
+            //$('[data-toggle="tooltip"]').tooltip();
+            $('#goobalDateFilter').daterangepicker({
+                opens: 'left',
+                locale: {
+                    format: 'DD-MMM-YYYY',
+                    "separator": "  To  ",
+                }
+            }, function (start, end, label) {
+                console.log("A new date selection was made: " + start.format('DD-MMM-YYYY') + ' to ' + end.format('DD-MMM-YYYY'));
+            });
+
+            $(".inner-menu li a").click(function () {
+                $(".inner-menu li").find("a").removeClass("inner-menu-active");
+                $(this).addClass("inner-menu-active");
+            });
+            $(".nav-tabs li").click(function () {
+                $(".nav-tabs li").removeClass("active2");
+                $(this).addClass("active2");
+            })
+
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+﻿@model Invent.Models.Entity.User.RegisterModel
+    @{
+        Layout = null;
+    }
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Login</title>
+        <link href="~/assets/css/all.css" rel="stylesheet" />
+        <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
+        <link href="~/assets/css/default.css" rel="stylesheet" />
+        <link href="~/assets/css/jquery.toast.min.css" rel="stylesheet" />
+    </head>
+    <body class="reg-base">
+        <div class="container">
+            <div class="row">
+                <div class="login-base slideInDown">
+                    <div class="login-form">
+                        @using (Ajax.BeginForm("Register", "Auth",
+            new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnSuccess = "OnSuccess",
+                OnFailure = "OnFailure",
+                LoadingElementId = "progress"
+            }))
+                    {
+                    @*<h1>Welcome to SpotInvent</h1>*@
+                    <div class="form-group">
+                        <label class="private-label" for="emailId">Company Name</label>
+                        @Html.TextBoxFor(model => model.CompanyName, new { @class = "col-md-12 private-form-control", })
+                        @Html.ValidationMessageFor(model => model.CompanyName)
+                    </div>
+                    <div class="form-group">
+                        <label class="private-label" for="emailId">First Name</label>
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "col-md-12 private-form-control" })
+                        @Html.ValidationMessageFor(model => model.FirstName)
+                    </div>
+                    <div class="form-group">
+                        <label class="private-label" for="emailId">Last Name</label>
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "col-md-12 private-form-control" })
+                        @Html.ValidationMessageFor(model => model.LastName)
+                    </div>
+                    <div class="form-group">
+                        <label class="private-label" for="emailId">Email address</label>
+                        @Html.TextBoxFor(model => model.EmailAddress, new { @class = "col-md-12 private-form-control" })
+                        @Html.ValidationMessageFor(model => model.EmailAddress)
+                        <p>Note : This email will use as your login id.</p>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="private-label" for="password">Password</label>
+                        @Html.PasswordFor(model => model.Password, new { @class = "col-md-12 private-form-control" })
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                    <div class="form-group">
+                        <label class="private-label" for="password">Confirm Password </label>
+                        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "col-md-12 private-form-control" })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                    </div>
+                    <div class="form-group">
+                        <label class="check private-label pull-left">
+                            <span>I have read <a href="javascript:Void(0)">Terms & Conditions</a></span>
+                            @Html.CheckBoxFor(model => model.Accept) 
+                            <span class="checkmark"></span>
+                        </label>
+                        @Html.ValidationMessageFor(model => model.Accept)
+                    </div>
+                    <div class="form-group">
+                        <button class="btn private-btn btnDisable col-md-12">Register</button>
+                    </div>
+                    @*<div class="orLabelBase">
+                            <span class="orLabel">OR Register Using</span>
+                            <hr />
+                        </div>*@
+                    @*<div class="form-group">
+                            <ul class="social-login">
+                                <li><a href="javascript:void(0)"><i class="fab fa-google-plus-square"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="fab fa-facebook-square"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="fab fa-twitter-square"></i></a></li>
+                            </ul>
+                        </div>*@
+                    }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="progress" class="modal">
+            <div class="loading-center">
+                <img src="~/assets/img/loading.gif" class="centerimg" />
+            </div>
+        </div>
+
+        <script src="~/assets/scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/assets/scripts/all.min.js"></script>
+        <script src="~/assets/scripts/umd/popper.min.js"></script>
+        <script src="~/assets/scripts/bootstrap.min.js"></script>
+        <script src="~/assets/scripts/jquery.validate.js"></script>
+        <script src="~/assets/scripts/jquery.validate.unobtrusive.js"></script>
+        <script src="~/assets/scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/assets/scripts/jquery.unobtrusive-ajax.min.js"></script>
+        <script src="~/assets/scripts/jquery.toast.min.js"></script>
+        <script src="~/assets/scripts/common.js"></script>
+        <script type="text/javascript">
+            function OnSuccess(response) {
+                CallToast(response.ERROR_MSG, response.ERROR_FLAG);
+            }
+            function OnFailure(response) {
+                alert("Error occured.");
+            }
+        </script>
+    </body>
+</html>
