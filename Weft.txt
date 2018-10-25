@@ -1,0 +1,7 @@
+Seller ID:	A34PNO5C4QN6RR
+Marketplace ID:	A21TJRUUN4KGV (Amazon.in)
+MWS Authorisation Token:	amzn.mws.e8b342f7-4906-cdc4-7ca9-21260825ca40
+AccessKey = "AKIAJHSXML4XJT7NVLAQ";
+SecretKey = "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";
+
+Developer ID   0658-9245-4134
