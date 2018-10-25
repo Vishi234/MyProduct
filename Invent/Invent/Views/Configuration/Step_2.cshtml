@@ -1,4 +1,4 @@
-﻿@model Tuple<Invent.Models.Entity.Configuration.ChannelGeneralDetails, Invent.Models.Entity.Configuration.FlipkartApi>
+﻿@model Tuple<Invent.Models.Entity.Configuration.ChannelGeneralDetails, Invent.Models.Entity.Configuration.FlipkartApi, Invent.Models.Entity.Configuration.AmazonApi>
 @{
     Layout = null;
     Invent.Models.Entity.User.UserEntity user = (Invent.Models.Entity.User.UserEntity)HttpContext.Current.Session["UserEntity"];
@@ -131,92 +131,134 @@
                             </ul>
                             <div class="tab-content">
                                 <div id="setting" class="tab-pane fade in active show">
-                                    <div class="header-ttl">
-                                        <span class="subheader">General Information</span>
-                                        <p>Follow these instruction to know how to add Channel <button id="amaSave" class="btn btn-success">Save & Next</button>  </p>
-                                    </div>
-                                    <div class="gen-form">
-                                        <ul>
-                                            <li>
-                                                <label class="private-label">Channel Name</label>
-                                                <input type="text" class="private-form-control" />
-                                            </li>
-                                            <li>
-                                                <label class="private-label">Leadger Name (Optional)</label>
-                                                <input type="text" class="private-form-control" />
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="header-ttl">
-                                        <span class="subheader">Order</span>
-                                        <p>This section help us to configure important parameters for order and sync.</p>
-                                    </div>
-                                    <div class="gen-form">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" data-toggle="toggle">
-                                                Sync (Optional)
-                                            </label>
+                                    @using (Ajax.BeginForm("SaveChannelDetails", "Configuration",
+new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "OnChannelSuccess",
+    OnFailure = "OnChannelFailure",
+    LoadingElementId = "progress"
+}))
+                                    {
+                                        <div class="header-ttl">
+                                            <span class="subheader">General Information</span>
+                                            <p>Follow these instruction to know how to add Channel <button id="amazonSave" type="submit" class="btn btn-success">Save & Next</button>  </p>
                                         </div>
-                                    </div>
-                                    <div class="header-ttl">
-                                        <span class="subheader">Inventory</span>
-                                        <p>Once the inentory is ON, We will update inventory on channel.</p>
-                                    </div>
-                                    <div class="gen-form">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" data-toggle="toggle">
-                                                Sync (Optional)
-                                            </label>
+                                        <div class="gen-form">
+                                            <ul>
+                                                <li>
+                                                    <label class="private-label">Channel Name*</label>
+                                                    @Html.TextBoxFor(model => model.Item1.ChannelName, new { @class = "private-form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Item1.ChannelName)
+                                                    @*<input type="text" class="private-form-control" />*@
+                                                </li>
+                                                <li>
+                                                    <label class="private-label">Leadger Name (Optional)</label>
+                                                    @Html.TextBoxFor(model => model.Item1.LeadgerName, new { @class = "private-form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Item1.LeadgerName)
+                                                    @*<input type="text" class="private-form-control" />*@
+                                                </li>
+                                            </ul>
                                         </div>
-                                    </div>
+                                        <div class="header-ttl">
+                                            <span class="subheader">Order</span>
+                                            <p>This section help us to configure important parameters for order and sync.</p>
+                                        </div>
+                                        <div class="gen-form">
+                                            <div class="checkbox">
+                                                <label>
+                                                    @Html.CheckBoxFor(model => model.Item1.OrderSync, new { @data_toggle = "toggle" })
+                                                    @Html.ValidationMessageFor(model => model.Item1.OrderSync)
+                                                    @*<input type="checkbox" data-toggle="toggle">*@
+                                                    Sync (Optional)
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="header-ttl">
+                                            <span class="subheader">Inventory</span>
+                                            <p>Once the inentory is ON, We will update inventory on channel.</p>
+                                        </div>
+                                        <div class="gen-form">
+                                            <div class="checkbox">
+                                                <label>
+                                                    @Html.CheckBoxFor(model => model.Item1.InventorySync, new { @data_toggle = "toggle" })
+                                                    @Html.ValidationMessageFor(model => model.Item1.InventorySync)
+                                                    @*<input type="checkbox" data-toggle="toggle">*@
+                                                    Sync (Optional)
+                                                </label>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                                 <div id="connector" class="tab-pane fade">
-                                    <div class="header-ttl">
-                                        <span class="subheader">Amazon MWS API </span>
-                                        <p>Provide API credentials that you get when you authorized you as a developer <button id="amaConnector" class="btn btn-success"><i class="fa fa-plug"></i> Connect</button></p>
-                                    </div>
-                                    <div class="gen-form">
-                                        <ul>
-                                            <li>
-                                                <label class="private-label">Seller Id</label>
-                                                <input type="text" class="private-form-control" />
-                                            </li>
-                                            <li>
-                                                <label class="private-label">Marketplace Id</label>
-                                                <input type="text" class="private-form-control" />
-                                            </li>
-                                            <li>
-                                                <label class="private-label">AWS Access Key Id</label>
-                                                <input type="text" class="private-form-control" />
-                                            </li>
-                                            <li>
-                                                <label class="private-label">Secret Key</label>
-                                                <input type="text" class="private-form-control" />
-                                            </li>
-                                            <li>
-                                                <label class="private-label">MWS Auth Token</label>
-                                                <input type="text" class="private-form-control" />
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="header-ttl">
-                                        <span class="subheader">Seller Credentials</span>
-                                        <p>Provide Credentials that you use to login into your seller panel.</p>
-                                    </div>
-                                    <div class="gen-form">
-                                        <ul>
-                                            <li>
-                                                <label class="private-label">Username</label>
-                                                <input type="text" class="private-form-control" />
-                                            </li>
-                                            <li>
-                                                <label class="private-label">Password</label>
-                                                <input type="text" class="private-form-control" />
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    @using (Ajax.BeginForm("SaveChannelAmazonDetails", "Configuration",
+new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "OnChannelApiSuccess",
+    OnFailure = "OnChannelApiFailure",
+    LoadingElementId = "progress"
+}))
+                                    {
+                                        <div class="header-ttl">
+                                            <span class="subheader">Amazon MWS API </span>
+                                            <p>Provide API credentials that you get when you authorized you as a developer <button id="amaConnector" class="btn btn-success"><i class="fa fa-plug"></i> Connect</button></p>
+                                        </div>
+                                        <div class="gen-form">
+                                            <ul>
+                                                <li>
+                                                    <label class="private-label">Seller Id</label>
+                                                    @Html.TextBoxFor(model => model.Item3.SellerId, new { @class = "private-form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Item3.SellerId)
+                                                    @*<input type="text" class="private-form-control" />*@
+                                                </li>
+                                                <li>
+                                                    <label class="private-label">Marketplace Id</label>
+                                                    @Html.TextBoxFor(model => model.Item3.MarketplaceId, new { @class = "private-form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Item3.MarketplaceId)
+                                                    @*<input type="text" class="private-form-control" />*@
+                                                </li>
+                                                <li>
+                                                    <label class="private-label">AWS Access Key Id</label>
+                                                    @Html.TextBoxFor(model => model.Item3.AccessKey, new { @class = "private-form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Item3.AccessKey)
+                                                    @*<input type="text" class="private-form-control" />*@
+                                                </li>
+                                                <li>
+                                                    <label class="private-label">Secret Key</label>
+                                                    @Html.TextBoxFor(model => model.Item3.SecretKey, new { @class = "private-form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Item3.SecretKey)
+                                                    @*<input type="text" class="private-form-control" />*@
+                                                </li>
+                                                <li>
+                                                    <label class="private-label">MWS Auth Token</label>
+                                                    @Html.TextBoxFor(model => model.Item3.AuthToken, new { @class = "private-form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Item3.AuthToken)
+                                                    @*<input type="text" class="private-form-control" />*@
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="header-ttl">
+                                            <span class="subheader">Seller Credentials</span>
+                                            <p>Provide Credentials that you use to login into your seller panel.</p>
+                                        </div>
+                                        <div class="gen-form">
+                                            <ul>
+                                                <li>
+                                                    <label class="private-label">Username</label>
+                                                    @Html.TextBoxFor(model => model.Item3.Username, new { @class = "private-form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Item3.Username)
+                                                    @*<input type="text" class="private-form-control" />*@
+                                                </li>
+                                                <li>
+                                                    <label class="private-label">Password</label>
+                                                    @Html.PasswordFor(model => model.Item3.Password, new { @class = "private-form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Item3.Password)
+                                                    <input type="text" class="private-form-control" />
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    }
                                 </div>
 
                             </div>
@@ -900,8 +942,7 @@ new AjaxOptions
         }
         function OnChannelApiSuccess(response) {
             CallToast(response.ERROR_MSG, response.ERROR_FLAG);
-            if(response.ERROR_FLAG=="S")
-            {
+            if (response.ERROR_FLAG == "S") {
                 window.location.href = "@Url.Action("Login","Auth")";
             }
         }

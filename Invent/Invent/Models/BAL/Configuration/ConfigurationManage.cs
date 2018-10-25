@@ -95,7 +95,7 @@ namespace Invent.Models.BAL.Configuration
             return error;
         }
 
-        public Error SaveChannelDetails(FlipkartApi flp,ChannelGeneralDetails chDtl,Token token)
+        public Error SaveChannelDetails(FlipkartApi flp,ChannelGeneralDetails chDtl)
         {
             SqlParameter[] sqlParameter = new SqlParameter[12];
             sqlParameter[0] = new SqlParameter("@USER_ID", flp.UserId);
@@ -108,6 +108,31 @@ namespace Invent.Models.BAL.Configuration
             sqlParameter[7] = new SqlParameter("@API_DETAILS", chDtl.ApiDetails);
             sqlParameter[8] = new SqlParameter("@STATUS", flp.Status);
             sqlParameter[9] = new SqlParameter("@FLAG",flp.Flag);
+            sqlParameter[10] = new SqlParameter("@ERROR_MSG", SqlDbType.NVarChar);
+            sqlParameter[10].Direction = ParameterDirection.Output;
+            sqlParameter[10].Size = 2000;
+            sqlParameter[11] = new SqlParameter("@ERROR_FLAG", SqlDbType.Char);
+            sqlParameter[11].Direction = ParameterDirection.Output;
+            sqlParameter[11].Size = 1;
+            DataSet ds = new DataSet();
+            ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_SAVE_USER_CHANNEL", sqlParameter);
+            error.ERROR_MSG = sqlParameter[10].Value.ToString();
+            error.ERROR_FLAG = sqlParameter[11].Value.ToString();
+            return error;
+        }
+        public Error SaveAmazonChannelDetails(AmazonApi flp, ChannelGeneralDetails chDtl)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[12];
+            sqlParameter[0] = new SqlParameter("@USER_ID", flp.UserId);
+            sqlParameter[1] = new SqlParameter("@CHANNEL_NAME", chDtl.ChannelName);
+            sqlParameter[2] = new SqlParameter("@LEADGER_NAME", chDtl.LeadgerName);
+            sqlParameter[3] = new SqlParameter("@ORDER_SYNC", chDtl.OrderSync);
+            sqlParameter[4] = new SqlParameter("@INVENTORY_SYNC", chDtl.InventorySync);
+            sqlParameter[5] = new SqlParameter("@USERNAME", flp.Username);
+            sqlParameter[6] = new SqlParameter("@PASSWORD", flp.Password);
+            sqlParameter[7] = new SqlParameter("@API_DETAILS", chDtl.ApiDetails);
+            sqlParameter[8] = new SqlParameter("@STATUS", flp.Status);
+            sqlParameter[9] = new SqlParameter("@FLAG", flp.Flag);
             sqlParameter[10] = new SqlParameter("@ERROR_MSG", SqlDbType.NVarChar);
             sqlParameter[10].Direction = ParameterDirection.Output;
             sqlParameter[10].Size = 2000;

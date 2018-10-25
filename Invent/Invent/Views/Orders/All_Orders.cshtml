@@ -8,13 +8,16 @@
     Html.RenderPartial("../Shared/Orders/_TopFilter");
 }
 <div class="data-grid-section">
-    <div class="pull-left filter-text-box">
-        <input type="text" id="filter-text-box" class="private-form-control" placeholder="Filter..." oninput="onFilterTextBoxChanged()" />
-    </div>
-    <div class="action-section pull-right">
+    <div class="action-area">
+        <div class="pull-left filter-text-box">
+            <input type="text" id="filter-text-box" class="private-form-control" placeholder="Filter..." oninput="onFilterTextBoxChanged()" />
+        </div>
+        <div class="action-section pull-right">
 
+        </div>
     </div>
+    <div id="orderGrid" style="height: 600px;width:100%;" class="ag-theme-balham"></div>
 </div>
-<div id="myGrid" style="height: 600px;width:100%;" class="ag-theme-balham"></div>
+
 
 

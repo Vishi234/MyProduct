@@ -23,6 +23,8 @@ namespace Invent.Controllers
         ConfigurationManage cm = new ConfigurationManage();
         ChannelGeneralDetails chDtl = new ChannelGeneralDetails();
         FlipkartApi fAPi = new FlipkartApi();
+        AmazonApi aApi = new AmazonApi();
+        JavaScriptSerializer serializer = new JavaScriptSerializer();
         Error error = new Error();
         public ActionResult Intro()
         {
@@ -56,7 +58,7 @@ namespace Invent.Controllers
             {
                 ExceptionHandling.WriteException(ex);
             }
-            return View(Tuple.Create(chDtl, fAPi));
+            return View(Tuple.Create(chDtl, fAPi, aApi));
         }
         [HttpPost]
         public JsonResult GetStates(string countryId)
@@ -161,7 +163,6 @@ namespace Invent.Controllers
         public JsonResult SaveChannelApiDetails([Bind(Prefix = "Item2")]FlipkartApi flDtl)
         {
             string response = string.Empty;
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
             Token token = new Token();
             TokenError tokenError = new TokenError();
             UserEntity objUserEntity = new UserEntity();
@@ -179,7 +180,7 @@ namespace Invent.Controllers
                     flDtl.UserId = objUserEntity.UserID;
                     ChannelGeneralDetails chDtl = (ChannelGeneralDetails)Session["ChannelGeneraDetail"];
                     chDtl.ApiDetails = response;
-                    error = cm.SaveChannelDetails(flDtl, chDtl,token);
+                    error = cm.SaveChannelDetails(flDtl, chDtl);
                 }
                 else
                 {
@@ -189,6 +190,29 @@ namespace Invent.Controllers
 
             }
             catch (Exception ex)
+            {
+                ExceptionHandling.WriteException(ex);
+            }
+            return Json(error);
+        }
+        [HttpPost]
+        public JsonResult SaveChannelAmazonDetails([Bind(Prefix = "Item3")]AmazonApi amApi)
+        {
+           
+            
+            string response = serializer.Serialize(amApi);
+            UserEntity objUserEntity = new UserEntity();
+            try
+            {
+                objUserEntity = (UserEntity)Session["UserEntity"];
+                amApi.Status = '1';
+                amApi.Flag = 'A';
+                amApi.UserId = objUserEntity.UserID;
+                ChannelGeneralDetails chDtl = (ChannelGeneralDetails)Session["ChannelGeneraDetail"];
+                chDtl.ApiDetails = response;
+                error = cm.SaveAmazonChannelDetails(amApi, chDtl);
+            }
+            catch(Exception ex)
             {
                 ExceptionHandling.WriteException(ex);
             }
