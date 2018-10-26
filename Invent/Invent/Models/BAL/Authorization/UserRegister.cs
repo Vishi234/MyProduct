@@ -44,7 +44,7 @@ namespace Invent.Models.BAL.Authorization
             {
                 UserEntity objUserEntity = new UserEntity();
                 List<ChannelGeneralDetails> lstDtl = new List<ChannelGeneralDetails>();
-                ChannelGeneralDetails chDtl = new ChannelGeneralDetails();
+                ChannelGeneralDetails chDtl;
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     objUserEntity.UserID = ds.Tables[0].Rows[0]["USER_ID"].ToString();
@@ -77,6 +77,7 @@ namespace Invent.Models.BAL.Authorization
                 {
                     foreach (DataRow dr in ds.Tables[1].Rows)
                     {
+                        chDtl = new ChannelGeneralDetails();
                         chDtl.ChannelName = dr["CHANNEL_NAME"].ToString();
                         chDtl.InventorySync = ((Convert.ToChar(dr["INVENTORY_SYNC"]) == '0') ? false : true);
                         chDtl.OrderSync = ((Convert.ToChar(dr["ORDER_SYNC"]) == '0') ? false : true);

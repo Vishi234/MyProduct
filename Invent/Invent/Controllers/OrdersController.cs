@@ -6,12 +6,16 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Configuration;
 using RestSharp;
+using Invent.Models.Entity.User;
+using System.Web.Script.Serialization;
 
 namespace Invent.Controllers
 {
     public class OrdersController : Controller
     {
         // GET: Orders
+        JavaScriptSerializer serializer;
+        UserEntity objUserEntity;
         public ActionResult All_Orders()
         {
             var client = new RestClient("https://api.flipkart.net/sellers/orders/search");
@@ -23,6 +27,14 @@ namespace Invent.Controllers
             request.AddParameter("application/json", "{\"filter\" :{}}", ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
             return View();
+        }
+        [HttpPost]
+        public JsonResult GetOrders()
+        {
+            objUserEntity = new UserEntity();
+            objUserEntity = (UserEntity)Session["UserEntity"];
+
+            return Json("");
         }
 
     }

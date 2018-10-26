@@ -205,6 +205,8 @@ namespace Invent.Controllers
                 objUserEntity = (UserEntity)Session["UserEntity"];
                 fAPi.Status = '1';
                 fAPi.Flag = 'A';
+                fAPi.Username = amApi.Username;
+                fAPi.Password = amApi.Password;
                 fAPi.UserId = objUserEntity.UserID;
                 ChannelGeneralDetails chDtl = (ChannelGeneralDetails)Session["ChannelGeneraDetail"];
                 chDtl.ApiDetails = response;
