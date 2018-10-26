@@ -75,10 +75,8 @@
             </div>
         </div>
         <div class="main-body">
-            <div class="container">
-                <div class="row">
-                    @RenderBody()
-                </div>
+            <div class="container-fluid">
+               @RenderBody()
             </div>
         </div>
         <footer></footer>
@@ -121,7 +119,7 @@
         var gridOptions = GridInitializer(columnDefs);
 
         document.addEventListener('DOMContentLoaded', function () {
-            var gridDiv = document.querySelector('#myGrid');
+            var gridDiv = document.querySelector('#orderGrid');
             new agGrid.Grid(gridDiv, gridOptions);
 
             agGrid.simpleHttpRequest({ url: 'https://raw.githubusercontent.com/ag-grid/ag-grid/master/packages/ag-grid-docs/src/olympicWinners.json' }).then(function (data) {

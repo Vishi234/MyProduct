@@ -339,6 +339,10 @@ a {
     background: #2E3F50;
     height: 60px;
     border-top: 3px solid #ff7a59;
+    position: fixed;
+    width: 100%;
+    z-index: 99999999;
+    top: 0;
 }
 
 .nav-menu > ul > li {
@@ -460,6 +464,7 @@ a {
 .main-body {
     background: rgb(245, 248, 250);
     height: 660px;
+    margin-top: 60px;
 }
 
 .top-title {
@@ -1399,8 +1404,9 @@ a {
         }
 
         .filter-list > ul > li > .right-menu {
-            margin-right: 28px;
-            width: 80%;
+            width: 81%;
+            /* float: none; */
+            margin-right: 20px;
         }
 
             .filter-list > ul > li > .right-menu > .cal-icon {
@@ -1416,7 +1422,7 @@ a {
             }
 
         .filter-list > ul > li:nth-child(4) {
-            width: 27%;
+            width: 20%;
         }
 
         .filter-list > ul > li > .right-menu > .caret-icon {
@@ -1429,6 +1435,16 @@ a {
             /* float: right; */
             margin-top: -4px;
         }
+
+        .filter-list > ul > li > .right-menu .private-form-control {
+            background: #fff;
+        }
+
+            .filter-list > ul > li > .right-menu .private-form-control:focus {
+                border-color: none;
+                box-shadow: none;
+                outline: 0;
+            }
 
 .arrow-up {
     width: 0;
@@ -1586,4 +1602,46 @@ a {
     border-radius: 49px;
     display: block;
     font-size: 10px;
+}
+
+.data-grid-section {
+    display: inline-block;
+    width: 100%;
+    background: #fff;
+    border: 1px solid;
+    border-color: rgb(203, 214, 226) rgb(203, 214, 226) rgb(203, 214, 226);
+    margin-top: 10px;
+}
+
+.filter-text-box {
+    width: 300px;
+}
+
+    .filter-text-box .private-form-control {
+        border: none;
+        background: #fff;
+        border-right: 1px solid;
+        border-color: rgb(203, 214, 226) rgb(203, 214, 226) rgb(203, 214, 226);
+        border-radius: 0px;
+    }
+
+        .filter-text-box .private-form-control:focus {
+            border-color: none;
+            box-shadow: none;
+            outline: 0;
+        }
+
+.action-area {
+    display: inline-block;
+    width: 100%;
+}
+
+.ag-theme-balham .ag-root {
+    border-left: 0px !important;
+    border-right: 0px !important;
+}
+
+.selectBox-dropdown {
+    background: #fff!important;
+    border-radius: 2px!important;
 }
