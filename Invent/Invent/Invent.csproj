@@ -290,6 +290,7 @@
     <Compile Include="Models\Entity\Common\Token.cs" />
     <Compile Include="Models\Entity\Common\TokenError.cs" />
     <Compile Include="Models\Entity\Configuration\AccountingDetails.cs" />
+    <Compile Include="Models\Entity\Configuration\AmazonApi.cs" />
     <Compile Include="Models\Entity\Configuration\Billing.cs" />
     <Compile Include="Models\Entity\Configuration\ChannelGeneralDetails.cs" />
     <Compile Include="Models\Entity\Configuration\FlipkartApi.cs" />

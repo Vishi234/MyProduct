@@ -198,19 +198,17 @@ namespace Invent.Controllers
         [HttpPost]
         public JsonResult SaveChannelAmazonDetails([Bind(Prefix = "Item3")]AmazonApi amApi)
         {
-           
-            
             string response = serializer.Serialize(amApi);
             UserEntity objUserEntity = new UserEntity();
             try
             {
                 objUserEntity = (UserEntity)Session["UserEntity"];
-                amApi.Status = '1';
-                amApi.Flag = 'A';
-                amApi.UserId = objUserEntity.UserID;
+                fAPi.Status = '1';
+                fAPi.Flag = 'A';
+                fAPi.UserId = objUserEntity.UserID;
                 ChannelGeneralDetails chDtl = (ChannelGeneralDetails)Session["ChannelGeneraDetail"];
                 chDtl.ApiDetails = response;
-                error = cm.SaveAmazonChannelDetails(amApi, chDtl);
+                error = cm.SaveChannelDetails(fAPi, chDtl);
             }
             catch(Exception ex)
             {
