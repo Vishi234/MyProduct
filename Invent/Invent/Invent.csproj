@@ -182,7 +182,6 @@
     <Content Include="assets\img\jquery.selectBox-arrow.gif" />
     <Content Include="assets\img\loading.gif" />
     <Content Include="assets\img\user-img.png" />
-    <Content Include="assets\module_scripts\Orders\orders.js" />
     <Content Include="assets\scripts\ag-grid-nostyle.min.js" />
     <Content Include="assets\scripts\ag-grid\ag-grid.min.noStyle.js" />
     <Content Include="assets\scripts\common.js" />
@@ -323,7 +322,7 @@
     <Content Include="Views\Configuration\Step_1.cshtml" />
     <Content Include="Views\Configuration\Step_2.cshtml" />
     <Content Include="Views\Orders\All_Orders.cshtml" />
-    <Content Include="Views\Shared\PartialView\Orders\_TopFilter.cshtml" />
+    <Content Include="Views\Shared\Orders\_TopFilter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
