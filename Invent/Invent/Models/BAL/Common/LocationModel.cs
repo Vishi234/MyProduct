@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Invent.Models.BAL.Common
 {
-    public class Location
+    public class LocationModel
     {
         public string COUNTRY_ID { get; set; }
         public string COUNTRY_NAME { get; set; }

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Invent.Models.Entity.Common
 {
-    public class Token
+    public class TokenEntity
     {
         public string access_token { get; set; }
         public string token_type { get; set; }

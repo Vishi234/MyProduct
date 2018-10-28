@@ -38,7 +38,7 @@ namespace Invent.Models.Entity.User
         public string S_Phone { get; set; }
         public string Status { get; set; }
         public string Verified { get; set; }
-        public List<ChannelGeneralDetails> ChannelDetails { get; set; }
+        public List<ChannelGeneralDetailsEntity> ChannelDetails { get; set; }
         
     }
 }

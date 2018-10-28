@@ -45,8 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AmazonAPI">
-      <HintPath>..\..\AmazonAPI\AmazonAPI\AmazonAPI\bin\Debug\AmazonAPI.dll</HintPath>
+    <Reference Include="AmazonAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\AmazonAPI\AmazonAPI\AmazonAPI\bin\Debug\AmazonAPI.dll</HintPath>
     </Reference>
     <Reference Include="ChilkatDotNet45">
       <HintPath>C:\Users\HP\Downloads\chilkatdotnet45-9.5.0-win32\chilkatdotnet45-9.5.0-win32\ChilkatDotNet45.dll</HintPath>
@@ -84,8 +85,13 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MWSClientCsRuntime-1.0">
-      <HintPath>..\..\AmazonAPI\AmazonAPI\AmazonAPI\bin\Debug\MWSClientCsRuntime-1.0.dll</HintPath>
+    <Reference Include="MWSClientCsRuntime-1.0, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\AmazonAPI\AmazonAPI\AmazonAPI\bin\Debug\MWSClientCsRuntime-1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp, Version=106.5.4.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.5.4\lib\net452\RestSharp.dll</HintPath>
@@ -182,6 +188,7 @@
     <Content Include="assets\img\jquery.selectBox-arrow.gif" />
     <Content Include="assets\img\loading.gif" />
     <Content Include="assets\img\user-img.png" />
+    <Content Include="assets\module_scripts\Orders\orders.js" />
     <Content Include="assets\scripts\ag-grid-nostyle.min.js" />
     <Content Include="assets\scripts\ag-grid\ag-grid.min.noStyle.js" />
     <Content Include="assets\scripts\common.js" />
@@ -281,22 +288,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\BAL\Authorization\UserRegister.cs" />
-    <Compile Include="Models\BAL\Common\Common.cs" />
-    <Compile Include="Models\BAL\Common\Location.cs" />
-    <Compile Include="Models\BAL\Configuration\ConfigurationManage.cs" />
+    <Compile Include="Models\BAL\Authorization\AuthModel.cs" />
+    <Compile Include="Models\BAL\Common\CommonModel.cs" />
+    <Compile Include="Models\BAL\Common\LocationModel.cs" />
+    <Compile Include="Models\BAL\Configuration\ConfigurationManageModel.cs" />
+    <Compile Include="Models\BAL\Order\AmazonChannelModel.cs" />
+    <Compile Include="Models\BAL\Order\FlipkartChannelModel.cs" />
     <Compile Include="Models\DAL\SQLHelper.cs" />
-    <Compile Include="Models\Entity\Common\Error.cs" />
-    <Compile Include="Models\Entity\Common\Token.cs" />
-    <Compile Include="Models\Entity\Common\TokenError.cs" />
-    <Compile Include="Models\Entity\Configuration\AccountingDetails.cs" />
-    <Compile Include="Models\Entity\Configuration\AmazonApi.cs" />
-    <Compile Include="Models\Entity\Configuration\Billing.cs" />
-    <Compile Include="Models\Entity\Configuration\ChannelGeneralDetails.cs" />
-    <Compile Include="Models\Entity\Configuration\FlipkartApi.cs" />
-    <Compile Include="Models\Entity\Configuration\GeneralDetails.cs" />
-    <Compile Include="Models\Entity\User\LoginModel.cs" />
-    <Compile Include="Models\Entity\User\RegisterModel.cs" />
+    <Compile Include="Models\Entity\Channel\OrderEntity.cs" />
+    <Compile Include="Models\Entity\Common\ErrorEntity.cs" />
+    <Compile Include="Models\Entity\Common\TokenEntity.cs" />
+    <Compile Include="Models\Entity\Common\TokenErrorEntity.cs" />
+    <Compile Include="Models\Entity\Configuration\UserAccountingEntity.cs" />
+    <Compile Include="Models\Entity\Configuration\AmazonEntity.cs" />
+    <Compile Include="Models\Entity\Configuration\UserBillingEntity.cs" />
+    <Compile Include="Models\Entity\Configuration\ChannelGeneralDetailsEntity.cs" />
+    <Compile Include="Models\Entity\Configuration\FlipkartEntity.cs" />
+    <Compile Include="Models\Entity\Configuration\GeneralDetailsEntity.cs" />
+    <Compile Include="Models\Entity\User\LoginEntity.cs" />
+    <Compile Include="Models\Entity\User\RegisterEntity.cs" />
     <Compile Include="Models\Entity\User\UserEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -322,7 +332,6 @@
     <Content Include="Views\Configuration\Step_1.cshtml" />
     <Content Include="Views\Configuration\Step_2.cshtml" />
     <Content Include="Views\Orders\All_Orders.cshtml" />
-    <Content Include="Views\Shared\Orders\_TopFilter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

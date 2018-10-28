@@ -127,31 +127,33 @@ function OnFailure(response) {
 }
 function GridInitializer(colDef) {
     var gridOptions = {
+        columnDefs: colDef,
         enableSorting: true,
         enableFilter: false,
-        suppressRowClickSelection: true,
-        groupSelectsChildren: true,
-        debug: true,
-        rowSelection: 'multiple',
+        rowData: null,
         enableColResize: true,
-        rowGroupPanelShow: 'always',
-        pivotPanelShow: 'always',
-        enableRangeSelection: true,
-        columnDefs: colDef,
         pagination: true,
-        paginationPageSize: 10,
+        paginationPageSize: 20,
         paginationNumberFormatter: function (params) {
             return '[' + params.value.toLocaleString() + ']';
         },
-        onFirstDataRendered: onFirstDataRendered
+        onGridReady: function (params) {
+            params.api.sizeColumnsToFit();
+            //setTimeout(function () {
+            //    gridOptions.api.resetRowHeights();
+            //}, 500);
+        },
+        //onColumnResized: onColumnResized
+
     };
-   
     return gridOptions;
 }
+//function onColumnResized(event) {
+//    if (event.finished) {
+//        gridOptions.api.resetRowHeights();
+//    }
+//}
 function onPageSizeChanged(newPageSize) {
     var value = document.getElementById('page-size').value;
     gridOptions.api.paginationSetPageSize(Number(value));
-}
-function onFirstDataRendered(params) {
-    params.api.sizeColumnsToFit();
 }

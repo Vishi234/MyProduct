@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Invent.Models.Entity.Configuration
 {
-    public class GeneralDetails
+    public class GeneralDetailsEntity
     {
         public string UserId { get; set; }
         [Required(ErrorMessageResourceType = typeof(en_msg_lang), ErrorMessageResourceName = "EmailReq")]

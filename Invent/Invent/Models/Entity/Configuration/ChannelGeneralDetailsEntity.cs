@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Invent.Models.Entity.Configuration
 {
-    public class ChannelGeneralDetails
+    public class ChannelGeneralDetailsEntity
     {
         [Required(ErrorMessage ="Required")]
         public string ChannelName { get; set; }
@@ -14,5 +14,6 @@ namespace Invent.Models.Entity.Configuration
         public bool OrderSync { get; set; }
         public bool InventorySync { get; set; }
         public string ApiDetails { get; set; }
+        public string Ch_Prefix { get; set; }
     }
 }

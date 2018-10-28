@@ -8,7 +8,7 @@ using System.Web.Security;
 
 namespace Invent.Models.Entity.User
 {
-    public class LoginModel
+    public class LoginEntity
     {
         [Required(ErrorMessageResourceType = typeof(en_msg_lang), ErrorMessageResourceName = "EmailReq")]
         [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "Please enter valid email address.")]

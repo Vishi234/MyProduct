@@ -6,24 +6,20 @@ using System.Web;
 
 namespace Invent.Models.Entity.Configuration
 {
-    public class AmazonApi
+    public class FlipkartEntity
     {
+        public string UserId { get; set; }
         [Required(ErrorMessage = "Required")]
-        public string SellerId { get; set; }
+        public string ApplicationName { get; set; }
         [Required(ErrorMessage = "Required")]
-        public string MarketplaceId { get; set; }
+        public string ApplicationId { get; set; }
         [Required(ErrorMessage = "Required")]
-        public string AccessKey { get; set; }
-        [Required(ErrorMessage = "Required")]
-        public string SecretKey { get; set; }
-        [Required(ErrorMessage = "Required")]
-        public string AuthToken { get; set; }
+        public string ApplicationSecret { get; set; }
+        public string LocationId { get; set; }
         [Required(ErrorMessage = "Required")]
         public string Username { get; set; }
         [Required(ErrorMessage = "Required")]
         public string Password { get; set; }
-
-        public string UserId { get; set; }
         public char Status { get; set; }
         public char Flag { get; set; }
     }

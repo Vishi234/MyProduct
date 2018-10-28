@@ -1,4 +1,5 @@
 ﻿using Chilkat;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,10 +10,11 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Xml;
 
 namespace Invent.Models.BAL.Common
 {
-    public static class Common
+    public static class CommonModel
     {
         #region Password Encyption
         public static string Encrypt(string password)
@@ -91,6 +93,14 @@ namespace Invent.Models.BAL.Common
             return response;
         }
         #endregion
+
+        public static string XMLTOJSON(string xml)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xml);
+            string json =JsonConvert.SerializeXmlNode(doc);
+            return json;
+        }
     }
     #region Exception
     public static class ExceptionHandling

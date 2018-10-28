@@ -448,3 +448,7 @@ C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\obj\Debug\Invent.assets.lan
 C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\obj\Debug\Invent.csproj.GenerateResource.Cache
 C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\obj\Debug\Invent.dll
 C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\obj\Debug\Invent.pdb
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\AmazonAPI.dll
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\MWSClientCsRuntime-1.0.dll
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Newtonsoft.Json.dll
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Newtonsoft.Json.xml

@@ -11,11 +11,11 @@ using System.Web;
 
 namespace Invent.Models.BAL.Authorization
 {
-    public class UserRegister
+    public class AuthModel
     {
         DataTable dt = new DataTable();
         string sqlconn = ConfigurationManager.ConnectionStrings["DBCONN"].ConnectionString;
-        public RegisterModel UserAuthorization(RegisterModel regModel)
+        public RegisterEntity UserAuthorization(RegisterEntity regModel)
         {
             SqlParameter[] sqlParameter = new SqlParameter[11];
             sqlParameter[0] = new SqlParameter("@USER_ID", regModel.UserID);
@@ -43,8 +43,8 @@ namespace Invent.Models.BAL.Authorization
             if (ds.Tables.Count > 0)
             {
                 UserEntity objUserEntity = new UserEntity();
-                List<ChannelGeneralDetails> lstDtl = new List<ChannelGeneralDetails>();
-                ChannelGeneralDetails chDtl;
+                List<ChannelGeneralDetailsEntity> lstDtl = new List<ChannelGeneralDetailsEntity>();
+                ChannelGeneralDetailsEntity chDtl;
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     objUserEntity.UserID = ds.Tables[0].Rows[0]["USER_ID"].ToString();
@@ -77,11 +77,12 @@ namespace Invent.Models.BAL.Authorization
                 {
                     foreach (DataRow dr in ds.Tables[1].Rows)
                     {
-                        chDtl = new ChannelGeneralDetails();
+                        chDtl = new ChannelGeneralDetailsEntity();
                         chDtl.ChannelName = dr["CHANNEL_NAME"].ToString();
                         chDtl.InventorySync = ((Convert.ToChar(dr["INVENTORY_SYNC"]) == '0') ? false : true);
                         chDtl.OrderSync = ((Convert.ToChar(dr["ORDER_SYNC"]) == '0') ? false : true);
                         chDtl.LeadgerName = dr["LEADGER_NAME"].ToString();
+                        chDtl.Ch_Prefix = dr["PREFIX"].ToString();
                         chDtl.ApiDetails = dr["API_DETAILS"].ToString();
                         lstDtl.Add(chDtl);
                     }

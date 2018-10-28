@@ -1,12 +1,42 @@
-﻿var columnDefs = [
-    { headerName: '', field: '', width: 50, filterParams: { newRowsAction: 'keep' }, checkboxSelection: true, headerCheckboxSelection: true },
-    { headerName: 'OrderId', field: 'age', width: 90, filterParams: { newRowsAction: 'keep' } },
-    { headerName: 'Country', field: 'country', width: 120, filterParams: { newRowsAction: 'keep' } },
-    { headerName: 'Year', field: 'year', width: 90, filterParams: { newRowsAction: 'keep' } },
-    { headerName: 'Date', field: 'date', width: 110, filterParams: { newRowsAction: 'keep' } },
-    { headerName: 'Sport', field: 'sport', width: 110, filterParams: { newRowsAction: 'keep' } },
-    { headerName: 'Gold', field: 'gold', width: 100, filterParams: { newRowsAction: 'keep' } },
-    { headerName: 'Silver', field: 'silver', width: 100, filterParams: { newRowsAction: 'keep' } },
-    { headerName: 'Bronze', field: 'bronze', width: 100, filterParams: { newRowsAction: 'keep' } },
-    { headerName: 'Total', field: 'total', width: 100, filterParams: { newRowsAction: 'keep' } }
+﻿var gridOptions;
+var columnDefs;
+var MyData;
+columnDefs = [
+    { headerName: '', field: '', width: 20, filterParams: { newRowsAction: 'keep' }, checkboxSelection: true, headerCheckboxSelection: true },
+    { headerName: 'OrderID', field: 'OrderId', width: 90, filterParams: { newRowsAction: 'keep' } },
+    { headerName: 'Item ID', field: 'ItemId', width: 70, filterParams: { newRowsAction: 'keep' } },
+    { headerName: 'Channel', field: 'Channel', width: 50, filterParams: { newRowsAction: 'keep' } },
+    { headerName: 'Product Info', field: 'ProductInfo', width: 110, cellClass: 'cell-wrap-text', autoHeight: true, filterParams: { newRowsAction: 'keep' } },
+    { headerName: 'Order Date', field: 'OrderDate', width: 110, filterParams: { newRowsAction: 'keep' } },
+    { headerName: 'Ship Date', field: 'ShipDate', width: 100, filterParams: { newRowsAction: 'keep' } },
+    { headerName: 'Amount', field: 'Amount', width: 50, filterParams: { newRowsAction: 'keep' } },
+    { headerName: 'Status', field: 'Status', width: 50, filterParams: { newRowsAction: 'keep' } },
 ];
+gridOptions = GridInitializer(columnDefs);
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    var gridDiv = document.querySelector('#orderGrid');
+    new agGrid.Grid(gridDiv, gridOptions);
+    MyData = GetOrders("A");
+
+});
+function onFilterTextBoxChanged() {
+    gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
+}
+function GetOrders(type) {
+    $.ajax({
+        type: 'POST',
+        url: "GetOrders",
+        contentType: "application/json",
+        data: JSON.stringify({ orderType: type }),
+        success: function (data) {
+            gridOptions.api.setRowData(data);
+        }
+    });
+    return MyData;
+}
+//$(".orderStatus li a").click(function () {
+//    var type = $(this).attr("type");
+
+//});

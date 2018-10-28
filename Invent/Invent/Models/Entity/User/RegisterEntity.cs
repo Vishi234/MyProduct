@@ -8,7 +8,7 @@ using System.Web.Security;
 
 namespace Invent.Models.Entity.User
 {
-    public class RegisterModel
+    public class RegisterEntity
     {
         public string UserID { get; set; }
         [Required(ErrorMessageResourceType = typeof(en_msg_lang), ErrorMessageResourceName = "CompanyNameReq")]

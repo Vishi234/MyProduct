@@ -17,15 +17,15 @@ namespace Invent.Controllers
     {
         // GET: Configuration
         DataSet ds;
-        GeneralDetails gDtl = new GeneralDetails();
-        AccountingDetails acDtl = new AccountingDetails();
-        Billing bDtl = new Billing();
-        ConfigurationManage cm = new ConfigurationManage();
-        ChannelGeneralDetails chDtl = new ChannelGeneralDetails();
-        FlipkartApi fAPi = new FlipkartApi();
-        AmazonApi aApi = new AmazonApi();
+        GeneralDetailsEntity gDtl = new GeneralDetailsEntity();
+        UserAccountingEntity acDtl = new UserAccountingEntity();
+        UserBillingEntity bDtl = new UserBillingEntity();
+        ConfigurationManageModel cm = new ConfigurationManageModel();
+        ChannelGeneralDetailsEntity chDtl = new ChannelGeneralDetailsEntity();
+        FlipkartEntity fAPi = new FlipkartEntity();
+        AmazonEntity aApi = new AmazonEntity();
         JavaScriptSerializer serializer = new JavaScriptSerializer();
-        Error error = new Error();
+        ErrorEntity error = new ErrorEntity();
         public ActionResult Intro()
         {
             return View();
@@ -97,7 +97,7 @@ namespace Invent.Controllers
             return Json(bDtl.City);
         }
         [HttpPost]
-        public JsonResult SaveGeneralDetails([Bind(Prefix = "Item1")] GeneralDetails gDtl)
+        public JsonResult SaveGeneralDetails([Bind(Prefix = "Item1")] GeneralDetailsEntity gDtl)
         {
             try
             {
@@ -115,7 +115,7 @@ namespace Invent.Controllers
             return Json(cm.SaveGeneralDetails(gDtl));
         }
         [HttpPost]
-        public JsonResult SaveAccountingDetails([Bind(Prefix = "Item2")] AccountingDetails acDtl)
+        public JsonResult SaveAccountingDetails([Bind(Prefix = "Item2")] UserAccountingEntity acDtl)
         {
             try
             {
@@ -133,7 +133,7 @@ namespace Invent.Controllers
             return Json(cm.SaveAccountingDetails(acDtl));
         }
         [HttpPost]
-        public JsonResult SaveBillingDetails([Bind(Prefix = "Item3")] Billing bDtl)
+        public JsonResult SaveBillingDetails([Bind(Prefix = "Item3")] UserBillingEntity bDtl)
         {
             try
             {
@@ -151,34 +151,35 @@ namespace Invent.Controllers
             return Json(cm.SaveBillingDetails(bDtl));
         }
         [HttpPost]
-        public JsonResult SaveChannelDetails([Bind(Prefix = "Item1")]ChannelGeneralDetails chDtl)
+        public JsonResult SaveChannelDetails([Bind(Prefix = "Item1")]ChannelGeneralDetailsEntity chDtl)
         {
             Session["ChannelGeneraDetail"] = chDtl;
-            Error error = new Error();
+            ErrorEntity error = new ErrorEntity();
             error.ERROR_FLAG = "S";
             error.ERROR_MSG = "Channel details has been saved.";
             return Json(error);
         }
         [HttpPost]
-        public JsonResult SaveChannelApiDetails([Bind(Prefix = "Item2")]FlipkartApi flDtl)
+        public JsonResult SaveChannelApiDetails([Bind(Prefix = "Item2")]FlipkartEntity flDtl)
         {
             string response = string.Empty;
-            Token token = new Token();
-            TokenError tokenError = new TokenError();
+            TokenEntity token = new TokenEntity();
+            TokenErrorEntity tokenError = new TokenErrorEntity();
             UserEntity objUserEntity = new UserEntity();
             try
             {
-                response = Common.FlipkartToken(flDtl.ApplicationId, flDtl.ApplicationSecret);
-                token = serializer.Deserialize<Token>(response);
-                tokenError = serializer.Deserialize<TokenError>(response);
+                response = CommonModel.FlipkartToken(flDtl.ApplicationId, flDtl.ApplicationSecret);
+                token = serializer.Deserialize<TokenEntity>(response);
+                tokenError = serializer.Deserialize<TokenErrorEntity>(response);
                 if (token.access_token != null)
                 {
+                    ChannelGeneralDetailsEntity chDtl = (ChannelGeneralDetailsEntity)Session["ChannelGeneraDetail"];
                     Session["FlipkartToken"] = token;
                     objUserEntity = (UserEntity)Session["UserEntity"];
                     flDtl.Status = '1';
                     flDtl.Flag = 'A';
+                    chDtl.Ch_Prefix = "FP";
                     flDtl.UserId = objUserEntity.UserID;
-                    ChannelGeneralDetails chDtl = (ChannelGeneralDetails)Session["ChannelGeneraDetail"];
                     chDtl.ApiDetails = response;
                     error = cm.SaveChannelDetails(flDtl, chDtl);
                 }
@@ -196,23 +197,24 @@ namespace Invent.Controllers
             return Json(error);
         }
         [HttpPost]
-        public JsonResult SaveChannelAmazonDetails([Bind(Prefix = "Item3")]AmazonApi amApi)
+        public JsonResult SaveChannelAmazonDetails([Bind(Prefix = "Item3")]AmazonEntity amApi)
         {
             string response = serializer.Serialize(amApi);
             UserEntity objUserEntity = new UserEntity();
             try
             {
+                ChannelGeneralDetailsEntity chDtl = (ChannelGeneralDetailsEntity)Session["ChannelGeneraDetail"];
                 objUserEntity = (UserEntity)Session["UserEntity"];
                 fAPi.Status = '1';
                 fAPi.Flag = 'A';
                 fAPi.Username = amApi.Username;
                 fAPi.Password = amApi.Password;
                 fAPi.UserId = objUserEntity.UserID;
-                ChannelGeneralDetails chDtl = (ChannelGeneralDetails)Session["ChannelGeneraDetail"];
+                chDtl.Ch_Prefix = "AZ";
                 chDtl.ApiDetails = response;
                 error = cm.SaveChannelDetails(fAPi, chDtl);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ExceptionHandling.WriteException(ex);
             }

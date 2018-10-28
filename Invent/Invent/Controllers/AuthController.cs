@@ -14,31 +14,31 @@ namespace Invent.Controllers
     public class AuthController : Controller
     {
         // GET: Auth
-        Error error = new Error();
+        ErrorEntity error = new ErrorEntity();
         public ActionResult Login()
         {
-            return View(new LoginModel());
+            return View(new LoginEntity());
         }
         public ActionResult Register()
         {
-            return View(new RegisterModel());
+            return View(new RegisterEntity());
         }
         [HttpPost]
-        public JsonResult Register(RegisterModel regModel)
+        public JsonResult Register(RegisterEntity regModel)
         {
             try
             {
                 Guid guid = Guid.NewGuid();
                 regModel.Flag = 'A';
-                regModel.Password = Common.Encrypt(regModel.Password);
+                regModel.Password = CommonModel.Encrypt(regModel.Password);
                 regModel.VerCode = guid.ToString();
-                regModel = new UserRegister().UserAuthorization(regModel);
+                regModel = new AuthModel().UserAuthorization(regModel);
                 error.ERROR_MSG = regModel.Msg;
                 error.ERROR_FLAG = regModel.ErrorFlag;
                 ViewBag.UserID = regModel.UserID;
                 if (error.ERROR_FLAG == "S")
                 {
-                    if (Common.SendEmail(regModel.FirstName, "Account Verfication", regModel.EmailAddress, guid) != "Sent")
+                    if (CommonModel.SendEmail(regModel.FirstName, "Account Verfication", regModel.EmailAddress, guid) != "Sent")
                     {
                         error.ERROR_MSG = "Registration has been failed. Please contact help desk.";
                         error.ERROR_FLAG = "F";
@@ -57,15 +57,15 @@ namespace Invent.Controllers
         }
 
         [HttpPost]
-        public JsonResult Login(LoginModel logModel)
+        public JsonResult Login(LoginEntity logModel)
         {
             try
             {
-                RegisterModel regModel = new RegisterModel();
+                RegisterEntity regModel = new RegisterEntity();
                 regModel.Flag = 'L';
                 regModel.EmailAddress = logModel.EmailAddress;
-                regModel.Password = Common.Encrypt(logModel.Password);
-                regModel = new UserRegister().UserAuthorization(regModel);
+                regModel.Password = CommonModel.Encrypt(logModel.Password);
+                regModel = new AuthModel().UserAuthorization(regModel);
 
                 error.ERROR_MSG = regModel.Msg;
                 error.ERROR_FLAG = regModel.ErrorFlag;
@@ -91,11 +91,11 @@ namespace Invent.Controllers
         {
             try
             {
-                RegisterModel regModel = new RegisterModel();
+                RegisterEntity regModel = new RegisterEntity();
                 Guid activationCode = new Guid(RouteData.Values["id"].ToString());
                 regModel.VerCode = activationCode.ToString();
                 regModel.Flag = 'V';
-                regModel = new UserRegister().UserAuthorization(regModel);
+                regModel = new AuthModel().UserAuthorization(regModel);
                 error.ERROR_MSG = regModel.Msg;
                 error.ERROR_FLAG = regModel.ErrorFlag;
                 if (error.ERROR_FLAG == "S")

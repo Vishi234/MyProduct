@@ -14,6 +14,8 @@
     <link href="~/assets/css/jquery.selectBox.css" rel="stylesheet" />
     <link href="~/assets/css/ag-grid/ag-grid.css" rel="stylesheet" />
     <link href="~/assets/css/ag-grid/ag-theme-balham.css" rel="stylesheet" />
+    <script src="~/assets/scripts/ag-grid/ag-grid.min.noStyle.js"></script>
+    <script src="~/assets/scripts/common.js"></script>
 </head>
 <body>
     @if (user != null)
@@ -76,7 +78,7 @@
         </div>
         <div class="main-body">
             <div class="container-fluid">
-               @RenderBody()
+                @RenderBody()
             </div>
         </div>
         <footer></footer>
@@ -100,36 +102,8 @@
     <script src="~/assets/scripts/bootstrap.min.js"></script>
     <script src="~/assets/scripts/jquery.toast.min.js"></script>
     <script src="~/assets/scripts/jquery.selectBox.js"></script>
-    <script src="~/assets/scripts/ag-grid/ag-grid.min.noStyle.js"></script>
-    <script src="~/assets/scripts/common.js"></script>
+
     <script type="text/javascript">
-        var columnDefs = [
-            { headerName: '', field: '', width: 50, filterParams: { newRowsAction: 'keep' }, checkboxSelection: true, headerCheckboxSelection: true },
-            { headerName: 'Age', field: 'age', width: 90, filterParams: { newRowsAction: 'keep' } },
-            { headerName: 'Country', field: 'country', width: 120, filterParams: { newRowsAction: 'keep' } },
-            { headerName: 'Year', field: 'year', width: 90, filterParams: { newRowsAction: 'keep' } },
-            { headerName: 'Date', field: 'date', width: 110, filterParams: { newRowsAction: 'keep' } },
-            { headerName: 'Sport', field: 'sport', width: 110, filterParams: { newRowsAction: 'keep' } },
-            { headerName: 'Gold', field: 'gold', width: 100, filterParams: { newRowsAction: 'keep' } },
-            { headerName: 'Silver', field: 'silver', width: 100, filterParams: { newRowsAction: 'keep' } },
-            { headerName: 'Bronze', field: 'bronze', width: 100, filterParams: { newRowsAction: 'keep' } },
-            { headerName: 'Total', field: 'total', width: 100, filterParams: { newRowsAction: 'keep' } }
-        ];
-
-        var gridOptions = GridInitializer(columnDefs);
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var gridDiv = document.querySelector('#orderGrid');
-            new agGrid.Grid(gridDiv, gridOptions);
-
-            agGrid.simpleHttpRequest({ url: 'https://raw.githubusercontent.com/ag-grid/ag-grid/master/packages/ag-grid-docs/src/olympicWinners.json' }).then(function (data) {
-                gridOptions.api.setRowData(data);
-                gridOptions.api.paginationGoToPage(4);
-            });
-        });
-        function onFilterTextBoxChanged() {
-            gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
-        }
         $(document).ready(function () {
             $(".user-dtl").click(function () {
                 $(this).toggleClass("right-menu-active");
@@ -144,7 +118,7 @@
         }
             //$('[data-toggle="tooltip"]').tooltip();
             $('#goobalDateFilter').daterangepicker({
-                opens: 'left',
+                opens: 'right',
                 locale: {
                     format: 'DD-MMM-YYYY',
                     "separator": "  To  ",

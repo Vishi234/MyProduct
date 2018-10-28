@@ -9,9 +9,9 @@ using System.Web.Mvc;
 
 namespace Invent.Models.Entity.Configuration
 {
-    public class Billing
+    public class UserBillingEntity
     {
-        public Billing()
+        public UserBillingEntity()
         {
             this.Country = new List<SelectListItem>();
             this.State = new List<SelectListItem>();

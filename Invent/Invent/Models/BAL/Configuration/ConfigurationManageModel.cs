@@ -14,12 +14,12 @@ using System.Web.Mvc;
 
 namespace Invent.Models.BAL.Configuration
 {
-    public class ConfigurationManage
+    public class ConfigurationManageModel
     {
         DataTable dt = new DataTable();
         string sqlconn = ConfigurationManager.ConnectionStrings["DBCONN"].ConnectionString;
-        Error error = new Error();
-        public Error SaveGeneralDetails(GeneralDetails gDtl)
+        ErrorEntity error = new ErrorEntity();
+        public ErrorEntity SaveGeneralDetails(GeneralDetailsEntity gDtl)
         {
             SqlParameter[] sqlParameter = new SqlParameter[11];
             sqlParameter[0] = new SqlParameter("@USER_ID", gDtl.UserId);
@@ -43,7 +43,7 @@ namespace Invent.Models.BAL.Configuration
             error.ERROR_FLAG = sqlParameter[10].Value.ToString();
             return error;
         }
-        public Error SaveAccountingDetails(AccountingDetails acDtl)
+        public ErrorEntity SaveAccountingDetails(UserAccountingEntity acDtl)
         {
             SqlParameter[] sqlParameter = new SqlParameter[7];
             sqlParameter[0] = new SqlParameter("@USER_ID", acDtl.UserId);
@@ -63,7 +63,7 @@ namespace Invent.Models.BAL.Configuration
             error.ERROR_FLAG = sqlParameter[6].Value.ToString();
             return error;
         }
-        public Error SaveBillingDetails(Billing bDtl)
+        public ErrorEntity SaveBillingDetails(UserBillingEntity bDtl)
         {
             SqlParameter[] sqlParameter = new SqlParameter[18];
             sqlParameter[0] = new SqlParameter("@USER_ID", bDtl.UserId);
@@ -95,9 +95,9 @@ namespace Invent.Models.BAL.Configuration
             return error;
         }
 
-        public Error SaveChannelDetails(FlipkartApi flp,ChannelGeneralDetails chDtl)
+        public ErrorEntity SaveChannelDetails(FlipkartEntity flp,ChannelGeneralDetailsEntity chDtl)
         {
-            SqlParameter[] sqlParameter = new SqlParameter[12];
+            SqlParameter[] sqlParameter = new SqlParameter[13];
             sqlParameter[0] = new SqlParameter("@USER_ID", flp.UserId);
             sqlParameter[1] = new SqlParameter("@CHANNEL_NAME", chDtl.ChannelName);
             sqlParameter[2] = new SqlParameter("@LEADGER_NAME", chDtl.LeadgerName);
@@ -106,18 +106,19 @@ namespace Invent.Models.BAL.Configuration
             sqlParameter[5] = new SqlParameter("@USERNAME", flp.Username);
             sqlParameter[6] = new SqlParameter("@PASSWORD", flp.Password);
             sqlParameter[7] = new SqlParameter("@API_DETAILS", chDtl.ApiDetails);
-            sqlParameter[8] = new SqlParameter("@STATUS", flp.Status);
-            sqlParameter[9] = new SqlParameter("@FLAG",flp.Flag);
-            sqlParameter[10] = new SqlParameter("@ERROR_MSG", SqlDbType.NVarChar);
-            sqlParameter[10].Direction = ParameterDirection.Output;
-            sqlParameter[10].Size = 2000;
-            sqlParameter[11] = new SqlParameter("@ERROR_FLAG", SqlDbType.Char);
+            sqlParameter[8] = new SqlParameter("@CH_PREFIX", chDtl.Ch_Prefix);
+            sqlParameter[9] = new SqlParameter("@STATUS", flp.Status);
+            sqlParameter[10] = new SqlParameter("@FLAG",flp.Flag);
+            sqlParameter[11] = new SqlParameter("@ERROR_MSG", SqlDbType.NVarChar);
             sqlParameter[11].Direction = ParameterDirection.Output;
-            sqlParameter[11].Size = 1;
+            sqlParameter[11].Size = 2000;
+            sqlParameter[12] = new SqlParameter("@ERROR_FLAG", SqlDbType.Char);
+            sqlParameter[12].Direction = ParameterDirection.Output;
+            sqlParameter[12].Size = 1;
             DataSet ds = new DataSet();
             ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_SAVE_USER_CHANNEL", sqlParameter);
-            error.ERROR_MSG = sqlParameter[10].Value.ToString();
-            error.ERROR_FLAG = sqlParameter[11].Value.ToString();
+            error.ERROR_MSG = sqlParameter[11].Value.ToString();
+            error.ERROR_FLAG = sqlParameter[12].Value.ToString();
             return error;
         }
         public DataSet GetLocation(string countryId, string stateId, string cityId)
