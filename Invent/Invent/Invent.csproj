@@ -331,7 +331,7 @@
     <Content Include="Views\Configuration\Intro.cshtml" />
     <Content Include="Views\Configuration\Step_1.cshtml" />
     <Content Include="Views\Configuration\Step_2.cshtml" />
-    <Content Include="Views\Orders\All_Orders.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

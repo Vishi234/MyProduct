@@ -18,79 +18,81 @@
     <script src="~/assets/scripts/common.js"></script>
 </head>
 <body>
-    @if (user != null)
-    {
-        <div class="header">
-            <div class="container-fluid">
-                <div class="nav-menu">
-                    <ul>
-                        <li><a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "nav-menu-active" : "")" href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
-                        <li><a class="@(ViewContext.RouteData.Values["Action"].ToString() == "All_Orders" ? "nav-menu-active" : "")" href="@Url.Action("All_Orders","Orders")">Orders</a></li>
-                        <li><a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Shipment" ? "nav-menu-active" : "")" href="javascript:void(0)">Shipment</a></li>
-                        <li><a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Returns" ? "nav-menu-active" : "")" href="javascript:void(0)">Returns</a></li>
-                        <li><a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Tools" ? "nav-menu-active" : "")" href="javascript:void(0)">Tools</a></li>
-                    </ul>
-                </div>
-                <div class="searchbox">
-                    <input type="text" onkeyup="this.setAttribute('value', this.value);" value="" class="form-control" />
-                    <i class="fa fa-search"></i>
-                </div>
-                <div class="right-nav-menu">
-                    <ul>
-                        <li><a href="javascript:void(0)"><i class="fa fa-question-circle"></i></a></li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <i class="fa fa-bell"></i>
-                                <span class="not-count">3</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" class="user-dtl"><i class="far fa-user-circle"></i> <span>Web Desingner's Hub <i class="fa fa-angle-down"></i></span></a>
-                            <div class="top-sub-menu">
-                                <div class="arrow_box"></div>
-                                <div class="top-sub-menu-inner">
-                                    <div class="pro-base">
-                                        <div class="pro-img">
-                                            <img src="~/assets/img/user-img.png" />
-                                        </div>
-                                        <div class="pro-name">
-                                            <span class="pro-user-name">Vishal Singh</span>
-                                            <span class="pro-user-email">wd2vteam@gmail.com</span>
-                                            <span class="pro-user-setting"><a href="javascript:void(0)">Profile & Preferences</a></span>
-                                        </div>
+    <div class="sideBar-menu">
+        <div class="logo-section">
+
+        </div>
+        <div class="home-section">
+            <span><a href="@Url.Action("Index","Dashboard")"><i class="fa fa-home"></i> Dashboard Overview</a></span>
+        </div>
+        <div class="navigation-menu">
+            <ul>
+                <li><a href="@Url.Action("Index","Orders")"><i class="fa fa-shopping-cart"></i>Orders</a></li>
+                <li><a href="javascript:Void(0)"><i class="fa fa-box"></i>Batches</a></li>
+                <li><a href="javascript:Void(0)"><i class="fa fa-truck"></i>Shipments</a></li>
+                <li><a href="javascript:Void(0)"><i class="fas fa-retweet"></i>Returns</a></li>
+                <li><a href="javascript:Void(0)"><i class="fas fa-list-ul"></i>Listing</a></li>
+                <li><a href="javascript:Void(0)"><i class="fa fa-cog"></i>Settings</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="right-section">
+        <div class="top-bar">
+            <div class="right-nav-menu">
+                <ul>
+                    <li><a href="javascript:void(0)"><i class="fa fa-question-circle"></i></a></li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-bell"></i>
+                            <span class="not-count">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="user-dtl"><i class="far fa-user-circle"></i> <span>Web Desingner's Hub <i class="fa fa-angle-down"></i></span></a>
+                        <div class="top-sub-menu">
+                            <div class="arrow_box"></div>
+                            <div class="top-sub-menu-inner">
+                                <div class="pro-base">
+                                    <div class="pro-img">
+                                        <img src="~/assets/img/user-img.png" />
                                     </div>
-                                    <div class="pro-menu">
-                                        <ul>
-                                            <li><a href="javascript:void(0)">Account & Billing</a></li>
-                                            <li><a href="javascript:void(0)">Configuration</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pro-footer">
-                                        <span class="pull-left"><a href="@Url.Action("Logout","Auth")">Sign out</a></span>
-                                        <span class="pull-right"><a href="javascript:void(0)">Privacy policy</a></span>
+                                    <div class="pro-name">
+                                        <span class="pro-user-name">Vishal Singh</span>
+                                        <span class="pro-user-email">wd2vteam@gmail.com</span>
+                                        <span class="pro-user-setting"><a href="javascript:void(0)">Profile & Preferences</a></span>
                                     </div>
                                 </div>
+                                <div class="pro-menu">
+                                    <ul>
+                                        <li><a href="javascript:void(0)">Account & Billing</a></li>
+                                        <li><a href="javascript:void(0)">Configuration</a></li>
+                                    </ul>
+                                </div>
+                                <div class="pro-footer">
+                                    <span class="pull-left"><a href="@Url.Action("Logout","Auth")">Sign out</a></span>
+                                    <span class="pull-right"><a href="javascript:void(0)">Privacy policy</a></span>
+                                </div>
                             </div>
-                        </li>
-                    </ul>
-                </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="main-body">
-            <div class="container-fluid">
-                @RenderBody()
-            </div>
+        <div class="right-content-section">
+            @RenderBody()
         </div>
         <footer></footer>
-        <div id="progress" class="modal">
-            <div class="center">
-                <img src="~/assets/img/loading.gif" />
-            </div>
+    </div>
+
+    <div id="progress" class="modal">
+        <div class="center">
+            <img src="~/assets/img/loading.gif" />
         </div>
-        <input type="hidden" id="hfUserId" value="@user.UserID" />
-        <input type="hidden" id="hfStatus" value="@user.Status" />
-        <input type="hidden" id="hfVerified" value="@user.Verified" />
-    }
+    </div>
+    <input type="hidden" id="hfUserId" value="@user.UserID" />
+    <input type="hidden" id="hfStatus" value="@user.Status" />
+    <input type="hidden" id="hfVerified" value="@user.Verified" />
+
 
     <script src="~/assets/scripts/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="~/assets/scripts/moment.min.js"></script>
@@ -127,9 +129,9 @@
                 console.log("A new date selection was made: " + start.format('DD-MMM-YYYY') + ' to ' + end.format('DD-MMM-YYYY'));
             });
 
-            $(".inner-menu li a").click(function () {
-                $(".inner-menu li").find("a").removeClass("inner-menu-active");
-                $(this).addClass("inner-menu-active");
+            $(".top-menu li a").click(function () {
+                $(".top-menu li").find("a").removeClass("top-menu-active");
+                $(this).addClass("top-menu-active");
             });
             $(".nav-tabs li").click(function () {
                 $(".nav-tabs li").removeClass("active2");

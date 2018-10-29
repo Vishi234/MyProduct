@@ -15,6 +15,7 @@ using Invent.Models.BAL.OrdersDetails;
 using Invent.Models.Entity.Channel;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using Invent.Models.BAL.Common;
 
 namespace Invent.Controllers
 {
@@ -23,7 +24,7 @@ namespace Invent.Controllers
         // GET: Orders
         JavaScriptSerializer serializer;
         UserEntity objUserEntity;
-        public ActionResult All_Orders()
+        public ActionResult Index()
         {
             return View();
         }
@@ -37,70 +38,79 @@ namespace Invent.Controllers
             lstCh = objUserEntity.ChannelDetails;
             List<OrderEntity> orderList = new List<OrderEntity>();
             OrderEntity order;
-            for (int i = 0; i < lstCh.Count; i++)
+            try
             {
-                response = string.Empty;
 
-                if (lstCh[i].Ch_Prefix == "AZ")
+                for (int i = 0; i < lstCh.Count; i++)
                 {
-                    serializer = new JavaScriptSerializer();
-                    AmazonEntity amazon = serializer.Deserialize<AmazonEntity>(lstCh[i].ApiDetails);
-                    AmazonChannelModel aCh = new AmazonChannelModel();
-                    response = aCh.AmazonOrders(amazon.AccessKey, amazon.SecretKey, amazon.SellerId, amazon.AuthToken, amazon.MarketplaceId);
-                    var jsonObject = (JObject)JsonConvert.DeserializeObject(response);
-                    var orderData = jsonObject["ListOrdersResponse"]["ListOrdersResult"]["Orders"]["Order"];
-                    for (int j = 0; j < orderData.Count(); j++)
+                    response = string.Empty;
+
+                    if (lstCh[i].Ch_Prefix == "AZ")
                     {
-                        order = new OrderEntity();
-                        response = aCh.SingleOrderDetails(amazon.AccessKey, amazon.SecretKey, amazon.SellerId, amazon.AuthToken, orderData[j]["AmazonOrderId"].ToString());
-                        jsonObject = (JObject)JsonConvert.DeserializeObject(response);
-                        var item = jsonObject["ListOrderItemsResponse"]["ListOrderItemsResult"]["OrderItems"]["OrderItem"];
-                        order.OrderId = orderData[j]["AmazonOrderId"].ToString();
-                        order.ItemId = item["OrderItemId"].ToString();
-                        order.ProductInfo = item["Title"].ToString();
-                        order.OrderDate = orderData[j]["PurchaseDate"].ToString();
-                        order.ShipDate = orderData[j]["LatestShipDate"].ToString();
-                        order.Status = orderData[j]["OrderStatus"].ToString();
-                        if (orderData[j]["OrderTotal"] != null)
+                        serializer = new JavaScriptSerializer();
+                        AmazonEntity amazon = serializer.Deserialize<AmazonEntity>(lstCh[i].ApiDetails);
+                        AmazonChannelModel aCh = new AmazonChannelModel();
+                        response = aCh.AmazonOrders(amazon.AccessKey, amazon.SecretKey, amazon.SellerId, amazon.AuthToken, amazon.MarketplaceId);
+                        var jsonObject = (JObject)JsonConvert.DeserializeObject(response);
+                        var orderData = jsonObject["ListOrdersResponse"]["ListOrdersResult"]["Orders"]["Order"];
+                        for (int j = 0; j < orderData.Count(); j++)
                         {
-                            var amt = orderData[j]["OrderTotal"];
-                            order.Amount = amt["Amount"].ToString();
+                            order = new OrderEntity();
+                            response = aCh.SingleOrderDetails(amazon.AccessKey, amazon.SecretKey, amazon.SellerId, amazon.AuthToken, orderData[j]["AmazonOrderId"].ToString());
+                            jsonObject = (JObject)JsonConvert.DeserializeObject(response);
+                            var item = jsonObject["ListOrderItemsResponse"]["ListOrderItemsResult"]["OrderItems"]["OrderItem"];
+                            order.OrderId = orderData[j]["AmazonOrderId"].ToString();
+                            order.ItemId = item["OrderItemId"].ToString();
+                            order.ProductInfo = item["Title"].ToString();
+                            order.OrderDate = orderData[j]["PurchaseDate"].ToString();
+                            order.ShipDate = orderData[j]["LatestShipDate"].ToString();
+                            order.Status = orderData[j]["OrderStatus"].ToString();
+                            if (orderData[j]["OrderTotal"] != null)
+                            {
+                                var amt = orderData[j]["OrderTotal"];
+                                order.Amount = amt["Amount"].ToString();
+                            }
+                            else
+                            {
+                                order.Amount = "-";
+                            }
+                            order.Channel = "Amazon";
+                            orderList.Add(order);
                         }
-                        else
+                    }
+                    if (lstCh[i].Ch_Prefix == "FP")
+                    {
+
+                        TokenEntity token = serializer.Deserialize<TokenEntity>(lstCh[i].ApiDetails);
+                        FlipkartChannelModel fpCh = new FlipkartChannelModel();
+                        response = fpCh.FlipkartOrders(token.access_token);
+                        var jsonObject = (JObject)JsonConvert.DeserializeObject(response);
+                        var orderData = jsonObject["orderItems"];
+                        for (int j = 0; j < orderData.Count(); j++)
                         {
-                            order.Amount = "-";
+                            order = new OrderEntity();
+                            order.OrderId = orderData[j]["orderId"].ToString();
+                            order.ItemId = orderData[j]["orderItemId"].ToString();
+                            order.ProductInfo = orderData[j]["title"].ToString();
+                            order.OrderDate = orderData[j]["orderDate"].ToString();
+                            order.ShipDate = orderData[j]["deliverByDate"].ToString();
+                            order.Status = orderData[j]["status"].ToString();
+                            order.Channel = "Flipkart";
+                            order.Amount = orderData[j]["priceComponents"]["totalPrice"].ToString();
+                            orderList.Add(order);
                         }
-                        order.Channel = "Amazon";
-                        orderList.Add(order);
                     }
                 }
-                //if (lstCh[i].Ch_Prefix == "FP")
-                //{
-
-                //    TokenEntity token = serializer.Deserialize<TokenEntity>(lstCh[i].ApiDetails);
-                //    FlipkartChannelModel fpCh = new FlipkartChannelModel();
-                //    response = fpCh.FlipkartOrders(token.access_token);
-                //    var jsonObject = (JObject)JsonConvert.DeserializeObject(response);
-                //    var orderData = jsonObject["orderItems"];
-                //    for (int j = 0; j < orderData.Count(); j++)
-                //    {
-                //        order = new OrderEntity();
-                //        order.OrderId = orderData[j]["orderId"].ToString();
-                //        order.ItemId = orderData[j]["orderItemId"].ToString();
-                //        order.ProductInfo = orderData[j]["title"].ToString();
-                //        order.OrderDate = orderData[j]["orderDate"].ToString();
-                //        order.ShipDate = orderData[j]["deliverByDate"].ToString();
-                //        order.Status = orderData[j]["status"].ToString();
-                //        order.Channel = "Flipkart";
-                //        order.Amount = orderData[j]["priceComponents"]["totalPrice"].ToString();
-                //        orderList.Add(order);
-                //    }
-                //}
             }
-            AmazonEntity amApi = new AmazonEntity();
+            catch (Exception ex)
+            {
+                ExceptionHandling.WriteException(ex);
+            }
 
             return Json(orderList);
+
         }
 
     }
+
 }
