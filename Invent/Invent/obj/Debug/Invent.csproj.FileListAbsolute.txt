@@ -452,3 +452,5 @@ C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\AmazonAPI.dll
 C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\MWSClientCsRuntime-1.0.dll
 C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Newtonsoft.Json.dll
 C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Newtonsoft.Json.xml
+C:\Users\vishal.singh\Documents\GitHub\MyProduct\Invent\Invent\bin\Newtonsoft.Json.dll
+C:\Users\vishal.singh\Documents\GitHub\MyProduct\Invent\Invent\bin\Newtonsoft.Json.xml

@@ -65,7 +65,7 @@ namespace Invent.Models.BAL.Order
             request.AmazonOrderId = orderId;
             response = objCl.ListOrderItems(request);
             ResponseHeaderMetadata rhmd = response.ResponseHeaderMetadata;
-            return Common.CommonModel.XMLTOJSON(response.ToXML()); ;
+            return Common.CommonModel.XMLTOJSON(response.ToXML());
         }
     }
 }

@@ -1,11 +1,11 @@
 ===============================start==============================================
 Inner Exception's
-MessageColumn 'LEADGER_NAME' does not belong to table Table1.
+MessageColumn 'PREFIX' does not belong to table Table1.
 StackTrace   at System.Data.DataRow.GetDataColumn(String columnName)
    at System.Data.DataRow.get_Item(String columnName)
-   at Invent.Models.BAL.Authorization.UserRegister.UserAuthorization(RegisterModel regModel) in E:\MyProduct\Invent\Invent\Models\BAL\Authorization\UserRegister.cs:line 83
-   at Invent.Controllers.AuthController.Login(LoginModel logModel) in E:\MyProduct\Invent\Invent\Controllers\AuthController.cs:line 68
+   at Invent.Models.BAL.Authorization.AuthModel.UserAuthorization(RegisterEntity regModel) in C:\Users\vishal.singh\Documents\GitHub\MyProduct\Invent\Invent\Models\BAL\Authorization\AuthModel.cs:line 85
+   at Invent.Controllers.AuthController.Login(LoginEntity logModel) in C:\Users\vishal.singh\Documents\GitHub\MyProduct\Invent\Invent\Controllers\AuthController.cs:line 68
 TargetSiteSystem.Data.DataColumn GetDataColumn(System.String)
-DateTime : 	10/20/2018 12:44:11 PM
+DateTime : 	10/29/2018 1:58:01 PM
 ================================end============================================= 
 
