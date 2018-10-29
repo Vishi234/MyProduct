@@ -6,6 +6,6 @@ StackTrace   at System.Data.DataRow.GetDataColumn(String columnName)
    at Invent.Models.BAL.Authorization.AuthModel.UserAuthorization(RegisterEntity regModel) in C:\Users\vishal.singh\Documents\GitHub\MyProduct\Invent\Invent\Models\BAL\Authorization\AuthModel.cs:line 85
    at Invent.Controllers.AuthController.Login(LoginEntity logModel) in C:\Users\vishal.singh\Documents\GitHub\MyProduct\Invent\Invent\Controllers\AuthController.cs:line 68
 TargetSiteSystem.Data.DataColumn GetDataColumn(System.String)
-DateTime : 	10/29/2018 1:58:01 PM
+DateTime : 	10/29/2018 7:17:36 PM
 ================================end============================================= 
 

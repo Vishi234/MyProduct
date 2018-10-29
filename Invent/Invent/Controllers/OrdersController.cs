@@ -74,28 +74,28 @@ namespace Invent.Controllers
                         orderList.Add(order);
                     }
                 }
-                if (lstCh[i].Ch_Prefix == "FP")
-                {
+                //if (lstCh[i].Ch_Prefix == "FP")
+                //{
 
-                    TokenEntity token = serializer.Deserialize<TokenEntity>(lstCh[i].ApiDetails);
-                    FlipkartChannelModel fpCh = new FlipkartChannelModel();
-                    response = fpCh.FlipkartOrders(token.access_token);
-                    var jsonObject = (JObject)JsonConvert.DeserializeObject(response);
-                    var orderData = jsonObject["orderItems"];
-                    for (int j = 0; j < orderData.Count(); j++)
-                    {
-                        order = new OrderEntity();
-                        order.OrderId = orderData[j]["orderId"].ToString();
-                        order.ItemId = orderData[j]["orderItemId"].ToString();
-                        order.ProductInfo = orderData[j]["title"].ToString();
-                        order.OrderDate = orderData[j]["orderDate"].ToString();
-                        order.ShipDate = orderData[j]["deliverByDate"].ToString();
-                        order.Status = orderData[j]["status"].ToString();
-                        order.Channel = "Flipkart";
-                        order.Amount = orderData[j]["priceComponents"]["totalPrice"].ToString();
-                        orderList.Add(order);
-                    }
-                }
+                //    TokenEntity token = serializer.Deserialize<TokenEntity>(lstCh[i].ApiDetails);
+                //    FlipkartChannelModel fpCh = new FlipkartChannelModel();
+                //    response = fpCh.FlipkartOrders(token.access_token);
+                //    var jsonObject = (JObject)JsonConvert.DeserializeObject(response);
+                //    var orderData = jsonObject["orderItems"];
+                //    for (int j = 0; j < orderData.Count(); j++)
+                //    {
+                //        order = new OrderEntity();
+                //        order.OrderId = orderData[j]["orderId"].ToString();
+                //        order.ItemId = orderData[j]["orderItemId"].ToString();
+                //        order.ProductInfo = orderData[j]["title"].ToString();
+                //        order.OrderDate = orderData[j]["orderDate"].ToString();
+                //        order.ShipDate = orderData[j]["deliverByDate"].ToString();
+                //        order.Status = orderData[j]["status"].ToString();
+                //        order.Channel = "Flipkart";
+                //        order.Amount = orderData[j]["priceComponents"]["totalPrice"].ToString();
+                //        orderList.Add(order);
+                //    }
+                //}
             }
             AmazonEntity amApi = new AmazonEntity();
 
