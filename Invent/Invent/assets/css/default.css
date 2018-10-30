@@ -387,7 +387,7 @@ a {
         .right-nav-menu > ul > li > a {
             display: block;
             padding: 17px;
-            font-size: 15px;
+            font-size: 14px;
             color: #fff;
         }
 
@@ -406,7 +406,7 @@ a {
                     font-size: 20px;
                     margin-right: 10px;
                     float: left;
-                    margin-top: -10px;
+                    margin-top: -12px;
                 }
 
                 .right-nav-menu > ul > li > a.user-dtl > span {
@@ -417,7 +417,7 @@ a {
                     .right-nav-menu > ul > li > a.user-dtl > span > svg {
                         margin-left: 11px;
                         float: right;
-                        margin-top: 4px;
+                        margin-top: 3px;
                     }
 
 .searchbox {
@@ -1775,14 +1775,14 @@ a {
     top: 0;
     height: 100%;
     background: #262F3D;
-    width: 15%;
+    width: 14%;
     z-index: 9999;
 }
 
 .logo-section {
     border-bottom: 1px solid #404854;
     padding: 10px;
-    height: 106px;
+    height: 55px;
 }
 
 .home-section {
@@ -1794,7 +1794,8 @@ a {
         display: block;
         color: #4fc3f7 !important;
         padding: 15px;
-        font-size: 1.2em;
+        font-size: 1.1em;
+        font-weight: 600;
     }
 
         .home-section span svg {
@@ -1809,7 +1810,7 @@ a {
 .navigation-menu li a {
     display: block;
     padding: 15px;
-    font-size: 1.1em;
+    font-size: 1em;
     border-bottom: 1px solid #404854;
     color: #fff;
     transition: all 0.4s ease-in-out;
@@ -1832,7 +1833,7 @@ a {
     right: 0;
     position: fixed;
     height: 100%;
-    width: 85%;
+    width: 86%;
     top: 0;
 }
 
@@ -1882,7 +1883,7 @@ a {
         .top-menu li a {
             display: block;
             padding: 15px 10px;
-            font-size: 1.1em;
+            font-size: 1em;
             border-bottom: 2px solid #fff;
             color: #808080;
         }
