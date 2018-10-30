@@ -52,11 +52,21 @@ namespace Invent.Models.BAL.Order
                         order.ShipDate = orderData[j]["LatestShipDate"].ToString();
                         order.Quantity = item["QuantityOrdered"].ToString();
                         order.SKU = item["SellerSKU"].ToString();
-                        order.PaymentType = orderData[j]["PaymentMethod"].ToString();
-                        var sellPrice = item["ItemPrice"];
-                        order.SellingPrice = sellPrice["Amount"].ToString();
-                        var shipChrg = item["ShippingPrice"];
-                        order.ShippingCharges = shipChrg["Amount"].ToString();
+                        if (orderData[j]["PaymentMethod"] != null)
+                        {
+                            order.PaymentType = orderData[j]["PaymentMethod"].ToString();
+                        }
+                        if (orderData[j]["ItemPrice"] != null)
+                        {
+                            var sellPrice = item["ItemPrice"];
+                            order.SellingPrice = sellPrice["Amount"].ToString();
+                        }
+                        if (orderData[j]["ShippingPrice"] != null)
+                        {
+                            var shipChrg = item["ShippingPrice"];
+                            order.ShippingCharges = shipChrg["Amount"].ToString();
+                        }
+                      
                         if (orderData[j]["OrderTotal"] != null)
                         {
                             var amt = orderData[j]["OrderTotal"];
@@ -106,9 +116,8 @@ namespace Invent.Models.BAL.Order
                 }
             }
             #endregion
-
-            string OrderJson = serializer.Serialize(orderList);
-            XmlDocument doc = JsonConvert.DeserializeXmlNode(OrderJson);
+            var OrderJson= (JObject)JsonConvert.SerializeObject(orderList);
+            XmlDocument doc = JsonConvert.DeserializeXmlNode(OrderJson.ToString());
             return "";
         }
     }
