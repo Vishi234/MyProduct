@@ -454,3 +454,15 @@ C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Newtonsoft.Json.dll
 C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Newtonsoft.Json.xml
 C:\Users\vishal.singh\Documents\GitHub\MyProduct\Invent\Invent\bin\Newtonsoft.Json.dll
 C:\Users\vishal.singh\Documents\GitHub\MyProduct\Invent\Invent\bin\Newtonsoft.Json.xml
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Hangfire.Core.dll
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Hangfire.SqlServer.dll
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Microsoft.Owin.dll
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Owin.dll
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Hangfire.Core.xml
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Hangfire.SqlServer.xml
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Microsoft.Owin.xml
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\es\Hangfire.Core.resources.dll
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\zh\Hangfire.Core.resources.dll
+C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\zh-TW\Hangfire.Core.resources.dll

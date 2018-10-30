@@ -101,6 +101,8 @@ namespace Invent.Models.BAL.Common
             string json =JsonConvert.SerializeXmlNode(doc);
             return json;
         }
+
+        
     }
     #region Exception
     public static class ExceptionHandling

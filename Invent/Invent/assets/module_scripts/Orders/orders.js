@@ -16,8 +16,8 @@ gridOptions = GridInitializer(columnDefs);
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    var gridDiv = document.querySelector('#orderGrid');
-    new agGrid.Grid(gridDiv, gridOptions);
+    //var gridDiv = document.querySelector('#orderGrid');
+    //new agGrid.Grid(gridDiv, gridOptions);
     MyData = GetOrders("A");
 
 });
