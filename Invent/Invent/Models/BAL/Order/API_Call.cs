@@ -25,7 +25,6 @@ namespace Invent.Models.BAL.Order
             List<OrderEntity> orderList = new List<OrderEntity>();
             OrderEntity order;
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-
             #region Creating Order List
             for (int i = 0; i < lstCh.Count; i++)
             {
@@ -66,7 +65,7 @@ namespace Invent.Models.BAL.Order
                             var shipChrg = item["ShippingPrice"];
                             order.ShippingCharges = shipChrg["Amount"].ToString();
                         }
-                      
+
                         if (orderData[j]["OrderTotal"] != null)
                         {
                             var amt = orderData[j]["OrderTotal"];
@@ -88,36 +87,40 @@ namespace Invent.Models.BAL.Order
                     TokenEntity token = serializer.Deserialize<TokenEntity>(lstCh[i].ApiDetails);
                     FlipkartChannelModel fpCh = new FlipkartChannelModel();
                     response = fpCh.FlipkartOrders(token.access_token);
-                    var jsonObject = (JObject)JsonConvert.DeserializeObject(response);
-                    var orderData = jsonObject["orderItems"];
-                    for (int j = 0; j < orderData.Count(); j++)
+                    if (response != "")
                     {
-                        order = new OrderEntity();
+                        var jsonObject = (JObject)JsonConvert.DeserializeObject(response);
+                        var orderData = jsonObject["orderItems"];
+                        for (int j = 0; j < orderData.Count(); j++)
+                        {
+                            order = new OrderEntity();
 
-                        order.OrderId = orderData[j]["orderId"].ToString();
-                        order.ItemId = orderData[j]["orderItemId"].ToString();
-                        order.Title = orderData[j]["title"].ToString();
-                        order.HSN = orderData[j]["hsn"].ToString();
-                        order.OrderDate = orderData[j]["orderDate"].ToString();
-                        order.ShipDate = orderData[j]["deliverByDate"].ToString();
-                        order.Quantity = orderData[j]["quantity"].ToString();
-                        order.ListingId = orderData[j]["listingId"].ToString();
-                        order.SLA = orderData[j]["sla"].ToString();
-                        order.Hold = orderData[j]["hold"].ToString();
-                        order.SKU = orderData[j]["sku"].ToString();
-                        order.PaymentType = orderData[j]["paymentType"].ToString();
-                        order.SellingPrice = orderData[j]["priceComponents"]["sellingPrice"].ToString();
-                        order.ShippingCharges = orderData[j]["priceComponents"]["shippingCharge"].ToString();
-                        order.TotalPrice = orderData[j]["priceComponents"]["totalPrice"].ToString();
-                        order.Status = orderData[j]["status"].ToString();
-                        order.Channel = "Flipkart";
-                        orderList.Add(order);
+                            order.OrderId = orderData[j]["orderId"].ToString();
+                            order.ItemId = orderData[j]["orderItemId"].ToString();
+                            order.Title = orderData[j]["title"].ToString();
+                            order.HSN = orderData[j]["hsn"].ToString();
+                            order.OrderDate = orderData[j]["orderDate"].ToString();
+                            order.ShipDate = orderData[j]["deliverByDate"].ToString();
+                            order.Quantity = orderData[j]["quantity"].ToString();
+                            order.ListingId = orderData[j]["listingId"].ToString();
+                            order.SLA = orderData[j]["sla"].ToString();
+                            order.Hold = orderData[j]["hold"].ToString();
+                            order.SKU = orderData[j]["sku"].ToString();
+                            order.PaymentType = orderData[j]["paymentType"].ToString();
+                            order.SellingPrice = orderData[j]["priceComponents"]["sellingPrice"].ToString();
+                            order.ShippingCharges = orderData[j]["priceComponents"]["shippingCharge"].ToString();
+                            order.TotalPrice = orderData[j]["priceComponents"]["totalPrice"].ToString();
+                            order.Status = orderData[j]["status"].ToString();
+                            order.Channel = "Flipkart";
+                            orderList.Add(order);
+                        }
                     }
+
                 }
             }
             #endregion
-            var OrderJson= (JObject)JsonConvert.SerializeObject(orderList);
-            XmlDocument doc = JsonConvert.DeserializeXmlNode(OrderJson.ToString());
+            string jsonString = serializer.Serialize(orderList);
+            string result = new OrderModel().SaveOrderDetails(jsonString, objUserEntity.UserID, objUserEntity.EmailId);
             return "";
         }
     }
