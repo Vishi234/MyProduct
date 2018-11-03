@@ -16,8 +16,7 @@ using Invent.Models.Entity.Channel;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using Invent.Models.BAL.Common;
-using Hangfire;
-using Hangfire.SqlServer;
+
 
 namespace Invent.Controllers
 {
@@ -35,7 +34,8 @@ namespace Invent.Controllers
         {
             UserEntity objUserEntity = new UserEntity();
             objUserEntity = (UserEntity)Session["UserEntity"];
-            BackgroundJob.Schedule(() => API_Call.OrderFetch(objUserEntity), TimeSpan.FromMilliseconds(3000));
+            //API_Call.OrderFetch(objUserEntity);
+            //BackgroundJob.Schedule(() => API_Call.OrderFetch(objUserEntity), TimeSpan.FromMilliseconds(3000));
             return Json("");
         }
     }

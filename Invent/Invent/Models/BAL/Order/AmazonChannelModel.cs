@@ -17,7 +17,7 @@ namespace Invent.Models.BAL.Order
         string service = ConfigurationManager.AppSettings["AmazonAPI"];
         CultureInfo provider = CultureInfo.InvariantCulture;
         JavaScriptSerializer serializer = new JavaScriptSerializer();
-        public string AmazonOrders(string accessKey, string secretKey, string sellerId, string authToken, string marketId)
+        public string GetAmazonOrders(string accessKey, string secretKey, string sellerId, string authToken, string marketId, string orderFromDate, string orderToDate, string updatedFromDate, string updateToDate, int pageSize)
         {
             OrderConfiguration config = new OrderConfiguration();
             config.ServiceURL = service;
@@ -26,11 +26,26 @@ namespace Invent.Models.BAL.Order
             ListOrdersRequest request = new ListOrdersRequest();
             request.SellerId = sellerId;
             request.MWSAuthToken = authToken;
-            string dateString = "2018-10-01";
-            DateTime createdAfter = new DateTime();
-            request.CreatedAfter = createdAfter;
-            //DateTime createdBefore = new DateTime();
-            //request.CreatedBefore = createdBefore;
+            if (orderFromDate != "")
+            {
+                DateTime createdAfter = Convert.ToDateTime(orderFromDate);
+                request.CreatedAfter = createdAfter;
+            }
+            if (orderToDate != "")
+            {
+                DateTime createdBefore = Convert.ToDateTime(orderToDate);
+                request.CreatedBefore = createdBefore;
+            }
+            if (updatedFromDate != "")
+            {
+                DateTime updatedAfter = Convert.ToDateTime(updatedFromDate);
+                request.LastUpdatedAfter = updatedAfter;
+            }
+            if (updateToDate != "")
+            {
+                DateTime updatedBefore = Convert.ToDateTime(updateToDate);
+                request.LastUpdatedAfter = updatedBefore;
+            }
             List<string> orderStatus = new List<string>();
             request.OrderStatus = orderStatus;
             List<string> marketplaceId = new List<string>();
@@ -44,7 +59,7 @@ namespace Invent.Models.BAL.Order
             request.BuyerEmail = buyerEmail;
             string sellerOrderId = "";
             request.SellerOrderId = sellerOrderId;
-            decimal maxResultsPerPage = 10;
+            decimal maxResultsPerPage = pageSize;
             request.MaxResultsPerPage = maxResultsPerPage;
             List<string> tfmShipmentStatus = new List<string>();
             request.TFMShipmentStatus = tfmShipmentStatus;
@@ -53,7 +68,7 @@ namespace Invent.Models.BAL.Order
             return Common.CommonModel.XMLTOJSON(response.ToXML());
         }
 
-        public string SingleOrderDetails(string accessKey, string secretKey, string sellerId, string authToken,string orderId)
+        public string SingleOrderDetails(string accessKey, string secretKey, string sellerId, string authToken, string orderId)
         {
             OrderConfiguration config = new OrderConfiguration();
             config.ServiceURL = service;

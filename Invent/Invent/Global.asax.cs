@@ -1,6 +1,5 @@
-﻿using Hangfire;
-using Hangfire.SqlServer;
-using Invent.Models.BAL.Order;
+﻿using Invent.Models.BAL.Order;
+using Invent.Models.Job;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +15,7 @@ namespace Invent
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //JobScheduler.Start();
         }
     }
 }
