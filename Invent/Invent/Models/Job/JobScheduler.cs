@@ -21,7 +21,7 @@ namespace Invent.Models.Job
             .WithIdentity("trigger1", "group1")
             .StartNow()
             .WithSimpleSchedule(x => x
-            .WithIntervalInSeconds(10)
+            .WithIntervalInMinutes(20)
             .RepeatForever())
             .Build();
 

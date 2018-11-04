@@ -319,6 +319,7 @@
     <Compile Include="Models\BAL\Configuration\ConfigurationManageModel.cs" />
     <Compile Include="Models\BAL\Order\AmazonChannelModel.cs" />
     <Compile Include="Models\BAL\Order\API_Call.cs" />
+    <Compile Include="Models\BAL\Order\ChannelOrdersModel.cs" />
     <Compile Include="Models\BAL\Order\FlipkartChannelModel.cs" />
     <Compile Include="Models\BAL\Order\OrderModel.cs" />
     <Compile Include="Models\DAL\SQLHelper.cs" />

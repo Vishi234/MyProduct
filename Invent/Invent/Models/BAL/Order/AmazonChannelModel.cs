@@ -17,7 +17,7 @@ namespace Invent.Models.BAL.Order
         string service = ConfigurationManager.AppSettings["AmazonAPI"];
         CultureInfo provider = CultureInfo.InvariantCulture;
         JavaScriptSerializer serializer = new JavaScriptSerializer();
-        public string GetAmazonOrders(string accessKey, string secretKey, string sellerId, string authToken, string marketId, string orderFromDate, string orderToDate, string updatedFromDate, string updateToDate, int pageSize)
+        public string GetAmazonOrders(string accessKey, string secretKey, string sellerId, string authToken, string marketId, string orderFromDate, string orderToDate, string updatedFromDate, string updateToDate, int pageSize, List<string> status)
         {
             OrderConfiguration config = new OrderConfiguration();
             config.ServiceURL = service;
@@ -47,6 +47,10 @@ namespace Invent.Models.BAL.Order
                 request.LastUpdatedAfter = updatedBefore;
             }
             List<string> orderStatus = new List<string>();
+            for (int i = 0; i < status.Count; i++)
+            {
+                orderStatus.Add(status[i]);
+            }
             request.OrderStatus = orderStatus;
             List<string> marketplaceId = new List<string>();
             marketplaceId.Add(marketId);
@@ -68,7 +72,7 @@ namespace Invent.Models.BAL.Order
             return Common.CommonModel.XMLTOJSON(response.ToXML());
         }
 
-        public string SingleOrderDetails(string accessKey, string secretKey, string sellerId, string authToken, string orderId)
+        public string OrderItem(string accessKey, string secretKey, string sellerId, string authToken, string orderId)
         {
             OrderConfiguration config = new OrderConfiguration();
             config.ServiceURL = service;

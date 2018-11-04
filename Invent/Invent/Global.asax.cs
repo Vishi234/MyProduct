@@ -17,5 +17,9 @@ namespace Invent
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             //JobScheduler.Start();
         }
+        protected void Session_Start(Object sender, EventArgs e)
+        {
+            JobScheduler.Start();
+        }
     }
 }
