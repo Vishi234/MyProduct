@@ -15,11 +15,11 @@ namespace Invent
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            //JobScheduler.Start();
+            JobScheduler.Start();
         }
         protected void Session_Start(Object sender, EventArgs e)
         {
-            JobScheduler.Start();
+            //JobScheduler.Start();
         }
     }
 }
