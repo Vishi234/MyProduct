@@ -117,6 +117,7 @@ namespace Invent.Models.BAL.Order
                 //}
             }
             response = serializer.Serialize(objOrderEntityLst);
+
             return response;
         }
 
@@ -139,6 +140,7 @@ namespace Invent.Models.BAL.Order
                         while (oReader.Read())
                         {
                             chDtl = new ChannelGeneralDetailsEntity();
+                            chDtl.User_Id= oReader["USER_ID"].ToString();
                             chDtl.ChannelName = oReader["CHANNEL_NAME"].ToString();
                             chDtl.InventorySync = ((Convert.ToChar(oReader["INVENTORY_SYNC"]) == '0') ? false : true);
                             chDtl.OrderSync = ((Convert.ToChar(oReader["ORDER_SYNC"]) == '0') ? false : true);

@@ -15,5 +15,6 @@ namespace Invent.Models.Entity.Configuration
         public bool InventorySync { get; set; }
         public string ApiDetails { get; set; }
         public string Ch_Prefix { get; set; }
+        public string User_Id { get; set; }
     }
 }
