@@ -20,8 +20,9 @@ namespace Invent.Models.Job
             DateTime now = DateTime.Now;
             var strFromDate = new DateTime(now.Year, now.Month, 1);
             List<string> statusList = new List<string>();
-            statusList.Add("Pending");
-            string response = objOrdModel.GetOrders(objUserEntity, strFromDate.ToString(), "", statusList);
+            objOrdModel.GetOrders(objUserEntity, strFromDate.ToString(), "", statusList);
+
+
         }
     }
 }

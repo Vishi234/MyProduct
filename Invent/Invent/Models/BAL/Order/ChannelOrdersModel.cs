@@ -1,4 +1,5 @@
-﻿using Invent.Models.BAL.OrdersDetails;
+﻿using Invent.Models.BAL.Common;
+using Invent.Models.BAL.OrdersDetails;
 using Invent.Models.Entity.Channel;
 using Invent.Models.Entity.Common;
 using Invent.Models.Entity.Configuration;
@@ -17,10 +18,12 @@ namespace Invent.Models.BAL.Order
     {
         string response = string.Empty;
         JavaScriptSerializer serializer = new JavaScriptSerializer();
+        private object EXCEPTIONHANDLING;
+
         public string GetOrders(UserEntity objUserEntity, string fromDate, string toDate, List<string> status)
         {
             List<ChannelGeneralDetailsEntity> lstCh = new List<ChannelGeneralDetailsEntity>();
-            lstCh = objUserEntity.ChannelDetails;
+            lstCh = GetChannelList();
 
             List<OrderEntity> objOrderEntityLst = new List<OrderEntity>();
             OrderEntity order;
@@ -79,42 +82,83 @@ namespace Invent.Models.BAL.Order
                         objOrderEntityLst.Add(order);
                     }
                 }
-                if (lstCh[i].Ch_Prefix == "FP")
+                //if (lstCh[i].Ch_Prefix == "FP")
+                //{
+                //    TokenEntity token = serializer.Deserialize<TokenEntity>(lstCh[i].ApiDetails);
+                //    FlipkartChannelModel objFpModel = new FlipkartChannelModel();
+                //    response = objFpModel.FlipkartOrders(token.access_token);
+                //    if (response != "")
+                //    {
+                //        var jsonOrder = (JObject)JsonConvert.DeserializeObject(response);
+                //        var orderList = jsonOrder["orderItems"];
+                //        for (int j = 0; j < orderList.Count(); j++)
+                //        {
+                //            order = new OrderEntity();
+                //            order.OrderId = orderList[j]["orderId"].ToString();
+                //            order.ItemId = orderList[j]["orderItemId"].ToString();
+                //            order.Title = orderList[j]["title"].ToString();
+                //            order.HSN = orderList[j]["hsn"].ToString();
+                //            order.OrderDate = orderList[j]["orderDate"].ToString();
+                //            order.ShipDate = orderList[j]["deliverByDate"].ToString();
+                //            order.Quantity = orderList[j]["quantity"].ToString();
+                //            order.ListingId = orderList[j]["listingId"].ToString();
+                //            order.SLA = orderList[j]["sla"].ToString();
+                //            order.Hold = orderList[j]["hold"].ToString();
+                //            order.SKU = orderList[j]["sku"].ToString();
+                //            order.PaymentType = orderList[j]["paymentType"].ToString();
+                //            order.SellingPrice = orderList[j]["priceComponents"]["sellingPrice"].ToString();
+                //            order.ShippingCharges = orderList[j]["priceComponents"]["shippingCharge"].ToString();
+                //            order.TotalPrice = orderList[j]["priceComponents"]["totalPrice"].ToString();
+                //            order.Status = orderList[j]["status"].ToString();
+                //            order.Channel = "Flipkart";
+                //            objOrderEntityLst.Add(order);
+                //        }
+                //    }
+                //}
+            }
+            response = serializer.Serialize(objOrderEntityLst);
+
+            return response;
+        }
+
+        public List<ChannelGeneralDetailsEntity> GetChannelList()
+        {
+            var con = System.Configuration.ConfigurationManager.ConnectionStrings["DBCONN"].ToString();
+
+            List<ChannelGeneralDetailsEntity> lstDtl = new List<ChannelGeneralDetailsEntity>();
+            ChannelGeneralDetailsEntity chDtl;
+            try
+            {
+                using (System.Data.SqlClient.SqlConnection myConnection = new System.Data.SqlClient.SqlConnection(con))
                 {
-                    TokenEntity token = serializer.Deserialize<TokenEntity>(lstCh[i].ApiDetails);
-                    FlipkartChannelModel objFpModel = new FlipkartChannelModel();
-                    response = objFpModel.FlipkartOrders(token.access_token);
-                    if (response != "")
+                    string oString = "Select * from MST_USER_CHANNEL where CHANNEL_STATUS=1";
+                    System.Data.SqlClient.SqlCommand oCmd = new System.Data.SqlClient.SqlCommand(oString, myConnection);
+                    //  oCmd.Parameters.AddWithValue("@Fname", );
+                    myConnection.Open();
+                    using (System.Data.SqlClient.SqlDataReader oReader = oCmd.ExecuteReader())
                     {
-                        var jsonOrder = (JObject)JsonConvert.DeserializeObject(response);
-                        var orderList = jsonOrder["orderItems"];
-                        for (int j = 0; j < orderList.Count(); j++)
+                        while (oReader.Read())
                         {
-                            order = new OrderEntity();
-                            order.OrderId = orderList[j]["orderId"].ToString();
-                            order.ItemId = orderList[j]["orderItemId"].ToString();
-                            order.Title = orderList[j]["title"].ToString();
-                            order.HSN = orderList[j]["hsn"].ToString();
-                            order.OrderDate = orderList[j]["orderDate"].ToString();
-                            order.ShipDate = orderList[j]["deliverByDate"].ToString();
-                            order.Quantity = orderList[j]["quantity"].ToString();
-                            order.ListingId = orderList[j]["listingId"].ToString();
-                            order.SLA = orderList[j]["sla"].ToString();
-                            order.Hold = orderList[j]["hold"].ToString();
-                            order.SKU = orderList[j]["sku"].ToString();
-                            order.PaymentType = orderList[j]["paymentType"].ToString();
-                            order.SellingPrice = orderList[j]["priceComponents"]["sellingPrice"].ToString();
-                            order.ShippingCharges = orderList[j]["priceComponents"]["shippingCharge"].ToString();
-                            order.TotalPrice = orderList[j]["priceComponents"]["totalPrice"].ToString();
-                            order.Status = orderList[j]["status"].ToString();
-                            order.Channel = "Flipkart";
-                            objOrderEntityLst.Add(order);
+                            chDtl = new ChannelGeneralDetailsEntity();
+                            chDtl.User_Id= oReader["USER_ID"].ToString();
+                            chDtl.ChannelName = oReader["CHANNEL_NAME"].ToString();
+                            chDtl.InventorySync = ((Convert.ToChar(oReader["INVENTORY_SYNC"]) == '0') ? false : true);
+                            chDtl.OrderSync = ((Convert.ToChar(oReader["ORDER_SYNC"]) == '0') ? false : true);
+                            chDtl.LeadgerName = oReader["LEADGER_NAME"].ToString();
+                            chDtl.Ch_Prefix = oReader["PREFIX"].ToString();
+                            chDtl.ApiDetails = oReader["API_DETAILS"].ToString();
+                            lstDtl.Add(chDtl);
                         }
+
+                        myConnection.Close();
                     }
                 }
             }
-            response = serializer.Serialize(objOrderEntityLst);
-            return response;
+            catch (Exception ex)
+            {
+                ExceptionHandling.WriteException(ex);
+            }
+            return lstDtl;
         }
     }
 }

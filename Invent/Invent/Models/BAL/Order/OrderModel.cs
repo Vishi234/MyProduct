@@ -21,7 +21,7 @@ namespace Invent.Models.BAL.Order
             sqlParameter[0] = new SqlParameter("@USER_ID", userId);
             sqlParameter[1] = new SqlParameter("@EMAIL_ID", emailid);
             sqlParameter[2] = new SqlParameter("@JSON_DATA", jsonString);
-            sqlParameter[3] = new SqlParameter("@LAST_SYNC", DateTime.Now.ToString("yyyyMMddHHmmss"));
+            sqlParameter[3] = new SqlParameter("@LAST_SYNC", DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss"));
             sqlParameter[4] = new SqlParameter("@FLAG", "A");
             sqlParameter[5] = new SqlParameter("@ERROR_MSG", SqlDbType.NVarChar);
             sqlParameter[5].Direction = ParameterDirection.Output;
