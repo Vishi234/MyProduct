@@ -1591,11 +1591,12 @@ a {
 
 .data-grid-section {
     width: 100%;
-    background: #fff;
+    /* background: #fff; */
     z-index: -9999999;
-    border: 1px solid;
-    border-color: rgb(203, 214, 226) rgb(203, 214, 226) rgb(203, 214, 226);
-    margin-top: -2px;
+    /* border: 1px solid; */
+    /* border-color: rgb(203, 214, 226) rgb(203, 214, 226) rgb(203, 214, 226); */
+    /* margin-top: -2px; */
+    padding: 5px;
 }
 
 
@@ -1636,6 +1637,7 @@ a {
         border-color: rgb(203, 214, 226) rgb(203, 214, 226) rgb(203, 214, 226);
         border-radius: 3px;
         color: rgb(112, 110, 107);
+        background: #fff;
     }
 
         .report-action > li > a > svg {
@@ -1776,7 +1778,7 @@ a {
     height: 100%;
     background: #262F3D;
     width: 14%;
-    z-index: 9999;
+    /*z-index: 9999;*/
 }
 
 .logo-section {
@@ -1864,10 +1866,9 @@ a {
     }
 
 .base-top span:nth-child(1) {
-    font-size: 1.2em;
+    font-size: 1.4em;
     padding: 15px;
     font-weight: 600;
-    color: #808080;
 }
 
 .top-menu {
@@ -1882,10 +1883,11 @@ a {
 
         .top-menu li a {
             display: block;
-            padding: 15px 10px;
+            padding: 17px 10px;
             font-size: 1em;
+            font-weight: 600;
             border-bottom: 2px solid #fff;
-            color: #808080;
+            /* color: #808080; */
         }
 
 .top-menu-active {
@@ -1893,3 +1895,140 @@ a {
     color: #ff7a59 !important;
 }
 /*Sidebar menu section end*/
+.ag-theme-balham .ag-header {
+    background-color: #E5E7E7 !important;
+    font-weight: 700 !important;
+}
+
+.ag-theme-balham .ag-row-odd {
+    background-color: #F8F8F8 !important;
+}
+
+.ag-row-hover {
+    /* putting in !important so it overrides the theme's styling as it hovers the row also */
+    background-color: transparent !important;
+}
+
+.grdstyle {
+    height: 600px;
+    width: 100%;
+    border: 1px solid;
+    border-color: rgb(203, 214, 226) rgb(203, 214, 226) rgb(203, 214, 226);
+    font-family: inherit !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+}
+
+.anchorLink a {
+    color: #00a0e2 !important;
+    font-weight: 600 !important;
+    /*text-decoration: underline!important;*/
+}
+
+.amazon-label {
+    color: #fff;
+    padding: 0px 0px;
+    font-size: 10px;
+    width: 60px;
+    display: block;
+    text-align: center;
+    margin: 5px 5px;
+    border-radius: 4px;
+}
+
+.flipkart-label {
+    color: #fff;
+    padding: 0px 0px;
+    font-size: 10px;
+    width: 60px;
+    display: block;
+    text-align: center;
+    margin: 5px 5px;
+    border-radius: 4px;
+}
+
+.ag-theme-balham .ag-pinned-left-header {
+    border-right: none !important;
+}
+
+.ag-theme-balham .ag-ltr .ag-cell-last-left-pinned {
+    border-right: none !important;
+}
+
+.custom .modal-content {
+    border: none;
+    background-color: transparent;
+}
+
+.custom .modal-header {
+    background: #262F3D;
+}
+
+    .custom .modal-header .close {
+        color: #fff;
+    }
+/*.custom .modal-dialog
+    {
+        margin-top:-150px;
+    }*/
+.custom .modal-title {
+    color: #fff;
+    text-align: center;
+    display: block;
+    width: 100%;
+    letter-spacing: 1px;
+}
+
+.custom .modal-body {
+    background: #fff;
+}
+
+.custom .private-label {
+    padding: 0px;
+    float: left;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.custom .btn-success {
+    float: right;
+    width: 100%;
+    font-size: 14px;
+    border-radius: 2px;
+}
+
+.modal-form {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+}
+
+    .modal-form .form-group {
+        margin-bottom: 0px;
+    }
+
+        .modal-form .form-group .form-control {
+            margin-bottom: 15px;
+        }
+
+        .modal-form .form-group .field-validation-error {
+            margin-top: -15px;
+        }
+
+.btn-primary {
+    border: none;
+    color: #fff;
+    background-color: #0062cc;
+    font-size: 12px;
+}
+
+.report-action > li > a.btn-primary {
+    border: none;
+    color: #fff;
+    background-color: #0062cc;
+    font-size: 12px;
+}
+
+    .report-action > li > a.btn-primary svg {
+        margin-right: 5px;
+    }

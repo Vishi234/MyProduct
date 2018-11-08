@@ -15,7 +15,7 @@ namespace Invent.Models.BAL.Order
     public class OrderModel
     {
         string sqlconn = ConfigurationManager.ConnectionStrings["DBCONN"].ConnectionString;
-        public string SaveOrderDetails(string jsonString,string userId, string emailid)
+        public string SaveOrderDetails(string jsonString, string userId, string emailid)
         {
             SqlParameter[] sqlParameter = new SqlParameter[7];
             sqlParameter[0] = new SqlParameter("@USER_ID", userId);
@@ -34,6 +34,23 @@ namespace Invent.Models.BAL.Order
             error.ERROR_MSG = sqlParameter[5].Value.ToString();
             error.ERROR_FLAG = sqlParameter[6].Value.ToString();
             return "";
+        }
+        public string GetOrders(string userId, string channelName, string orderDate, string orderStatus)
+        {
+            DataSet ds = new DataSet();
+            SqlParameter[] sqlParameter = new SqlParameter[7];
+            sqlParameter[0] = new SqlParameter("@USER_ID", userId);
+            sqlParameter[1] = new SqlParameter("@CHANNEL_NAME", channelName);
+            sqlParameter[2] = new SqlParameter("@ORDER_DATE", orderDate);
+            sqlParameter[3] = new SqlParameter("@ORDER_STATUS", orderStatus);
+            ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_GET_ORDERS", sqlParameter);
+            DataTable dt = new DataTable();
+            if (ds != null)
+            {
+                dt = ds.Tables[0];
+            }
+
+            return Common.CommonModel.DATATABLETOJSON(dt);
         }
     }
 }

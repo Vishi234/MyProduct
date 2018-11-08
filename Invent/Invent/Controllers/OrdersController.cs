@@ -34,9 +34,8 @@ namespace Invent.Controllers
         {
             UserEntity objUserEntity = new UserEntity();
             objUserEntity = (UserEntity)Session["UserEntity"];
-            //API_Call.OrderFetch(objUserEntity);
-            //BackgroundJob.Schedule(() => API_Call.OrderFetch(objUserEntity), TimeSpan.FromMilliseconds(3000));
-            return Json("");
+            OrderModel objOrdMdl = new OrderModel();
+            return Json(objOrdMdl.GetOrders(objUserEntity.UserID, "", "", ""));
         }
     }
 

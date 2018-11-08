@@ -21,6 +21,7 @@ namespace Invent.Models.Entity.Channel
         public string ListingId { get; set; }
         public string SKU { get; set; }
         public string PaymentType { get; set; }
+        public string CurrencyCode { get; set; }
         public string SellingPrice { get; set; }
         public string ShippingCharges { get; set; }
         public string TotalPrice { get; set; }

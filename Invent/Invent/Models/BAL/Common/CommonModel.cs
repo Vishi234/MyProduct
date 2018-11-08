@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -10,6 +11,7 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Xml;
 
 namespace Invent.Models.BAL.Common
@@ -98,11 +100,29 @@ namespace Invent.Models.BAL.Common
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xml);
-            string json =JsonConvert.SerializeXmlNode(doc);
+            string json = JsonConvert.SerializeXmlNode(doc);
             return json;
         }
 
-        
+        #region Datatable Serializer
+        public static string DATATABLETOJSON(DataTable table)
+        {
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            List<Dictionary<string, object>> parentRow = new List<Dictionary<string, object>>();
+            Dictionary<string, object> childRow;
+            foreach (DataRow row in table.Rows)
+            {
+                childRow = new Dictionary<string, object>();
+                foreach (DataColumn col in table.Columns)
+                {
+                    childRow.Add(col.ColumnName, row[col]);
+                }
+                parentRow.Add(childRow);
+            }
+            return jsSerializer.Serialize(parentRow);
+        }
+        #endregion
+
     }
     #region Exception
     public static class ExceptionHandling

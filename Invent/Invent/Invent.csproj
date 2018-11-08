@@ -214,6 +214,7 @@
     <Content Include="assets\img\loading.gif" />
     <Content Include="assets\img\user-img.png" />
     <Content Include="assets\module_scripts\Orders\orders.js" />
+    <Content Include="assets\module_scripts\Setting\category.js" />
     <Content Include="assets\scripts\ag-grid-nostyle.min.js" />
     <Content Include="assets\scripts\ag-grid\ag-grid.min.noStyle.js" />
     <Content Include="assets\scripts\common.js" />
@@ -309,7 +310,7 @@
     <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
-    <Compile Include="Controllers\ToolController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -322,6 +323,8 @@
     <Compile Include="Models\BAL\Order\ChannelOrdersModel.cs" />
     <Compile Include="Models\BAL\Order\FlipkartChannelModel.cs" />
     <Compile Include="Models\BAL\Order\OrderModel.cs" />
+    <Compile Include="Models\BAL\Setting\CategoryModel.cs" />
+    <Compile Include="Models\Entity\Setting\CategoryEntity.cs" />
     <Compile Include="Models\DAL\SQLHelper.cs" />
     <Compile Include="Models\Entity\Channel\OrderEntity.cs" />
     <Compile Include="Models\Entity\Common\ErrorEntity.cs" />
@@ -355,7 +358,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Views\Auth\Login.cshtml" />
-    <Content Include="Views\Tool\Configuration.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Views\Auth\Verification.cshtml" />
     <Content Include="Views\Configuration\Intro.cshtml" />
@@ -365,6 +367,10 @@
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Shared\PartialView\Order\_TopFilter.cshtml" />
+    <Content Include="Views\Shared\PartialView\Setting\_TopMenu.cshtml" />
+    <Content Include="Views\Setting\Account.cshtml" />
+    <Content Include="Views\Setting\Category.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

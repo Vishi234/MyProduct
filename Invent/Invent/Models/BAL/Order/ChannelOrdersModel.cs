@@ -18,8 +18,6 @@ namespace Invent.Models.BAL.Order
     {
         string response = string.Empty;
         JavaScriptSerializer serializer = new JavaScriptSerializer();
-        private object EXCEPTIONHANDLING;
-
         public string GetOrders(UserEntity objUserEntity, string fromDate, string toDate, List<string> status)
         {
             List<ChannelGeneralDetailsEntity> lstCh = new List<ChannelGeneralDetailsEntity>();
@@ -82,42 +80,45 @@ namespace Invent.Models.BAL.Order
                         objOrderEntityLst.Add(order);
                     }
                 }
-                //if (lstCh[i].Ch_Prefix == "FP")
-                //{
-                //    TokenEntity token = serializer.Deserialize<TokenEntity>(lstCh[i].ApiDetails);
-                //    FlipkartChannelModel objFpModel = new FlipkartChannelModel();
-                //    response = objFpModel.FlipkartOrders(token.access_token);
-                //    if (response != "")
-                //    {
-                //        var jsonOrder = (JObject)JsonConvert.DeserializeObject(response);
-                //        var orderList = jsonOrder["orderItems"];
-                //        for (int j = 0; j < orderList.Count(); j++)
-                //        {
-                //            order = new OrderEntity();
-                //            order.OrderId = orderList[j]["orderId"].ToString();
-                //            order.ItemId = orderList[j]["orderItemId"].ToString();
-                //            order.Title = orderList[j]["title"].ToString();
-                //            order.HSN = orderList[j]["hsn"].ToString();
-                //            order.OrderDate = orderList[j]["orderDate"].ToString();
-                //            order.ShipDate = orderList[j]["deliverByDate"].ToString();
-                //            order.Quantity = orderList[j]["quantity"].ToString();
-                //            order.ListingId = orderList[j]["listingId"].ToString();
-                //            order.SLA = orderList[j]["sla"].ToString();
-                //            order.Hold = orderList[j]["hold"].ToString();
-                //            order.SKU = orderList[j]["sku"].ToString();
-                //            order.PaymentType = orderList[j]["paymentType"].ToString();
-                //            order.SellingPrice = orderList[j]["priceComponents"]["sellingPrice"].ToString();
-                //            order.ShippingCharges = orderList[j]["priceComponents"]["shippingCharge"].ToString();
-                //            order.TotalPrice = orderList[j]["priceComponents"]["totalPrice"].ToString();
-                //            order.Status = orderList[j]["status"].ToString();
-                //            order.Channel = "Flipkart";
-                //            objOrderEntityLst.Add(order);
-                //        }
-                //    }
-                //}
+                if (lstCh[i].Ch_Prefix == "FP")
+                {
+                    TokenEntity token = serializer.Deserialize<TokenEntity>(lstCh[i].ApiDetails);
+                    FlipkartChannelModel objFpModel = new FlipkartChannelModel();
+                    response = objFpModel.FlipkartOrders(token.access_token);
+                    if (response != "")
+                    {
+                        var jsonOrder = (JObject)JsonConvert.DeserializeObject(response);
+                        var orderList = jsonOrder["orderItems"];
+                        if (orderList != null)
+                        {
+                            for (int j = 0; j < orderList.Count(); j++)
+                            {
+                                order = new OrderEntity();
+                                order.OrderId = orderList[j]["orderId"].ToString();
+                                order.ItemId = orderList[j]["orderItemId"].ToString();
+                                order.Title = orderList[j]["title"].ToString();
+                                order.HSN = orderList[j]["hsn"].ToString();
+                                order.OrderDate = orderList[j]["orderDate"].ToString();
+                                order.ShipDate = orderList[j]["deliverByDate"].ToString();
+                                order.Quantity = orderList[j]["quantity"].ToString();
+                                order.ListingId = orderList[j]["listingId"].ToString();
+                                order.SLA = orderList[j]["sla"].ToString();
+                                order.Hold = orderList[j]["hold"].ToString();
+                                order.SKU = orderList[j]["sku"].ToString();
+                                order.PaymentType = orderList[j]["paymentType"].ToString();
+                                order.SellingPrice = orderList[j]["priceComponents"]["sellingPrice"].ToString();
+                                order.ShippingCharges = orderList[j]["priceComponents"]["shippingCharge"].ToString();
+                                order.TotalPrice = orderList[j]["priceComponents"]["totalPrice"].ToString();
+                                order.Status = orderList[j]["status"].ToString();
+                                order.Channel = "Flipkart";
+                                objOrderEntityLst.Add(order);
+                            }
+                        }
+                    }
+                }
             }
-            response = serializer.Serialize(objOrderEntityLst);
-
+            //response = serializer.Serialize(objOrderEntityLst);
+            response = new OrderModel().SaveOrderDetails(serializer.Serialize(objOrderEntityLst), lstCh[0].User_Id, "");
             return response;
         }
 
@@ -140,7 +141,7 @@ namespace Invent.Models.BAL.Order
                         while (oReader.Read())
                         {
                             chDtl = new ChannelGeneralDetailsEntity();
-                            chDtl.User_Id= oReader["USER_ID"].ToString();
+                            chDtl.User_Id = oReader["USER_ID"].ToString();
                             chDtl.ChannelName = oReader["CHANNEL_NAME"].ToString();
                             chDtl.InventorySync = ((Convert.ToChar(oReader["INVENTORY_SYNC"]) == '0') ? false : true);
                             chDtl.OrderSync = ((Convert.ToChar(oReader["ORDER_SYNC"]) == '0') ? false : true);
