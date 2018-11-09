@@ -260,6 +260,7 @@
     <Content Include="assets\css\bootstrap-reboot.css.map" />
     <Content Include="assets\css\bootstrap-grid.min.css.map" />
     <Content Include="assets\css\bootstrap-grid.css.map" />
+    <Content Include="assets\img\edit_icon.svg" />
     <None Include="assets\scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="assets\scripts\jquery-3.3.1.js" />
     <Content Include="assets\scripts\jquery-3.3.1.min.js" />

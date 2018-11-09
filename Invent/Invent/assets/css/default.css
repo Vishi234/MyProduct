@@ -1898,11 +1898,17 @@ a {
 .ag-theme-balham .ag-header {
     background-color: #E5E7E7 !important;
     font-weight: 700 !important;
+    font: inherit !important;
 }
 
-.ag-theme-balham .ag-row-odd {
-    background-color: #F8F8F8 !important;
+
+.ag-theme-balham {
+    font: inherit !important;
 }
+
+    .ag-theme-balham .ag-row-odd {
+        background-color: #F8F8F8 !important;
+    }
 
 .ag-row-hover {
     /* putting in !important so it overrides the theme's styling as it hovers the row also */
@@ -1910,7 +1916,7 @@ a {
 }
 
 .grdstyle {
-    height: 600px;
+    height: 500px;
     width: 100%;
     border: 1px solid;
     border-color: rgb(203, 214, 226) rgb(203, 214, 226) rgb(203, 214, 226);
@@ -2032,3 +2038,48 @@ a {
     .report-action > li > a.btn-primary svg {
         margin-right: 5px;
     }
+
+.action-area {
+    padding-bottom: 0px;
+    padding-right: 0px;
+}
+
+.grid-center {
+    text-align: center;
+}
+
+.grid-left {
+    text-align: left;
+}
+
+.grid-right {
+    text-align: right;
+}
+
+.ag-theme-balham .ag-icon-menu {
+    background-size: 20px 20px !important;
+}
+
+.ag-header-cell-menu-button {
+    opacity: 1 !important;
+}
+
+.ag-header-cell-text {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+}
+
+.ag-theme-balham .ag-cell {
+    font-size: 12px;
+}
+
+.editCss img {
+    height: 18px;
+}
+
+.badge {
+    padding: 5px !important;
+    font-size: 12px !important;
+    margin-top: 4px !important;
+}

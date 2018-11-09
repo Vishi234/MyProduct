@@ -35,23 +35,43 @@ namespace Invent.Models.BAL.Setting
             sqlParameter[13] = new SqlParameter("@ERROR_FLAG", SqlDbType.Char);
             sqlParameter[13].Direction = ParameterDirection.Output;
             sqlParameter[13].Size = 1;
-            DataSet ds = new DataSet();
-
-            ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_MANAGE_CATEGORY", sqlParameter);
+            SqlHelper.ExecuteScalar(sqlconn, CommandType.StoredProcedure, "SP_MANAGE_CATEGORY", sqlParameter);
             ErrorEntity error = new ErrorEntity();
             error.ERROR_MSG = sqlParameter[12].Value.ToString();
             error.ERROR_FLAG = sqlParameter[13].Value.ToString();
-            List<CategoryEntity> lstCat = new List<CategoryEntity>();
-            CategoryEntity catEntity;
+            return error;
+        }
+        public List<CategoryEntity> GetProductCategory(string UserId)
+        {
+            DataSet ds = new DataSet();
+            SqlParameter[] sqlParameter = new SqlParameter[1];
+            sqlParameter[0] = new SqlParameter("@USER_ID", UserId);
+            ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_GET_PRODUCT_CATEGORY", sqlParameter);
+            List<CategoryEntity> lstCatEntity = new List<CategoryEntity>();
+            CategoryEntity objCatEnty;
             if (ds != null)
             {
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                if (ds.Tables[0].Rows.Count > 0)
                 {
-                    catEntity = new CategoryEntity();
-                    catEntity.CategoryId = ds.Tables[0].Rows[i]["CATEGORY_ID"].ToString();
+                    for(int i=0;i<ds.Tables[0].Rows.Count;i++)
+                    {
+                        objCatEnty = new CategoryEntity();
+                        objCatEnty.CategoryId = ds.Tables[0].Rows[i]["CATEGORY_ID"].ToString();
+                        objCatEnty.Name= ds.Tables[0].Rows[i]["CATEGORY_NAME"].ToString();
+                        objCatEnty.Code = ds.Tables[0].Rows[i]["CODE"].ToString();
+                        objCatEnty.PriceRange = ds.Tables[0].Rows[i]["PRICE_RANGE"].ToString();
+                        objCatEnty.IGST = ds.Tables[0].Rows[i]["IGST"].ToString();
+                        objCatEnty.CGST = ds.Tables[0].Rows[i]["CGST"].ToString();
+                        objCatEnty.SGST = ds.Tables[0].Rows[i]["SGST"].ToString();
+                        objCatEnty.UTGST = ds.Tables[0].Rows[i]["UTGST"].ToString();
+                        objCatEnty.CESS = ds.Tables[0].Rows[i]["CESS"].ToString();
+                        objCatEnty.Status = Convert.ToBoolean(ds.Tables[0].Rows[i]["Status"]);
+                        lstCatEntity.Add(objCatEnty);
+                    }
+                   
                 }
             }
-            return error;
+            return lstCatEntity;
         }
     }
 }

@@ -21,14 +21,16 @@
                     <input type="text" id="filter-text-box" class="form-control" placeholder="Search this list..." oninput="onFilterTextBoxChanged()" />
                 </li>
                 <li><a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#add-category"><i class="fa fa-plus"></i>New Category</a></li>
-                <li><a href="javascript:void(0)"><i class="fa fa-sync"></i></a></li>
+                <li><a href="javascript:void(0)" onclick="Refresh();"><i class="fa fa-sync"></i></a></li>
                 <li>
                     <a href="javascript:void(0)"><i class="fa fa-download"></i> <i class="fa fa-caret-down"></i></a>
                 </li>
             </ul>
         </div>
     </div>
-    <div id="categroy-grid" class="grdstyle ag-theme-balham"></div>
+    <div class="data-grid-section">
+        <div id="categroy-grid" class="grdstyle ag-theme-balham" style="height:420px;"></div>
+    </div>
 </div>
 
 @*<div class="common-modal">
@@ -46,7 +48,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Add Category</h3>
+                <h3 class="modal-title" id="mdlTtl">Add Category</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -60,51 +62,62 @@ new AjaxOptions
     LoadingElementId = "progress"
 }))
                     {
-                        @Html.HiddenFor(model=>model.CategoryId)
+                        @Html.HiddenFor(model => model.CategoryId)
+                        @Html.HiddenFor(model => model.Flag)
+                        @Html.HiddenFor(model => model.Status)
                         @*<h1>Welcome to SpotInvent</h1>*@
                         <div class="form-group">
                             <label class="private-label col-md-3" for="emailId">Category Name<span class="text-danger">*</span></label>
-                            @Html.TextBoxFor(model => model.Name, new { @class = "col-md-9 form-control", })
+                            @Html.TextBoxFor(model => model.Name, new { @id = "txtCatName", @class = "col-md-9 form-control", })
                             @Html.ValidationMessageFor(model => model.Name)
                         </div>
                         <div class="form-group">
                             <label class="private-label col-md-3" for="password">Code <span class="text-danger">*</span></label>
-                            @Html.TextBoxFor(model => model.Code, new { @class = "col-md-9 form-control", })
+                            @Html.TextBoxFor(model => model.Code, new { @id = "txtCode", @class = "col-md-9 form-control", })
                             @Html.ValidationMessageFor(model => model.Code)
                         </div>
                         <div class="form-group">
                             <label class="private-label col-md-3" for="password">Price Range <span class="text-danger">*</span></label>
-                            @Html.TextBoxFor(model => model.PriceRange, new { @class = "col-md-9 form-control", })
+                            @Html.TextBoxFor(model => model.PriceRange, new { @id = "txtPriceRange", @class = "col-md-9 form-control", })
                             @Html.ValidationMessageFor(model => model.PriceRange)
                         </div>
                         <div class="form-group">
                             <label class="private-label col-md-3" for="password">IGST <span class="text-danger">*</span></label>
-                            @Html.TextBoxFor(model => model.IGST, new { @class = "col-md-9 form-control", })
+                            @Html.TextBoxFor(model => model.IGST, new { @id = "txtIGST", @class = "col-md-9 form-control", })
                             @Html.ValidationMessageFor(model => model.IGST)
                         </div>
                         <div class="form-group">
                             <label class="private-label col-md-3" for="password">CGST <span class="text-danger">*</span></label>
-                            @Html.TextBoxFor(model => model.CGST, new { @class = "col-md-9 form-control", })
+                            @Html.TextBoxFor(model => model.CGST, new { @id = "txtCGST", @class = "col-md-9 form-control", })
                             @Html.ValidationMessageFor(model => model.CGST)
                         </div>
                         <div class="form-group">
                             <label class="private-label col-md-3" for="password">SGST <span class="text-danger">*</span></label>
-                            @Html.TextBoxFor(model => model.SGST, new { @class = "col-md-9 form-control", })
+                            @Html.TextBoxFor(model => model.SGST, new { @id = "txtSGST", @class = "col-md-9 form-control", })
                             @Html.ValidationMessageFor(model => model.SGST)
                         </div>
                         <div class="form-group">
                             <label class="private-label col-md-3" for="password">UTGST </label>
-                            @Html.TextBoxFor(model => model.UTGST, new { @class = "col-md-9 form-control", })
+                            @Html.TextBoxFor(model => model.UTGST, new { @id = "txtUTGST", @class = "col-md-9 form-control", })
                             @Html.ValidationMessageFor(model => model.UTGST)
                         </div>
                         <div class="form-group">
                             <label class="private-label col-md-3" for="password">CESS </label>
-                            @Html.TextBoxFor(model => model.CESS, new { @class = "col-md-9 form-control", })
+                            @Html.TextBoxFor(model => model.CESS, new { @id = "txtCESS", @class = "col-md-9 form-control", })
                             @Html.ValidationMessageFor(model => model.CESS)
                         </div>
-
                         <div class="form-group">
-                            <button class="btn btn-success col-md-12">Save</button>
+                            <div class="checkbox">
+                                <label>
+                                    @Html.CheckBoxFor(model => model.Status, new { @data_toggle = "toggle" })
+                                    @Html.ValidationMessageFor(model => model.Status)
+                                    @*<input type="checkbox" data-toggle="toggle">*@
+                                    Sync (Optional)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success col-md-12" id="btnSveCat">Save</button>
                         </div>
                     }
                 </div>

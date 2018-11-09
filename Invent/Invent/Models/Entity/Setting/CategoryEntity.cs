@@ -24,7 +24,7 @@ namespace Invent.Models.Entity.Setting
         public string SGST { get; set; }
         public string UTGST { get; set; }
         public string CESS { get; set; }
-        public char Status { get; set; }
+        public bool Status { get; set; }
         public char Flag { get; set; }
 
     }

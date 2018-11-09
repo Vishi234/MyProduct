@@ -129,8 +129,11 @@ function GridInitializer(colDef) {
     var gridOptions = {
         columnDefs: colDef,
         enableSorting: true,
-        enableFilter: false,
+        enableFilter: true,
         rowData: null,
+        rowHeight: 33,
+        enableCellChangeFlash: true,
+        refreshCells: true,
         enableColResize: true,
         pagination: true,
         paginationPageSize: 20,
@@ -153,6 +156,11 @@ function GridInitializer(colDef) {
 //        gridOptions.api.resetRowHeights();
 //    }
 //}
+function callRefreshAfterMillis(params, millis, gridApi) {
+    setTimeout(function () {
+        gridApi.refreshCells(params);
+    }, millis);
+}
 function onPageSizeChanged(newPageSize) {
     var value = document.getElementById('page-size').value;
     gridOptions.api.paginationSetPageSize(Number(value));

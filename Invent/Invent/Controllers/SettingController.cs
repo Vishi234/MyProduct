@@ -26,16 +26,14 @@ namespace Invent.Controllers
         {
             UserEntity objUserEntity = new UserEntity();
             objUserEntity = (UserEntity)Session["UserEntity"];
-            CategoryEntity catMdl = new CategoryEntity();
-            catMdl.Flag = 'G';
-            catMdl.UserId = objUserEntity.UserID;
-            return Json(new CategoryModel().ManageCategory(catMdl));
+            return Json(new CategoryModel().GetProductCategory(objUserEntity.UserID), JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public JsonResult SaveCategory(CategoryEntity catMdl)
         {
-            catMdl.Flag = 'A';
-            catMdl.Status = '0';
+
+            catMdl.Flag = ((catMdl.Flag.ToString().Trim() == "") ? 'A' : catMdl.Flag);
+            catMdl.Status = ((catMdl.Status.ToString() == "") ? false : catMdl.Status);
             UserEntity objUserEntity = new UserEntity();
             objUserEntity = (UserEntity)Session["UserEntity"];
             catMdl.UserId = objUserEntity.UserID;
