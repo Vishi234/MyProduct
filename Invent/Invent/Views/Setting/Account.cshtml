@@ -1,10 +1,271 @@
-﻿
+﻿@model Tuple<Invent.Models.Entity.Configuration.GeneralDetailsEntity, Invent.Models.Entity.Configuration.UserAccountingEntity, Invent.Models.Entity.Configuration.UserBillingEntity>
 @{
     ViewBag.Title = "Account";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@{
+    Invent.Models.Entity.User.UserEntity user = (Invent.Models.Entity.User.UserEntity)HttpContext.Current.Session["UserEntity"];
     Html.RenderPartial("../Shared/PartialView/Setting/_TopMenu");
 }
 
+<div class="data-grid-section">
+    <div class="account-setting">
+        <div class="general-info">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <div class="titleInfo">
+                        <h2>
+                            General Information
+                        </h2>
+                        <p>Enter basic warehouse details and upload logo image file to be used on invoice.</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <div class="fieldInfo">
+                        <ul>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">Company Name<span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.Item1.CompanyName, new { @Value = user.CompanyName, @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Item1.CompanyName)
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">Display<span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.Item1.DisplayName, new { @Value = user.DisplayName, @class = "form-control", })
+                                    @Html.ValidationMessageFor(model => model.Item1.DisplayName)
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">First Name<span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.Item1.FirstName, new { @Value = user.FirstName, @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Item1.FirstName)
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">Last Name<span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.Item1.LastName, new { @Value = user.LastName, @class = "form-control", })
+                                    @Html.ValidationMessageFor(model => model.Item1.LastName)
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">Email Id<span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.Item1.EmailId, new { @Value = user.EmailId, @class = "form-control", @disabled = (user.EmailId != "" ? "disabled" : "") })
+                                    @Html.ValidationMessageFor(model => model.Item1.EmailId)
+                                </div>
+
+                            </li>
+                            <li class="profile-area">
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">Profile Picture<span class="text-danger">*</span></label>
+                                    <input type="file" class="filebase" />
+                                </div>
+                                <div class="profilePicDisplay">
+                                    <img src="~/assets/img/no-image.gif" alt="Profile Pic" />
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="general-info">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <div class="titleInfo">
+                        <h2>
+                            Account Information
+                        </h2>
+                        <p>Specify tax registration numbers and prefix to invoice series.</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <div class="fieldInfo">
+                        <ul>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">PAN<span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.Item2.PAN, new { @Value = user.Pan, @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Item2.PAN)
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">GSTIN<span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.Item2.GSTIN, new { @Value = user.GSTIN, @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Item2.GSTIN)
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">TIN<span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.Item2.TIN, new { @Value = user.Tin, @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Item2.TIN)
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="general-info">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <div class="titleInfo">
+                        <h2>
+                            Address Information
+                        </h2>
+                        <p>Configure the billing and shipping address of the warehouse both the addressess may or may not be same.</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <div class="fieldInfo">
+                        <h3>Billing Address</h3>
+                        <hr />
+                        <ul>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">Address Line 1<span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.Item3.AddressLine1, new { @id = "Address_1", @Value = user.B_AddressLine1, @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Item3.AddressLine1)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">Address Line 2<span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.Item3.AddressLine2, new { @id = "Address_2", @Value = user.B_AddressLine2, @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Item3.AddressLine2)
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">Country<span class="text-danger">*</span></label>
+                                    @Html.DropDownListFor(m => m.Item3.CountryId, Model.Item3.Country, "Please select", new { @id = "CountryId", @class = "form-control", onchange = "GetStates(this,'StateId')" })
+                                    @*@Html.DropDownList("Country", null, "Select Country", new { @class = "private-form-control" })*@
+                                    @Html.ValidationMessageFor(model => model.Item3.Country)
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">State<span class="text-danger">*</span></label>
+                                    @Html.DropDownListFor(m => m.Item3.StateId, Model.Item3.State, "Please select", new { @id = "StateId", @class = "form-control", onchange = "GetCities('CountryId',this,'CityId')" })
+                                    @*@Html.DropDownList("State", null, "Select State", new { @class = "private-form-control" })*@
+                                    @Html.ValidationMessageFor(model => model.Item3.State)
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">City<span class="text-danger">*</span></label>
+                                    @Html.DropDownListFor(m => m.Item3.CityId, Model.Item3.City, "Please select", new { @id = "CityId", @class = "form-control", onchange = "" })
+                                    @*@Html.DropDownList("City", null, "Select City", new { @class = "private-form-control" })*@
+                                    @Html.ValidationMessageFor(model => model.Item3.City)
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">Phone<span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.Item3.Phone, new { @id = "Phone", @Value = user.B_Phone, @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Item3.Phone)
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label class="private-label" for="emailId">Pincode<span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.Item3.PinCode, new { @id = "Pin_Code", @Value = user.B_PinCode, @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Item3.PinCode)
+                                </div>
+
+                            </li>
+                        </ul>
+                        <label class="check private-label pull-left">
+                            <span>Shipping Address is same as Billing Address</span>
+                            <input type="checkbox" onclick="Same(this)" name="remember">
+                            <span class="checkmark"></span>
+                        </label>
+                        <div class="ship-dtl" id="ship-dtl">
+                            <h3>Shipping Address</h3>
+                            <hr />
+                            <ul>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="private-label" for="emailId">Address Line 1<span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.Item3.S_AddressLine1, new { @id = "S_Address_1", @Value = user.S_AddressLine1, @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Item3.S_AddressLine1)
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="private-label" for="emailId">Address Line 2<span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.Item3.S_AddressLine2, new { @id = "S_Address_2", @Value = user.S_AddressLine2, @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Item3.S_AddressLine2)
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="private-label" for="emailId">Country<span class="text-danger">*</span></label>
+                                        @Html.DropDownListFor(m => m.Item3.S_CountryId, Model.Item3.S_Country, "Please select", new { @id = "S_CountryId", @class = "form-control", onchange = "GetStates(this,'S_StateId')" })
+                                        @*@Html.DropDownList("S_Country", null, "Select Country", new { @class = "private-form-control" })*@
+                                        @Html.ValidationMessageFor(model => model.Item3.S_Country)
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="private-label" for="emailId">State<span class="text-danger">*</span></label>
+                                        @Html.DropDownListFor(m => m.Item3.S_StateId, Model.Item3.S_State, "Please select", new { @id = "S_StateId", @class = "form-control", onchange = "GetCities('S_CountryId',this,'S_CityId')" })
+                                        @*@Html.DropDownList("S_State", null, "Select State", new { @class = "private-form-control" })*@
+                                        @Html.ValidationMessageFor(model => model.Item3.S_State)
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="private-label" for="emailId">City<span class="text-danger">*</span></label>
+                                        @Html.DropDownListFor(m => m.Item3.S_CityId, Model.Item3.S_City, "Please select", new { @id = "S_CityId", @class = "form-control", })
+                                        @*@Html.DropDownList("S_City", null, "Select City", new { @class = "private-form-control" })*@
+                                        @Html.ValidationMessageFor(model => model.Item3.S_City)
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="private-label" for="emailId">Phone<span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.Item3.S_Phone, new { @id = "S_Phone", @Value = user.S_Phone, @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Item3.S_Phone)
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="private-label" for="emailId">Pincode<span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.Item3.S_PinCode, new { @id = "S_Pin_Code", @Value = user.S_PinCode, @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Item3.S_PinCode)
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

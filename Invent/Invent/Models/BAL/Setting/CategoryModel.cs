@@ -53,11 +53,11 @@ namespace Invent.Models.BAL.Setting
             {
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    for(int i=0;i<ds.Tables[0].Rows.Count;i++)
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
                         objCatEnty = new CategoryEntity();
                         objCatEnty.CategoryId = ds.Tables[0].Rows[i]["CATEGORY_ID"].ToString();
-                        objCatEnty.Name= ds.Tables[0].Rows[i]["CATEGORY_NAME"].ToString();
+                        objCatEnty.Name = ds.Tables[0].Rows[i]["CATEGORY_NAME"].ToString();
                         objCatEnty.Code = ds.Tables[0].Rows[i]["CODE"].ToString();
                         objCatEnty.PriceRange = ds.Tables[0].Rows[i]["PRICE_RANGE"].ToString();
                         objCatEnty.IGST = ds.Tables[0].Rows[i]["IGST"].ToString();
@@ -65,10 +65,10 @@ namespace Invent.Models.BAL.Setting
                         objCatEnty.SGST = ds.Tables[0].Rows[i]["SGST"].ToString();
                         objCatEnty.UTGST = ds.Tables[0].Rows[i]["UTGST"].ToString();
                         objCatEnty.CESS = ds.Tables[0].Rows[i]["CESS"].ToString();
-                        objCatEnty.Status = Convert.ToBoolean(ds.Tables[0].Rows[i]["Status"]);
+                        objCatEnty.Status = ((ds.Tables[0].Rows[i]["Status"].ToString() == "1") ? true : false);
                         lstCatEntity.Add(objCatEnty);
                     }
-                   
+
                 }
             }
             return lstCatEntity;

@@ -212,6 +212,7 @@
     <Content Include="assets\img\client-logo\S_Snapdeal.png" />
     <Content Include="assets\img\jquery.selectBox-arrow.gif" />
     <Content Include="assets\img\loading.gif" />
+    <Content Include="assets\img\no-image.gif" />
     <Content Include="assets\img\user-img.png" />
     <Content Include="assets\module_scripts\Orders\orders.js" />
     <Content Include="assets\module_scripts\Setting\category.js" />

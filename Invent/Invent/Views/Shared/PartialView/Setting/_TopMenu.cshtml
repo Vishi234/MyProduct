@@ -4,37 +4,37 @@
         <div class="top-menu">
             <ul>
                 <li>
-                    <a class="top-menu-active" href="javascript:void(0)">
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Account" ? "top-menu-active" : "")" href="javascript:void(0)">
                         Account
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Category","Setting")">
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Category" ? "top-menu-active" : "")" href="@Url.Action("Category","Setting")">
                         Categoy
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)">
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Channel" ? "top-menu-active" : "")" href="javascript:void(0)">
                         Channel
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)">
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Import" ? "top-menu-active" : "")" href="javascript:void(0)">
                         Import
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)">
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Location" ? "top-menu-active" : "")" href="javascript:void(0)">
                         Location
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)">
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Notification" ? "top-menu-active" : "")" href="javascript:void(0)">
                         Notification
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)">
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Pincode" ? "top-menu-active" : "")" href="javascript:void(0)">
                         Pincode
                     </a>
                 </li>

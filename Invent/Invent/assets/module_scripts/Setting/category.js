@@ -11,10 +11,12 @@ columnDefs = [
     { headerName: 'Status', field: 'Status', width: 50, cellClass: 'grid-center', suppressFilter: true, cellRenderer: StatusRenderer },
 ];
 gridOptions = GridInitializer(columnDefs);
-
+function ChangeFlag() {
+    $("#Flag").val("A");
+}
 function StatusRenderer(params) {
     var html = '';
-    if (params.data.Status == "0") {
+    if (params.data.Status == false) {
         html = '<span class="badge badge-danger">Disabled</span>'
     }
     else {
@@ -103,6 +105,15 @@ function EditCategory(record) {
     $("#txtSGST").val(record.SGST);
     $("#txtUTGST").val(record.UTGST);
     $("#txtCESS").val(record.CESS);
+    $("#status").prop("checked", record.Status)
+    if (record.Status == true) {
+        $(".toggle").removeClass("btn-default off");
+        $(".toggle").addClass("btn-primary on");
+    }
+    else {
+        $(".toggle").removeClass("btn-primary on");
+        $(".toggle").addClass("btn-default off");
+    }
     $("#add-category").modal("show");
     $("#btnSveCat").text("Update");
     document.getElementById("mdlTtl").innerText = "Update Category";
