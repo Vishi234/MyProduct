@@ -17,6 +17,7 @@ namespace Invent.Models.BAL.Configuration
     public class ConfigurationManageModel
     {
         DataTable dt = new DataTable();
+        DataSet ds = new DataSet();
         string sqlconn = ConfigurationManager.ConnectionStrings["DBCONN"].ConnectionString;
         ErrorEntity error = new ErrorEntity();
         public ErrorEntity SaveGeneralDetails(GeneralDetailsEntity gDtl)
@@ -95,7 +96,7 @@ namespace Invent.Models.BAL.Configuration
             return error;
         }
 
-        public ErrorEntity SaveChannelDetails(FlipkartEntity flp,ChannelGeneralDetailsEntity chDtl)
+        public ErrorEntity SaveChannelDetails(FlipkartEntity flp, ChannelGeneralDetailsEntity chDtl)
         {
             SqlParameter[] sqlParameter = new SqlParameter[13];
             sqlParameter[0] = new SqlParameter("@USER_ID", flp.UserId);
@@ -108,7 +109,7 @@ namespace Invent.Models.BAL.Configuration
             sqlParameter[7] = new SqlParameter("@API_DETAILS", chDtl.ApiDetails);
             sqlParameter[8] = new SqlParameter("@CH_PREFIX", chDtl.Ch_Prefix);
             sqlParameter[9] = new SqlParameter("@STATUS", flp.Status);
-            sqlParameter[10] = new SqlParameter("@FLAG",flp.Flag);
+            sqlParameter[10] = new SqlParameter("@FLAG", flp.Flag);
             sqlParameter[11] = new SqlParameter("@ERROR_MSG", SqlDbType.NVarChar);
             sqlParameter[11].Direction = ParameterDirection.Output;
             sqlParameter[11].Size = 2000;
@@ -128,6 +129,34 @@ namespace Invent.Models.BAL.Configuration
             sqlParameter[0] = new SqlParameter("@COUNTRY_ID", Convert.ToInt32(countryId));
             sqlParameter[1] = new SqlParameter("@STATE_ID", Convert.ToInt32(stateId));
             ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_GET_LOCATION", sqlParameter);
+            return ds;
+        }
+
+        public ErrorEntity RemoveImage(string userId)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[1];
+                string query = "UPDATE MST_SAVE_USR_GENERAL_DTL SET PROFILE_PIC = NULL  WHERE USER_ID=@userId";
+                sqlParameter[0] = new SqlParameter("@userId", userId);
+                SqlHelper.ExecuteScalar(sqlconn, CommandType.Text, query, sqlParameter);
+                error.ERROR_MSG = "Image has been removed.";
+                error.ERROR_FLAG = "S";
+            }
+            catch (Exception ex)
+            {
+                error.ERROR_MSG = "Image remove failed.";
+                error.ERROR_FLAG = "F";
+            }
+            return error;
+        }
+
+        public DataSet GetUserDetails(string userId, string status)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[3];
+            sqlParameter[0] = new SqlParameter("@USER_ID", userId);
+            sqlParameter[1] = new SqlParameter("@STATUS", status);
+            ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_GET_USER_DETAILS", sqlParameter);
             return ds;
         }
     }

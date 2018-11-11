@@ -1,11 +1,12 @@
 ===============================start==============================================
 Inner Exception's
-MessageString reference not set to an instance of a String.
-Parameter name: s
-StackTrace   at System.Text.Encoding.GetBytes(String s)
-   at Invent.Models.BAL.Common.CommonModel.Encrypt(String password) in C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\Models\BAL\Common\CommonModel.cs:line 25
-   at Invent.Controllers.AuthController.Login(LoginEntity logModel) in C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\Controllers\AuthController.cs:line 67
-TargetSiteByte[] GetBytes(System.String)
-DateTime : 	11/8/2018 11:07:18 PM
+MessageIndex was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+StackTrace   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at System.Web.HttpFileCollectionWrapper.get_Item(Int32 index)
+   at Invent.Controllers.SettingController.SaveGeneralDetail(GeneralDetailsEntity genEntity) in C:\Users\vishal.singh\Documents\GitHub\MyProduct\Invent\Invent\Controllers\SettingController.cs:line 112
+TargetSiteSystem.Object get_Item(Int32)
+DateTime : 	11/11/2018 6:28:50 PM
 ================================end============================================= 
 

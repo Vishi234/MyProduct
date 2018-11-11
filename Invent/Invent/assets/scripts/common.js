@@ -9,14 +9,8 @@ function CallToast(message, flag) {
     })
 
 }
-function Same(evt) {
-    if ($(evt).prop('checked') == true) {
-        $("#ship-dtl").css("height", "0px");
-    }
-    else {
-        $("#ship-dtl").css("height", "280px");
-    }
-}
+
+
 function ShipAddress(evt) {
     if ($(evt).prop('checked') == true) {
         var addLine1 = $("#Address_1").val();
@@ -173,3 +167,4 @@ function onPageSizeChanged(newPageSize) {
     var value = document.getElementById('page-size').value;
     gridOptions.api.paginationSetPageSize(Number(value));
 }
+

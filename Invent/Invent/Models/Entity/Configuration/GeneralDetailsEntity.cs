@@ -21,6 +21,7 @@ namespace Invent.Models.Entity.Configuration
         public string LastName { get; set; }
         public string Status { get; set; }
         public string ProfilePic { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
         public string Flag { get; set; }
     }
 }
