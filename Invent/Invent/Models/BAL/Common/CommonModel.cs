@@ -1,4 +1,5 @@
 ﻿using Chilkat;
+using Invent.Models.Entity.User;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -123,6 +124,18 @@ namespace Invent.Models.BAL.Common
         }
         #endregion
 
+        #region SaveImages
+        public static string SaveImages(HttpPostedFileBase imgFile, string companyName, string userId, string folder)
+        {
+            string FileName = Path.GetFileNameWithoutExtension(imgFile.FileName);
+            string FileExtension = Path.GetExtension(imgFile.FileName);
+            string compNm = companyName.Replace(" ", "");
+            FileName = compNm + "_" + userId + "_" + DateTime.Now.ToString("ddMMMyyyyhhmmss") + FileExtension;
+            string UploadPath = HttpContext.Current.Server.MapPath(folder) + "" + FileName;
+            imgFile.SaveAs(UploadPath);
+            return FileName;
+        }
+        #endregion
     }
     #region Exception
     public static class ExceptionHandling

@@ -53,6 +53,7 @@ namespace Invent.Models.BAL.Authorization
                     objUserEntity.FirstName = ds.Tables[0].Rows[0]["FIRST_NAME"].ToString();
                     objUserEntity.LastName = ds.Tables[0].Rows[0]["LAST_NAME"].ToString();
                     objUserEntity.EmailId = ds.Tables[0].Rows[0]["EMAIL_ID"].ToString();
+                    objUserEntity.ProfilePic= ds.Tables[0].Rows[0]["PROFILE_PIC"].ToString();
                     objUserEntity.Pan = ds.Tables[0].Rows[0]["PAN"].ToString();
                     objUserEntity.Tin = ds.Tables[0].Rows[0]["TIN"].ToString();
                     objUserEntity.GSTIN = ds.Tables[0].Rows[0]["GSTIN"].ToString();

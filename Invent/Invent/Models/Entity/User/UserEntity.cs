@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Invent.Models.Entity.User
 {
-    public class UserEntity
+    public class  UserEntity
     {
         public string UserID { get; set; }
         public string EmailId { get; set; }

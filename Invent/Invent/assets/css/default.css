@@ -1601,10 +1601,9 @@ a {
     width: 100%;
     z-index: -9999999;
     padding: 5px;
-    max-height: 610px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-bottom: 20px;
+    /* max-height: 800px; */
+    /* overflow-y: auto; */
+    /* overflow-x: hidden; */
 }
 
 
@@ -1852,6 +1851,13 @@ a {
     display: inline-block;
     width: 100%;
     height: 100%;
+    overflow: auto;
+    position: relative;
+    bottom: 0;
+    margin-top: 55px;
+    max-height: 520px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .top-bar {
@@ -1864,6 +1870,9 @@ a {
 .inside-top {
     display: inline-block;
     width: 100%;
+    z-index: 99999;
+    top: 55px;
+    position: fixed;
     /* padding: 10px; */
     background: #FFF;
     box-shadow: 0px 0px 4px rgba(0,0,0,0.4);
@@ -2160,21 +2169,25 @@ a {
     margin-top: -10px;
 }
 
-.fieldInfo > ul > li.profile-area .form-group {
+.profile-area .form-group {
     float: left;
+    margin-top: 5px;
 }
 
-.fieldInfo > ul > li.profile-area .profilePicDisplay {
+.profilePicDisplay {
     display: inline-block;
     /* margin-top: -15px; */
     height: 75px;
     float: right;
     width: 75px;
-    overflow: hidden;
     border: 1px solid;
     border: 2px solid #ccc;
     border-radius: 4px;
 }
+
+    .profilePicDisplay img {
+        height: 100%;
+    }
 
 .fieldInfo > ul > li.check {
     width: 100%;
@@ -2182,11 +2195,20 @@ a {
 }
 
 .titleInfo {
-    margin: 60px;
+    margin: 40px;
+}
+
+.fieldInfo .btn-success {
+    font-size: 12px;
+    border-radius: 2px;
+    display: block;
+    margin-top: 14px;
+    float: left;
+    margin-left: -40px;
 }
 
 .account-setting .general-info:nth-child(2) .titleInfo {
-    margin: 40px;
+    margin: 20px;
 }
 
 .ship-dtl {
@@ -2198,4 +2220,14 @@ a {
 .fieldInfo .check {
     display: block !important;
     width: 100% !important;
+}
+
+.rmvBtn {
+    font-weight: 600;
+    margin: 0px -2px;
+    text-align: center;
+    display: block;
+    border: 2px solid #ccc;
+    border-top: 0px;
+    border-radius: 0px 0px 4px 4px;
 }

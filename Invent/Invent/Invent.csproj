@@ -196,25 +196,26 @@
     <Content Include="assets\css\v4-shims.css" />
     <Content Include="assets\css\v4-shims.min.css" />
     <Content Include="assets\img\bridge.png" />
-    <Content Include="assets\img\client-logo\a_smile_color.png" />
-    <Content Include="assets\img\client-logo\b-amazon.png" />
-    <Content Include="assets\img\client-logo\flipkart-logo-2015.png" />
-    <Content Include="assets\img\client-logo\limeroad-logo1.jpg" />
-    <Content Include="assets\img\client-logo\myntra.png" />
-    <Content Include="assets\img\client-logo\Paytm-Logo.png" />
-    <Content Include="assets\img\client-logo\Screenshot_2015-10-29-20-01-37-1.png" />
-    <Content Include="assets\img\client-logo\shopclues-fift.png" />
-    <Content Include="assets\img\client-logo\S_Amazon.png" />
-    <Content Include="assets\img\client-logo\S_Ebay.png" />
-    <Content Include="assets\img\client-logo\S_Flipkart.png" />
-    <Content Include="assets\img\client-logo\S_Paytm.png" />
-    <Content Include="assets\img\client-logo\S_Shopclues.png" />
-    <Content Include="assets\img\client-logo\S_Snapdeal.png" />
+    <Content Include="assets\img\channel-logo\a_smile_color.png" />
+    <Content Include="assets\img\channel-logo\b-amazon.png" />
+    <Content Include="assets\img\channel-logo\flipkart-logo-2015.png" />
+    <Content Include="assets\img\channel-logo\limeroad-logo1.jpg" />
+    <Content Include="assets\img\channel-logo\myntra.png" />
+    <Content Include="assets\img\channel-logo\Paytm-Logo.png" />
+    <Content Include="assets\img\channel-logo\Screenshot_2015-10-29-20-01-37-1.png" />
+    <Content Include="assets\img\channel-logo\shopclues-fift.png" />
+    <Content Include="assets\img\channel-logo\S_Amazon.png" />
+    <Content Include="assets\img\channel-logo\S_Ebay.png" />
+    <Content Include="assets\img\channel-logo\S_Flipkart.png" />
+    <Content Include="assets\img\channel-logo\S_Paytm.png" />
+    <Content Include="assets\img\channel-logo\S_Shopclues.png" />
+    <Content Include="assets\img\channel-logo\S_Snapdeal.png" />
     <Content Include="assets\img\jquery.selectBox-arrow.gif" />
     <Content Include="assets\img\loading.gif" />
     <Content Include="assets\img\no-image.gif" />
     <Content Include="assets\img\user-img.png" />
     <Content Include="assets\module_scripts\Orders\orders.js" />
+    <Content Include="assets\module_scripts\Setting\account.js" />
     <Content Include="assets\module_scripts\Setting\category.js" />
     <Content Include="assets\scripts\ag-grid-nostyle.min.js" />
     <Content Include="assets\scripts\ag-grid\ag-grid.min.noStyle.js" />
@@ -394,6 +395,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\img\profile-pic\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -5,7 +5,7 @@
     Invent.Models.Entity.User.UserEntity user = (Invent.Models.Entity.User.UserEntity)HttpContext.Current.Session["UserEntity"];
     Html.RenderPartial("../Shared/PartialView/Setting/_TopMenu");
 }
-
+<script src="~/assets/module_scripts/Setting/account.js"></script>
 <div class="data-grid-section">
     <div class="account-setting">
         <div class="general-info">
@@ -20,57 +20,70 @@
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <div class="fieldInfo">
-                        <ul>
-                            <li>
-                                <div class="form-group">
-                                    <label class="private-label" for="emailId">Company Name<span class="text-danger">*</span></label>
-                                    @Html.TextBoxFor(model => model.Item1.CompanyName, new { @Value = user.CompanyName, @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.Item1.CompanyName)
-                                </div>
+                        @using (Ajax.BeginForm("SaveGeneralDetail", "Setting",
+new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "OnSuccess",
+    OnFailure = "OnFailure",
+    LoadingElementId = "progress",
 
-                            </li>
-                            <li>
-                                <div class="form-group">
-                                    <label class="private-label" for="emailId">Display<span class="text-danger">*</span></label>
-                                    @Html.TextBoxFor(model => model.Item1.DisplayName, new { @Value = user.DisplayName, @class = "form-control", })
-                                    @Html.ValidationMessageFor(model => model.Item1.DisplayName)
-                                </div>
+}, new { enctype = "multipart/form-data" }))
+                        {
+                            <ul>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="private-label" for="emailId">Company Name<span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.Item1.CompanyName, new { @Value = user.CompanyName, @readonly = "readonly", @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Item1.CompanyName)
+                                    </div>
 
-                            </li>
-                            <li>
-                                <div class="form-group">
-                                    <label class="private-label" for="emailId">First Name<span class="text-danger">*</span></label>
-                                    @Html.TextBoxFor(model => model.Item1.FirstName, new { @Value = user.FirstName, @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.Item1.FirstName)
-                                </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="private-label" for="emailId">Display<span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.Item1.DisplayName, new { @Value = user.DisplayName, @class = "form-control", })
+                                        @Html.ValidationMessageFor(model => model.Item1.DisplayName)
+                                    </div>
 
-                            </li>
-                            <li>
-                                <div class="form-group">
-                                    <label class="private-label" for="emailId">Last Name<span class="text-danger">*</span></label>
-                                    @Html.TextBoxFor(model => model.Item1.LastName, new { @Value = user.LastName, @class = "form-control", })
-                                    @Html.ValidationMessageFor(model => model.Item1.LastName)
-                                </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="private-label" for="emailId">First Name<span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.Item1.FirstName, new { @Value = user.FirstName, @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Item1.FirstName)
+                                    </div>
 
-                            </li>
-                            <li>
-                                <div class="form-group">
-                                    <label class="private-label" for="emailId">Email Id<span class="text-danger">*</span></label>
-                                    @Html.TextBoxFor(model => model.Item1.EmailId, new { @Value = user.EmailId, @class = "form-control", @disabled = (user.EmailId != "" ? "disabled" : "") })
-                                    @Html.ValidationMessageFor(model => model.Item1.EmailId)
-                                </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="private-label" for="emailId">Last Name<span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.Item1.LastName, new { @Value = user.LastName, @class = "form-control", })
+                                        @Html.ValidationMessageFor(model => model.Item1.LastName)
+                                    </div>
 
-                            </li>
-                            <li class="profile-area">
-                                <div class="form-group">
-                                    <label class="private-label" for="emailId">Profile Picture<span class="text-danger">*</span></label>
-                                    <input type="file" class="filebase" />
-                                </div>
-                                <div class="profilePicDisplay">
-                                    <img src="~/assets/img/no-image.gif" alt="Profile Pic" />
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="private-label" for="emailId">Email Id<span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.Item1.EmailId, new { @Value = user.EmailId, @class = "form-control", @disabled = (user.EmailId != "" ? "disabled" : "") })
+                                        @Html.ValidationMessageFor(model => model.Item1.EmailId)
+                                    </div>
+
+                                </li>
+                                <li class="profile-area">
+                                    <div class="form-group">
+                                        <label class="private-label" for="emailId">Profile Picture<span class="text-danger">*</span></label>
+                                        <input type="file" @Html.Raw(Model.Item1.ProfilePic != "" && Model.Item1.ProfilePic != null ? "disabled" : "") id="ImageFile" name="ImageFile" class="filebase" onchange="FilePreview(this,'proimg');" />
+                                    </div>
+                                    <div class="profilePicDisplay">
+                                        <img @Html.Raw(Model.Item1.ProfilePic != "" && Model.Item1.ProfilePic != null ? "src='/assets/img/profile-pic/" + Model.Item1.ProfilePic + "'" : "src='/assets/img/no-image.gif'") id="proimg" alt="Profile Pic" />
+                                        <a href="javascript:void(0);" @Html.Raw(Model.Item1.ProfilePic != "" && Model.Item1.ProfilePic != null ? "style='display:block;'" : "style='display:none;'") id="rmvImg" class="rmvBtn">Remove</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <button id="btnUpGen" type="submit" class="btn btn-success">Update</button>
+                        }
                     </div>
                 </div>
             </div>
