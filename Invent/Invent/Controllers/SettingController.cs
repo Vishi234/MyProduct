@@ -61,8 +61,8 @@ namespace Invent.Controllers
                     {
                         objBiEnt.AddressLine1 = dr["ADDRESS_LINE_1"].ToString();
                         objBiEnt.AddressLine2 = dr["ADDRESS_LINE_2"].ToString();
-                        objBiEnt.CityId =Convert.ToInt32(dr["CITY"].ToString());
-                        objBiEnt.CountryId= Convert.ToInt32(dr["COUNTRY"].ToString());
+                        objBiEnt.CityId = Convert.ToInt32(dr["CITY"].ToString());
+                        objBiEnt.CountryId = Convert.ToInt32(dr["COUNTRY"].ToString());
                         objBiEnt.StateId = Convert.ToInt32(dr["STATE"].ToString());
                         objBiEnt.Phone = dr["PHONE"].ToString();
                         objBiEnt.PinCode = dr["PIN_CODE"].ToString();
@@ -104,18 +104,35 @@ namespace Invent.Controllers
         }
 
         [HttpPost]
+        public ActionResult UploadLogo()
+        {
+            HttpPostedFileBase file = null;
+            if (Request.Files.Count > 0)
+            {
+                UserEntity objUsrEntity = new UserEntity();
+                objUsrEntity = (UserEntity)Session["UserEntity"];
+                file = Request.Files[0];
+                string imageName = CommonModel.SaveImages(file, objUsrEntity.CompanyName, objUsrEntity.UserID, ConfigurationManager.AppSettings["ProfilePicLocation"]);
+                TempData["ProfilePic"] = imageName;
+                return Json("File uploaded.");
+            }
+            else
+            {
+                return Json("No files selected.");
+            }
+        }
+        [HttpPost]
         public JsonResult SaveGeneralDetail([Bind(Prefix = "Item1")] GeneralDetailsEntity genEntity)
         {
             try
             {
                 HttpPostedFileBase file = null;
-                file = Request.Files[0];
                 UserEntity objUsrEntity = new UserEntity();
                 objUsrEntity = (UserEntity)Session["UserEntity"];
                 genEntity.Flag = "U";
                 genEntity.UserId = objUsrEntity.UserID;
                 genEntity.Status = objUsrEntity.Status;
-                genEntity.ProfilePic = CommonModel.SaveImages(file, genEntity.CompanyName, genEntity.UserId, ConfigurationManager.AppSettings["ProfilePicLocation"]);
+                genEntity.ProfilePic = TempData["ProfilePic"].ToString();
             }
             catch (Exception ex)
             {

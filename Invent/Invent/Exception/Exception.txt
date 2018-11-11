@@ -1,12 +1,8 @@
 ===============================start==============================================
 Inner Exception's
-MessageIndex was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-StackTrace   at System.Collections.ArrayList.get_Item(Int32 index)
-   at System.Web.HttpFileCollection.Get(Int32 index)
-   at System.Web.HttpFileCollectionWrapper.get_Item(Int32 index)
-   at Invent.Controllers.SettingController.SaveGeneralDetail(GeneralDetailsEntity genEntity) in C:\Users\vishal.singh\Documents\GitHub\MyProduct\Invent\Invent\Controllers\SettingController.cs:line 112
-TargetSiteSystem.Object get_Item(Int32)
-DateTime : 	11/11/2018 6:28:50 PM
+MessageObject reference not set to an instance of an object.
+StackTrace   at Invent.Controllers.SettingController.SaveGeneralDetail(GeneralDetailsEntity genEntity) in C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\Controllers\SettingController.cs:line 135
+TargetSiteSystem.Web.Mvc.JsonResult SaveGeneralDetail(Invent.Models.Entity.Configuration.GeneralDetailsEntity)
+DateTime : 	11/12/2018 1:30:37 AM
 ================================end============================================= 
 

@@ -1,11 +1,15 @@
 ﻿@model Tuple<Invent.Models.Entity.Configuration.GeneralDetailsEntity, Invent.Models.Entity.Configuration.UserAccountingEntity, Invent.Models.Entity.Configuration.UserBillingEntity>
+
 @{
     ViewBag.Title = "Account";
     Layout = "~/Views/Shared/_Layout.cshtml";
     Invent.Models.Entity.User.UserEntity user = (Invent.Models.Entity.User.UserEntity)HttpContext.Current.Session["UserEntity"];
+}
+
+<script src="~/assets/module_scripts/Setting/account.js"></script>
+@{
     Html.RenderPartial("../Shared/PartialView/Setting/_TopMenu");
 }
-<script src="~/assets/module_scripts/Setting/account.js"></script>
 <div class="data-grid-section">
     <div class="account-setting">
         <div class="general-info">
@@ -24,17 +28,18 @@
 new AjaxOptions
 {
     HttpMethod = "POST",
-    OnSuccess = "OnSuccess",
-    OnFailure = "OnFailure",
+    OnBegin = "UploadLogo",
+    OnSuccess = "OnGenSuccess",
+    OnFailure = "OnGenFailure",
     LoadingElementId = "progress",
 
-}, new { enctype = "multipart/form-data" }))
+}))
                         {
                             <ul>
                                 <li>
                                     <div class="form-group">
                                         <label class="private-label" for="emailId">Company Name<span class="text-danger">*</span></label>
-                                        @Html.TextBoxFor(model => model.Item1.CompanyName, new { @Value = user.CompanyName, @readonly = "readonly", @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.Item1.CompanyName, new { @Value = Model.Item1.CompanyName, @readonly = "readonly", @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Item1.CompanyName)
                                     </div>
 
@@ -42,7 +47,7 @@ new AjaxOptions
                                 <li>
                                     <div class="form-group">
                                         <label class="private-label" for="emailId">Display<span class="text-danger">*</span></label>
-                                        @Html.TextBoxFor(model => model.Item1.DisplayName, new { @Value = user.DisplayName, @class = "form-control", })
+                                        @Html.TextBoxFor(model => model.Item1.DisplayName, new { @Value = Model.Item1.DisplayName, @class = "form-control", })
                                         @Html.ValidationMessageFor(model => model.Item1.DisplayName)
                                     </div>
 
@@ -50,7 +55,7 @@ new AjaxOptions
                                 <li>
                                     <div class="form-group">
                                         <label class="private-label" for="emailId">First Name<span class="text-danger">*</span></label>
-                                        @Html.TextBoxFor(model => model.Item1.FirstName, new { @Value = user.FirstName, @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.Item1.FirstName, new { @Value = Model.Item1.FirstName, @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Item1.FirstName)
                                     </div>
 
@@ -58,7 +63,7 @@ new AjaxOptions
                                 <li>
                                     <div class="form-group">
                                         <label class="private-label" for="emailId">Last Name<span class="text-danger">*</span></label>
-                                        @Html.TextBoxFor(model => model.Item1.LastName, new { @Value = user.LastName, @class = "form-control", })
+                                        @Html.TextBoxFor(model => model.Item1.LastName, new { @Value = Model.Item1.LastName, @class = "form-control", })
                                         @Html.ValidationMessageFor(model => model.Item1.LastName)
                                     </div>
 
@@ -66,7 +71,7 @@ new AjaxOptions
                                 <li>
                                     <div class="form-group">
                                         <label class="private-label" for="emailId">Email Id<span class="text-danger">*</span></label>
-                                        @Html.TextBoxFor(model => model.Item1.EmailId, new { @Value = user.EmailId, @class = "form-control", @disabled = (user.EmailId != "" ? "disabled" : "") })
+                                        @Html.TextBoxFor(model => model.Item1.EmailId, new { @Value = user.EmailId, @class = "form-control", @disabled = (Model.Item1.EmailId != "" ? "disabled" : "") })
                                         @Html.ValidationMessageFor(model => model.Item1.EmailId)
                                     </div>
 
@@ -79,6 +84,8 @@ new AjaxOptions
                                     <div class="profilePicDisplay">
                                         <img @Html.Raw(Model.Item1.ProfilePic != "" && Model.Item1.ProfilePic != null ? "src='/assets/img/profile-pic/" + Model.Item1.ProfilePic + "'" : "src='/assets/img/no-image.gif'") id="proimg" alt="Profile Pic" />
                                         <a href="javascript:void(0);" @Html.Raw(Model.Item1.ProfilePic != "" && Model.Item1.ProfilePic != null ? "style='display:block;'" : "style='display:none;'") id="rmvImg" class="rmvBtn">Remove</a>
+                                        @Html.HiddenFor(model => model.Item1.ProfilePic, new { @id = "imgPath", @name = "imgPath" })
+                                        @*<input type="hidden" id="imageNm" />*@
                                     </div>
                                 </li>
                             </ul>
@@ -105,7 +112,7 @@ new AjaxOptions
                             <li>
                                 <div class="form-group">
                                     <label class="private-label" for="emailId">PAN<span class="text-danger">*</span></label>
-                                    @Html.TextBoxFor(model => model.Item2.PAN, new { @Value = user.Pan, @class = "form-control" })
+                                    @Html.TextBoxFor(model => model.Item2.PAN, new { @Value = Model.Item2.PAN, @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Item2.PAN)
                                 </div>
 
@@ -113,7 +120,7 @@ new AjaxOptions
                             <li>
                                 <div class="form-group">
                                     <label class="private-label" for="emailId">GSTIN<span class="text-danger">*</span></label>
-                                    @Html.TextBoxFor(model => model.Item2.GSTIN, new { @Value = user.GSTIN, @class = "form-control" })
+                                    @Html.TextBoxFor(model => model.Item2.GSTIN, new { @Value = Model.Item2.GSTIN, @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Item2.GSTIN)
                                 </div>
 
@@ -121,7 +128,7 @@ new AjaxOptions
                             <li>
                                 <div class="form-group">
                                     <label class="private-label" for="emailId">TIN<span class="text-danger">*</span></label>
-                                    @Html.TextBoxFor(model => model.Item2.TIN, new { @Value = user.Tin, @class = "form-control" })
+                                    @Html.TextBoxFor(model => model.Item2.TIN, new { @Value = Model.Item2.TIN, @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Item2.TIN)
                                 </div>
 
@@ -150,14 +157,14 @@ new AjaxOptions
                             <li>
                                 <div class="form-group">
                                     <label class="private-label" for="emailId">Address Line 1<span class="text-danger">*</span></label>
-                                    @Html.TextBoxFor(model => model.Item3.AddressLine1, new { @id = "Address_1", @Value = user.B_AddressLine1, @class = "form-control" })
+                                    @Html.TextBoxFor(model => model.Item3.AddressLine1, new { @id = "Address_1", @Value = Model.Item3.AddressLine1, @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Item3.AddressLine1)
                                 </div>
                             </li>
                             <li>
                                 <div class="form-group">
                                     <label class="private-label" for="emailId">Address Line 2<span class="text-danger">*</span></label>
-                                    @Html.TextBoxFor(model => model.Item3.AddressLine2, new { @id = "Address_2", @Value = user.B_AddressLine2, @class = "form-control" })
+                                    @Html.TextBoxFor(model => model.Item3.AddressLine2, new { @id = "Address_2", @Value = Model.Item3.AddressLine2, @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Item3.AddressLine2)
                                 </div>
 
@@ -192,7 +199,7 @@ new AjaxOptions
                             <li>
                                 <div class="form-group">
                                     <label class="private-label" for="emailId">Phone<span class="text-danger">*</span></label>
-                                    @Html.TextBoxFor(model => model.Item3.Phone, new { @id = "Phone", @Value = user.B_Phone, @class = "form-control" })
+                                    @Html.TextBoxFor(model => model.Item3.Phone, new { @id = "Phone", @Value = Model.Item3.Phone, @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Item3.Phone)
                                 </div>
 
@@ -200,7 +207,7 @@ new AjaxOptions
                             <li>
                                 <div class="form-group">
                                     <label class="private-label" for="emailId">Pincode<span class="text-danger">*</span></label>
-                                    @Html.TextBoxFor(model => model.Item3.PinCode, new { @id = "Pin_Code", @Value = user.B_PinCode, @class = "form-control" })
+                                    @Html.TextBoxFor(model => model.Item3.PinCode, new { @id = "Pin_Code", @Value = Model.Item3.PinCode, @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Item3.PinCode)
                                 </div>
 
@@ -218,7 +225,7 @@ new AjaxOptions
                                 <li>
                                     <div class="form-group">
                                         <label class="private-label" for="emailId">Address Line 1<span class="text-danger">*</span></label>
-                                        @Html.TextBoxFor(model => model.Item3.S_AddressLine1, new { @id = "S_Address_1", @Value = user.S_AddressLine1, @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.Item3.S_AddressLine1, new { @id = "S_Address_1", @Value = Model.Item3.S_AddressLine1, @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Item3.S_AddressLine1)
                                     </div>
 
@@ -226,7 +233,7 @@ new AjaxOptions
                                 <li>
                                     <div class="form-group">
                                         <label class="private-label" for="emailId">Address Line 2<span class="text-danger">*</span></label>
-                                        @Html.TextBoxFor(model => model.Item3.S_AddressLine2, new { @id = "S_Address_2", @Value = user.S_AddressLine2, @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.Item3.S_AddressLine2, new { @id = "S_Address_2", @Value = Model.Item3.S_AddressLine2, @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Item3.S_AddressLine2)
                                     </div>
 
@@ -261,7 +268,7 @@ new AjaxOptions
                                 <li>
                                     <div class="form-group">
                                         <label class="private-label" for="emailId">Phone<span class="text-danger">*</span></label>
-                                        @Html.TextBoxFor(model => model.Item3.S_Phone, new { @id = "S_Phone", @Value = user.S_Phone, @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.Item3.S_Phone, new { @id = "S_Phone", @Value = Model.Item3.S_Phone, @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Item3.S_Phone)
                                     </div>
 
@@ -269,7 +276,7 @@ new AjaxOptions
                                 <li>
                                     <div class="form-group">
                                         <label class="private-label" for="emailId">Pincode<span class="text-danger">*</span></label>
-                                        @Html.TextBoxFor(model => model.Item3.S_PinCode, new { @id = "S_Pin_Code", @Value = user.S_PinCode, @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.Item3.S_PinCode, new { @id = "S_Pin_Code", @Value = Model.Item3.S_PinCode, @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Item3.S_PinCode)
                                     </div>
 

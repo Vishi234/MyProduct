@@ -41,31 +41,87 @@ document.addEventListener('DOMContentLoaded', function () {
             })
     })
 });
-window.addEventListener("submit", function (e) {
-    var form = e.target;
-    if (form.getAttribute("enctype") === "multipart/form-data") {
-        if (form.dataset.ajax) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            var xhr = new XMLHttpRequest();
-            xhr.open(form.method, form.action);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    if (form.dataset.ajaxUpdate) {
-                        var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
-                        if (updateTarget) {
-                            updateTarget.innerHTML = xhr.responseText;
-                        }
-                    }
-                }
-            };
-            xhr.send(new FormData(form));
+//window.addEventListener("submit", function (e) {
+//    var form = e.target;
+//    //if (form.getAttribute("enctype") === "multipart/form-data") {
+//    //    if (form.dataset.ajax) {
+//    //        e.preventDefault();
+//    //        e.stopImmediatePropagation();
+//    //        var xhr = new XMLHttpRequest();
+//    //        xhr.open(form.method, form.action);
+//    //        xhr.onreadystatechange = function () {
+//    //            if (xhr.readyState == 4 && xhr.status == 200) {
+//    //                if (form.dataset.ajaxUpdate) {
+//    //                    var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
+//    //                    if (updateTarget) {
+//    //                        updateTarget.innerHTML = xhr.responseText;
+//    //                    }
+//    //                }
+//    //            }
+//    //        };
+//    //        xhr.send(new FormData(form));
+//    //    }
+//    //}
+//    if (form.dataset.ajax) {
+//        e.preventDefault();
+//        e.stopImmediatePropagation();
+//        var xhr = new XMLHttpRequest();
+//        xhr.open(form.method, form.action);
+//        xhr.onreadystatechange = function () {
+//            if (xhr.readyState == 4 && xhr.status == 200) {
+//                if (form.dataset.ajaxUpdate) {
+//                    var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
+//                    if (updateTarget) {
+//                        updateTarget.innerHTML = xhr.responseText;
+//                    }
+//                }
+//            }
+//        };
+//        xhr.send(new FormData(form));
+//    }
+//}, false);
+
+function UploadLogo() {
+    if (window.FormData !== undefined) {
+
+        var fileUpload = $("#ImageFile").get(0);
+        var files = fileUpload.files;
+
+        // Create FormData object  
+        var fileData = new FormData();
+
+        // Looping over all files and add it to FormData object  
+        for (var i = 0; i < files.length; i++) {
+            fileData.append(files[i].name, files[i]);
         }
+        // fileData.append('username', ‘Manas’);  
+
+        $.ajax({
+            url: '/Setting/UploadLogo',
+            type: "POST",
+            contentType: false, // Not to set any content header  
+            processData: false, // Not to process data  
+            data: fileData,
+            async: true,
+            success: function (result) {
+                $("#imgPath").val(result);
+            },
+            error: function (err) {
+                return false;
+            }
+        });
+    } else {
+        alert("FormData is not supported.");
     }
-}, true);
-function OnSuccess(response) {
-    CallToast(response.ERROR_MSG, response.ERROR_FLAG);
 }
-function OnFailure(response) {
-    alert("failure");
+function OnGenSuccess(response) {
+    CallToast(response.ERROR_MSG, response.ERROR_FLAG);
+    if (response.ERROR_FLAG == "S") {
+        //$("#add-category").modal("hide");
+        //GetCategory();
+    }
+
+}
+function OnGenFailure(response) {
+
 }

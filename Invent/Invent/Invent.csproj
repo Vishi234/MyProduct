@@ -283,11 +283,11 @@
     <Content Include="assets\scripts\v4-shims.js" />
     <Content Include="assets\scripts\v4-shims.min.js" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="assets\scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="assets\scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="assets\scripts\MicrosoftMvcValidation.js" />
     <Content Include="Web.config" />
     <Content Include="assets\webfonts\fa-brands-400.svg" />
     <Content Include="assets\webfonts\fa-regular-400.svg" />
