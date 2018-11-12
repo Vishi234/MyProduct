@@ -24,14 +24,24 @@ namespace Invent.Controllers
         // GET: Setting
         public ActionResult Account()
         {
+            Initialize();
+            return View(Tuple.Create(objGenEnt, objAcEnt, objBiEnt));
+        }
+
+        public ActionResult Category()
+        {
+            return View(new CategoryEntity());
+        }
+        public void Initialize()
+        {
+            UserEntity objUserEntity = new UserEntity();
+            objUserEntity = (UserEntity)Session["UserEntity"];
             ds = objConfig.GetLocation("0", "0", "0");
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
                 objBiEnt.Country.Add(new SelectListItem { Text = dr[1].ToString(), Value = dr[0].ToString() });
                 objBiEnt.S_Country.Add(new SelectListItem { Text = dr[1].ToString(), Value = dr[0].ToString() });
             }
-            UserEntity objUserEntity = new UserEntity();
-            objUserEntity = (UserEntity)Session["UserEntity"];
             ds = objConfig.GetUserDetails(objUserEntity.UserID, objUserEntity.Status);
             if (ds != null)
             {
@@ -61,9 +71,21 @@ namespace Invent.Controllers
                     {
                         objBiEnt.AddressLine1 = dr["ADDRESS_LINE_1"].ToString();
                         objBiEnt.AddressLine2 = dr["ADDRESS_LINE_2"].ToString();
-                        objBiEnt.CityId = Convert.ToInt32(dr["CITY"].ToString());
                         objBiEnt.CountryId = Convert.ToInt32(dr["COUNTRY"].ToString());
+                        ds = objConfig.GetLocation(objBiEnt.CountryId.ToString(), "0", "0");
+                        foreach (DataRow drow in ds.Tables[0].Rows)
+                        {
+                            objBiEnt.State.Add(new SelectListItem { Text = drow[1].ToString(), Value = drow[0].ToString() });
+                            objBiEnt.S_State.Add(new SelectListItem { Text = drow[1].ToString(), Value = drow[0].ToString() });
+                        }
                         objBiEnt.StateId = Convert.ToInt32(dr["STATE"].ToString());
+                        ds = objConfig.GetLocation(objBiEnt.CountryId.ToString(), objBiEnt.StateId.ToString(), "0");
+                        foreach (DataRow drow in ds.Tables[0].Rows)
+                        {
+                            objBiEnt.City.Add(new SelectListItem { Text = drow[1].ToString(), Value = drow[0].ToString() });
+                            objBiEnt.S_City.Add(new SelectListItem { Text = drow[1].ToString(), Value = drow[0].ToString() });
+                        }
+                        objBiEnt.CityId = Convert.ToInt32(dr["CITY"].ToString());
                         objBiEnt.Phone = dr["PHONE"].ToString();
                         objBiEnt.PinCode = dr["PIN_CODE"].ToString();
                         objBiEnt.S_AddressLine1 = dr["S_ADDRESS_LINE_1"].ToString();
@@ -76,14 +98,7 @@ namespace Invent.Controllers
                     }
                 }
             }
-            return View(Tuple.Create(objGenEnt, objAcEnt, objBiEnt));
         }
-
-        public ActionResult Category()
-        {
-            return View(new CategoryEntity());
-        }
-
         [HttpGet]
         public JsonResult GetCategory()
         {
@@ -150,6 +165,39 @@ namespace Invent.Controllers
             return Json(objConfig.RemoveImage(objUserEntity.UserID), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult SaveAccountingDetails([Bind(Prefix = "Item2")] UserAccountingEntity acEntity)
+        {
+            try
+            {
+                UserEntity objUsrEntity = new UserEntity();
+                objUsrEntity = (UserEntity)Session["UserEntity"];
+                acEntity.Flag = "U";
+                acEntity.UserId = objUsrEntity.UserID;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandling.WriteException(ex);
+            }
+            return Json(objConfig.SaveAccountingDetails(acEntity));
+        }
+        [HttpPost]
+        public JsonResult SaveBillingDetails([Bind(Prefix = "Item3")] UserBillingEntity bDtl)
+        {
+            try
+            {
+                UserEntity objUsrEntity = new UserEntity();
+                objUsrEntity = (UserEntity)Session["UserEntity"];
+                bDtl.Flag = "U";
+                bDtl.UserId = objUsrEntity.UserID;
+                ViewBag.Count = "3";
 
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandling.WriteException(ex);
+            }
+            return Json(objConfig.SaveBillingDetails(bDtl));
+        }
     }
 }

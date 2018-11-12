@@ -1,8 +1,8 @@
 ===============================start==============================================
 Inner Exception's
 MessageObject reference not set to an instance of an object.
-StackTrace   at Invent.Controllers.SettingController.SaveGeneralDetail(GeneralDetailsEntity genEntity) in C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\Controllers\SettingController.cs:line 135
+StackTrace   at Invent.Controllers.SettingController.SaveGeneralDetail(GeneralDetailsEntity genEntity) in C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\Controllers\SettingController.cs:line 136
 TargetSiteSystem.Web.Mvc.JsonResult SaveGeneralDetail(Invent.Models.Entity.Configuration.GeneralDetailsEntity)
-DateTime : 	11/12/2018 1:30:37 AM
+DateTime : 	11/12/2018 11:10:13 PM
 ================================end============================================= 
 
