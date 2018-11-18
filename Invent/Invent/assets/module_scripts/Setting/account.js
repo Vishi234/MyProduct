@@ -1,4 +1,5 @@
-﻿function Same(evt) {
+﻿var LocationData;
+function Same(evt) {
     if ($(evt).prop('checked') == true) {
         $("#ship-dtl").css("height", "0px");
     }
@@ -6,6 +7,7 @@
         $("#ship-dtl").css("height", "280px");
     }
 }
+
 function FilePreview(evt, imgId) {
     var input = evt;
     var url = $(evt).val();
@@ -36,51 +38,61 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (data.ERROR_FLAG == "S") {
                         $("#ImageFile").removeAttr("disabled");
                         $("#proimg").attr("src", "/assets/img/no-image.gif");
+                        $("#rmvImg").css("display", "none");
+                        $("#imgPath").val("");
                     }
                 }
             })
     })
+    //GetLocation("0", "0");
+    Intializer();
 });
-//window.addEventListener("submit", function (e) {
-//    var form = e.target;
-//    //if (form.getAttribute("enctype") === "multipart/form-data") {
-//    //    if (form.dataset.ajax) {
-//    //        e.preventDefault();
-//    //        e.stopImmediatePropagation();
-//    //        var xhr = new XMLHttpRequest();
-//    //        xhr.open(form.method, form.action);
-//    //        xhr.onreadystatechange = function () {
-//    //            if (xhr.readyState == 4 && xhr.status == 200) {
-//    //                if (form.dataset.ajaxUpdate) {
-//    //                    var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
-//    //                    if (updateTarget) {
-//    //                        updateTarget.innerHTML = xhr.responseText;
-//    //                    }
-//    //                }
-//    //            }
-//    //        };
-//    //        xhr.send(new FormData(form));
-//    //    }
-//    //}
-//    if (form.dataset.ajax) {
-//        e.preventDefault();
-//        e.stopImmediatePropagation();
-//        var xhr = new XMLHttpRequest();
-//        xhr.open(form.method, form.action);
-//        xhr.onreadystatechange = function () {
-//            if (xhr.readyState == 4 && xhr.status == 200) {
-//                if (form.dataset.ajaxUpdate) {
-//                    var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
-//                    if (updateTarget) {
-//                        updateTarget.innerHTML = xhr.responseText;
-//                    }
-//                }
-//            }
-//        };
-//        xhr.send(new FormData(form));
-//    }
-//}, false);
+function Intializer() {
+    $.ajax
+        ({
+            type: "GET",
+            url: "/Setting/Initialize",
+            contentType: "applicaiton/json",
+            dataType: "json",
+            success: function (result) {
+                var MyData = result;
+                $("#CompanyName").val(MyData.COMPANY_NAME);
+                $("#DisplayName").val(MyData.DISPLAY_NAME);
+                $("#FirstName").val(MyData.FIRST_NAME);
+                $("#LastName").val(MyData.LAST_NAME);
+                $("#EmailId").val(MyData.EMAIL_ID);
+                $("#proimg").attr("src", ((MyData.PROFILE_PIC == "" || MyData.PROFILE_PIC == null) ? "/assets/img/no-image.gif" : "/assets/img/profile-pic/" + MyData.PROFILE_PIC))
+                $("#ImageFile").prop("disabled", ((MyData.PROFILE_PIC == "" || MyData.PROFILE_PIC == null) ? false : true));
+                $("#imgPath").val(MyData.PROFILE_PIC);
+                $("#rmvImg").attr("style", ((MyData.PROFILE_PIC == "" || MyData.PROFILE_PIC == null) ? "display:none;" : "display:block;"));
+                $("#Pan").val(MyData.PAN);
+                $("#Gstin").val(MyData.GSTIN);
+                $("#Tin").val(MyData.TIN);
+                $("#Address_1").val(MyData.ADDRESS_LINE_1);
+                $("#Address_2").val(MyData.ADDRESS_LINE_2);
+                GetLocation("0", "0");
+                $("#CountryId").val(MyData.COUNTRY_ID);
+                $('#CountryId')[0].sumo.reload();
+                GetLocation(MyData.COUNTRY_ID, "0");
+                $("#StateId").val(MyData.STATE_ID);
+                $('#StateId')[0].sumo.reload();
+                GetLocation(MyData.COUNTRY_ID, MyData.STATE_ID);
+                $("#CityId").val(MyData.CITY_ID);
+                $('#CityId')[0].sumo.reload();
+                $("#Pin_Code").val(MyData.PIN_CODE);
+                $("#Phone").val(MyData.PHONE);
+                $("#S_Address_1").val(MyData.S_ADDRESS_LINE_1);
+                $("#S_Address_2").val(MyData.S_ADDRESS_LINE_2);
+                $("#S_Country").val(MyData.S_COUNTRY_NAME);
+                $("#S_State").val(MyData.S_STATE_NAME);
+                $("#S_City").val(MyData.S_CITY_NAME);
+                $("#S_Pin_Code").val(MyData.S_PIN_CODE);
+                $("#S_Phone").val(MyData.S_PHONE);
+                $("#OldPassword").val(MyData.PASSWORD)
+            }
 
+        })
+}
 function UploadLogo() {
     if (window.FormData !== undefined) {
 
@@ -117,11 +129,20 @@ function UploadLogo() {
 function OnGenSuccess(response) {
     CallToast(response.ERROR_MSG, response.ERROR_FLAG);
     if (response.ERROR_FLAG == "S") {
-        //$("#add-category").modal("hide");
-        //GetCategory();
+        Intializer();
     }
 
 }
 function OnGenFailure(response) {
+
+}
+function OnAuthSuccess(response) {
+    CallToast(response.ERROR_MSG, response.ERROR_FLAG);
+    if (response.ERROR_FLAG == "S") {
+        window.location.href = "/Auth/Login";
+    }
+
+}
+function OnAuthFailure(response) {
 
 }

@@ -16,7 +16,6 @@ namespace Invent.Controllers
     public class ConfigurationController : Controller
     {
         // GET: Configuration
-        DataSet ds;
         GeneralDetailsEntity gDtl = new GeneralDetailsEntity();
         UserAccountingEntity acDtl = new UserAccountingEntity();
         UserBillingEntity bDtl = new UserBillingEntity();
@@ -32,71 +31,12 @@ namespace Invent.Controllers
         }
         public ActionResult Step_1()
         {
-            try
-            {
-                ds = new DataSet();
-                ds = cm.GetLocation("0", "0", "0");
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    bDtl.Country.Add(new SelectListItem { Text = dr[1].ToString(), Value = dr[0].ToString() });
-                    bDtl.S_Country.Add(new SelectListItem { Text = dr[1].ToString(), Value = dr[0].ToString() });
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandling.WriteException(ex);
-            }
             return View(Tuple.Create(gDtl, acDtl, bDtl));
         }
         public ActionResult Step_2()
         {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandling.WriteException(ex);
-            }
             return View(Tuple.Create(chDtl, fAPi, aApi));
         }
-        [HttpPost]
-        public JsonResult GetStates(string countryId)
-        {
-            try
-            {
-                ds = new DataSet();
-                ds = cm.GetLocation(countryId, "0", "0");
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    bDtl.State.Add(new SelectListItem { Text = dr[1].ToString(), Value = dr[0].ToString() });
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandling.WriteException(ex);
-            }
-            return Json(bDtl.State);
-        }
-        [HttpPost]
-        public JsonResult GetCities(string countryId, string stateId)
-        {
-            try
-            {
-                ds = new DataSet();
-                ds = cm.GetLocation(countryId, stateId, "0");
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    bDtl.City.Add(new SelectListItem { Text = dr[1].ToString(), Value = dr[0].ToString() });
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandling.WriteException(ex);
-            }
-            return Json(bDtl.City);
-        }
-        [HttpPost]
         public JsonResult SaveGeneralDetails([Bind(Prefix = "Item1")] GeneralDetailsEntity gDtl)
         {
             try

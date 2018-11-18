@@ -20,6 +20,8 @@ namespace Invent.Models.BAL.Configuration
         DataSet ds = new DataSet();
         string sqlconn = ConfigurationManager.ConnectionStrings["DBCONN"].ConnectionString;
         ErrorEntity error = new ErrorEntity();
+        private Dictionary<string, object> aDict;
+
         public ErrorEntity SaveGeneralDetails(GeneralDetailsEntity gDtl)
         {
             SqlParameter[] sqlParameter = new SqlParameter[11];
@@ -122,14 +124,39 @@ namespace Invent.Models.BAL.Configuration
             error.ERROR_FLAG = sqlParameter[12].Value.ToString();
             return error;
         }
-        public DataSet GetLocation(string countryId, string stateId, string cityId)
+        public List<LocationEntity> GetLocation(string countryId, string stateId, string cityId)
         {
-            DataSet ds = new DataSet();
+            SqlDataReader dr;
             SqlParameter[] sqlParameter = new SqlParameter[2];
             sqlParameter[0] = new SqlParameter("@COUNTRY_ID", Convert.ToInt32(countryId));
             sqlParameter[1] = new SqlParameter("@STATE_ID", Convert.ToInt32(stateId));
-            ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_GET_LOCATION", sqlParameter);
-            return ds;
+            dr = SqlHelper.ExecuteReader(sqlconn, CommandType.StoredProcedure, "SP_GET_LOCATION", sqlParameter);
+            List<LocationEntity> locLst = new List<LocationEntity>();
+            LocationEntity objLoc;
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    objLoc = new LocationEntity();
+                    if (countryId == "0")
+                    {
+                        objLoc.CountryId = dr["COUNTRY_ID"].ToString();
+                        objLoc.CountryName = dr["COUNTRY_NAME"].ToString();
+                    }
+                    if (Convert.ToInt32(countryId) > 0 && stateId == "0")
+                    {
+                        objLoc.StateId = dr["STATE_ID"].ToString();
+                        objLoc.StateName = dr["STATE_NAME"].ToString();
+                    }
+                    if (Convert.ToInt32(countryId) > 0 && Convert.ToInt32(stateId) > 0)
+                    {
+                        objLoc.CityId = dr["CITY_ID"].ToString();
+                        objLoc.CityName = dr["CITY_NAME"].ToString();
+                    }
+                    locLst.Add(objLoc);
+                }
+            }
+            return locLst;
         }
 
         public ErrorEntity RemoveImage(string userId)
@@ -151,13 +178,32 @@ namespace Invent.Models.BAL.Configuration
             return error;
         }
 
-        public DataSet GetUserDetails(string userId, string status)
+        public Dictionary<string, object> GetUserDetails(string userId, string status)
         {
+            SqlDataReader dr;
             SqlParameter[] sqlParameter = new SqlParameter[3];
             sqlParameter[0] = new SqlParameter("@USER_ID", userId);
             sqlParameter[1] = new SqlParameter("@STATUS", status);
-            ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_GET_USER_DETAILS", sqlParameter);
-            return ds;
+            dr = SqlHelper.ExecuteReader(sqlconn, CommandType.StoredProcedure, "SP_GET_USER_DETAILS", sqlParameter);
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    Dictionary<string, object> surveyDict = new Dictionary<string, object>();
+                    aDict = Enumerable.Range(0, dr.FieldCount).ToDictionary(dr.GetName, dr.GetValue);
+
+                }
+            }
+            return aDict;
+        }
+        public int UpdatePassword(string userId, string password)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[3];
+            sqlParameter[0] = new SqlParameter("@USER_ID", userId);
+            sqlParameter[1] = new SqlParameter("@PASSWORD", password);
+            string query = "UPDATE MST_USER_CREDENTIALS SET PASSWORD=@PASSWORD WHERE USER_ID=@USER_ID";
+            int result = SqlHelper.ExecuteNonQuery(sqlconn, CommandType.Text, query, sqlParameter);
+            return result;
         }
     }
 }

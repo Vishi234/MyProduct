@@ -33,6 +33,7 @@ namespace Invent.Models.Entity.User
         public string ConfirmPassword { get; set; }
         [Range(typeof(bool),"true", "true", ErrorMessage = "Please accept our Terms & Condition.")]
         public bool Accept { get; set; }
+        public string OldPassword { get; set; }
         public string VerCode { get; set; }
         public Char Flag { get; set; }
         public string Msg { get; set; }
