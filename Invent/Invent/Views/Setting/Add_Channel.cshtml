@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Add_Channel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("../Shared/PartialView/Setting/_TopMenu");
+}
+<div class="chb">
+    <div class="chtop">
+        <a href="@Url.Action("Channel","Setting")"><span class="pull-left"><i class="fa fa-arrow-left"></i></span></a>
+        <span class="pull-right"><input type="text" placeholder="Search here..." class="form-control" /></span>
+    </div>
+    <div class="chlist">
+        <div class="chlh">
+            <span>Marketplace <i class="fa fa-angle-down pull-right"></i></span>
+            <hr />
+        </div>
+        <div class="chbdy">
+            <ul>
+                <li>
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel">
+                        <div class="chimgbdy">
+                            <img src="~/assets/img/channel-logo/S_Amazon.png" title="Amazon" />
+                        </div>
+                        <span>Amazon</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel">
+                        <div class="chimgbdy">
+                            <img src="~/assets/img/channel-logo/S_Paytm.png" title="Paytm" />
+                        </div>
+                        <span>Paytm</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel">
+                        <div class="chimgbdy">
+                            <img src="~/assets/img/channel-logo/S_Flipkart.png" title="Flipkart" />
+                        </div>
+                        <span>Flipkart</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel">
+                        <div class="chimgbdy">
+                            <img src="~/assets/img/channel-logo/S_Shopclues.png" title="Shopclues" />
+                        </div>
+                        <span>Shopclues</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel">
+                        <div class="chimgbdy">
+                            <img src="~/assets/img/channel-logo/S_Snapdeal.png" title="Snapdeal" />
+                        </div>
+                        <span>Snapdeal</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel">
+                        <div class="chimgbdy">
+                            <img src="~/assets/img/channel-logo/S_Ebay.png" title="Ebay" />
+                        </div>
+                        <span>EBay</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

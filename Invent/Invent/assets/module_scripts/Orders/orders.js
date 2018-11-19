@@ -61,6 +61,7 @@ function CreateChannelBackground(params) {
     html = "<span class=" + className + " style='background-color:" + color + "'>" + params.data.CHANNEL + "</span>"
     return html;
 }
+
 function CreateItemLink(params) {
     var html = '';
     html = "<span class='anchorLink'><a href='javascript:Void(0)'>" + params.data.ITEM_ID + "</a>"

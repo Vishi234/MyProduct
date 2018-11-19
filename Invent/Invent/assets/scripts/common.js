@@ -66,11 +66,55 @@ function ShipAddress(evt) {
         $("#S_Phone").removeAttr("disabled");
     }
 }
+function GetLocation(countryId, stateId) {
+    $.ajax
+        ({
+            type: "GET",
+            url: "/Setting/GetLocation?countryId=" + countryId + "&stateId=" + stateId,
+            contentType: "applicaiton/json",
+            dataType: "json",
+            success: function (result) {
+                var MyData = result;
+                if (countryId == "0") {
+                    $("#CountryId").empty();
+                    var select = document.getElementById("CountryId");
+                    $.each(MyData, function (i, item) {
+                        var option = document.createElement("option");
+                        option.value = item.CountryId
+                        option.text = item.CountryName
+                        select.appendChild(option);
+                    });
+                    $("#CountryId")[0].sumo.reload();
+                }
+                if (parseInt(countryId > 0) && stateId == "0") {
+                    $("#StateId").empty();
+                    var select = document.getElementById("StateId");
+                    $.each(MyData, function (i, item) {
+                        var option = document.createElement("option");
+                        option.value = item.StateId
+                        option.text = item.StateName
+                        select.appendChild(option);
+                    });
+                    $("#StateId")[0].sumo.reload();
+                }
+                if (parseInt(countryId > 0) && parseInt(stateId > 0)) {
+                    $("#CitId").empty();
+                    var select = document.getElementById("CitId");
+                    $.each(MyData, function (i, item) {
+                        var option = document.createElement("option");
+                        option.value = item.CityId
+                        option.text = item.CityName
+                        select.appendChild(option);
+                    });
+                    $("#CitId")[0].sumo.reload();
+                }
+            }
+        });
+}
 function GetStates(evt, Id) {
     $.ajax({
-        url: '/Configuration/GetStates',
-        type: 'POST',
-        data: JSON.stringify({ countryId: $(evt).val() }),
+        url: '/Setting/GetLocation?countryId=' + $(evt).val() + '&stateId=0',
+        type: 'GET',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -80,8 +124,8 @@ function GetStates(evt, Id) {
             //var option = '<option value="0">Please select</option>';
             $.each(MyData, function (i, item) {
                 var option = document.createElement("option");
-                option.value = item.Value
-                option.text = item.Text
+                option.value = item.StateId
+                option.text = item.StateName
                 select.appendChild(option);
             });
             $("#" + Id)[0].sumo.reload();
@@ -92,9 +136,8 @@ function GetStates(evt, Id) {
 }
 function GetCities(controlId, evt, Id) {
     $.ajax({
-        url: '/Configuration/GetCities',
-        type: 'POST',
-        data: JSON.stringify({ countryId: $("#" + controlId).val(), stateId: $(evt).val() }),
+        url: '/Setting/GetLocation?countryId=' + $("#" + controlId).val() + '&stateId=' + $(evt).val(),
+        type: 'GET',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -104,8 +147,8 @@ function GetCities(controlId, evt, Id) {
             //var option = '<option value="0">Please select</option>';
             $.each(MyData, function (i, item) {
                 var option = document.createElement("option");
-                option.value = item.Value
-                option.text = item.Text
+                option.value = item.CityId
+                option.text = item.CityName
                 select.appendChild(option);
             });
             $("#" + Id)[0].sumo.reload();

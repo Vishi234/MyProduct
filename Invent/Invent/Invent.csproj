@@ -217,6 +217,7 @@
     <Content Include="assets\module_scripts\Orders\orders.js" />
     <Content Include="assets\module_scripts\Setting\account.js" />
     <Content Include="assets\module_scripts\Setting\category.js" />
+    <Content Include="assets\module_scripts\Setting\channel.js" />
     <Content Include="assets\scripts\ag-grid-nostyle.min.js" />
     <Content Include="assets\scripts\ag-grid\ag-grid.min.noStyle.js" />
     <Content Include="assets\scripts\common.js" />
@@ -327,6 +328,8 @@
     <Compile Include="Models\BAL\Order\FlipkartChannelModel.cs" />
     <Compile Include="Models\BAL\Order\OrderModel.cs" />
     <Compile Include="Models\BAL\Setting\CategoryModel.cs" />
+    <Compile Include="Models\BAL\Setting\ChannelModel.cs" />
+    <Compile Include="Models\Entity\Common\LocationEntity.cs" />
     <Compile Include="Models\Entity\Setting\CategoryEntity.cs" />
     <Compile Include="Models\DAL\SQLHelper.cs" />
     <Compile Include="Models\Entity\Channel\OrderEntity.cs" />
@@ -374,6 +377,9 @@
     <Content Include="Views\Shared\PartialView\Setting\_TopMenu.cshtml" />
     <Content Include="Views\Setting\Account.cshtml" />
     <Content Include="Views\Setting\Category.cshtml" />
+    <Content Include="Views\Setting\Channel.cshtml" />
+    <Content Include="Views\Setting\Channel_Detail.cshtml" />
+    <Content Include="Views\Setting\Add_Channel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

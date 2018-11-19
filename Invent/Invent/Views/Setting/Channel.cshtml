@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Channel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .modal-backdrop {
+        position: inherit !important;
+    }
+</style>
+<script src="~/assets/module_scripts/Setting/channel.js"></script>
+@{
+    Html.RenderPartial("../Shared/PartialView/Setting/_TopMenu");
+}
+
+<div class="body-section">
+    <div class="action-area">
+        <div class="pull-right base-top2">
+            <ul class="report-action">
+                <li>
+                    <input type="text" id="filter-text-box" class="form-control" placeholder="Search this list..." oninput="onFilterTextBoxChanged()" />
+                </li>
+                <li><a href="@Url.Action("Add_Channel","Setting")" class="btn btn-primary"><i class="fa fa-plus"></i>Add Channel</a></li>
+                <li><a href="javascript:void(0)" onclick="Refresh();"><i class="fa fa-sync"></i></a></li>
+                <li>
+                    <a href="javascript:void(0)"><i class="fa fa-download"></i> <i class="fa fa-caret-down"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="data-grid-section">
+        <div id="channel-grid" class="grdstyle ag-theme-balham" style="height:420px;"></div>
+    </div>
+</div>
+
+@*<div class="common-modal">
+        <div class="common-dialog">
+            <div class="common-header">
+                <h4 class="modal-title">Integration</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="common-body">
+
+            </div>
+        </div>
+    </div>*@

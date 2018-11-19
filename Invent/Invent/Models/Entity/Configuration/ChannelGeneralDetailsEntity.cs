@@ -16,5 +16,6 @@ namespace Invent.Models.Entity.Configuration
         public string ApiDetails { get; set; }
         public string Ch_Prefix { get; set; }
         public string User_Id { get; set; }
+        public bool ConnectingStatus { get; set; }
     }
 }

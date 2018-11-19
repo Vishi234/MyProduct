@@ -1,4 +1,5 @@
 ﻿using Invent.Models.Entity.Common;
+using Invent.Models.Entity.Configuration;
 using Invent.Models.Entity.Setting;
 using Microsoft.ApplicationBlocks.Data;
 using System;
