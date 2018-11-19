@@ -27,6 +27,7 @@ namespace Invent.Models.BAL.Setting
                 while (dr.Read())
                 {
                     objCh = new ChannelGeneralDetailsEntity();
+                    objCh.ChannelId = dr["CHANNEL_ID"].ToString();
                     objCh.ChannelName = dr["CHANNEL_NAME"].ToString();
                     objCh.Ch_Prefix = dr["Prefix"].ToString();
                     objCh.ApiDetails = dr["API_DETAILS"].ToString();

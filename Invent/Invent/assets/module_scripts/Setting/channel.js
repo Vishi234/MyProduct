@@ -3,7 +3,7 @@ var columnDefs;
 var MyData;
 var year = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 columnDefs = [
-    { headerName: 'Channel', field: 'Prefix', width: 50, cellClass: 'grid-left', filterParams: { newRowsAction: 'keep' }, cellRenderer: ChannelIcon },
+    { headerName: 'Channel', field: 'Ch_Prefix', width: 50, cellClass: 'grid-left', filterParams: { newRowsAction: 'keep' }, cellRenderer: ChannelIcon },
     { headerName: 'Order Sync', field: 'OrderSync', width: 50, cellClass: 'grid-center', filterParams: { newRowsAction: 'keep' }, cellRenderer: OrderSyncStatus },
     { headerName: 'Inventory Sync', field: 'InventorySync', width: 50, cellClass: 'grid-center', filterParams: { newRowsAction: 'keep' }, cellRenderer: InventorySyncStatus },
     { headerName: 'API Status', field: 'ConnectingStatus', width: 50, cellClass: 'grid-center', filterParams: { newRowsAction: 'keep' }, cellRenderer: ApiStatus },
@@ -22,7 +22,7 @@ function ChannelIcon(params) {
         color = "#F79400";
         className = "amazon-label"
     }
-    html = "<a href='javascript:void(0)'><span class=" + className + " style='background-color:" + color + "'>" + params.data.Ch_Prefix + "</span> <span class='chNm'>" + params.data.ChannelName + "</span></a>"
+    html = "<a href='/Setting/Channel_Detail?Ch=" + params.data.Ch_Prefix + "&Key=" + params.data.ChannelId + "'><span class=" + className + " style='background-color:" + color + "'>" + params.data.Ch_Prefix + "</span> <span class='chNm'>" + params.data.ChannelName + "</span></a>"
     return html;
 }
 function ApiStatus(params) {

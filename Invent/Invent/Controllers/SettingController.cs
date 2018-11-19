@@ -49,6 +49,11 @@ namespace Invent.Controllers
             return View();
         }
         [HttpGet]
+        public ActionResult Channel_Detail(string Ch, string Key)
+        {
+            return View();
+        }
+        [HttpGet]
         public JsonResult Initialize()
         {
             UserEntity objUserEntity = new UserEntity();
