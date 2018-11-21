@@ -2,6 +2,7 @@
 var columnDefs;
 var MyData;
 var year = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
 columnDefs = [
     { headerName: 'Channel', field: 'Ch_Prefix', width: 50, cellClass: 'grid-left', filterParams: { newRowsAction: 'keep' }, cellRenderer: ChannelIcon },
     { headerName: 'Order Sync', field: 'OrderSync', width: 50, cellClass: 'grid-center', filterParams: { newRowsAction: 'keep' }, cellRenderer: OrderSyncStatus },
@@ -10,6 +11,10 @@ columnDefs = [
 ];
 gridOptions = GridInitializer(columnDefs);
 
+function getParameterByName(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
 function ChannelIcon(params) {
     var html = '';
     var color = "";
@@ -55,6 +60,7 @@ function InventorySyncStatus(params) {
     }
     return html;
 }
+
 function ChangeFlag() {
     $("#Flag").val("A");
 }
@@ -118,20 +124,46 @@ document.addEventListener('DOMContentLoaded', function () {
     var gridDiv = document.querySelector('#channel-grid');
     new agGrid.Grid(gridDiv, gridOptions);
     MyData = GetChannel();
-    $('#add-category').on('hidden.bs.modal', function () {
-        $("#txtCatName").val("");
-        $("#txtCode").val("");
-        $("#txtPriceRange").val("");
-        $("#txtIGST").val("");
-        $("#txtCGST").val("");
-        $("#txtSGST").val("");
-        $("#txtUTGST").val("");
-        $("#txtCESS").val("");
-        $("#btnSveCat").text("Save");
-        document.getElementById("mdlTtl").innerText = "Add Category";
-    });
-
+    GetChannelDetail();
 });
+function GetChannelDetail() {
+    var html = "";
+    var type = getParameterByName('Ch')
+    switch (type) {
+        case "AZ":
+            {
+                $("#ch-img").attr("src", "~/assets/img/channel-logo/S_Amazon.png");
+                $("#summary-div").css("display", "none");
+                $("#info-div").css("display", "block");
+                html = '';
+                html += '<ol>';
+                html += '<li>Go to <a href="http://developer.amazonservices.in">http://developer.amazonservices.in</a></li>';
+                html += '<li>Click the Sign up for MWS button.</li>';
+                html += '<li>Log into your Amazon seller account.</li>';
+                html += '<li>Select the following option: <b>"I want to access my Amazon seller account with MWS"</b> and click next.</li>';
+                html += '<li>Accept the Amazon MWS License Agreement.</li>';
+                html += '<li>Copy the credential and paste it</li>';
+                html += '</ol>';
+                $("#info-steps").html(html);
+            }
+            break;
+        case "FP":
+            {
+                $("#ch-img").attr("src", "~/assets/img/channel-logo/S_Flipkart.png");
+                $("#summary-div").css("display", "none");
+                $("#info-div").css("display", "block");
+                html = '';
+                html += '<ol>';
+                html += '<li>Go to <a href="https://api.flipkart.net/oauth-register/login">https://api.flipkart.net/oauth-register/login</a></li>';
+                html += '<li>Sign in using your flipkart seller credentials.</li>';
+                html += '<li>On log in, click on "Register New Application"</li>';
+                html += '<li>Enter Application name and description as "SellerHub" (or whatever you prefer to identify later)</li>';
+                html += '<li>In the newly generated table row copy Application Id and Application Secret and paste it in the corresponding fields above</li>';
+                html += '</ol>';
+                $("#info-steps").html(html);
+            }
+    }
+}
 function EditButton(params) {
     var html = '';
     var data = JSON.stringify(params.data);
@@ -162,7 +194,6 @@ function EditCategory(record) {
     $("#btnSveCat").text("Update");
     document.getElementById("mdlTtl").innerText = "Update Category";
 }
-
 function OnCatSuccess(response) {
     CallToast(response.ERROR_MSG, response.ERROR_FLAG);
     if (response.ERROR_FLAG == "S") {

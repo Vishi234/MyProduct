@@ -25,7 +25,7 @@ namespace Invent.Models.BAL.Setting
             if (dr.HasRows)
             {
                 while (dr.Read())
-                {
+                {       
                     objCh = new ChannelGeneralDetailsEntity();
                     objCh.ChannelId = dr["CHANNEL_ID"].ToString();
                     objCh.ChannelName = dr["CHANNEL_NAME"].ToString();

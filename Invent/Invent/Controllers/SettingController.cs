@@ -49,9 +49,9 @@ namespace Invent.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult Channel_Detail(string Ch, string Key)
+        public JsonResult ChannelDetail(string Ch)
         {
-            return View();
+            return Json("");
         }
         [HttpGet]
         public JsonResult Initialize()

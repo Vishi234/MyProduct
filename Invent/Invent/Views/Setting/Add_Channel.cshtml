@@ -3,10 +3,10 @@
     ViewBag.Title = "Add_Channel";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 @{
     Html.RenderPartial("../Shared/PartialView/Setting/_TopMenu");
 }
+<script src="~/assets/module_scripts/Setting/channel.js"></script>
 <div class="chb">
     <div class="chtop">
         <a href="@Url.Action("Channel","Setting")"><span class="pull-left"><i class="fa fa-arrow-left"></i></span></a>
@@ -20,7 +20,7 @@
         <div class="chbdy">
             <ul>
                 <li>
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel">
+                    <a href="/Setting/Channel_Detail?Ch=AZ" Ch="AZ">
                         <div class="chimgbdy">
                             <img src="~/assets/img/channel-logo/S_Amazon.png" title="Amazon" />
                         </div>
@@ -28,7 +28,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel">
+                    <a href="javascript:void(0)" Ch="PM">
                         <div class="chimgbdy">
                             <img src="~/assets/img/channel-logo/S_Paytm.png" title="Paytm" />
                         </div>
@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel">
+                    <a href="javascript:void(0)" Ch="FP">
                         <div class="chimgbdy">
                             <img src="~/assets/img/channel-logo/S_Flipkart.png" title="Flipkart" />
                         </div>
@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel">
+                    <a href="javascript:void(0)" Ch="SC">
                         <div class="chimgbdy">
                             <img src="~/assets/img/channel-logo/S_Shopclues.png" title="Shopclues" />
                         </div>
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel">
+                    <a href="javascript:void(0)" Ch="SD">
                         <div class="chimgbdy">
                             <img src="~/assets/img/channel-logo/S_Snapdeal.png" title="Snapdeal" />
                         </div>
@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel">
+                    <a href="javascript:void(0)" Ch="EB">
                         <div class="chimgbdy">
                             <img src="~/assets/img/channel-logo/S_Ebay.png" title="Ebay" />
                         </div>
