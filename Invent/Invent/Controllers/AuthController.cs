@@ -11,10 +11,10 @@ using System.Web.Mvc;
 
 namespace Invent.Controllers
 {
+   
     public class AuthController : Controller
     {
         // GET: Auth
-        ErrorEntity error = new ErrorEntity();
         public ActionResult Login()
         {
             return View(new LoginEntity());
@@ -26,6 +26,7 @@ namespace Invent.Controllers
         [HttpPost]
         public JsonResult Register(RegisterEntity regModel)
         {
+            ResponseEntity error = ResponseEntity.GetInstance();
             try
             {
                 Guid guid = Guid.NewGuid();
@@ -59,6 +60,7 @@ namespace Invent.Controllers
         [HttpPost]
         public JsonResult Login(LoginEntity logModel)
         {
+            ResponseEntity error = ResponseEntity.GetInstance();
             try
             {
                 RegisterEntity regModel = new RegisterEntity();
@@ -89,6 +91,7 @@ namespace Invent.Controllers
         }
         public ActionResult Verification()
         {
+            ResponseEntity error = ResponseEntity.GetInstance();
             try
             {
                 RegisterEntity regModel = new RegisterEntity();

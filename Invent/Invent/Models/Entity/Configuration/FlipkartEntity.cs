@@ -8,6 +8,16 @@ namespace Invent.Models.Entity.Configuration
 {
     public class FlipkartEntity
     {
+        private static FlipkartEntity _instance;
+        public FlipkartEntity()
+        {
+
+        }
+        public static FlipkartEntity GetInstance()
+        {
+            if (_instance == null) _instance = new FlipkartEntity();
+            return _instance;
+        }
         public string UserId { get; set; }
         [Required(ErrorMessage = "Required")]
         public string ApplicationName { get; set; }

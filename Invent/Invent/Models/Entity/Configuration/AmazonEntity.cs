@@ -8,6 +8,16 @@ namespace Invent.Models.Entity.Configuration
 {
     public class AmazonEntity
     {
+        private static AmazonEntity _instance;
+        public AmazonEntity()
+        {
+
+        }
+        public static AmazonEntity GetInstance()
+        {
+            if (_instance == null) _instance = new AmazonEntity();
+            return _instance;
+        }
         [Required(ErrorMessage = "Required")]
         public string SellerId { get; set; }
         [Required(ErrorMessage = "Required")]

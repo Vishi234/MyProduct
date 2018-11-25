@@ -3,6 +3,7 @@ using Invent.Models.BAL.Configuration;
 using Invent.Models.Entity.Common;
 using Invent.Models.Entity.Configuration;
 using Invent.Models.Entity.User;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,56 +14,50 @@ using System.Web.Script.Serialization;
 
 namespace Invent.Controllers
 {
+    
     public class ConfigurationController : Controller
     {
         // GET: Configuration
-        GeneralDetailsEntity gDtl = new GeneralDetailsEntity();
-        UserAccountingEntity acDtl = new UserAccountingEntity();
-        UserBillingEntity bDtl = new UserBillingEntity();
-        ConfigurationManageModel cm = new ConfigurationManageModel();
-        ChannelGeneralDetailsEntity chDtl = new ChannelGeneralDetailsEntity();
-        FlipkartEntity fAPi = new FlipkartEntity();
-        AmazonEntity aApi = new AmazonEntity();
         JavaScriptSerializer serializer = new JavaScriptSerializer();
-        ErrorEntity error = new ErrorEntity();
+        ConfigurationModel config = ConfigurationModel.GetInstance();
         public ActionResult Intro()
         {
             return View();
         }
         public ActionResult Step_1()
         {
-            return View(Tuple.Create(gDtl, acDtl, bDtl));
+            return View(Tuple.Create(UserGeneralEntity.GetInstance(), UserAccountingEntity.GetInstance(), UserBillingEntity.GetInstance()));
         }
         public ActionResult Step_2()
         {
-            return View(Tuple.Create(chDtl, fAPi, aApi));
+            return View(Tuple.Create(ApiGeneralEntity.GetInstance(), FlipkartEntity.GetInstance(), AmazonEntity.GetInstance()));
         }
-        public JsonResult SaveGeneralDetails([Bind(Prefix = "Item1")] GeneralDetailsEntity gDtl)
+        public JsonResult SaveGeneralDetails([Bind(Prefix = "Item1")] UserGeneralEntity objGeneral)
         {
             try
             {
-                UserEntity objUsrEntity = new UserEntity();
+                UserEntity objUsrEntity = UserEntity.GetInstance();
                 objUsrEntity = (UserEntity)Session["UserEntity"];
-                gDtl.Flag = "U";
-                gDtl.UserId = objUsrEntity.UserID;
-                gDtl.Status = objUsrEntity.Status;
+                objGeneral.Flag = "U";
+                objGeneral.UserId = objUsrEntity.UserID;
+                objGeneral.Status = objUsrEntity.Status;
                 ViewBag.Count = "1";
             }
             catch (Exception ex)
             {
                 ExceptionHandling.WriteException(ex);
             }
-            return Json(cm.SaveGeneralDetails(gDtl));
+            return Json(config.SaveGeneralDetails(objGeneral));
         }
         [HttpPost]
-        public JsonResult SaveAccountingDetails([Bind(Prefix = "Item2")] UserAccountingEntity acDtl)
+        public JsonResult SaveAccountingDetails([Bind(Prefix = "Item2")] UserAccountingEntity objAccount)
         {
             try
             {
-                UserEntity objUsrEntity = new UserEntity();
+                UserEntity objUsrEntity = UserEntity.GetInstance();
                 objUsrEntity = (UserEntity)Session["UserEntity"];
-                acDtl.Flag = "A";
-                acDtl.UserId = objUsrEntity.UserID;
+                objAccount.Flag = "A";
+                objAccount.UserId = objUsrEntity.UserID;
                 ViewBag.Count = "2";
 
             }
@@ -70,17 +65,17 @@ namespace Invent.Controllers
             {
                 ExceptionHandling.WriteException(ex);
             }
-            return Json(cm.SaveAccountingDetails(acDtl));
+            return Json(config.SaveAccountingDetails(objAccount));
         }
         [HttpPost]
-        public JsonResult SaveBillingDetails([Bind(Prefix = "Item3")] UserBillingEntity bDtl)
+        public JsonResult SaveBillingDetails([Bind(Prefix = "Item3")] UserBillingEntity objBilling)
         {
             try
             {
-                UserEntity objUsrEntity = new UserEntity();
+                UserEntity objUsrEntity = UserEntity.GetInstance();
                 objUsrEntity = (UserEntity)Session["UserEntity"];
-                bDtl.Flag = "A";
-                bDtl.UserId = objUsrEntity.UserID;
+                objBilling.Flag = "A";
+                objBilling.UserId = objUsrEntity.UserID;
                 ViewBag.Count = "3";
 
             }
@@ -88,40 +83,48 @@ namespace Invent.Controllers
             {
                 ExceptionHandling.WriteException(ex);
             }
-            return Json(cm.SaveBillingDetails(bDtl));
+            return Json(config.SaveBillingDetails(objBilling));
         }
         [HttpPost]
-        public JsonResult SaveChannelDetails([Bind(Prefix = "Item1")]ChannelGeneralDetailsEntity chDtl)
+        public JsonResult SaveChannelDetails([Bind(Prefix = "Item1")]ApiGeneralEntity objGeneral)
         {
-            Session["ChannelGeneraDetail"] = chDtl;
-            ErrorEntity error = new ErrorEntity();
+            ResponseEntity error = ResponseEntity.GetInstance();
+            Session["ChannelGeneraDetail"] = objGeneral;
             error.ERROR_FLAG = "S";
             error.ERROR_MSG = "Channel details has been saved.";
             return Json(error);
         }
         [HttpPost]
-        public JsonResult SaveChannelApiDetails([Bind(Prefix = "Item2")]FlipkartEntity flDtl)
+        public JsonResult SaveChannelApiDetails([Bind(Prefix = "Item2")]FlipkartEntity objFP)
         {
             string response = string.Empty;
             TokenEntity token = new TokenEntity();
             TokenErrorEntity tokenError = new TokenErrorEntity();
-            UserEntity objUserEntity = new UserEntity();
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            ResponseEntity error = ResponseEntity.GetInstance();
             try
             {
-                response = CommonModel.FlipkartToken(flDtl.ApplicationId, flDtl.ApplicationSecret);
+                response = CommonModel.FlipkartToken(objFP.ApplicationId, objFP.ApplicationSecret);
                 token = serializer.Deserialize<TokenEntity>(response);
                 tokenError = serializer.Deserialize<TokenErrorEntity>(response);
                 if (token.access_token != null)
                 {
-                    ChannelGeneralDetailsEntity chDtl = (ChannelGeneralDetailsEntity)Session["ChannelGeneraDetail"];
+                    JObject jsonObject = JObject.Parse(response);
+                    jsonObject["ApplicationId"] = objFP.ApplicationId;
+                    jsonObject["ApplicationName"] = objFP.ApplicationName;
+                    jsonObject["ApplicationSecret"] = objFP.ApplicationSecret;
+                    jsonObject["ApplicationSecret"] = objFP.Username;
+                    jsonObject["Password"] = objFP.Password;
+
+                    ApiGeneralEntity chDtl = (ApiGeneralEntity)Session["ChannelGeneraDetail"];
                     Session["FlipkartToken"] = token;
                     objUserEntity = (UserEntity)Session["UserEntity"];
-                    flDtl.Status = '1';
-                    flDtl.Flag = 'A';
+                    objFP.Status = '1';
+                    objFP.Flag = ((objFP.Flag == '\0') ? 'A' : objFP.Flag);
                     chDtl.Ch_Prefix = "FP";
-                    flDtl.UserId = objUserEntity.UserID;
-                    chDtl.ApiDetails = response;
-                    error = cm.SaveChannelDetails(flDtl, chDtl);
+                    objFP.UserId = objUserEntity.UserID;
+                    chDtl.ApiDetails = jsonObject.ToString();   
+                    error = config.SaveChannelDetails(objFP, chDtl);
                 }
                 else
                 {
@@ -137,22 +140,24 @@ namespace Invent.Controllers
             return Json(error);
         }
         [HttpPost]
-        public JsonResult SaveChannelAmazonDetails([Bind(Prefix = "Item3")]AmazonEntity amApi)
+        public JsonResult SaveChannelAmazonDetails([Bind(Prefix = "Item3")]AmazonEntity objAZ)
         {
-            string response = serializer.Serialize(amApi);
-            UserEntity objUserEntity = new UserEntity();
+            string response = serializer.Serialize(objAZ);
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            FlipkartEntity fAPi = FlipkartEntity.GetInstance();
+            ResponseEntity error = ResponseEntity.GetInstance();
             try
             {
-                ChannelGeneralDetailsEntity chDtl = (ChannelGeneralDetailsEntity)Session["ChannelGeneraDetail"];
+                ApiGeneralEntity chDtl = (ApiGeneralEntity)Session["ChannelGeneraDetail"];
                 objUserEntity = (UserEntity)Session["UserEntity"];
                 fAPi.Status = '1';
-                fAPi.Flag = 'A';
-                fAPi.Username = amApi.Username;
-                fAPi.Password = amApi.Password;
+                fAPi.Flag = ((objAZ.Flag == '\0') ? 'A' : objAZ.Flag);
+                fAPi.Username = objAZ.Username;
+                fAPi.Password = objAZ.Password;
                 fAPi.UserId = objUserEntity.UserID;
                 chDtl.Ch_Prefix = "AZ";
                 chDtl.ApiDetails = response;
-                error = cm.SaveChannelDetails(fAPi, chDtl);
+                error = config.SaveChannelDetails(fAPi, chDtl);
             }
             catch (Exception ex)
             {

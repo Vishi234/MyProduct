@@ -1,7 +1,8 @@
-﻿using Invent.Models.Entity.Channel;
+﻿using DAL;
+using Invent.Models.Entity.Channel;
 using Invent.Models.Entity.Common;
 using Invent.Models.Entity.User;
-using Microsoft.ApplicationBlocks.Data;
+
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -30,7 +31,7 @@ namespace Invent.Models.BAL.Order
             sqlParameter[6].Direction = ParameterDirection.Output;
             sqlParameter[6].Size = 1;
             SqlHelper.ExecuteScalar(sqlconn, CommandType.StoredProcedure, "SP_MANAGE_ORDERS", sqlParameter);
-            ErrorEntity error = new ErrorEntity();
+            ResponseEntity error = ResponseEntity.GetInstance();
             error.ERROR_MSG = sqlParameter[5].Value.ToString();
             error.ERROR_FLAG = sqlParameter[6].Value.ToString();
             return "";

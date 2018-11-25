@@ -1,6 +1,6 @@
-﻿using Invent.Models.Entity.Configuration;
+﻿using DAL;
+using Invent.Models.Entity.Configuration;
 using Invent.Models.Entity.User;
-using Microsoft.ApplicationBlocks.Data;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,8 +13,8 @@ namespace Invent.Models.BAL.Authorization
 {
     public class AuthModel
     {
-        DataTable dt = new DataTable();
         string sqlconn = ConfigurationManager.ConnectionStrings["DBCONN"].ConnectionString;
+        DataTable dt = new DataTable();
         public RegisterEntity UserAuthorization(RegisterEntity regModel)
         {
             SqlParameter[] sqlParameter = new SqlParameter[11];
@@ -36,15 +36,15 @@ namespace Invent.Models.BAL.Authorization
             sqlParameter[10].Direction = ParameterDirection.Output;
             sqlParameter[10].Size = 100;
             DataSet ds = new DataSet();
-            ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_CHECK_LOGIN", sqlParameter);
+            ds = SqlHelper.ExecuteDataset(sqlconn,CommandType.StoredProcedure, "SP_CHECK_LOGIN", sqlParameter);
             regModel.Msg = sqlParameter[8].Value.ToString();
             regModel.ErrorFlag = sqlParameter[9].Value.ToString();
             regModel.UserID = sqlParameter[10].Value.ToString();
             if (ds.Tables.Count > 0)
             {
-                UserEntity objUserEntity = new UserEntity();
-                List<ChannelGeneralDetailsEntity> lstDtl = new List<ChannelGeneralDetailsEntity>();
-                ChannelGeneralDetailsEntity chDtl;
+                UserEntity objUserEntity = UserEntity.GetInstance();
+                List<ApiGeneralEntity> lstDtl = new List<ApiGeneralEntity>();
+                ApiGeneralEntity chDtl;
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     objUserEntity.UserID = ds.Tables[0].Rows[0]["USER_ID"].ToString();
@@ -78,7 +78,7 @@ namespace Invent.Models.BAL.Authorization
                 {
                     foreach (DataRow dr in ds.Tables[1].Rows)
                     {
-                        chDtl = new ChannelGeneralDetailsEntity();
+                        chDtl = ApiGeneralEntity.GetInstance();
                         chDtl.ChannelName = dr["CHANNEL_NAME"].ToString();
                         chDtl.InventorySync = ((Convert.ToChar(dr["INVENTORY_SYNC"]) == '0') ? false : true);
                         chDtl.OrderSync = ((Convert.ToChar(dr["ORDER_SYNC"]) == '0') ? false : true);

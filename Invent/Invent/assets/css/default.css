@@ -1148,65 +1148,68 @@ a {
 
     .tabs dd p {
         font-size: 12px;
-        line-height: 14px;
         margin-bottom: 0px;
     }
 
-    .tabs dl dd a {
-        padding: 5px 20px;
-        position: relative;
-        z-index: 20;
-        display: block;
-        /* height: 30px; */
-        cursor: pointer;
-        color: #777;
-        text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
-        line-height: 33px;
-        font-size: 19px;
-        background: #ffffff;
-        background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(100%,#eaeaea));
-        background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-        background: -o-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-        background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-        background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
-        box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 1px 0px 0px 0px rgba(255,255,255,0.9) inset, 0px 2px 2px rgba(0,0,0,0.1);
-        border: 1px solid #eee;
-    }
+.SumoSelect.open .search-txt {
+    height: 100%;
+}
 
-    .tabs dl dd .tab-body {
-        background-color: #FFF;
-        height: 0;
-        overflow: hidden;
-        /* box-shadow: 0 0 1px rgba(0, 0, 0, 1) inset; */
-        -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 1) inset;
-        /* -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 1) inset; */
-        -webkit-transition: all 0.3s ease-in-out;
-        -moz-transition: all 0.3s ease-in-out;
-        -o-transition: all 0.3s ease-in-out;
-        -ms-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
-        border: 1px solid #eee;
-    }
+.tabs dl dd a {
+    padding: 5px 20px;
+    position: relative;
+    z-index: 20;
+    display: block;
+    /* height: 30px; */
+    cursor: pointer;
+    color: #777;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+    line-height: 33px;
+    font-size: 19px;
+    background: #ffffff;
+    background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(100%,#eaeaea));
+    background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    background: -o-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
+    box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 1px 0px 0px 0px rgba(255,255,255,0.9) inset, 0px 2px 2px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+}
 
-    .tabs dl dd div p {
-        color: #444444;
-        font-size: 13px;
-        padding: 15px;
-        text-align: justify;
-    }
+.tabs dl dd .tab-body {
+    background-color: #FFF;
+    height: 0;
+    overflow: hidden;
+    /* box-shadow: 0 0 1px rgba(0, 0, 0, 1) inset; */
+    -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 1) inset;
+    /* -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 1) inset; */
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #eee;
+}
 
-    .tabs dl dd a:hover {
-        background: #fff;
-    }
+.tabs dl dd div p {
+    color: #444444;
+    font-size: 13px;
+    padding: 15px;
+    text-align: justify;
+}
 
-    .tabs dl dd a:active {
-        background: #c6e1ec;
-        color: #3d7489;
-        text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
-        box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 0px 2px 2px rgba(0,0,0,0.1);
-    }
+.tabs dl dd a:hover {
+    background: #fff;
+}
+
+.tabs dl dd a:active {
+    background: #c6e1ec;
+    color: #3d7489;
+    text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
+    box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 0px 2px 2px rgba(0,0,0,0.1);
+}
 
 .tab-body .gen-form {
     margin: 20px;
@@ -1227,7 +1230,7 @@ a {
 }
 
 #tab3:target ~ .tabs .tab3 dd .tab-body {
-    height: 900px;
+    height: 500px;
 }
 
 #tab4:target ~ .tabs .tab4 dd .tab-body {
@@ -2366,10 +2369,46 @@ a {
             display: block;
             float: left;
         }
-        .apigendtl > ul > li > span:nth-child(2)
-        {
-            font-weight:600;
+
+        .apigendtl > ul > li > span:nth-child(2) {
+            font-weight: 600;
         }
+
         .apigendtl > ul > li > span {
             font-size: 13px;
         }
+
+.import-base {
+    padding: 20px;
+}
+
+    .import-base > .form-group > label {
+        padding: 0px;
+        float: left;
+        margin-top: 10px;
+        font-weight: 600;
+    }
+
+.choose-option > label {
+    margin-bottom: 0px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.choose-option > span {
+    display: block;
+    margin-top: 15px;
+    float: right;
+}
+
+    .choose-option > span > a {
+        text-decoration: underline;
+    }
+
+.imgrbs {
+    height: 400px;
+}
+
+.btn-info {
+    font-size: 12px;
+}

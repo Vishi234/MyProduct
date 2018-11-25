@@ -15,11 +15,11 @@ namespace Invent.Models.Job
     {
         public void Execute(IJobExecutionContext context)
         {
-            UserEntity objUserEntity = new UserEntity();
+            UserEntity objUserEntity = UserEntity.GetInstance();
             ChannelOrdersModel objOrdModel = new ChannelOrdersModel();
             string strFromDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm");
             List<string> statusList = new List<string>();
-            objOrdModel.GetOrders(objUserEntity, strFromDate, "", statusList);
+            //objOrdModel.GetOrders(objUserEntity, strFromDate, "", statusList);
 
 
         }

@@ -6,9 +6,19 @@ using System.Web;
 
 namespace Invent.Models.Entity.Configuration
 {
-    public class ChannelGeneralDetailsEntity
+    public class ApiGeneralEntity
     {
-        [Required(ErrorMessage ="Required")]
+        private static ApiGeneralEntity _instance;
+        public ApiGeneralEntity()
+        {
+
+        }
+        public static ApiGeneralEntity GetInstance()
+        {
+            if (_instance == null) _instance = new ApiGeneralEntity();
+            return _instance;
+        }
+        [Required(ErrorMessage = "Required")]
         public string ChannelName { get; set; }
         public string ChannelId { get; set; }
         public string LeadgerName { get; set; }

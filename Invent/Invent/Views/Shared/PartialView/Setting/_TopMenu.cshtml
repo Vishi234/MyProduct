@@ -14,12 +14,12 @@
                     </a>
                 </li>
                 <li>
-                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Channel" || ViewContext.RouteData.Values["Action"].ToString() == "Channel_Detail" ? "top-menu-active" : "")" href="@Url.Action("Channel", "Setting")">
-                    Channel
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Channel" || ViewContext.RouteData.Values["Action"].ToString() == "Channel_Detail" || ViewContext.RouteData.Values["Action"].ToString() == "Add_Channel" ? "top-menu-active" : "")" href="@Url.Action("Channel", "Setting")">
+                        Channel
                     </a>
                 </li>
                 <li>
-                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Import" ? "top-menu-active" : "")" href="javascript:void(0)">
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Import" ? "top-menu-active" : "")" href="@Url.Action("Import","Setting")">
                         Import
                     </a>
                 </li>

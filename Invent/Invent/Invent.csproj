@@ -218,6 +218,7 @@
     <Content Include="assets\module_scripts\Setting\account.js" />
     <Content Include="assets\module_scripts\Setting\category.js" />
     <Content Include="assets\module_scripts\Setting\channel.js" />
+    <Content Include="assets\module_scripts\Setting\import.js" />
     <Content Include="assets\scripts\ag-grid-nostyle.min.js" />
     <Content Include="assets\scripts\ag-grid\ag-grid.min.noStyle.js" />
     <Content Include="assets\scripts\common.js" />
@@ -321,7 +322,8 @@
     <Compile Include="Models\BAL\Authorization\AuthModel.cs" />
     <Compile Include="Models\BAL\Common\CommonModel.cs" />
     <Compile Include="Models\BAL\Common\LocationModel.cs" />
-    <Compile Include="Models\BAL\Configuration\ConfigurationManageModel.cs" />
+    <Compile Include="Models\BAL\Common\SessionExpireAttribute.cs" />
+    <Compile Include="Models\BAL\Configuration\ConfigurationModel.cs" />
     <Compile Include="Models\BAL\Order\AmazonChannelModel.cs" />
     <Compile Include="Models\BAL\Order\API_Call.cs" />
     <Compile Include="Models\BAL\Order\ChannelOrdersModel.cs" />
@@ -329,19 +331,20 @@
     <Compile Include="Models\BAL\Order\OrderModel.cs" />
     <Compile Include="Models\BAL\Setting\CategoryModel.cs" />
     <Compile Include="Models\BAL\Setting\ChannelModel.cs" />
+    <Compile Include="Models\BAL\Setting\ItemMasterModel.cs" />
     <Compile Include="Models\Entity\Common\LocationEntity.cs" />
     <Compile Include="Models\Entity\Setting\CategoryEntity.cs" />
     <Compile Include="Models\DAL\SQLHelper.cs" />
     <Compile Include="Models\Entity\Channel\OrderEntity.cs" />
-    <Compile Include="Models\Entity\Common\ErrorEntity.cs" />
+    <Compile Include="Models\Entity\Common\ResponseEntity.cs" />
     <Compile Include="Models\Entity\Common\TokenEntity.cs" />
     <Compile Include="Models\Entity\Common\TokenErrorEntity.cs" />
     <Compile Include="Models\Entity\Configuration\UserAccountingEntity.cs" />
     <Compile Include="Models\Entity\Configuration\AmazonEntity.cs" />
     <Compile Include="Models\Entity\Configuration\UserBillingEntity.cs" />
-    <Compile Include="Models\Entity\Configuration\ChannelGeneralDetailsEntity.cs" />
+    <Compile Include="Models\Entity\Configuration\ApiGeneralEntity.cs" />
     <Compile Include="Models\Entity\Configuration\FlipkartEntity.cs" />
-    <Compile Include="Models\Entity\Configuration\GeneralDetailsEntity.cs" />
+    <Compile Include="Models\Entity\Configuration\UserGeneralEntity.cs" />
     <Compile Include="Models\Entity\User\LoginEntity.cs" />
     <Compile Include="Models\Entity\User\RegisterEntity.cs" />
     <Compile Include="Models\Entity\User\UserEntity.cs" />
@@ -370,6 +373,7 @@
     <Content Include="Views\Configuration\Step_1.cshtml" />
     <Content Include="Views\Configuration\Step_2.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="GridConfiguration\Setting\Import.json" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -378,8 +382,9 @@
     <Content Include="Views\Setting\Account.cshtml" />
     <Content Include="Views\Setting\Category.cshtml" />
     <Content Include="Views\Setting\Channel.cshtml" />
-    <Content Include="Views\Setting\Channel_Detail.cshtml" />
     <Content Include="Views\Setting\Add_Channel.cshtml" />
+    <Content Include="Views\Setting\Import.cshtml" />
+    <Content Include="Templates\ItemMaster.csv" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -401,6 +406,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\files\" />
     <Folder Include="assets\img\profile-pic\" />
   </ItemGroup>
   <ItemGroup>

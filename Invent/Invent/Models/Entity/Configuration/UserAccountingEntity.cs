@@ -9,6 +9,16 @@ namespace Invent.Models.Entity.Configuration
 {
     public class UserAccountingEntity
     {
+        private static UserAccountingEntity _instance;
+        public UserAccountingEntity()
+        {
+
+        }
+        public static UserAccountingEntity GetInstance()
+        {
+            if (_instance == null) _instance = new UserAccountingEntity();
+            return _instance;
+        }
         public string UserId { get; set; }
         [Required(ErrorMessageResourceType = typeof(en_msg_lang), ErrorMessageResourceName = "PANReq")]
         public string PAN { get; set; }

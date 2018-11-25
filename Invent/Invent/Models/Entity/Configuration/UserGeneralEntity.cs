@@ -7,8 +7,18 @@ using System.Web;
 
 namespace Invent.Models.Entity.Configuration
 {
-    public class GeneralDetailsEntity
+    public class UserGeneralEntity
     {
+        private static UserGeneralEntity _instance;
+        public UserGeneralEntity()
+        {
+
+        }
+        public static UserGeneralEntity GetInstance()
+        {
+            if (_instance == null) _instance = new UserGeneralEntity();
+            return _instance;
+        }
         public string UserId { get; set; }
         [Required(ErrorMessageResourceType = typeof(en_msg_lang), ErrorMessageResourceName = "EmailReq")]
         public string EmailId { get; set; }

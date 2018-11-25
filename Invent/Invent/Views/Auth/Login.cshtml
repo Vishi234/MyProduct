@@ -20,14 +20,14 @@
         <div class="row">
             <div class="login-base slideInDown">
                 <div class="login-form">
-                    @using (Ajax.BeginForm("Login", "Auth",
-new AjaxOptions
-{
-    HttpMethod = "POST",
-    OnSuccess = "OnSuccess",
-    OnFailure = "OnFailure",
-    LoadingElementId = "progress"
-}))
+                    @using (Ajax.BeginForm("Login", new { Controller = "Auth" },
+                new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    OnSuccess = "OnSuccess",
+                    OnFailure = "OnFailure",
+                    LoadingElementId = "progress"
+                }))
                     {
                         @*<h1>Welcome to SpotInvent</h1>*@
                         <p>Don't you have a account? <a href="javascript:void(0)">Sign up</a></p>

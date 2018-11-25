@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Import";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .modal-backdrop {
+        position: inherit !important;
+    }
+</style>
+<script src="~/assets/module_scripts/Setting/import.js"></script>
+@{
+    Html.RenderPartial("../Shared/PartialView/Setting/_TopMenu");
+
+}
+<input type="hidden" id="downloadPath" value="@System.Configuration.ConfigurationManager.AppSettings["DownloadTemplate"]" />
+<div class="chb">
+    <div class="import-base">
+        <div class="form-group">
+            <label class="col-lg-2 col-xs-12 col-md-2 col-sm-2">
+                Select Import Type<span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-5 col-xs-12 col-md-5 col-sm-5">
+                <div class="row">
+                    <select onchange="Import(this);" id="import">
+                        <option selected="selected">Select Import Type</option>
+                        <option value="Category">Category</option>
+                        <option value="ItemMaster">Item Master</option>
+                        <option value="ItemMapping">Channel Item Mapping</option>
+                        <option value="Adjustment">Inventory Adjustment</option>
+                        <option value="SalesOrders">Sales Orders</option>
+                        <option value="TaxConfig">Tax Configuration</option>
+                        <option value="UserImport">Users Import</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal custom fade" id="Import">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="mdlTtl"></h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="choose-option">
+                    <label>Please Choose File : </label>
+                    <input type="file" id="importfile" />
+                    <input type="submit" value="Upload" onclick="UploadFile();" class="btn btn-info" />
+                    <span><a href="javascript:void(0)" id="downloadCsv" download>Download CSV Format</a></span>
+                </div>
+                <hr />
+                <div class="imgrbs">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

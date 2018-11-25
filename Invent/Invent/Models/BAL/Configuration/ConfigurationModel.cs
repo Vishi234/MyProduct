@@ -1,8 +1,8 @@
-﻿using Invent.Models.BAL.Common;
+﻿using DAL;
+using Invent.Models.BAL.Common;
 using Invent.Models.Entity.Common;
 using Invent.Models.Entity.Configuration;
 using Invent.Models.Entity.User;
-using Microsoft.ApplicationBlocks.Data;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,15 +14,23 @@ using System.Web.Mvc;
 
 namespace Invent.Models.BAL.Configuration
 {
-    public class ConfigurationManageModel
+    public class ConfigurationModel
     {
-        DataTable dt = new DataTable();
-        DataSet ds = new DataSet();
         string sqlconn = ConfigurationManager.ConnectionStrings["DBCONN"].ConnectionString;
-        ErrorEntity error = new ErrorEntity();
         private Dictionary<string, object> aDict;
+        private static ConfigurationModel _instance;
+        protected ConfigurationModel()
+        {
+            DataTable dt = new DataTable();
+            DataSet ds = new DataSet();
+        }
+        public static ConfigurationModel GetInstance()
+        {
+            if (_instance == null) _instance = new ConfigurationModel();
+            return _instance;
+        }
 
-        public ErrorEntity SaveGeneralDetails(GeneralDetailsEntity gDtl)
+        public ResponseEntity SaveGeneralDetails(UserGeneralEntity gDtl)
         {
             SqlParameter[] sqlParameter = new SqlParameter[11];
             sqlParameter[0] = new SqlParameter("@USER_ID", gDtl.UserId);
@@ -42,11 +50,12 @@ namespace Invent.Models.BAL.Configuration
             sqlParameter[10].Size = 1;
             DataSet ds = new DataSet();
             ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_SAVE_USR_GENERAL_DTL", sqlParameter);
+            ResponseEntity error = ResponseEntity.GetInstance();
             error.ERROR_MSG = sqlParameter[9].Value.ToString();
             error.ERROR_FLAG = sqlParameter[10].Value.ToString();
             return error;
         }
-        public ErrorEntity SaveAccountingDetails(UserAccountingEntity acDtl)
+        public ResponseEntity SaveAccountingDetails(UserAccountingEntity acDtl)
         {
             SqlParameter[] sqlParameter = new SqlParameter[7];
             sqlParameter[0] = new SqlParameter("@USER_ID", acDtl.UserId);
@@ -62,11 +71,12 @@ namespace Invent.Models.BAL.Configuration
             sqlParameter[6].Size = 1;
             DataSet ds = new DataSet();
             ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_SAVE_USR_ACCOUNTING_DTL", sqlParameter);
+            ResponseEntity error = ResponseEntity.GetInstance();
             error.ERROR_MSG = sqlParameter[5].Value.ToString();
             error.ERROR_FLAG = sqlParameter[6].Value.ToString();
             return error;
         }
-        public ErrorEntity SaveBillingDetails(UserBillingEntity bDtl)
+        public ResponseEntity SaveBillingDetails(UserBillingEntity bDtl)
         {
             SqlParameter[] sqlParameter = new SqlParameter[18];
             sqlParameter[0] = new SqlParameter("@USER_ID", bDtl.UserId);
@@ -93,35 +103,38 @@ namespace Invent.Models.BAL.Configuration
             sqlParameter[17].Size = 1;
             DataSet ds = new DataSet();
             ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_SAVE_BILLING_DTLS", sqlParameter);
+            ResponseEntity error = ResponseEntity.GetInstance();
             error.ERROR_MSG = sqlParameter[16].Value.ToString();
             error.ERROR_FLAG = sqlParameter[17].Value.ToString();
             return error;
         }
 
-        public ErrorEntity SaveChannelDetails(FlipkartEntity flp, ChannelGeneralDetailsEntity chDtl)
+        public ResponseEntity SaveChannelDetails(FlipkartEntity flp, ApiGeneralEntity chDtl)
         {
-            SqlParameter[] sqlParameter = new SqlParameter[13];
+            SqlParameter[] sqlParameter = new SqlParameter[14];
             sqlParameter[0] = new SqlParameter("@USER_ID", flp.UserId);
-            sqlParameter[1] = new SqlParameter("@CHANNEL_NAME", chDtl.ChannelName);
-            sqlParameter[2] = new SqlParameter("@LEADGER_NAME", chDtl.LeadgerName);
-            sqlParameter[3] = new SqlParameter("@ORDER_SYNC", chDtl.OrderSync);
-            sqlParameter[4] = new SqlParameter("@INVENTORY_SYNC", chDtl.InventorySync);
-            sqlParameter[5] = new SqlParameter("@USERNAME", flp.Username);
-            sqlParameter[6] = new SqlParameter("@PASSWORD", flp.Password);
-            sqlParameter[7] = new SqlParameter("@API_DETAILS", chDtl.ApiDetails);
-            sqlParameter[8] = new SqlParameter("@CH_PREFIX", chDtl.Ch_Prefix);
-            sqlParameter[9] = new SqlParameter("@STATUS", flp.Status);
-            sqlParameter[10] = new SqlParameter("@FLAG", flp.Flag);
-            sqlParameter[11] = new SqlParameter("@ERROR_MSG", SqlDbType.NVarChar);
-            sqlParameter[11].Direction = ParameterDirection.Output;
-            sqlParameter[11].Size = 2000;
-            sqlParameter[12] = new SqlParameter("@ERROR_FLAG", SqlDbType.Char);
+            sqlParameter[1] = new SqlParameter("@CHANNEL_ID", chDtl.ChannelId);
+            sqlParameter[2] = new SqlParameter("@CHANNEL_NAME", chDtl.ChannelName);
+            sqlParameter[3] = new SqlParameter("@LEADGER_NAME", chDtl.LeadgerName);
+            sqlParameter[4] = new SqlParameter("@ORDER_SYNC", chDtl.OrderSync);
+            sqlParameter[5] = new SqlParameter("@INVENTORY_SYNC", chDtl.InventorySync);
+            sqlParameter[6] = new SqlParameter("@USERNAME", flp.Username);
+            sqlParameter[7] = new SqlParameter("@PASSWORD", flp.Password);
+            sqlParameter[8] = new SqlParameter("@API_DETAILS", chDtl.ApiDetails);
+            sqlParameter[9] = new SqlParameter("@CH_PREFIX", chDtl.Ch_Prefix);
+            sqlParameter[10] = new SqlParameter("@STATUS", flp.Status);
+            sqlParameter[11] = new SqlParameter("@FLAG", flp.Flag);
+            sqlParameter[12] = new SqlParameter("@ERROR_MSG", SqlDbType.NVarChar);
             sqlParameter[12].Direction = ParameterDirection.Output;
-            sqlParameter[12].Size = 1;
+            sqlParameter[12].Size = 2000;
+            sqlParameter[13] = new SqlParameter("@ERROR_FLAG", SqlDbType.Char);
+            sqlParameter[13].Direction = ParameterDirection.Output;
+            sqlParameter[13].Size = 1;
             DataSet ds = new DataSet();
             ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_SAVE_USER_CHANNEL", sqlParameter);
-            error.ERROR_MSG = sqlParameter[11].Value.ToString();
-            error.ERROR_FLAG = sqlParameter[12].Value.ToString();
+            ResponseEntity error = ResponseEntity.GetInstance();
+            error.ERROR_MSG = sqlParameter[12].Value.ToString();
+            error.ERROR_FLAG = sqlParameter[13].Value.ToString();
             return error;
         }
         public List<LocationEntity> GetLocation(string countryId, string stateId, string cityId)
@@ -159,8 +172,9 @@ namespace Invent.Models.BAL.Configuration
             return locLst;
         }
 
-        public ErrorEntity RemoveImage(string userId)
+        public ResponseEntity RemoveImage(string userId)
         {
+            ResponseEntity error = ResponseEntity.GetInstance();
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[1];
@@ -181,10 +195,11 @@ namespace Invent.Models.BAL.Configuration
         public Dictionary<string, object> GetUserDetails(string userId, string status)
         {
             SqlDataReader dr;
+
             SqlParameter[] sqlParameter = new SqlParameter[3];
             sqlParameter[0] = new SqlParameter("@USER_ID", userId);
             sqlParameter[1] = new SqlParameter("@STATUS", status);
-            dr = SqlHelper.ExecuteReader(sqlconn, CommandType.StoredProcedure, "SP_GET_USER_DETAILS", sqlParameter);
+            dr = SqlHelper.ExecuteReader(sqlconn,CommandType.StoredProcedure, "SP_GET_USER_DETAILS", sqlParameter);
             if (dr.HasRows)
             {
                 while (dr.Read())

@@ -1,9 +1,8 @@
 ===============================start==============================================
 Inner Exception's
-MessageCannot find table 0.
-StackTrace   at System.Data.DataTableCollection.get_Item(Int32 index)
-   at Invent.Controllers.ConfigurationController.GetStates(String countryId) in C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\Controllers\ConfigurationController.cs:line 70
-TargetSiteSystem.Data.DataTable get_Item(Int32)
-DateTime : 	11/18/2018 5:06:57 PM
+MessageObject reference not set to an instance of an object.
+StackTrace   at Invent.Controllers.SettingController.SaveGeneralDetail(UserGeneralEntity genEntity) in C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\Controllers\SettingController.cs:line 219
+TargetSiteSystem.Web.Mvc.JsonResult SaveGeneralDetail(Invent.Models.Entity.Configuration.UserGeneralEntity)
+DateTime : 	11/25/2018 10:07:41 PM
 ================================end============================================= 
 

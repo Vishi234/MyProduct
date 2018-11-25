@@ -1,5 +1,5 @@
-﻿using Invent.Models.Entity.Configuration;
-using Microsoft.ApplicationBlocks.Data;
+﻿using DAL;
+using Invent.Models.Entity.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,22 +13,23 @@ namespace Invent.Models.BAL.Setting
     public class ChannelModel
     {
         string sqlconn = ConfigurationManager.ConnectionStrings["DBCONN"].ConnectionString;
-        public List<ChannelGeneralDetailsEntity> GetUserChannel(string UserId)
+        public List<ApiGeneralEntity> GetUserChannel(string UserId)
         {
             SqlDataReader dr;
             SqlParameter[] sqlParameter = new SqlParameter[1];
             sqlParameter[0] = new SqlParameter("@USER_ID", UserId);
             string query = "SELECT * FROM MST_USER_CHANNEL WHERE USER_ID=@USER_ID";
             dr = SqlHelper.ExecuteReader(sqlconn, CommandType.Text, query, sqlParameter);
-            List<ChannelGeneralDetailsEntity> lstCh = new List<ChannelGeneralDetailsEntity>();
-            ChannelGeneralDetailsEntity objCh;
+            List<ApiGeneralEntity> lstCh = new List<ApiGeneralEntity>();
+            ApiGeneralEntity objCh;
             if (dr.HasRows)
             {
                 while (dr.Read())
-                {       
-                    objCh = new ChannelGeneralDetailsEntity();
+                {
+                    objCh = new ApiGeneralEntity();
                     objCh.ChannelId = dr["CHANNEL_ID"].ToString();
                     objCh.ChannelName = dr["CHANNEL_NAME"].ToString();
+                    objCh.LeadgerName = dr["LEADGER_NAME"].ToString();
                     objCh.Ch_Prefix = dr["Prefix"].ToString();
                     objCh.ApiDetails = dr["API_DETAILS"].ToString();
                     objCh.OrderSync = ((dr["ORDER_SYNC"].ToString() == "1") ? true : false);

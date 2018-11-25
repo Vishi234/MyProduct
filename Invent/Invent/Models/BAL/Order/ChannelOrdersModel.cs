@@ -20,7 +20,7 @@ namespace Invent.Models.BAL.Order
         JavaScriptSerializer serializer = new JavaScriptSerializer();
         public string GetOrders(UserEntity objUserEntity, string fromDate, string toDate, List<string> status)
         {
-            List<ChannelGeneralDetailsEntity> lstCh = new List<ChannelGeneralDetailsEntity>();
+            List<ApiGeneralEntity> lstCh = new List<ApiGeneralEntity>();
             lstCh = GetChannelList();
 
             List<OrderEntity> objOrderEntityLst = new List<OrderEntity>();
@@ -126,12 +126,12 @@ namespace Invent.Models.BAL.Order
             return response;
         }
 
-        public List<ChannelGeneralDetailsEntity> GetChannelList()
+        public List<ApiGeneralEntity> GetChannelList()
         {
             var con = System.Configuration.ConfigurationManager.ConnectionStrings["DBCONN"].ToString();
 
-            List<ChannelGeneralDetailsEntity> lstDtl = new List<ChannelGeneralDetailsEntity>();
-            ChannelGeneralDetailsEntity chDtl;
+            List<ApiGeneralEntity> lstDtl = new List<ApiGeneralEntity>();
+            ApiGeneralEntity chDtl;
             try
             {
                 using (System.Data.SqlClient.SqlConnection myConnection = new System.Data.SqlClient.SqlConnection(con))
@@ -144,7 +144,7 @@ namespace Invent.Models.BAL.Order
                     {
                         while (oReader.Read())
                         {
-                            chDtl = new ChannelGeneralDetailsEntity();
+                            chDtl = ApiGeneralEntity.GetInstance();
                             chDtl.User_Id = oReader["USER_ID"].ToString();
                             chDtl.ChannelName = oReader["CHANNEL_NAME"].ToString();
                             chDtl.InventorySync = ((Convert.ToChar(oReader["INVENTORY_SYNC"]) == '0') ? false : true);

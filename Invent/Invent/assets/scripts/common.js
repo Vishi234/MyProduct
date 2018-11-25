@@ -1,11 +1,13 @@
-﻿var count = 0;
+﻿var count = 1;
+
 function CallToast(message, flag) {
     $.toast({
         heading: ((flag == 'F') ? "Error" : "Success"),
         text: message,
         icon: ((flag == 'F') ? 'error' : 'success'),
         position: 'top-right',
-        hideAfter: 10000
+        hideAfter: 3000,
+        stack: false
     })
 
 }
@@ -86,7 +88,7 @@ function GetLocation(countryId, stateId) {
                     });
                     $("#CountryId")[0].sumo.reload();
                 }
-                if (parseInt(countryId > 0) && stateId == "0") {
+                if (parseInt(countryId) > 0 && stateId == "0") {
                     $("#StateId").empty();
                     var select = document.getElementById("StateId");
                     $.each(MyData, function (i, item) {
@@ -97,7 +99,7 @@ function GetLocation(countryId, stateId) {
                     });
                     $("#StateId")[0].sumo.reload();
                 }
-                if (parseInt(countryId > 0) && parseInt(stateId > 0)) {
+                if (parseInt(countryId) > 0 && parseInt(stateId) > 0) {
                     $("#CitId").empty();
                     var select = document.getElementById("CitId");
                     $.each(MyData, function (i, item) {
@@ -157,15 +159,23 @@ function GetCities(controlId, evt, Id) {
         processData: false
     });
 }
-function OnSuccess(response) {
+function OnGenSuccess(response) {
+    CallToast(response.ERROR_MSG, response.ERROR_FLAG);
+}
+function OnAccountSuccess(response) {
     CallToast(response.ERROR_MSG, response.ERROR_FLAG);
     if (response.ERROR_FLAG == "S") {
-        count++;
-    }
-    if (parseInt(count) >= 2) {
-        window.location.href = "/Configuration/Step_2"
+        document.getElementsByClassName("tab2")[0].children[0].children[0].setAttribute("href", "jacascript:void(0)");
+        document.getElementsByClassName("tab3")[0].children[0].children[0].setAttribute("href", "#tab3");
+        document.getElementsByClassName("tab3")[0].children[0].children[0].click();
     }
 
+}
+function OnBillingSuccess(response) {
+    CallToast(response.ERROR_MSG, response.ERROR_FLAG);
+    if (response.ERROR_FLAG == "S") {
+        window.location.href = "/Configuration/Step_2"
+    }
 }
 function OnFailure(response) {
     alert("Error occured.");
@@ -210,4 +220,33 @@ function onPageSizeChanged(newPageSize) {
     var value = document.getElementById('page-size').value;
     gridOptions.api.paginationSetPageSize(Number(value));
 }
+document.addEventListener('DOMContentLoaded', function () {
+    $(".modal").on("hidden.bs.modal", function () {
+        $(".nav-tabs li").removeClass("active2");
+        $(".nav-tabs li:nth-child(1)").addClass("active2");
+        $(".nav-tabs li:nth-child(2)").find("a").addClass("disabled");
+        $('.nav-tabs a:first').tab('show')
+        $(".tab-content div:nth-child(1)").addClass("in active show");
+        $(".tab-content div:nth-child(2)").removeClass("in active show");
+    });
+    $(".nav-tabs li").click(function () {
+        if (!$(this).find("a").hasClass("disabled")) {
+            $(".nav-tabs li").removeClass("active2");
+            $(this).addClass("active2");
+        }
+    });
+});
 
+function OnChannelSuccess(response) {
+    CallToast(response.ERROR_MSG, response.ERROR_FLAG);
+    if (response.ERROR_FLAG == "S") {
+        $(".nav-tabs li:nth-child(1)").removeClass("active2");
+        $(".nav-tabs li:nth-child(2)").find("a").removeClass("disabled");
+        $(".nav-tabs li:nth-child(2)").addClass("active2");
+        $(".tab-content div:nth-child(1)").removeClass("in active show");
+        $(".tab-content div:nth-child(2)").addClass("in active show");
+    }
+}
+function OnChannelFailure(response) {
+    alert("Error occured.");
+}

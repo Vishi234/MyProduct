@@ -1,7 +1,7 @@
-﻿using Invent.Models.Entity.Common;
+﻿using DAL;
+using Invent.Models.Entity.Common;
 using Invent.Models.Entity.Configuration;
 using Invent.Models.Entity.Setting;
-using Microsoft.ApplicationBlocks.Data;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,7 +15,7 @@ namespace Invent.Models.BAL.Setting
     public class CategoryModel
     {
         string sqlconn = ConfigurationManager.ConnectionStrings["DBCONN"].ConnectionString;
-        public ErrorEntity ManageCategory(CategoryEntity catMdl)
+        public ResponseEntity ManageCategory(CategoryEntity catMdl)
         {
             SqlParameter[] sqlParameter = new SqlParameter[14];
             sqlParameter[0] = new SqlParameter("@USER_ID", catMdl.UserId);
@@ -37,7 +37,7 @@ namespace Invent.Models.BAL.Setting
             sqlParameter[13].Direction = ParameterDirection.Output;
             sqlParameter[13].Size = 1;
             SqlHelper.ExecuteScalar(sqlconn, CommandType.StoredProcedure, "SP_MANAGE_CATEGORY", sqlParameter);
-            ErrorEntity error = new ErrorEntity();
+            ResponseEntity error = ResponseEntity.GetInstance();
             error.ERROR_MSG = sqlParameter[12].Value.ToString();
             error.ERROR_FLAG = sqlParameter[13].Value.ToString();
             return error;

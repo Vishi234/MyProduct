@@ -1,4 +1,4 @@
-﻿@model Tuple<Invent.Models.Entity.Configuration.ChannelGeneralDetailsEntity, Invent.Models.Entity.Configuration.FlipkartEntity, Invent.Models.Entity.Configuration.AmazonEntity>
+﻿@model Tuple<Invent.Models.Entity.Configuration.ApiGeneralEntity, Invent.Models.Entity.Configuration.FlipkartEntity, Invent.Models.Entity.Configuration.AmazonEntity>
 @{
     Layout = null;
     Invent.Models.Entity.User.UserEntity user = (Invent.Models.Entity.User.UserEntity)HttpContext.Current.Session["UserEntity"];
@@ -14,91 +14,93 @@
     <link href="~/assets/css/jquery.toast.min.css" rel="stylesheet" />
 </head>
 <body>
-    @if (user != null)
-    {
-        <div class="configure-modal-two">
-            <div class="configure-header-two" id="configure-menu">
-                <ul>
-                    <li>
-                        <a step="1" href="javascript:Void(0)" class="config-disabled">
-                            <i class="fa fa-landmark"></i>
-                            1. Add Facility
-                        </a>
-                    </li>
-                    <li>
-                        <a step="2" href="javascript:Void(0)" class="config-active">
-                            <i class="fa fa-tv"></i>
-                            2. Add Channel
-                        </a>
-                    </li>
-                    <li>
-                        <a step="3" href="javascript:Void(0)" class="config-disabled">
-                            <i class="fa fa-file-invoice"></i>
-                            3. Invoice Configuration
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="configure-body-two" style="background:#fff;">
-                <div class="container">
-                    <div id="addchannel" class="addchannel">
-                        <span class="subheader">Marketplace </span>
+    <div class="configure-modal-two">
+        <div class="configure-header-two" id="configure-menu">
+            <ul>
+                <li>
+                    <a step="1" href="javascript:Void(0)" class="config-disabled">
+                        <i class="fa fa-landmark"></i>
+                        1. Add Facility
+                    </a>
+                </li>
+                <li>
+                    <a step="2" href="javascript:Void(0)" class="config-active">
+                        <i class="fa fa-tv"></i>
+                        2. Add Channel
+                    </a>
+                </li>
+                <li>
+                    <a step="3" href="javascript:Void(0)" class="config-disabled">
+                        <i class="fa fa-file-invoice"></i>
+                        3. Invoice Configuration
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="configure-body-two" style="background:#fff;">
+            <div class="container">
+                <div class="chlist">
+                    <div class="chlh">
+                        <span>Marketplace <i class="fa fa-angle-down pull-right"></i></span>
+                        <hr />
+                    </div>
+                    <div class="chbdy">
                         <ul>
                             <li>
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel">
-                                    <img src="~/assets/img/channel-logo/S_Amazon.png" title="Amazon" />
-                                    <div class="channel-btn">
-                                        <span>Amazon</span>
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel" Ch="AZ">
+                                    <div class="chimgbdy">
+                                        <img src="~/assets/img/channel-logo/S_Amazon.png" title="Amazon" />
                                     </div>
+                                    <span>Amazon</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#paytm-channel">
-                                    <img src="~/assets/img/channel-logo/S_Paytm.png" title="Paytm" />
-                                    <div class="channel-btn">
-                                        <span>Paytm</span>
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#paytm-channel" Ch="PM">
+                                    <div class="chimgbdy">
+                                        <img src="~/assets/img/channel-logo/S_Paytm.png" title="Paytm" />
                                     </div>
+                                    <span>Paytm</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#flipkart-channel">
-                                    <img src="~/assets/img/channel-logo/S_Flipkart.png" title="Flipkart" />
-                                    <div class="channel-btn">
-                                        <span>Flipkart</span>
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#flipkart-channel" Ch="FP">
+                                    <div class="chimgbdy">
+                                        <img src="~/assets/img/channel-logo/S_Flipkart.png" title="Flipkart" />
                                     </div>
+                                    <span>Flipkart</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#shopcluse-channel">
-                                    <img src="~/assets/img/channel-logo/S_Shopclues.png" title="Shopclues" />
-                                    <div class="channel-btn">
-                                        <span>ShopClues</span>
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#shopcluse-channel" Ch="SC">
+                                    <div class="chimgbdy">
+                                        <img src="~/assets/img/channel-logo/S_Shopclues.png" title="Shopclues" />
                                     </div>
+                                    <span>Shopclues</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#snapdeal-channel">
-                                    <img src="~/assets/img/channel-logo/S_Snapdeal.png" title="Snapdeal" />
-                                    <div class="channel-btn">
-                                        <span>Snapdeal</span>
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#snapdeal-channel" Ch="SD">
+                                    <div class="chimgbdy">
+                                        <img src="~/assets/img/channel-logo/S_Snapdeal.png" title="Snapdeal" />
                                     </div>
+                                    <span>Snapdeal</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#myntra-channel">
-                                    <img src="~/assets/img/channel-logo/S_Ebay.png" title="Ebay" />
-                                    <div class="channel-btn">
-                                        <span>Ebay</span>
+                                <a href="javascript:void(0)" Ch="EB">
+                                    <div class="chimgbdy">
+                                        <img src="~/assets/img/channel-logo/S_Ebay.png" title="Ebay" />
                                     </div>
+                                    <span>EBay</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-
         </div>
-    }
+
+    </div>
     @* Confgure Amazon Channel *@
     <div class="modal fade" id="amazon-channel">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -112,7 +114,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="channel-info col-lg-3 col-xs-12 col-md-3 col-sm-3">
-                            <img src="~/assets/img/channel-logo/b-amazon.png" />
+                            <img src="~/assets/img/channel-logo/S_Amazon.png" />
                             <div class="step-follow">
                                 <ol>
                                     <li>Go to <a href="http://developer.amazonservices.in">http://developer.amazonservices.in</a></li>
@@ -127,7 +129,7 @@
                         <div class="channel-add col-lg-9 col-xs-12 col-md-9 col-sm-9">
                             <ul class="nav nav-tabs">
                                 <li class="active2"><a data-toggle="tab" href="#setting">Setting</a></li>
-                                <li><a data-toggle="tab" href="#connector">Connector</a></li>
+                                <li><a data-toggle="tab" class="disabled" href="#connector">Connector</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div id="setting" class="tab-pane fade in active show">
@@ -140,54 +142,54 @@ new AjaxOptions
     LoadingElementId = "progress"
 }))
                                     {
-                                        <div class="header-ttl">
-                                            <span class="subheader">General Information</span>
-                                            <p>Follow these instruction to know how to add Channel <button id="amazonSave" type="submit" class="btn btn-success">Save & Next</button>  </p>
+                                    <div class="header-ttl">
+                                        <span class="subheader">General Information</span>
+                                        <p>Follow these instruction to know how to add Channel <button id="amazonSave" type="submit" class="btn btn-success">Save & Next</button>  </p>
+                                    </div>
+                                    <div class="gen-form">
+                                        <ul>
+                                            <li>
+                                                <label class="private-label">Channel Name*</label>
+                                                @Html.TextBoxFor(model => model.Item1.ChannelName, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item1.ChannelName)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                            <li>
+                                                <label class="private-label">Leadger Name (Optional)</label>
+                                                @Html.TextBoxFor(model => model.Item1.LeadgerName, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item1.LeadgerName)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="header-ttl">
+                                        <span class="subheader">Order</span>
+                                        <p>This section help us to configure important parameters for order and sync.</p>
+                                    </div>
+                                    <div class="gen-form">
+                                        <div class="checkbox">
+                                            <label>
+                                                @Html.CheckBoxFor(model => model.Item1.OrderSync, new { @data_toggle = "toggle" })
+                                                @Html.ValidationMessageFor(model => model.Item1.OrderSync)
+                                                @*<input type="checkbox" data-toggle="toggle">*@
+                                                Sync (Optional)
+                                            </label>
                                         </div>
-                                        <div class="gen-form">
-                                            <ul>
-                                                <li>
-                                                    <label class="private-label">Channel Name*</label>
-                                                    @Html.TextBoxFor(model => model.Item1.ChannelName, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item1.ChannelName)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                                <li>
-                                                    <label class="private-label">Leadger Name (Optional)</label>
-                                                    @Html.TextBoxFor(model => model.Item1.LeadgerName, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item1.LeadgerName)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                            </ul>
+                                    </div>
+                                    <div class="header-ttl">
+                                        <span class="subheader">Inventory</span>
+                                        <p>Once the inentory is ON, We will update inventory on channel.</p>
+                                    </div>
+                                    <div class="gen-form">
+                                        <div class="checkbox">
+                                            <label>
+                                                @Html.CheckBoxFor(model => model.Item1.InventorySync, new { @data_toggle = "toggle" })
+                                                @Html.ValidationMessageFor(model => model.Item1.InventorySync)
+                                                @*<input type="checkbox" data-toggle="toggle">*@
+                                                Sync (Optional)
+                                            </label>
                                         </div>
-                                        <div class="header-ttl">
-                                            <span class="subheader">Order</span>
-                                            <p>This section help us to configure important parameters for order and sync.</p>
-                                        </div>
-                                        <div class="gen-form">
-                                            <div class="checkbox">
-                                                <label>
-                                                    @Html.CheckBoxFor(model => model.Item1.OrderSync, new { @data_toggle = "toggle" })
-                                                    @Html.ValidationMessageFor(model => model.Item1.OrderSync)
-                                                    @*<input type="checkbox" data-toggle="toggle">*@
-                                                    Sync (Optional)
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="header-ttl">
-                                            <span class="subheader">Inventory</span>
-                                            <p>Once the inentory is ON, We will update inventory on channel.</p>
-                                        </div>
-                                        <div class="gen-form">
-                                            <div class="checkbox">
-                                                <label>
-                                                    @Html.CheckBoxFor(model => model.Item1.InventorySync, new { @data_toggle = "toggle" })
-                                                    @Html.ValidationMessageFor(model => model.Item1.InventorySync)
-                                                    @*<input type="checkbox" data-toggle="toggle">*@
-                                                    Sync (Optional)
-                                                </label>
-                                            </div>
-                                        </div>
+                                    </div>
                                     }
                                 </div>
                                 <div id="connector" class="tab-pane fade">
@@ -200,64 +202,64 @@ new AjaxOptions
     LoadingElementId = "progress"
 }))
                                     {
-                                        <div class="header-ttl">
-                                            <span class="subheader">Amazon MWS API </span>
-                                            <p>Provide API credentials that you get when you authorized you as a developer <button id="amaConnector" class="btn btn-success"><i class="fa fa-plug"></i> Connect</button></p>
-                                        </div>
-                                        <div class="gen-form">
-                                            <ul>
-                                                <li>
-                                                    <label class="private-label">Seller Id</label>
-                                                    @Html.TextBoxFor(model => model.Item3.SellerId, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item3.SellerId)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                                <li>
-                                                    <label class="private-label">Marketplace Id</label>
-                                                    @Html.TextBoxFor(model => model.Item3.MarketplaceId, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item3.MarketplaceId)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                                <li>
-                                                    <label class="private-label">AWS Access Key Id</label>
-                                                    @Html.TextBoxFor(model => model.Item3.AccessKey, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item3.AccessKey)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                                <li>
-                                                    <label class="private-label">Secret Key</label>
-                                                    @Html.TextBoxFor(model => model.Item3.SecretKey, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item3.SecretKey)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                                <li>
-                                                    <label class="private-label">MWS Auth Token</label>
-                                                    @Html.TextBoxFor(model => model.Item3.AuthToken, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item3.AuthToken)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="header-ttl">
-                                            <span class="subheader">Seller Credentials</span>
-                                            <p>Provide Credentials that you use to login into your seller panel.</p>
-                                        </div>
-                                        <div class="gen-form">
-                                            <ul>
-                                                <li>
-                                                    <label class="private-label">Username</label>
-                                                    @Html.TextBoxFor(model => model.Item3.Username, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item3.Username)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                                <li>
-                                                    <label class="private-label">Password</label>
-                                                    @Html.PasswordFor(model => model.Item3.Password, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item3.Password)
-                                                    <input type="text" class="private-form-control" />
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <div class="header-ttl">
+                                        <span class="subheader">Amazon MWS API </span>
+                                        <p>Provide API credentials that you get when you authorized you as a developer <button id="amaConnector" class="btn btn-success"><i class="fa fa-plug"></i> Connect</button></p>
+                                    </div>
+                                    <div class="gen-form">
+                                        <ul>
+                                            <li>
+                                                <label class="private-label">Seller Id</label>
+                                                @Html.TextBoxFor(model => model.Item3.SellerId, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item3.SellerId)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                            <li>
+                                                <label class="private-label">Marketplace Id</label>
+                                                @Html.TextBoxFor(model => model.Item3.MarketplaceId, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item3.MarketplaceId)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                            <li>
+                                                <label class="private-label">AWS Access Key Id</label>
+                                                @Html.TextBoxFor(model => model.Item3.AccessKey, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item3.AccessKey)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                            <li>
+                                                <label class="private-label">Secret Key</label>
+                                                @Html.TextBoxFor(model => model.Item3.SecretKey, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item3.SecretKey)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                            <li>
+                                                <label class="private-label">MWS Auth Token</label>
+                                                @Html.TextBoxFor(model => model.Item3.AuthToken, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item3.AuthToken)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="header-ttl">
+                                        <span class="subheader">Seller Credentials</span>
+                                        <p>Provide Credentials that you use to login into your seller panel.</p>
+                                    </div>
+                                    <div class="gen-form">
+                                        <ul>
+                                            <li>
+                                                <label class="private-label">Username</label>
+                                                @Html.TextBoxFor(model => model.Item3.Username, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item3.Username)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                            <li>
+                                                <label class="private-label">Password</label>
+                                                @Html.PasswordFor(model => model.Item3.Password, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item3.Password)
+                                                <input type="text" class="private-form-control" />
+                                            </li>
+                                        </ul>
+                                    </div>
                                     }
                                 </div>
 
@@ -283,7 +285,7 @@ new AjaxOptions
                 <div class="modal-body">
                     <div class="row">
                         <div class="channel-info col-lg-3 col-xs-12 col-md-3 col-sm-3">
-                            <img src="~/assets/img/channel-logo/b-paytm.png" />
+                            <img src="~/assets/img/channel-logo/S_Paytm.png" />
                             <div class="step-follow">
                                 <ol>
                                     <li>Please Enter your Merchant id, which is available in the Settings screen of your Paytm Seller Dashboard.</li>
@@ -393,7 +395,7 @@ new AjaxOptions
                 <div class="modal-body">
                     <div class="row">
                         <div class="channel-info col-lg-3 col-xs-12 col-sm-3 col-md-3">
-                            <img src="~/assets/img/channel-logo/b-flipkart.png" />
+                            <img src="~/assets/img/channel-logo/S_Flipkart.png" />
                             <div class="step-follow">
                                 <ol>
                                     <li>Go to <a href="https://api.flipkart.net/oauth-register/login">https://api.flipkart.net/oauth-register/login</a></li>
@@ -420,54 +422,54 @@ new AjaxOptions
     LoadingElementId = "progress"
 }))
                                     {
-                                        <div class="header-ttl">
-                                            <span class="subheader">General Information</span>
-                                            <p>Follow these instruction to know how to add Channel <button id="amaSave" type="submit" class="btn btn-success">Save & Next</button>  </p>
+                                    <div class="header-ttl">
+                                        <span class="subheader">General Information</span>
+                                        <p>Follow these instruction to know how to add Channel <button id="amaSave" type="submit" class="btn btn-success">Save & Next</button>  </p>
+                                    </div>
+                                    <div class="gen-form">
+                                        <ul>
+                                            <li>
+                                                <label class="private-label">Channel Name*</label>
+                                                @Html.TextBoxFor(model => model.Item1.ChannelName, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item1.ChannelName)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                            <li>
+                                                <label class="private-label">Leadger Name (Optional)</label>
+                                                @Html.TextBoxFor(model => model.Item1.LeadgerName, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item1.LeadgerName)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="header-ttl">
+                                        <span class="subheader">Order</span>
+                                        <p>This section help us to configure important parameters for order and sync.</p>
+                                    </div>
+                                    <div class="gen-form">
+                                        <div class="checkbox">
+                                            <label>
+                                                @Html.CheckBoxFor(model => model.Item1.OrderSync, new { @data_toggle = "toggle" })
+                                                @Html.ValidationMessageFor(model => model.Item1.OrderSync)
+                                                @*<input type="checkbox" data-toggle="toggle">*@
+                                                Sync (Optional)
+                                            </label>
                                         </div>
-                                        <div class="gen-form">
-                                            <ul>
-                                                <li>
-                                                    <label class="private-label">Channel Name*</label>
-                                                    @Html.TextBoxFor(model => model.Item1.ChannelName, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item1.ChannelName)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                                <li>
-                                                    <label class="private-label">Leadger Name (Optional)</label>
-                                                    @Html.TextBoxFor(model => model.Item1.LeadgerName, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item1.LeadgerName)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                            </ul>
+                                    </div>
+                                    <div class="header-ttl">
+                                        <span class="subheader">Inventory</span>
+                                        <p>Once the inentory is ON, We will update inventory on channel.</p>
+                                    </div>
+                                    <div class="gen-form">
+                                        <div class="checkbox">
+                                            <label>
+                                                @Html.CheckBoxFor(model => model.Item1.InventorySync, new { @data_toggle = "toggle" })
+                                                @Html.ValidationMessageFor(model => model.Item1.InventorySync)
+                                                @*<input type="checkbox" data-toggle="toggle">*@
+                                                Sync (Optional)
+                                            </label>
                                         </div>
-                                        <div class="header-ttl">
-                                            <span class="subheader">Order</span>
-                                            <p>This section help us to configure important parameters for order and sync.</p>
-                                        </div>
-                                        <div class="gen-form">
-                                            <div class="checkbox">
-                                                <label>
-                                                    @Html.CheckBoxFor(model => model.Item1.OrderSync, new { @data_toggle = "toggle" })
-                                                    @Html.ValidationMessageFor(model => model.Item1.OrderSync)
-                                                    @*<input type="checkbox" data-toggle="toggle">*@
-                                                    Sync (Optional)
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="header-ttl">
-                                            <span class="subheader">Inventory</span>
-                                            <p>Once the inentory is ON, We will update inventory on channel.</p>
-                                        </div>
-                                        <div class="gen-form">
-                                            <div class="checkbox">
-                                                <label>
-                                                    @Html.CheckBoxFor(model => model.Item1.InventorySync, new { @data_toggle = "toggle" })
-                                                    @Html.ValidationMessageFor(model => model.Item1.InventorySync)
-                                                    @*<input type="checkbox" data-toggle="toggle">*@
-                                                    Sync (Optional)
-                                                </label>
-                                            </div>
-                                        </div>
+                                    </div>
                                     }
 
                                 </div>
@@ -481,58 +483,58 @@ new AjaxOptions
     LoadingElementId = "progress"
 }))
                                     {
-                                        <div class="header-ttl">
-                                            <span class="subheader">Flipkart API </span>
-                                            <p>Provide API credentials that you get in your seller panel inside setting tab.<button id="amaConnector" type="submit" class="btn btn-success"><i class="fa fa-plug"></i> Connect</button></p>
-                                        </div>
-                                        <div class="gen-form">
-                                            <ul>
-                                                <li>
-                                                    <label class="private-label">Application Name*</label>
-                                                    @Html.TextBoxFor(model => model.Item2.ApplicationName, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item2.ApplicationName)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                                <li>
-                                                    <label class="private-label">Application Id*</label>
-                                                    @Html.TextBoxFor(model => model.Item2.ApplicationId, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item2.ApplicationId)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                                <li>
-                                                    <label class="private-label">Application Secret*</label>
-                                                    @Html.TextBoxFor(model => model.Item2.ApplicationSecret, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item2.ApplicationSecret)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                                <li>
-                                                    <label class="private-label">Location Id</label>
-                                                    @Html.TextBoxFor(model => model.Item2.LocationId, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item2.LocationId)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="header-ttl">
-                                            <span class="subheader">Seller Credentials</span>
-                                            <p>Provide Credentials that you use to login into your seller panel.</p>
-                                        </div>
-                                        <div class="gen-form">
-                                            <ul>
-                                                <li>
-                                                    <label class="private-label">Username*</label>
-                                                    @Html.TextBoxFor(model => model.Item2.Username, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item2.Username)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                                <li>
-                                                    <label class="private-label">Password*</label>
-                                                    @Html.TextBoxFor(model => model.Item2.Password, new { @class = "private-form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Item2.Password)
-                                                    @*<input type="text" class="private-form-control" />*@
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <div class="header-ttl">
+                                        <span class="subheader">Flipkart API </span>
+                                        <p>Provide API credentials that you get in your seller panel inside setting tab.<button id="amaConnector" type="submit" class="btn btn-success"><i class="fa fa-plug"></i> Connect</button></p>
+                                    </div>
+                                    <div class="gen-form">
+                                        <ul>
+                                            <li>
+                                                <label class="private-label">Application Name*</label>
+                                                @Html.TextBoxFor(model => model.Item2.ApplicationName, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item2.ApplicationName)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                            <li>
+                                                <label class="private-label">Application Id*</label>
+                                                @Html.TextBoxFor(model => model.Item2.ApplicationId, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item2.ApplicationId)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                            <li>
+                                                <label class="private-label">Application Secret*</label>
+                                                @Html.TextBoxFor(model => model.Item2.ApplicationSecret, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item2.ApplicationSecret)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                            <li>
+                                                <label class="private-label">Location Id</label>
+                                                @Html.TextBoxFor(model => model.Item2.LocationId, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item2.LocationId)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="header-ttl">
+                                        <span class="subheader">Seller Credentials</span>
+                                        <p>Provide Credentials that you use to login into your seller panel.</p>
+                                    </div>
+                                    <div class="gen-form">
+                                        <ul>
+                                            <li>
+                                                <label class="private-label">Username*</label>
+                                                @Html.TextBoxFor(model => model.Item2.Username, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item2.Username)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                            <li>
+                                                <label class="private-label">Password*</label>
+                                                @Html.TextBoxFor(model => model.Item2.Password, new { @class = "private-form-control" })
+                                                @Html.ValidationMessageFor(model => model.Item2.Password)
+                                                @*<input type="text" class="private-form-control" />*@
+                                            </li>
+                                        </ul>
+                                    </div>
                                     }
 
                                 </div>
@@ -561,7 +563,7 @@ new AjaxOptions
                 <div class="modal-body">
                     <div class="row">
                         <div class="channel-info col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                            <img src="~/assets/img/channel-logo/b-shop.png" />
+                            <img src="~/assets/img/channel-logo/S_Shopclues.png" />
                             <div class="step-follow">
                                 <ol>
                                     <li>Go to <a href="http://applications.shopclues.com/index.php?r=site/login">http://applications.shopclues.com/index.php?r=site/login</a></li>
@@ -684,7 +686,7 @@ new AjaxOptions
                 <div class="modal-body">
                     <div class="row">
                         <div class="channel-info col-lg-3 col-xs-12 col-md-3 col-sm-3">
-                            <img src="~/assets/img/channel-logo/b-snapdeal.png" />
+                            <img src="~/assets/img/channel-logo/S_Snapdeal.png" />
                             @*<div class="step-follow">
                                 <ol>
                                 <li>Go to <a href="http://applications.shopclues.com/index.php?r=site/login">http://applications.shopclues.com/index.php?r=site/login</a></li>
@@ -911,15 +913,6 @@ new AjaxOptions
     <script src="~/assets/scripts/common.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $(".nav-tabs li").click(function () {
-                if (!$(this).find("a").hasClass("disabled")) {
-                    $(".nav-tabs li").removeClass("active2");
-                    $(this).addClass("active2");
-                }
-            });
-            $(".modal").on("hidden.bs.modal", function () {
-                $(".nav-tabs li:nth-child(1)").addClass("active2");
-            });
             @if (user == null)
             {
               <text>
@@ -927,19 +920,7 @@ new AjaxOptions
             </text>
                 }
         });
-        function OnChannelSuccess(response) {
-            CallToast(response.ERROR_MSG, response.ERROR_FLAG);
-            if (response.ERROR_FLAG == "S") {
-                $(".nav-tabs li:nth-child(1)").removeClass("active2");
-                $(".nav-tabs li:nth-child(2)").find("a").removeClass("disabled");
-                $(".nav-tabs li:nth-child(2)").addClass("active2");
-                $(".tab-content div:nth-child(1)").removeClass("in active show");
-                $(".tab-content div:nth-child(2)").addClass("in active show");
-            }
-        }
-        function OnChannelFailure(response) {
-            alert("Error occured.");
-        }
+        
         function OnChannelApiSuccess(response) {
             CallToast(response.ERROR_MSG, response.ERROR_FLAG);
             if (response.ERROR_FLAG == "S") {

@@ -146,3 +146,12 @@ function OnAuthSuccess(response) {
 function OnAuthFailure(response) {
 
 }
+function OnChannelApiSuccess(response) {
+    CallToast(response.ERROR_MSG, response.ERROR_FLAG);
+    if (response.ERROR_FLAG == "S") {
+        $(".modal").modal("hide");
+    }
+}
+function OnChannelApiFailure(response) {
+    alert("Error occured.");
+}

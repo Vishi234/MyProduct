@@ -57,7 +57,7 @@
                                         <img src="~/assets/img/user-img.png" />
                                     </div>
                                     <div class="pro-name">
-                                        <span class="pro-user-name">Vishal Singh</span>
+                                        <span class="pro-user-name">Vishal</span>
                                         <span class="pro-user-email">wd2vteam@gmail.com</span>
                                         <span class="pro-user-setting"><a href="javascript:void(0)">Profile & Preferences</a></span>
                                     </div>
@@ -94,6 +94,7 @@
     <input type="hidden" id="hfVerified" value="@user.Verified" />
 
 
+
     <script src="~/assets/scripts/jquery-3.3.1.min.js"></script>
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
@@ -115,12 +116,6 @@
                 $(this).toggleClass("right-menu-active");
                 $(".top-sub-menu").toggleClass("show");
             })
-            @if(user==null)
-        {
-           <text>
-            window.location.href = "@Url.Action("Login","Auth")"
-            </text>
-        }
             //$('[data-toggle="tooltip"]').tooltip();
             $('#goobalDateFilter').daterangepicker({
                 opens: 'right',
@@ -136,11 +131,7 @@
                 $(".top-menu li").find("a").removeClass("top-menu-active");
                 $(this).addClass("top-menu-active");
             });
-            $(".nav-tabs li").click(function () {
-                $(".nav-tabs li").removeClass("active2");
-                $(this).addClass("active2");
-            })
-
+           
         });
     </script>
 </body>

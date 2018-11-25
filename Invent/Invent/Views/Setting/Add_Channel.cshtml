@@ -1,8 +1,13 @@
-﻿
+﻿@model Tuple<Invent.Models.Entity.Configuration.ApiGeneralEntity, Invent.Models.Entity.Configuration.FlipkartEntity, Invent.Models.Entity.Configuration.AmazonEntity>
 @{
     ViewBag.Title = "Add_Channel";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style type="text/css">
+    .modal-backdrop {
+        position: inherit !important;
+    }
+</style>
 @{
     Html.RenderPartial("../Shared/PartialView/Setting/_TopMenu");
 }
@@ -20,7 +25,7 @@
         <div class="chbdy">
             <ul>
                 <li>
-                    <a href="/Setting/Channel_Detail?Ch=AZ" Ch="AZ">
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#amazon-channel" Ch="AZ">
                         <div class="chimgbdy">
                             <img src="~/assets/img/channel-logo/S_Amazon.png" title="Amazon" />
                         </div>
@@ -28,7 +33,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" Ch="PM">
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#paytm-channel" Ch="PM">
                         <div class="chimgbdy">
                             <img src="~/assets/img/channel-logo/S_Paytm.png" title="Paytm" />
                         </div>
@@ -36,7 +41,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" Ch="FP">
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#flipkart-channel" Ch="FP">
                         <div class="chimgbdy">
                             <img src="~/assets/img/channel-logo/S_Flipkart.png" title="Flipkart" />
                         </div>
@@ -44,7 +49,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" Ch="SC">
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#shopcluse-channel" Ch="SC">
                         <div class="chimgbdy">
                             <img src="~/assets/img/channel-logo/S_Shopclues.png" title="Shopclues" />
                         </div>
@@ -52,7 +57,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" Ch="SD">
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#snapdeal-channel" Ch="SD">
                         <div class="chimgbdy">
                             <img src="~/assets/img/channel-logo/S_Snapdeal.png" title="Snapdeal" />
                         </div>
@@ -72,3 +77,793 @@
     </div>
 </div>
 
+@* Confgure Amazon Channel *@
+<div class="modal fade" id="amazon-channel">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Integration</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="channel-info col-lg-3 col-xs-12 col-md-3 col-sm-3">
+                        <img src="~/assets/img/channel-logo/S_Amazon.png" />
+                        <div class="step-follow">
+                            <ol>
+                                <li>Go to <a href="http://developer.amazonservices.in">http://developer.amazonservices.in</a></li>
+                                <li>Click the Sign up for MWS button.</li>
+                                <li>Log into your Amazon seller account.</li>
+                                <li>Select the following option: <b>"I want to access my Amazon seller account with MWS"</b> and click next.</li>
+                                <li>Accept the Amazon MWS License Agreement.</li>
+                                <li>Copy the credential and paste it</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="channel-add col-lg-9 col-xs-12 col-md-9 col-sm-9">
+                        <ul class="nav nav-tabs">
+                            <li class="active2"><a data-toggle="tab" href="#setting">Setting</a></li>
+                            <li><a data-toggle="tab" class="disabled" href="#connector">Connector</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="setting" class="tab-pane fade in active show">
+                                @using (Ajax.BeginForm("SaveChannelDetails", "Configuration",
+new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "OnChannelSuccess",
+    OnFailure = "OnChannelFailure",
+    LoadingElementId = "progress"
+}))
+                                {
+                                <div class="header-ttl">
+                                    <span class="subheader">General Information</span>
+                                    <p>Follow these instruction to know how to add Channel <button id="amazonSave" type="submit" class="btn btn-success">Save & Next</button>  </p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Channel Name*</label>
+                                            @Html.TextBoxFor(model => model.Item1.ChannelName, new { @id = "AZChannelName", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item1.ChannelName)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Leadger Name (Optional)</label>
+                                            @Html.TextBoxFor(model => model.Item1.LeadgerName, new { @id = "AZLedgerName", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item1.LeadgerName)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Order</span>
+                                    <p>This section help us to configure important parameters for order and sync.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(model => model.Item1.OrderSync, new { @id = "AZOrderSync", @data_toggle = "toggle" })
+                                            @Html.ValidationMessageFor(model => model.Item1.OrderSync)
+                                            @*<input type="checkbox" data-toggle="toggle">*@
+                                            Sync (Optional)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Inventory</span>
+                                    <p>Once the inentory is ON, We will update inventory on channel.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(model => model.Item1.InventorySync, new { @id = "AZInventorySync", @data_toggle = "toggle" })
+                                            @Html.ValidationMessageFor(model => model.Item1.InventorySync)
+                                            @*<input type="checkbox" data-toggle="toggle">*@
+                                            Sync (Optional)
+                                        </label>
+                                    </div>
+                                </div>
+                                }
+                            </div>
+                            <div id="connector" class="tab-pane fade">
+                                @using (Ajax.BeginForm("SaveChannelAmazonDetails", "Configuration",
+new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "OnChannelApiSuccess",
+    OnFailure = "OnChannelApiFailure",
+    LoadingElementId = "progress"
+}))
+                                {
+                                <div class="header-ttl">
+                                    <span class="subheader">Amazon MWS API </span>
+                                    <p>Provide API credentials that you get when you authorized you as a developer <button id="amaConnector" class="btn btn-success"><i class="fa fa-plug"></i> Connect</button></p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Seller Id</label>
+                                            @Html.TextBoxFor(model => model.Item3.SellerId, new { @id = "AZSellerId", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item3.SellerId)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Marketplace Id</label>
+                                            @Html.TextBoxFor(model => model.Item3.MarketplaceId, new { @id = "AZMarketplaceId", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item3.MarketplaceId)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                        <li>
+                                            <label class="private-label">AWS Access Key Id</label>
+                                            @Html.TextBoxFor(model => model.Item3.AccessKey, new { @id = "AZAccessKey", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item3.AccessKey)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Secret Key</label>
+                                            @Html.TextBoxFor(model => model.Item3.SecretKey, new { @id = "AZSecretKey", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item3.SecretKey)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                        <li>
+                                            <label class="private-label">MWS Auth Token</label>
+                                            @Html.TextBoxFor(model => model.Item3.AuthToken, new { @id = "AZAuthToken", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item3.AuthToken)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Seller Credentials</span>
+                                    <p>Provide Credentials that you use to login into your seller panel.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Username</label>
+                                            @Html.TextBoxFor(model => model.Item3.Username, new { @id = "AZUserName", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item3.Username)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Password</label>
+                                            @Html.PasswordFor(model => model.Item3.Password, new { @id = "AZPassword", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item3.Password)
+                                        </li>
+                                    </ul>
+                                </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+@* Configure Amazon End *@
+
+@* Confgure Paytm Channel *@
+<div class="modal fade" id="paytm-channel">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Integration</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="channel-info col-lg-3 col-xs-12 col-md-3 col-sm-3">
+                        <img src="~/assets/img/channel-logo/S_Paytm.png" />
+                        <div class="step-follow">
+                            <ol>
+                                <li>Please Enter your Merchant id, which is available in the Settings screen of your Paytm Seller Dashboard.</li>
+                                <li>Please Enter your the Email and Password you use to access the seller portal of SellerHub.</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="channel-add col-lg-9 col-xs-12 col-md-9 col-sm-9">
+                        <ul class="nav nav-tabs">
+                            <li class="active2"><a data-toggle="tab" href="#psetting">Setting</a></li>
+                            <li><a data-toggle="tab" class="disabled" href="#pconnector">Connector</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="psetting" class="tab-pane fade in active show">
+                                <div class="header-ttl">
+                                    <span class="subheader">General Information</span>
+                                    <p>Follow these instruction to know how to add Channel <button id="amaSave" class="btn btn-success">Save & Next</button>  </p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Channel Name</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Leadger Name (Optional)</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Order</span>
+                                    <p>This section help us to configure important parameters for order and sync.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" data-toggle="toggle">
+                                            Sync (Optional)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Inventory</span>
+                                    <p>Once the inentory is ON, We will update inventory on channel.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" data-toggle="toggle">
+                                            Sync (Optional)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="pconnector" class="tab-pane fade">
+                                <div class="header-ttl">
+                                    <span class="subheader">Paytm API </span>
+                                    <p>Provide API credentials that you get in your seller panel inside setting tab.<button id="amaConnector" class="btn btn-success"><i class="fa fa-plug"></i> Connect</button></p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Merchant Id</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Seller Credentials</span>
+                                    <p>Provide Credentials that you use to login into your seller panel.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Username</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Password</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@* Configure Paytm End *@
+
+@* Confgure Flipkart Channel *@
+<div class="modal fade" id="flipkart-channel">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Integration</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="channel-info col-lg-3 col-xs-12 col-sm-3 col-md-3">
+                        <img src="~/assets/img/channel-logo/S_Flipkart.png" />
+                        <div class="step-follow">
+                            <ol>
+                                <li>Go to <a href="https://api.flipkart.net/oauth-register/login">https://api.flipkart.net/oauth-register/login</a></li>
+                                <li>Sign in using your flipkart seller credentials.</li>
+                                <li>On log in, click on 'Register New Application'</li>
+                                <li>Enter Application name and description as 'SellerHub' (or whatever you prefer to identify later)</li>
+                                <li>In the newly generated table row copy Application Id and Application Secret and paste it in the corresponding fields above</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="channel-add col-lg-9 col-xs-12 col-sm-9 col-md-9">
+                        <ul class="nav nav-tabs">
+                            <li class="active2"><a data-toggle="tab" href="#fsetting">Setting</a></li>
+                            <li><a data-toggle="tab" class="disabled" href="#fconnector">Connector</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="fsetting" class="tab-pane fade in active show">
+                                @using (Ajax.BeginForm("SaveChannelDetails", "Configuration",
+new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "OnChannelSuccess",
+    OnFailure = "OnChannelFailure",
+    LoadingElementId = "progress"
+}))
+                                {
+                                <div class="header-ttl">
+                                    <span class="subheader">General Information</span>
+                                    <p>Follow these instruction to know how to add Channel <button id="amaSave" type="submit" class="btn btn-success">Save & Next</button>  </p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Channel Name*</label>
+                                            @Html.TextBoxFor(model => model.Item1.ChannelName, new {@id="FPChannelName", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item1.ChannelName)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Leadger Name (Optional)</label>
+                                            @Html.TextBoxFor(model => model.Item1.LeadgerName, new { @id = "FPLeadgerName", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item1.LeadgerName)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Order</span>
+                                    <p>This section help us to configure important parameters for order and sync.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(model => model.Item1.OrderSync, new { @id = "FPOrderSync", @data_toggle = "toggle" })
+                                            @Html.ValidationMessageFor(model => model.Item1.OrderSync)
+                                            @*<input type="checkbox" data-toggle="toggle">*@
+                                            Sync (Optional)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Inventory</span>
+                                    <p>Once the inentory is ON, We will update inventory on channel.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(model => model.Item1.InventorySync, new { @id = "FPInventorySync", @data_toggle = "toggle" })
+                                            @Html.ValidationMessageFor(model => model.Item1.InventorySync)
+                                            @*<input type="checkbox" data-toggle="toggle">*@
+                                            Sync (Optional)
+                                        </label>
+                                    </div>
+                                </div>
+                                }
+
+                            </div>
+                            <div id="fconnector" class="tab-pane fade">
+                                @using (Ajax.BeginForm("SaveChannelApiDetails", "Configuration",
+new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "OnChannelApiSuccess",
+    OnFailure = "OnChannelApiFailure",
+    LoadingElementId = "progress"
+}))
+                                {
+                                <div class="header-ttl">
+                                    <span class="subheader">Flipkart API </span>
+                                    <p>Provide API credentials that you get in your seller panel inside setting tab.<button id="amaConnector" type="submit" class="btn btn-success"><i class="fa fa-plug"></i> Connect</button></p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Application Name*</label>
+                                            @Html.TextBoxFor(model => model.Item2.ApplicationName, new { @id = "FPApplicationName", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item2.ApplicationName)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Application Id*</label>
+                                            @Html.TextBoxFor(model => model.Item2.ApplicationId, new { @id = "FPApplicationId", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item2.ApplicationId)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Application Secret*</label>
+                                            @Html.TextBoxFor(model => model.Item2.ApplicationSecret, new { @id = "FPApplicationSecret", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item2.ApplicationSecret)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Location Id</label>
+                                            @Html.TextBoxFor(model => model.Item2.LocationId, new { @id = "FPLocationId", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item2.LocationId)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Seller Credentials</span>
+                                    <p>Provide Credentials that you use to login into your seller panel.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Username*</label>
+                                            @Html.TextBoxFor(model => model.Item2.Username, new { @id = "FPUserName", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item2.Username)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Password*</label>
+                                            @Html.TextBoxFor(model => model.Item2.Password, new { @id = "FPPassword", @class = "private-form-control" })
+                                            @Html.ValidationMessageFor(model => model.Item2.Password)
+                                            @*<input type="text" class="private-form-control" />*@
+                                        </li>
+                                    </ul>
+                                </div>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+@* Configure Flipkart End *@
+
+@* Confgure ShopCluse Channel *@
+<div class="modal fade" id="shopcluse-channel">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Integration</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="channel-info col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <img src="~/assets/img/channel-logo/S_Shopclues.png" />
+                        <div class="step-follow">
+                            <ol>
+                                <li>Go to <a href="http://applications.shopclues.com/index.php?r=site/login">http://applications.shopclues.com/index.php?r=site/login</a></li>
+                                <li>Sign in using your shopcluse seller credentials.</li>
+                                <li>On log in, click on 'Create App'</li>
+                                <li>Enter all the required details and click save button.</li>
+                                <li>After saving the details your application will be sent to shopucluse seller support for verfication.</li>
+                                <li>Once the application got verified you will get client id and client secret</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="channel-add col-lg-9 col-sm-9 col-xs-12 col-md-9">
+                        <ul class="nav nav-tabs">
+                            <li class="active2"><a data-toggle="tab" href="#shsetting">Setting</a></li>
+                            <li><a data-toggle="tab" class="disabled" href="#shconnector">Connector</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="shsetting" class="tab-pane fade in active show">
+                                <div class="header-ttl">
+                                    <span class="subheader">General Information</span>
+                                    <p>Follow these instruction to know how to add Channel <button id="amaSave" class="btn btn-success">Save & Next</button>  </p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Channel Name</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Leadger Name (Optional)</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Order</span>
+                                    <p>This section help us to configure important parameters for order and sync.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" data-toggle="toggle">
+                                            Sync (Optional)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Inventory</span>
+                                    <p>Once the inentory is ON, We will update inventory on channel.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" data-toggle="toggle">
+                                            Sync (Optional)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="shconnector" class="tab-pane fade">
+                                <div class="header-ttl">
+                                    <span class="subheader">Shopcluse API </span>
+                                    <p>Provide API credentials that you get in your seller panel.<button id="amaConnector" class="btn btn-success"><i class="fa fa-plug"></i> Connect</button></p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Application Name</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Client Id</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Client Secret</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Seller Credentials</span>
+                                    <p>Provide Credentials that you use to login into your seller panel.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Username</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Password</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+@* Configure ShopCluse End *@
+
+@* Confgure Snapdeal Channel *@
+<div class="modal fade" id="snapdeal-channel">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Integration</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="channel-info col-lg-3 col-xs-12 col-md-3 col-sm-3">
+                        <img src="~/assets/img/channel-logo/S_Snapdeal.png" />
+                        @*<div class="step-follow">
+                            <ol>
+                            <li>Go to <a href="http://applications.shopclues.com/index.php?r=site/login">http://applications.shopclues.com/index.php?r=site/login</a></li>
+                            <li>Sign in using your shopcluse seller credentials.</li>
+                            <li>On log in, click on 'Create App'</li>
+                            <li>Enter all the required details and click save button.</li>
+                            <li>After saving the details your application will be sent to shopucluse seller support for verfication.</li>
+                            <li>Once the application got verified you will get client id and client secret</li>
+                            </ol>
+                            </div>*@
+                    </div>
+                    <div class="channel-add col-xs-12 col-sm-9 col-lg-9 col-md-9">
+                        <ul class="nav nav-tabs">
+                            <li class="active2"><a data-toggle="tab" href="#snapsetting">Setting</a></li>
+                            <li><a data-toggle="tab" class="disabled" href="#snapconnector">Connector</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="snapsetting" class="tab-pane fade in active show">
+                                <div class="header-ttl">
+                                    <span class="subheader">General Information</span>
+                                    <p>Follow these instruction to know how to add Channel <button id="amaSave" class="btn btn-success">Save & Next</button>  </p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Channel Name</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Leadger Name (Optional)</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Order</span>
+                                    <p>This section help us to configure important parameters for order and sync.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" data-toggle="toggle">
+                                            Sync (Optional)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Inventory</span>
+                                    <p>Once the inentory is ON, We will update inventory on channel.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" data-toggle="toggle">
+                                            Sync (Optional)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="snapconnector" class="tab-pane fade">
+                                <div class="header-ttl">
+                                    <span class="subheader">Snapdeal API </span>
+                                    <p>Provide API credentials that you get in your seller panel.<button id="amaConnector" class="btn btn-success"><i class="fa fa-plug"></i> Connect</button></p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Client Id</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                        <li>
+                                            <label class="private-label">X-Seller Auth Token</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Seller Credentials</span>
+                                    <p>Provide Credentials that you use to login into your seller panel.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Username</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Password</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@* Configure Snapdeal End *@
+
+@* Confgure Myntra Channel *@
+<div class="modal fade" id="myntra-channel">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Integration</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="channel-info col-lg-3 col-xs-12 col-sm-3 col-md-3">
+                        <img src="~/assets/img/channel-logo/S_my" />
+                        @*<div class="step-follow">
+                            <ol>
+                            <li>Go to <a href="http://applications.shopclues.com/index.php?r=site/login">http://applications.shopclues.com/index.php?r=site/login</a></li>
+                            <li>Sign in using your shopcluse seller credentials.</li>
+                            <li>On log in, click on 'Create App'</li>
+                            <li>Enter all the required details and click save button.</li>
+                            <li>After saving the details your application will be sent to shopucluse seller support for verfication.</li>
+                            <li>Once the application got verified you will get client id and client secret</li>
+                            </ol>
+                            </div>*@
+                    </div>
+                    <div class="channel-add col-xs-12 col-lg-9 col-sm-9 col-md-9">
+                        <ul class="nav nav-tabs">
+                            <li class="active2"><a data-toggle="tab" href="#mysetting">Setting</a></li>
+                            <li><a data-toggle="tab" class="disabled" href="#myconnector">Connector</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="mysetting" class="tab-pane fade in active show">
+                                <div class="header-ttl">
+                                    <span class="subheader">General Information</span>
+                                    <p>Follow these instruction to know how to add Channel <button id="amaSave" class="btn btn-success">Save & Next</button>  </p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Channel Name</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Leadger Name (Optional)</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Order</span>
+                                    <p>This section help us to configure important parameters for order and sync.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" data-toggle="toggle">
+                                            Sync (Optional)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="header-ttl">
+                                    <span class="subheader">Inventory</span>
+                                    <p>Once the inentory is ON, We will update inventory on channel.</p>
+                                </div>
+                                <div class="gen-form">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" data-toggle="toggle">
+                                            Sync (Optional)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="myconnector" class="tab-pane fade">
+                                <div class="header-ttl">
+                                    <span class="subheader">Seller Credentials</span>
+                                    <p>Provide Credentials that you use to login into your seller panel. <button id="amaConnector" class="btn btn-success"><i class="fa fa-plug"></i> Connect</button></p>
+                                </div>
+                                <div class="gen-form">
+                                    <ul>
+                                        <li>
+                                            <label class="private-label">Username</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                        <li>
+                                            <label class="private-label">Password</label>
+                                            <input type="text" class="private-form-control" />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@* Configure Snapdeal End *@

@@ -1,4 +1,5 @@
-﻿using Invent.Models.BAL.Order;
+﻿using Invent.Models.BAL.Common;
+using Invent.Models.BAL.Order;
 using Invent.Models.Job;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Invent
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //GlobalFilters.Filters.Add(new SessionExpireAttribute());
             JobScheduler.Start();
         }
         protected void Session_Start(Object sender, EventArgs e)

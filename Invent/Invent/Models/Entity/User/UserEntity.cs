@@ -11,6 +11,16 @@ namespace Invent.Models.Entity.User
 {
     public class  UserEntity
     {
+        private static UserEntity _instance;
+        protected UserEntity()
+        {
+
+        }
+        public static UserEntity GetInstance()
+        {
+            if (_instance == null) _instance = new UserEntity();
+            return _instance;
+        }
         public string UserID { get; set; }
         public string EmailId { get; set; }
         public string CompanyName { get; set; }
@@ -38,7 +48,7 @@ namespace Invent.Models.Entity.User
         public string S_Phone { get; set; }
         public string Status { get; set; }
         public string Verified { get; set; }
-        public List<ChannelGeneralDetailsEntity> ChannelDetails { get; set; }
+        public List<ApiGeneralEntity> ChannelDetails { get; set; }
         
     }
 }
