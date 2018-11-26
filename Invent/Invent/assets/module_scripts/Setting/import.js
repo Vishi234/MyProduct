@@ -52,7 +52,19 @@ function UploadFile() {
             data: fileData,
             async: true,
             success: function (result) {
-                CallToast(result.ERROR_MSG, result.ERROR_FLAG);
+                $(".error").removeClass("success");
+                $(".error").removeClass("fail");
+                if (result.ERROR_FLAG == "F") {
+                    $(".error").addClass("fail");
+                    $(".error").html("<p>" + result.ERROR_MSG + "</p>");
+                    return false;
+                }
+                else {
+                    $(".error").addClass("success");
+                    $(".error").html("<p>" + result.ERROR_MSG + "</p>");
+                    return false;
+                }
+                //CallToast(result.ERROR_MSG, result.ERROR_FLAG);
                 // $("#imgPath").val(result);
             },
             error: function (err) {

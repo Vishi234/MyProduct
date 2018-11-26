@@ -2412,3 +2412,19 @@ a {
 .btn-info {
     font-size: 12px;
 }
+
+.success > p {
+    color: green;
+}
+
+.fail > p {
+    color: red;
+}
+
+.error {
+    width: 100%;
+}
+
+    .error > p {
+        text-align: center;
+    }
