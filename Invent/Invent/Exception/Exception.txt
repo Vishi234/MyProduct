@@ -1,8 +1,11 @@
 ===============================start==============================================
 Inner Exception's
-MessageObject reference not set to an instance of an object.
-StackTrace   at Invent.Controllers.SettingController.SaveGeneralDetail(UserGeneralEntity genEntity) in C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\Controllers\SettingController.cs:line 219
-TargetSiteSystem.Web.Mvc.JsonResult SaveGeneralDetail(Invent.Models.Entity.Configuration.UserGeneralEntity)
-DateTime : 	11/25/2018 10:07:41 PM
+MessageString reference not set to an instance of a String.
+Parameter name: s
+StackTrace   at System.Text.Encoding.GetBytes(String s)
+   at Invent.Models.BAL.Common.CommonModel.Encrypt(String password) in C:\Users\vishal.singh\Documents\GitHub\MyProduct\Invent\Invent\Models\BAL\Common\CommonModel.cs:line 26
+   at Invent.Controllers.AuthController.Login(LoginEntity logModel) in C:\Users\vishal.singh\Documents\GitHub\MyProduct\Invent\Invent\Controllers\AuthController.cs:line 69
+TargetSiteByte[] GetBytes(System.String)
+DateTime : 	11/27/2018 2:40:09 PM
 ================================end============================================= 
 

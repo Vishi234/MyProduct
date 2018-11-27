@@ -13,7 +13,7 @@ namespace Invent.Models.BAL.Setting
     public class ItemMasterModel
     {
         string sqlconn = ConfigurationManager.ConnectionStrings["DBCONN"].ConnectionString;
-        public void SaveItemsMaster(string userId, string jsonData, string flag)
+        public List<Dictionary<string, object>> SaveItemsMaster(string userId, string jsonData, string flag)
         {
             ResponseEntity error = ResponseEntity.GetInstance();
             DataSet ds = new DataSet();
@@ -28,8 +28,31 @@ namespace Invent.Models.BAL.Setting
             sqlParameter[4].Direction = ParameterDirection.Output;
             sqlParameter[4].Size = 100;
             ds=SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_MANAGE_ITEM_MASTER", sqlParameter);
-            error.ERROR_FLAG = sqlParameter[3].Value.ToString();
-            error.ERROR_MSG = sqlParameter[4].Value.ToString();
+            Dictionary<string, object> row = new Dictionary<string, object>();
+            List<Dictionary<string, object>> tableRows = new List<Dictionary<string, object>>();
+            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                DataTable dt = new DataTable();
+                dt = ds.Tables[0];
+                foreach (DataRow datr in dt.Rows)
+                {
+                    row = new Dictionary<string, object>();
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        row.Add(col.ColumnName, datr[col]);
+                    }
+                    row.Add("FLAG", sqlParameter[3].Value.ToString());
+                    row.Add("MESSAGE", sqlParameter[4].Value.ToString());
+                    tableRows.Add(row);
+                }
+            }
+            else
+            {
+                row.Add("FLAG", sqlParameter[3].Value.ToString());
+                row.Add("MESSAGE", sqlParameter[4].Value.ToString());
+                tableRows.Add(row);
+            }
+            return tableRows;
         }
     }
 }

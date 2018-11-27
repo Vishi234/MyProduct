@@ -1,6 +1,112 @@
 ﻿{
-  "ItemMaster": {
-    "Columns": [ "Category Code", "Product Code", "Name", "Description", "Length(mm)", "Width(mm)", "Height(mm)", "Weight(grm)", "Color", "Brand", "Size", "Mrp", "Cost Price", "Image Url", "Is Serial", "Tax Type Code", "HSN Code", "Tags" ],
-    "Header": [ "Category Code", "Product Code", "Name", "Description", "Length(mm)", "Width(mm)", "Height(mm)", "Weight(grm)", "Color", "Brand", "Size", "Mrp", "Cost Price", "Image Url", "Is Serial", "Tax Type Code", "HSN Code", "Tags" ],
-  }
+  "ITEM_MASTER": [
+    {
+      "headerName": "Category Code",
+      "field": "CATEGORY_CODE",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Product Code",
+      "field": "PRODUCT_CODE",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Item Name",
+      "field": "ITEM_NAME",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Item Description",
+      "field": "ITEM_DESCRIPTION",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Length(mm)",
+      "field": "LENGTH",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Width(mm)",
+      "field": "WIDTH",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Height(mm)",
+      "field": "HEIGHT",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Weight(grm)",
+      "field": "WEIGHT",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Color",
+      "field": "Color",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Brand",
+      "field": "BRAND",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Size",
+      "field": "SIZE",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Mrp",
+      "field": "MRP",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Cost Price",
+      "field": "COST_PRICE",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Image Url",
+      "field": "IMAGE_URL",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Is Serial",
+      "field": "IS_SERIAL",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Tax Type Code",
+      "field": "TAX_TYPE_CODE",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "HSN Code",
+      "field": "HSN_CODE",
+      "hide": false,
+      "export": true
+    },
+    {
+      "headerName": "Tags",
+      "field": "TAGS",
+      "hide": false,
+      "export": true
+    }
+  ]
 }
