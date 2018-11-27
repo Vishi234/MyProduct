@@ -73,10 +73,11 @@ namespace Invent.Controllers
 
                 string csvData = System.IO.File.ReadAllText(filePath);
                 JArray Columns = JArray.Parse(ReadConfiguration(key, "Setting/Import.json"));
+
                 //Add Columns from json to datatable
                 for (int i = 0; i < Columns.Count; i++)
                 {
-                    dt.Columns.Add(Columns[i].ToString());
+                    dt.Columns.Add(Columns[i]["headerName"].ToString());
                 }
                 //End
 
@@ -132,7 +133,8 @@ namespace Invent.Controllers
                 {
                     ItemMasterModel objItem = new ItemMasterModel();
                     UserEntity objUserEntity = UserEntity.GetInstance();
-                    objItem.SaveItemsMaster(objUserEntity.UserID, CommonModel.DATATABLETOJSON(dt), "A");
+
+                    return Json(objItem.SaveItemsMaster(objUserEntity.UserID, CommonModel.DATATABLETOJSON(dt), "A"));
                 }
                
             }
@@ -144,7 +146,7 @@ namespace Invent.Controllers
             string file = Server.MapPath("~/GridConfiguration/" + path);
             var fileData = System.IO.File.ReadAllText(file);
             var json = JObject.Parse(fileData);
-            var columns = json[key]["Columns"];
+            var columns = json[key];
             return columns.ToString();
         }
         [HttpGet]

@@ -250,3 +250,20 @@ function OnChannelSuccess(response) {
 function OnChannelFailure(response) {
     alert("Error occured.");
 }
+//Module Like : Setting , Node : Import
+function DynamiColDef(module, file, node) {
+    var url = "/GridConfiguration/" + module + "/" + file + ".json";
+    var columnDef = [];
+    $.ajax({
+        url: url,
+        dataType: 'json',
+        async: false,
+        success: function (result) {
+            var reportJson = result[node];
+            $.each(reportJson, function (i, item) {
+                columnDef.push(item);
+            });
+        },
+    });
+    return columnDef
+}
