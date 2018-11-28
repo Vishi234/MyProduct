@@ -24,7 +24,6 @@
 
 function UploadFile() {
     if (window.FormData !== undefined) {
-
         var file = $("#importfile").val();
         if (file.length > 0) {
             var extension = file.replace(/^.*\./, '');
@@ -39,11 +38,7 @@ function UploadFile() {
         }
         var fileUpload = $("#importfile").get(0);
         var files = fileUpload.files;
-
-        // Create FormData object  
         var fileData = new FormData();
-
-        // Looping over all files and add it to FormData object  
         for (var i = 0; i < files.length; i++) {
             fileData.append(files[i].name, files[i]);
         }
@@ -74,6 +69,7 @@ function UploadFile() {
                     }
                 }
                 else {
+                    gridOptions.api.setRowData(null);
                     if (result.ERROR_FLAG == "F") {
                         $(".error").addClass("fail");
                         $(".error").html("<p>" + result.ERROR_MSG + "</p>");
@@ -85,10 +81,6 @@ function UploadFile() {
                         return false;
                     }
                 }
-
-
-                //CallToast(result.ERROR_MSG, result.ERROR_FLAG);
-                // $("#imgPath").val(result);
             },
             error: function (err) {
                 return false;

@@ -4,109 +4,134 @@
       "headerName": "Category Code",
       "field": "CATEGORY_CODE",
       "hide": false,
-      "export": true
+      "export": true,
+      "width": 160
     },
     {
       "headerName": "Product Code",
       "field": "PRODUCT_CODE",
       "hide": false,
-      "export": true
+      "export": true,
+      "width": 160
     },
     {
-      "headerName": "Item Name",
+      "headerName": "Product Name",
       "field": "ITEM_NAME",
       "hide": false,
-      "export": true
+      "export": true,
+      "width": 150
     },
     {
-      "headerName": "Item Description",
+      "headerName": "Product Description",
       "field": "ITEM_DESCRIPTION",
       "hide": false,
-      "export": true
+      "export": true,
+      "width": 140
     },
     {
       "headerName": "Length(mm)",
       "field": "LENGTH",
       "hide": false,
-      "export": true
+      "export": true,
+      "width": 140
     },
     {
       "headerName": "Width(mm)",
       "field": "WIDTH",
       "hide": false,
-      "export": true
+      "export": true,
+      "width": 140
     },
     {
       "headerName": "Height(mm)",
       "field": "HEIGHT",
       "hide": false,
-      "export": true
+      "export": true,
+      "width": 140
     },
     {
       "headerName": "Weight(grm)",
       "field": "WEIGHT",
       "hide": false,
-      "export": true
+      "export": true,
+      "width": 140
     },
     {
       "headerName": "Color",
       "field": "Color",
       "hide": false,
-      "export": true
+      "export": true,
+      "width": 110
     },
     {
       "headerName": "Brand",
       "field": "BRAND",
-      "hide": false,
-      "export": true
+      "hide": true,
+      "export": true,
+      "width": 110
     },
     {
       "headerName": "Size",
       "field": "SIZE",
-      "hide": false,
-      "export": true
+      "hide": true,
+      "export": true,
+      "width": 100
     },
     {
       "headerName": "Mrp",
       "field": "MRP",
       "hide": false,
-      "export": true
+      "export": true,
+      "width": 100
     },
     {
       "headerName": "Cost Price",
       "field": "COST_PRICE",
-      "hide": false,
-      "export": true
+      "hide": true,
+      "export": true,
+      "width": 140
     },
     {
       "headerName": "Image Url",
       "field": "IMAGE_URL",
-      "hide": false,
-      "export": true
+      "hide": true,
+      "export": true,
+      "width": 140
     },
     {
       "headerName": "Is Serial",
       "field": "IS_SERIAL",
-      "hide": false,
-      "export": true
+      "hide": true,
+      "export": true,
+      "width": 140
     },
     {
       "headerName": "Tax Type Code",
       "field": "TAX_TYPE_CODE",
       "hide": false,
-      "export": true
+      "export": true,
+      "width": 140
     },
     {
       "headerName": "HSN Code",
       "field": "HSN_CODE",
       "hide": false,
-      "export": true
+      "export": true,
+      "width": 140
     },
     {
       "headerName": "Tags",
       "field": "TAGS",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Rejection Reason",
+      "field": "REJ_REASON",
       "hide": false,
-      "export": true
+      "export": true,
+      "width": 250
     }
   ]
 }
