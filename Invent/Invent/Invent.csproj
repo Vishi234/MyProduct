@@ -384,7 +384,8 @@
     <Content Include="Views\Setting\Channel.cshtml" />
     <Content Include="Views\Setting\Add_Channel.cshtml" />
     <Content Include="Views\Setting\Import.cshtml" />
-    <Content Include="Templates\ItemMaster.csv" />
+    <Content Include="Templates\ITEM_MASTER.csv" />
+    <Content Include="Templates\CHANNEL_ITEM_MAPPING.csv" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

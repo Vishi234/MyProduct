@@ -19,6 +19,19 @@
                 new agGrid.Grid(gridDiv, gridOptions);
                 gridOptions.api.setRowData(null);
             }
+            break;
+        case "CHANNEL_ITEM_MAPPING":
+            {
+                document.getElementById("mdlTtl").innerHTML = "Channel Item Mapping";
+                $("#Import").modal("show");
+                $("#downloadCsv").attr("href", path + $(evt).val() + ".csv")
+
+                gridOptions = GridInitializer(DynamiColDef("Setting", "Import", "CHANNEL_ITEM_MAPPING"));
+                $("#data-grid").empty();
+                var gridDiv = document.querySelector('#data-grid');
+                new agGrid.Grid(gridDiv, gridOptions);
+                gridOptions.api.setRowData(null);
+            }
     }
 }
 
