@@ -3,12 +3,12 @@
     {
       "headerName": "Category Code",
       "field": "CATEGORY_CODE",
-      "hide": false,
+      "hide": true,
       "export": true,
       "width": 160
     },
     {
-      "headerName": "Product Code",
+      "headerName": "Product SKU",
       "field": "PRODUCT_CODE",
       "hide": false,
       "export": true,
@@ -31,35 +31,35 @@
     {
       "headerName": "Length(mm)",
       "field": "LENGTH",
-      "hide": false,
+      "hide": true,
       "export": true,
       "width": 140
     },
     {
       "headerName": "Width(mm)",
       "field": "WIDTH",
-      "hide": false,
+      "hide": true,
       "export": true,
       "width": 140
     },
     {
       "headerName": "Height(mm)",
       "field": "HEIGHT",
-      "hide": false,
+      "hide": true,
       "export": true,
       "width": 140
     },
     {
       "headerName": "Weight(grm)",
       "field": "WEIGHT",
-      "hide": false,
+      "hide": true,
       "export": true,
       "width": 140
     },
     {
       "headerName": "Color",
       "field": "Color",
-      "hide": false,
+      "hide": true,
       "export": true,
       "width": 110
     },
@@ -80,7 +80,7 @@
     {
       "headerName": "Mrp",
       "field": "MRP",
-      "hide": false,
+      "hide": true,
       "export": true,
       "width": 100
     },
@@ -108,14 +108,14 @@
     {
       "headerName": "Tax Type Code",
       "field": "TAX_TYPE_CODE",
-      "hide": false,
+      "hide": true,
       "export": true,
       "width": 140
     },
     {
       "headerName": "HSN Code",
       "field": "HSN_CODE",
-      "hide": false,
+      "hide": true,
       "export": true,
       "width": 140
     },

@@ -1,5 +1,6 @@
 ﻿function Import(evt) {
     var path = $("#downloadPath").val();
+    $("#data-grid").hide();
     switch ($(evt).val()) {
         case "Category":
             {
@@ -69,20 +70,29 @@ function UploadFile() {
                 $(".error").removeClass("fail");
                 if (result.ERROR_FLAG == undefined) {
                     var MyData = result;
-                    gridOptions.api.setRowData(MyData);
-                    if (MyData[0].FLAG == "F") {
-                        $(".error").addClass("fail");
-                        $(".error").html("<p>" + MyData[0].MESSAGE + "</p>");
-                        return false;
+                    if (MyData.length > 0)
+                    {
+                        $("#data-grid").show();
+                        gridOptions.api.setRowData(MyData);
+                        if (MyData[0].FLAG == "F") {
+                            $(".error").addClass("fail");
+                            $(".error").html("<p>" + MyData[0].MESSAGE + "</p>");
+                            return false;
+                        }
+                        else {
+                            $(".error").addClass("success");
+                            $(".error").html("<p>" + MyData[0].MESSAGE + "</p>");
+                            return false;
+                        }
                     }
-                    else {
-                        $(".error").addClass("success");
-                        $(".error").html("<p>" + MyData[0].MESSAGE + "</p>");
-                        return false;
+                    else
+                    {
+                        $("#data-grid").hide();
                     }
+                    
                 }
                 else {
-                    gridOptions.api.setRowData(null);
+                    $("#data-grid").hide();
                     if (result.ERROR_FLAG == "F") {
                         $(".error").addClass("fail");
                         $(".error").html("<p>" + result.ERROR_MSG + "</p>");
