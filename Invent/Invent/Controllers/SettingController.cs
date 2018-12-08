@@ -75,7 +75,7 @@ namespace Invent.Controllers
                 JArray Columns = JArray.Parse(ReadConfiguration(key, "Setting/Import.json"));
 
                 //Add Columns from json to datatable
-                for (int i = 0; i < Columns.Count; i++)
+                for (int i = 0; i < Columns.Count - 1; i++)
                 {
                     dt.Columns.Add(Columns[i]["headerName"].ToString());
                 }
@@ -136,7 +136,7 @@ namespace Invent.Controllers
 
                     return Json(objItem.SaveItemsMaster(objUserEntity.UserID, CommonModel.DATATABLETOJSON(dt), "A"));
                 }
-               
+
             }
             return Json(error);
         }

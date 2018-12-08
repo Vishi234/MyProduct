@@ -1,5 +1,6 @@
 ﻿function Import(evt) {
     var path = $("#downloadPath").val();
+    $("#data-grid").hide();
     switch ($(evt).val()) {
         case "Category":
             {
@@ -19,12 +20,24 @@
                 new agGrid.Grid(gridDiv, gridOptions);
                 gridOptions.api.setRowData(null);
             }
+            break;
+        case "CHANNEL_ITEM_MAPPING":
+            {
+                document.getElementById("mdlTtl").innerHTML = "Channel Item Mapping";
+                $("#Import").modal("show");
+                $("#downloadCsv").attr("href", path + $(evt).val() + ".csv")
+
+                gridOptions = GridInitializer(DynamiColDef("Setting", "Import", "CHANNEL_ITEM_MAPPING"));
+                $("#data-grid").empty();
+                var gridDiv = document.querySelector('#data-grid');
+                new agGrid.Grid(gridDiv, gridOptions);
+                gridOptions.api.setRowData(null);
+            }
     }
 }
 
 function UploadFile() {
     if (window.FormData !== undefined) {
-
         var file = $("#importfile").val();
         if (file.length > 0) {
             var extension = file.replace(/^.*\./, '');
@@ -39,11 +52,7 @@ function UploadFile() {
         }
         var fileUpload = $("#importfile").get(0);
         var files = fileUpload.files;
-
-        // Create FormData object  
         var fileData = new FormData();
-
-        // Looping over all files and add it to FormData object  
         for (var i = 0; i < files.length; i++) {
             fileData.append(files[i].name, files[i]);
         }
@@ -61,19 +70,29 @@ function UploadFile() {
                 $(".error").removeClass("fail");
                 if (result.ERROR_FLAG == undefined) {
                     var MyData = result;
-                    gridOptions.api.setRowData(MyData);
-                    if (MyData[0].FLAG == "F") {
-                        $(".error").addClass("fail");
-                        $(".error").html("<p>" + MyData[0].MESSAGE + "</p>");
-                        return false;
+                    if (MyData.length > 0)
+                    {
+                        $("#data-grid").show();
+                        gridOptions.api.setRowData(MyData);
+                        if (MyData[0].FLAG == "F") {
+                            $(".error").addClass("fail");
+                            $(".error").html("<p>" + MyData[0].MESSAGE + "</p>");
+                            return false;
+                        }
+                        else {
+                            $(".error").addClass("success");
+                            $(".error").html("<p>" + MyData[0].MESSAGE + "</p>");
+                            return false;
+                        }
                     }
-                    else {
-                        $(".error").addClass("success");
-                        $(".error").html("<p>" + MyData[0].MESSAGE + "</p>");
-                        return false;
+                    else
+                    {
+                        $("#data-grid").hide();
                     }
+                    
                 }
                 else {
+                    $("#data-grid").hide();
                     if (result.ERROR_FLAG == "F") {
                         $(".error").addClass("fail");
                         $(".error").html("<p>" + result.ERROR_MSG + "</p>");
@@ -85,10 +104,6 @@ function UploadFile() {
                         return false;
                     }
                 }
-
-
-                //CallToast(result.ERROR_MSG, result.ERROR_FLAG);
-                // $("#imgPath").val(result);
             },
             error: function (err) {
                 return false;
