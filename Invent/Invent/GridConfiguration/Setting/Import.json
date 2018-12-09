@@ -1,74 +1,81 @@
 ﻿{
-  "ITEM_MASTER": [
+  "PRODUCT_MASTER": [
     {
-      "headerName": "Category Code",
-      "field": "CATEGORY_CODE",
+      "headerName": "Variant SKU",
+      "field": "VARIANT_SKU",
       "hide": true,
       "export": true,
       "width": 160
     },
     {
       "headerName": "Product SKU",
-      "field": "PRODUCT_CODE",
+      "field": "PRODUCT_SKU",
       "hide": false,
       "export": true,
       "width": 160
     },
     {
       "headerName": "Product Name",
-      "field": "ITEM_NAME",
+      "field": "PRODUCT_NAME",
       "hide": false,
       "export": true,
       "width": 150
     },
     {
-      "headerName": "Product Description",
-      "field": "ITEM_DESCRIPTION",
+      "headerName": "Variant Name",
+      "field": "VARIANT_NAME",
       "hide": false,
       "export": true,
       "width": 140
     },
     {
-      "headerName": "Length(mm)",
-      "field": "LENGTH",
+      "headerName": "Warehouse Location",
+      "field": "WAREHOUSE_LOCATION",
       "hide": true,
       "export": true,
       "width": 140
     },
     {
-      "headerName": "Width(mm)",
-      "field": "WIDTH",
+      "headerName": "Inventory",
+      "field": "INVENTORY",
       "hide": true,
       "export": true,
       "width": 140
-    },
-    {
-      "headerName": "Height(mm)",
-      "field": "HEIGHT",
-      "hide": true,
-      "export": true,
-      "width": 140
-    },
-    {
-      "headerName": "Weight(grm)",
-      "field": "WEIGHT",
-      "hide": true,
-      "export": true,
-      "width": 140
-    },
-    {
-      "headerName": "Color",
-      "field": "Color",
-      "hide": true,
-      "export": true,
-      "width": 110
     },
     {
       "headerName": "Brand",
       "field": "BRAND",
       "hide": true,
       "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Category",
+      "field": "CATEGORY",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Color",
+      "field": "COLOR",
+      "hide": true,
+      "export": true,
       "width": 110
+    },
+    {
+      "headerName": "Mrp",
+      "field": "MRP",
+      "hide": true,
+      "export": true,
+      "width": 110
+    },
+    {
+      "headerName": "Cost",
+      "field": "COST",
+      "hide": true,
+      "export": true,
+      "width": 100
     },
     {
       "headerName": "Size",
@@ -78,50 +85,71 @@
       "width": 100
     },
     {
-      "headerName": "Mrp",
-      "field": "MRP",
-      "hide": true,
-      "export": true,
-      "width": 100
-    },
-    {
-      "headerName": "Cost Price",
-      "field": "COST_PRICE",
+      "headerName": "Description",
+      "field": "DESCRIPTION",
       "hide": true,
       "export": true,
       "width": 140
     },
     {
-      "headerName": "Image Url",
+      "headerName": "Image",
       "field": "IMAGE_URL",
       "hide": true,
       "export": true,
       "width": 140
     },
     {
-      "headerName": "Is Serial",
-      "field": "IS_SERIAL",
+      "headerName": "Height",
+      "field": "HEIGHT",
       "hide": true,
       "export": true,
       "width": 140
     },
     {
-      "headerName": "Tax Type Code",
-      "field": "TAX_TYPE_CODE",
+      "headerName": "Width",
+      "field": "WIDTH",
       "hide": true,
       "export": true,
       "width": 140
     },
     {
-      "headerName": "HSN Code",
+      "headerName": "Length",
+      "field": "LENGTH",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Weight",
+      "field": "WEIGHT",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Serial",
+      "field": "SERIAL",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Gst",
+      "field": "GST",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Hsn Code",
       "field": "HSN_CODE",
       "hide": true,
       "export": true,
       "width": 140
     },
     {
-      "headerName": "Tags",
-      "field": "TAGS",
+      "headerName": "Tax",
+      "field": "TAX",
       "hide": true,
       "export": true,
       "width": 140

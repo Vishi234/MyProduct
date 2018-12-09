@@ -386,6 +386,8 @@
     <Content Include="Views\Setting\Import.cshtml" />
     <Content Include="Templates\ITEM_MASTER.csv" />
     <Content Include="Templates\CHANNEL_ITEM_MAPPING.csv" />
+    <Content Include="Templates\LISTING_MASTER.csv" />
+    <Content Include="Templates\PRODUCT_MASTER.csv" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

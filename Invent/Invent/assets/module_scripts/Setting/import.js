@@ -8,13 +8,13 @@
                 $("#Import").modal("show");
             }
             break;
-        case "ITEM_MASTER":
+        case "PRODUCT_MASTER":
             {
-                document.getElementById("mdlTtl").innerHTML = "Channel Item Master";
+                document.getElementById("mdlTtl").innerHTML = "Channel Product Master";
                 $("#Import").modal("show");
                 $("#downloadCsv").attr("href", path + $(evt).val() + ".csv")
 
-                gridOptions = GridInitializer(DynamiColDef("Setting", "Import", "ITEM_MASTER"));
+                gridOptions = GridInitializer(DynamiColDef("Setting", "Import", "PRODUCT_MASTER"));
                 $("#data-grid").empty();
                 var gridDiv = document.querySelector('#data-grid');
                 new agGrid.Grid(gridDiv, gridOptions);
@@ -35,19 +35,35 @@
             }
     }
 }
-
-function UploadFile() {
+function InlineLoading(evt, action) {
+    if (action == "Show") {
+        $(evt).find("span").removeClass("hide");
+        $(evt).find("span").addClass("show");
+        $(evt).find("span>svg").addClass("fa-spin");
+        $(evt).attr("disabled", "disabled");
+    }
+    else {
+        $(evt).find("span").removeClass("show");
+        $(evt).find("span").addClass("hide");
+        $(evt).find("svg").removeClass("fa-spin");
+        $(evt).removeAttr("disabled");
+    }
+}
+function UploadFile(evt) {
     if (window.FormData !== undefined) {
+        InlineLoading(evt, 'Show');
         var file = $("#importfile").val();
         if (file.length > 0) {
             var extension = file.replace(/^.*\./, '');
             if (extension.toLowerCase() != "csv") {
                 CallToast("Only .CSV format allowed.", "F");
+                InlineLoading(evt, 'Hide');
                 return false;
             }
         }
         else {
             CallToast("Pelase select file.", "F");
+            InlineLoading(evt, 'Hide');
             return false;
         }
         var fileUpload = $("#importfile").get(0);
@@ -68,10 +84,10 @@ function UploadFile() {
             success: function (result) {
                 $(".error").removeClass("success");
                 $(".error").removeClass("fail");
+                InlineLoading(evt, 'Hide');
                 if (result.ERROR_FLAG == undefined) {
                     var MyData = result;
-                    if (MyData.length > 0)
-                    {
+                    if (MyData.length > 0) {
                         $("#data-grid").show();
                         gridOptions.api.setRowData(MyData);
                         if (MyData[0].FLAG == "F") {
@@ -85,11 +101,10 @@ function UploadFile() {
                             return false;
                         }
                     }
-                    else
-                    {
+                    else {
                         $("#data-grid").hide();
                     }
-                    
+
                 }
                 else {
                     $("#data-grid").hide();
@@ -104,6 +119,7 @@ function UploadFile() {
                         return false;
                     }
                 }
+
             },
             error: function (err) {
                 return false;
@@ -111,6 +127,7 @@ function UploadFile() {
         });
     } else {
         alert("FormData is not supported.");
+        InlineLoading(evt, 'Hide');
     }
 }
 

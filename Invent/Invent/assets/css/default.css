@@ -1586,7 +1586,8 @@ a {
     }
 
 .show {
-    display: block;
+    display: inline-block;
+    margin-right: 2px;
 }
 
 .hide {
@@ -2397,8 +2398,8 @@ a {
 
 .choose-option > span {
     display: block;
-    margin-top: 15px;
     float: right;
+    margin-top: 25px;
 }
 
     .choose-option > span > a {

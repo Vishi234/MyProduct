@@ -23,13 +23,15 @@
                 <div class="row">
                     <select onchange="Import(this);" id="import">
                         <option selected="selected">Select Import Type</option>
-                        <option value="Category">Category</option>
-                        <option value="ITEM_MASTER">Item Master</option>
-                        <option value="CHANNEL_ITEM_MAPPING">Channel Item Mapping</option>
-                        <option value="Adjustment">Inventory Adjustment</option>
-                        <option value="SalesOrders">Sales Orders</option>
-                        <option value="TaxConfig">Tax Configuration</option>
-                        <option value="UserImport">Users Import</option>
+                        <option value="PRODUCT_MASTER">Product</option>
+                        <option value="LISTING_MASTER">Listing</option>
+                        @*<option value="Category">Category</option>
+                            <option value="PRODUCT_MASTER">Product Mater</option>
+                            <option value="CHANNEL_ITEM_MAPPING">Channel Item Mapping</option>
+                            <option value="Adjustment">Inventory Adjustment</option>
+                            <option value="SalesOrders">Sales Orders</option>
+                            <option value="TaxConfig">Tax Configuration</option>
+                            <option value="UserImport">Users Import</option>*@
                     </select>
                 </div>
             </div>
@@ -48,10 +50,7 @@
                 <div class="choose-option">
                     <label>Please Choose File : </label>
                     <input type="file" id="importfile" />
-                    <input type="submit" value="Upload" onclick="UploadFile();" class="btn btn-info" />
-                    <div class="inline-loading">
-                          
-                    </div>
+                    <button type="submit" onclick="UploadFile(this);" class="btn btn-info"><span class="hide"><i class="fa fa-spinner"></i></span> Upload</button>
                     <span><a href="javascript:void(0)" id="downloadCsv" download>Download CSV Format</a></span>
                 </div>
                 <hr />
