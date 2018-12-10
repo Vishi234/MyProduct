@@ -1,6 +1,8 @@
 ﻿function Import(evt) {
     var path = $("#downloadPath").val();
     $("#data-grid").hide();
+    $("#importfile").val('');
+    $(".error").empty();
     switch ($(evt).val()) {
         case "Category":
             {
@@ -88,14 +90,17 @@ function UploadFile(evt) {
                 if (result.ERROR_FLAG == undefined) {
                     var MyData = result;
                     if (MyData.length > 0) {
-                        $("#data-grid").show();
-                        gridOptions.api.setRowData(MyData);
                         if (MyData[0].FLAG == "F") {
+                            $("#data-grid").show();
+                            gridOptions.api.setRowData(MyData);
                             $(".error").addClass("fail");
                             $(".error").html("<p>" + MyData[0].MESSAGE + "</p>");
                             return false;
                         }
                         else {
+                            $("#importfile").val('');
+                            $("#data-grid").hide();
+                            gridOptions.api.setRowData(null);
                             $(".error").addClass("success");
                             $(".error").html("<p>" + MyData[0].MESSAGE + "</p>");
                             return false;

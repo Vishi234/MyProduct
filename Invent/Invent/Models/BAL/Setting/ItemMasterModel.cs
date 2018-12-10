@@ -27,20 +27,29 @@ namespace Invent.Models.BAL.Setting
             sqlParameter[4] = new SqlParameter("@ERROR_MSG", SqlDbType.NVarChar);
             sqlParameter[4].Direction = ParameterDirection.Output;
             sqlParameter[4].Size = 100;
-            ds=SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_MANEGE_PRODUCT", sqlParameter);
+            ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_MANEGE_PRODUCT", sqlParameter);
             Dictionary<string, object> row = new Dictionary<string, object>();
             List<Dictionary<string, object>> tableRows = new List<Dictionary<string, object>>();
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
                 DataTable dt = new DataTable();
                 dt = ds.Tables[0];
-                foreach (DataRow datr in dt.Rows)
+                if (dt.Rows.Count > 0)
                 {
-                    row = new Dictionary<string, object>();
-                    foreach (DataColumn col in dt.Columns)
+                    foreach (DataRow datr in dt.Rows)
                     {
-                        row.Add(col.ColumnName, datr[col]);
+                        row = new Dictionary<string, object>();
+                        foreach (DataColumn col in dt.Columns)
+                        {
+                            row.Add(col.ColumnName, datr[col]);
+                        }
+                        row.Add("FLAG", sqlParameter[3].Value.ToString());
+                        row.Add("MESSAGE", sqlParameter[4].Value.ToString());
+                        tableRows.Add(row);
                     }
+                }
+                else
+                {
                     row.Add("FLAG", sqlParameter[3].Value.ToString());
                     row.Add("MESSAGE", sqlParameter[4].Value.ToString());
                     tableRows.Add(row);
