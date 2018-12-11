@@ -1,6 +1,8 @@
 ﻿using Chilkat;
+using Invent.Models.Entity.Common;
 using Invent.Models.Entity.User;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -136,6 +138,86 @@ namespace Invent.Models.BAL.Common
             return FileName;
         }
         #endregion
+
+        #region Excel to datatable and validation
+        public static ResponseEntity CSVToDatatable(JArray Columns,string csvData)
+        {
+            int skipHeader = 0;
+            bool colMatch = true;
+            bool blankFile = false;
+            DataTable dt = new DataTable();
+            ResponseEntity error = ResponseEntity.GetInstance();
+            //Add Columns from json to datatable
+            for (int i = 0; i < Columns.Count - 1; i++)
+            {
+                dt.Columns.Add(Columns[i]["field"].ToString());
+            }
+            //End
+            foreach (string row in csvData.Split('\n'))
+            {
+                if (!string.IsNullOrEmpty(row))
+                {
+                    int i = 0;
+                    if (skipHeader == 0)
+                    {
+                        i = 0;
+                        foreach (string cell in row.Split(','))
+                        {
+                            i++;
+                        }
+                        if (i != dt.Columns.Count)
+                        {
+                            colMatch = false;
+                        }
+                    }
+                    if (colMatch == true)
+                    {
+                        if (skipHeader != 0)
+                        {
+                            dt.Rows.Add();
+                            i = 0;
+                            foreach (string cell in row.Split(','))
+                            {
+                                dt.Rows[dt.Rows.Count - 1][i] = cell;
+                                i++;
+                            }
+                        }
+                    }
+                }
+                skipHeader = 1;
+            }
+            if (dt.Rows.Count == 0)
+            {
+                blankFile = true;
+            }
+            if (colMatch == false)
+            {
+                error.ERROR_FLAG = "F";
+                error.ERROR_MSG = "Please check no. of columns in file.";
+
+            }
+            else if (blankFile == true)
+            {
+                error.ERROR_FLAG = "F";
+                error.ERROR_MSG = "File can not be blank.";
+            }
+            else
+            {
+                error.ERROR_FLAG = "S";
+                error.ERROR_MSG = "Uploaded Successfully.";
+                error.ADD_PARAM = CommonModel.DATATABLETOJSON(dt);
+            }
+            return error;
+        }
+        #endregion
+        public static string ReadConfiguration(string key, string path)
+        {
+            string file = HttpContext.Current.Server.MapPath("~/GridConfiguration/" + path);
+            var fileData = System.IO.File.ReadAllText(file);
+            var json = JObject.Parse(fileData);
+            var columns = json[key];
+            return columns.ToString();
+        }
     }
     #region Exception
     public static class ExceptionHandling

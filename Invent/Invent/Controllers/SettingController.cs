@@ -54,11 +54,8 @@ namespace Invent.Controllers
         {
             HttpPostedFileBase postedFile = null;
             string filePath = string.Empty;
-            int skipHeader = 0;
-            bool colMatch = true;
-            bool blankFile = false;
             ResponseEntity error = ResponseEntity.GetInstance();
-            DataTable dt = new DataTable();
+
             if (Request.Files.Count > 0)
             {
                 postedFile = Request.Files[0];
@@ -72,83 +69,20 @@ namespace Invent.Controllers
                 postedFile.SaveAs(filePath);
 
                 string csvData = System.IO.File.ReadAllText(filePath);
-                JArray Columns = JArray.Parse(ReadConfiguration(key, "Setting/Import.json"));
-
-                //Add Columns from json to datatable
-                for (int i = 0; i < Columns.Count - 1; i++)
-                {
-                    dt.Columns.Add(Columns[i]["headerName"].ToString());
-                }
-                //End
-
-                foreach (string row in csvData.Split('\n'))
-                {
-                    if (!string.IsNullOrEmpty(row))
-                    {
-                        int i = 0;
-                        if (skipHeader == 0)
-                        {
-                            i = 0;
-                            foreach (string cell in row.Split(','))
-                            {
-                                i++;
-                            }
-                            if (i != dt.Columns.Count)
-                            {
-                                colMatch = false;
-                            }
-                        }
-                        if (colMatch == true)
-                        {
-                            if (skipHeader != 0)
-                            {
-                                dt.Rows.Add();
-                                i = 0;
-                                foreach (string cell in row.Split(','))
-                                {
-                                    dt.Rows[dt.Rows.Count - 1][i] = cell;
-                                    i++;
-                                }
-                            }
-                        }
-                    }
-                    skipHeader = 1;
-                }
-                if (dt.Rows.Count == 0)
-                {
-                    blankFile = true;
-                }
-                if (colMatch == false)
-                {
-                    error.ERROR_FLAG = "F";
-                    error.ERROR_MSG = "Please check no. of columns in file.";
-
-                }
-                else if (blankFile == true)
-                {
-                    error.ERROR_FLAG = "F";
-                    error.ERROR_MSG = "File can not be blank.";
-                }
-                else
+                JArray Columns = JArray.Parse(CommonModel.ReadConfiguration(key, "Setting/Import.json"));
+                error = CommonModel.CSVToDatatable(Columns, csvData);
+                if (error.ERROR_FLAG == "S")
                 {
                     ItemMasterModel objItem = new ItemMasterModel();
                     UserEntity objUserEntity = UserEntity.GetInstance();
 
-                    return Json(objItem.SaveItemsMaster(objUserEntity.UserID, CommonModel.DATATABLETOJSON(dt), "A"));
+                    return Json(objItem.SaveItemsMaster(objUserEntity.UserID, error.ADD_PARAM, "A"));
                 }
-
             }
             return Json(error);
         }
 
-        public string ReadConfiguration(string key, string path)
-        {
-            string file = Server.MapPath("~/GridConfiguration/" + path);
-            var fileData = System.IO.File.ReadAllText(file);
-            var json = JObject.Parse(fileData);
-            var columns = json[key];
-            return columns.ToString();
-        }
+
         [HttpGet]
         public JsonResult Initialize()
         {

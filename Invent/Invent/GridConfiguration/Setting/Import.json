@@ -155,6 +155,78 @@
       "width": 140
     },
     {
+      "headerName": "Enable",
+      "field": "ENABLE",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Link",
+      "field": "LINK",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Rejection Reason",
+      "field": "REJ_REASON",
+      "hide": false,
+      "export": true,
+      "width": 250
+    }
+  ],
+  "LISITNG_MASTER": [
+    {
+      "headerName": "Channel Name",
+      "field": "CHANNEL_NAME",
+      "hide": false,
+      "export": true,
+      "width": 160
+    },
+    {
+      "headerName": "System SKU",
+      "field": "SYSTEM_SKU",
+      "hide": false,
+      "export": true,
+      "width": 160
+    },
+    {
+      "headerName": "Product Id",
+      "field": "PRODUCT_ID",
+      "hide": false,
+      "export": true,
+      "width": 150
+    },
+    {
+      "headerName": "Blocked Inventory",
+      "field": "BLOCKED_INVENTORY",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Inventory Sync",
+      "field": "INVENTORY_SYNC",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Live",
+      "field": "LIVE",
+      "hide": false,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Enabled",
+      "field": "ENABLED",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
       "headerName": "Rejection Reason",
       "field": "REJ_REASON",
       "hide": false,

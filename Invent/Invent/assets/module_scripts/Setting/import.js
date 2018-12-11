@@ -23,13 +23,13 @@
                 gridOptions.api.setRowData(null);
             }
             break;
-        case "CHANNEL_ITEM_MAPPING":
+        case "LISTING_MASTER":
             {
-                document.getElementById("mdlTtl").innerHTML = "Channel Item Mapping";
+                document.getElementById("mdlTtl").innerHTML = "Bulk Listing";
                 $("#Import").modal("show");
                 $("#downloadCsv").attr("href", path + $(evt).val() + ".csv")
 
-                gridOptions = GridInitializer(DynamiColDef("Setting", "Import", "CHANNEL_ITEM_MAPPING"));
+                gridOptions = GridInitializer(DynamiColDef("Setting", "Import", "LISTING_MASTER"));
                 $("#data-grid").empty();
                 var gridDiv = document.querySelector('#data-grid');
                 new agGrid.Grid(gridDiv, gridOptions);
