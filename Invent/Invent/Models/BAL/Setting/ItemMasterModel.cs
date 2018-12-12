@@ -13,8 +13,17 @@ namespace Invent.Models.BAL.Setting
     public class ItemMasterModel
     {
         string sqlconn = ConfigurationManager.ConnectionStrings["DBCONN"].ConnectionString;
-        public List<Dictionary<string, object>> SaveItemsMaster(string userId, string jsonData, string flag)
+        public List<Dictionary<string, object>> SaveItemsMaster(string userId, string jsonData, string flag, string reportType)
         {
+            string procedureName = string.Empty;
+            if (reportType == "PRODUCT_MASTER")
+            {
+                procedureName = "SP_MANEGE_PRODUCT";
+            }
+            else if (reportType == "LISTING_MASTER")
+            {
+                procedureName = "SP_MANAGE_LISTING";
+            }
             ResponseEntity error = ResponseEntity.GetInstance();
             DataSet ds = new DataSet();
             SqlParameter[] sqlParameter = new SqlParameter[5];
@@ -27,7 +36,7 @@ namespace Invent.Models.BAL.Setting
             sqlParameter[4] = new SqlParameter("@ERROR_MSG", SqlDbType.NVarChar);
             sqlParameter[4].Direction = ParameterDirection.Output;
             sqlParameter[4].Size = 100;
-            ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_MANEGE_PRODUCT", sqlParameter);
+            ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, procedureName, sqlParameter);
             Dictionary<string, object> row = new Dictionary<string, object>();
             List<Dictionary<string, object>> tableRows = new List<Dictionary<string, object>>();
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)

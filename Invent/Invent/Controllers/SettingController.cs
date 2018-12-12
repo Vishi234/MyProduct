@@ -50,7 +50,7 @@ namespace Invent.Controllers
             return View();
         }
         [HttpPost]
-        public JsonResult ImportFile(string key)
+        public JsonResult ImportFile(string reportType)
         {
             HttpPostedFileBase postedFile = null;
             string filePath = string.Empty;
@@ -76,7 +76,7 @@ namespace Invent.Controllers
                     ItemMasterModel objItem = new ItemMasterModel();
                     UserEntity objUserEntity = UserEntity.GetInstance();
 
-                    return Json(objItem.SaveItemsMaster(objUserEntity.UserID, error.ADD_PARAM, "A"));
+                    return Json(objItem.SaveItemsMaster(objUserEntity.UserID, error.ADD_PARAM, "A", reportType));
                 }
             }
             return Json(error);
