@@ -176,7 +176,7 @@
       "width": 250
     }
   ],
-  "LISITNG_MASTER": [
+  "LISTING_MASTER": [
     {
       "headerName": "Channel Name",
       "field": "CHANNEL_NAME",

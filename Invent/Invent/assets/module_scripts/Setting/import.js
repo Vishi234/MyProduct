@@ -74,7 +74,7 @@ function UploadFile(evt) {
         for (var i = 0; i < files.length; i++) {
             fileData.append(files[i].name, files[i]);
         }
-        fileData.append('Key', $("#import").val());
+        fileData.append('reportType', $("#import").val());
 
         $.ajax({
             url: '/Setting/ImportFile',

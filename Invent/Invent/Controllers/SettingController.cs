@@ -69,7 +69,7 @@ namespace Invent.Controllers
                 postedFile.SaveAs(filePath);
 
                 string csvData = System.IO.File.ReadAllText(filePath);
-                JArray Columns = JArray.Parse(CommonModel.ReadConfiguration(key, "Setting/Import.json"));
+                JArray Columns = JArray.Parse(CommonModel.ReadConfiguration(reportType, "Setting/Import.json"));
                 error = CommonModel.CSVToDatatable(Columns, csvData);
                 if (error.ERROR_FLAG == "S")
                 {
