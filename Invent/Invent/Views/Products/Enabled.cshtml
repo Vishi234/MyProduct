@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Enabled";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Invent.Models.Entity.User.UserEntity user = (Invent.Models.Entity.User.UserEntity)HttpContext.Current.Session["UserEntity"];
+}
+@{
+    Html.RenderPartial("../Shared/PartialView/Product/_TopMenu");
+}
+
+

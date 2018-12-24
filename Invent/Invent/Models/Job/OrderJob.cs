@@ -17,9 +17,10 @@ namespace Invent.Models.Job
         {
             UserEntity objUserEntity = UserEntity.GetInstance();
             ChannelOrdersModel objOrdModel = new ChannelOrdersModel();
-            string strFromDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm");
+            string strFromDate = DateTime.Today.ToString("MM-dd-yyyy HH:mm");
+            string strEndDate= DateTime.Now.ToString("MM-dd-yyyy HH:mm");
             List<string> statusList = new List<string>();
-            //objOrdModel.GetOrders(objUserEntity, strFromDate, "", statusList);
+            objOrdModel.GetOrders(objUserEntity, strFromDate, strEndDate, statusList);
 
 
         }

@@ -1,8 +1,12 @@
 ===============================start==============================================
-Inner Exception's
-MessageObject reference not set to an instance of an object.
-StackTrace   at Invent.Controllers.SettingController.SaveGeneralDetail(UserGeneralEntity genEntity) in C:\Users\vishal.singh\Documents\GitHub\MyProduct\Invent\Invent\Controllers\SettingController.cs:line 221
-TargetSiteSystem.Web.Mvc.JsonResult SaveGeneralDetail(Invent.Models.Entity.Configuration.UserGeneralEntity)
-DateTime : 	11/29/2018 5:01:10 PM
+Inner Exception'sMWSClientCsRuntime.MwsException: Request is throttled
+   at MWSClientCsRuntime.MwsAQCall.invoke()
+   at MWSClientCsRuntime.MwsConnection.Call[T](IMwsRequestType`1 type, IMwsObject requestData)
+MessageRequest is throttled
+StackTrace   at MWSClientCsRuntime.MwsConnection.Call[T](IMwsRequestType`1 type, IMwsObject requestData)
+   at AmazonAPI.Orders.OrderClient.ListOrders(ListOrdersRequest request) in D:\AmazonAPI\AmazonAPI\AmazonAPI\Orders\OrderClient.cs:line 115
+   at Invent.Models.BAL.Order.AmazonChannelModel.GetAmazonOrders(String accessKey, String secretKey, String sellerId, String authToken, String marketId, String orderFromDate, String orderToDate, String updatedFromDate, String updateToDate, Int32 pageSize, List`1 status) in C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\Models\BAL\Order\AmazonChannelModel.cs:line 73
+TargetSiteT Call[T](MWSClientCsRuntime.IMwsRequestType`1[T], MWSClientCsRuntime.IMwsObject)
+DateTime : 	12/23/2018 6:10:35 PM
 ================================end============================================= 
 

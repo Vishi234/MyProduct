@@ -113,7 +113,7 @@ namespace Invent.Controllers
                     jsonObject["ApplicationId"] = objFP.ApplicationId;
                     jsonObject["ApplicationName"] = objFP.ApplicationName;
                     jsonObject["ApplicationSecret"] = objFP.ApplicationSecret;
-                    jsonObject["ApplicationSecret"] = objFP.Username;
+                    jsonObject["UserName"] = objFP.Username;
                     jsonObject["Password"] = objFP.Password;
 
                     ApiGeneralEntity chDtl = (ApiGeneralEntity)Session["ChannelGeneraDetail"];

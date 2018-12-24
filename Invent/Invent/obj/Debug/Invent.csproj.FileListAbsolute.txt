@@ -427,7 +427,6 @@ C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Invent.dll.config
 C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Invent.dll
 C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Invent.pdb
 C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\AmazonAPI.dll
-C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\ChilkatDotNet45.dll
 C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Common.Logging.Core.dll
 C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Common.Logging.dll
 C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\bin\Microsoft.AI.Agent.Intercept.dll

@@ -5,3 +5,7 @@ AccessKey = "AKIAJHSXML4XJT7NVLAQ";
 SecretKey = "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";
 
 Developer ID   0658-9245-4134
+
+
+GIT Password : vishal.singh@123
+UserId		vishalsingh9407@gmail.com

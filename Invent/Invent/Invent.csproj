@@ -315,6 +315,7 @@
     <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -388,6 +389,8 @@
     <Content Include="Templates\CHANNEL_ITEM_MAPPING.csv" />
     <Content Include="Templates\LISTING_MASTER.csv" />
     <Content Include="Templates\PRODUCT_MASTER.csv" />
+    <Content Include="Views\Products\Enabled.cshtml" />
+    <Content Include="Views\Shared\PartialView\Product\_TopMenu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

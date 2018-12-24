@@ -1,0 +1,38 @@
+﻿<div class="inside-top">
+    <div class="pull-left base-top">
+        <span class="pull-left">Products</span>
+        <div class="top-menu">
+            <ul>
+                <li>
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Enabled" ? "top-menu-active" : "")" href="@Url.Action("Products","Enabled")">
+                        Enabled
+                    </a>
+                </li>
+                <li>
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Disabled" ? "top-menu-active" : "")" href="@Url.Action("Category","Disabled")">
+                        Disabled
+                    </a>
+                </li>
+                <li>
+                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "All" || ViewContext.RouteData.Values["Action"].ToString() == "Channel_Detail" || ViewContext.RouteData.Values["Action"].ToString() == "Add_Channel" ? "top-menu-active" : "")" href="@Url.Action("Channel", "All")">
+                        All
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="pull-right base-top2">
+        <ul class="report-action">
+            <li>
+                <a href="javascript:void(0)" class="btn btn-info">Add Product</a>
+            </li>
+            <li>
+                <input type="text" id="filter-text-box" class="form-control" placeholder="Search this list..." oninput="onFilterTextBoxChanged()" />
+            </li>
+            <li><a href="javascript:void(0)"><i class="fa fa-sync"></i></a></li>
+            <li>
+                <a href="javascript:void(0)"><i class="fa fa-download"></i> <i class="fa fa-caret-down"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>

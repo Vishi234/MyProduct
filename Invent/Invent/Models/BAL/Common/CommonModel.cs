@@ -224,7 +224,7 @@ namespace Invent.Models.BAL.Common
     {
         public static void WriteException(Exception ex)
         {
-            string ExceptionPath = Path.Combine(HttpContext.Current.Server.MapPath("~"), ConfigurationManager.AppSettings["ErrorFileFolder"].ToString());
+            string ExceptionPath = Path.Combine(HttpRuntime.AppDomainAppPath, ConfigurationManager.AppSettings["ErrorFileFolder"].ToString());
             string filePath = ExceptionPath;
             string Exfile = ConfigurationManager.AppSettings["ErrorFileName"].ToString();
 

@@ -989,6 +989,7 @@ a {
 
 .header-ttl {
     border-bottom: 1px solid #ccc;
+    width: 100%;
 }
 
     .header-ttl .subheader {
@@ -2412,6 +2413,12 @@ a {
 
 .btn-info {
     font-size: 12px;
+}
+
+.btn-info {
+    color: #fff !important;
+    background-color: #17a2b8 !important;
+    border-color: #17a2b8 !important;
 }
 
 .success > p {
