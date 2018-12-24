@@ -1922,8 +1922,6 @@ a {
 }
 /*Sidebar menu section end*/
 .ag-theme-balham .ag-header {
-    background-color: #E5E7E7 !important;
-    font-weight: 700 !important;
     font: inherit !important;
 }
 
@@ -1932,7 +1930,7 @@ a {
     font: inherit !important;
 }
 
-    .ag-theme-balham .ag-row-odd {
+    .ag-theme-balham .ag-header-cell-label .ag-header-cell-text .ag-theme-balham .ag-row-odd {
         background-color: #F8F8F8 !important;
     }
 
@@ -2262,9 +2260,8 @@ a {
 }
 
 .ag-theme-balham .ag-header-cell-label .ag-header-cell-text {
-    font-weight: 600;
-    color: #000;
-    font-size: 14px;
+    color: #808080;
+    font-size: 12px;
 }
 
 .chb {
@@ -2436,3 +2433,50 @@ a {
     .error > p {
         text-align: center;
     }
+
+.toggle-menu {
+    position: absolute;
+    margin-left: -57px;
+    width: 100px;
+    display: none;
+}
+
+    .toggle-menu .arrow_box {
+        margin-left: 104%;
+    }
+
+        .toggle-menu .arrow_box:before {
+            border-width: 10px;
+        }
+
+        .toggle-menu .arrow_box:after {
+            border-width: 9px;
+        }
+
+.toggle-sub {
+    background: #fff;
+    border: 1px solid #cbd6e2;
+    margin-top: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+    .toggle-sub li {
+        display: inline-block;
+        width: 100%;
+    }
+
+        .toggle-sub li a {
+            padding: 8px 5px;
+            display: block;
+            width: 100%;
+        }
+
+        .toggle-sub li a:hover {
+            background-color: #f4f4f4;
+        }
+
+.cog {
+    margin-left: -90px;
+    width: 135px;
+}

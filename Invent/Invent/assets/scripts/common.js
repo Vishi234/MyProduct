@@ -235,6 +235,15 @@ document.addEventListener('DOMContentLoaded', function () {
             $(this).addClass("active2");
         }
     });
+
+    $(".tm").click(function () {
+        if ($(this).find(".toggle-menu").is(":visible")) {
+            $(this).find(".toggle-menu").css("display", "none");
+        }
+        else {
+            $(this).find(".toggle-menu").css("display", "block");
+        }
+    })
 });
 
 function OnChannelSuccess(response) {

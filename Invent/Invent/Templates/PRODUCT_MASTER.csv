@@ -1,1 +1,1 @@
-variant sku*,product sku*,product name*,variant name,warehouse location,inventory,brand,category*,color,mrp,cost,size,description*,image url,height mm,width mm,length mm,weight grm,serial,gst,hsn code,tax
+variant sku*,product sku*,product name*,variant name,warehouse location,inventory,brand,category*,color,mrp,cost,size,description*,image url,height mm,width mm,length mm,weight grm,serial,gst,hsn code,tax,enabled,linked

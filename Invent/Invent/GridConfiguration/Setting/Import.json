@@ -175,7 +175,7 @@
       "export": true,
       "width": 250
     }
-  ],
+  ], 
   "LISTING_MASTER": [
     {
       "headerName": "Channel Name",
@@ -187,6 +187,13 @@
     {
       "headerName": "System SKU",
       "field": "SYSTEM_SKU",
+      "hide": false,
+      "export": true,
+      "width": 160
+    },
+    {
+      "headerName": "Channel SKU",
+      "field": "CHANNEL_SKU",
       "hide": false,
       "export": true,
       "width": 160
@@ -233,5 +240,5 @@
       "export": true,
       "width": 250
     }
-  ]
+  ]   
 }

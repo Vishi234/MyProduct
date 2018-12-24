@@ -1,20 +1,20 @@
 ﻿<div class="inside-top">
     <div class="pull-left base-top">
         <span class="pull-left">Products</span>
-        <div class="top-menu">
+        <div class="top-menu ptm">
             <ul>
                 <li>
-                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Enabled" ? "top-menu-active" : "")" href="@Url.Action("Products","Enabled")">
+                    <a class="top-menu-active" href="javascript:void(0)" step="enable">
                         Enabled
                     </a>
                 </li>
                 <li>
-                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Disabled" ? "top-menu-active" : "")" href="@Url.Action("Category","Disabled")">
+                    <a step="disable" href="javascript:void(0)">
                         Disabled
                     </a>
                 </li>
                 <li>
-                    <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "All" || ViewContext.RouteData.Values["Action"].ToString() == "Channel_Detail" || ViewContext.RouteData.Values["Action"].ToString() == "Add_Channel" ? "top-menu-active" : "")" href="@Url.Action("Channel", "All")">
+                    <a step="all" href="javascript:void(0)">
                         All
                     </a>
                 </li>

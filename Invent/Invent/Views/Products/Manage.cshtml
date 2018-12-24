@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Manage Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Invent.Models.Entity.User.UserEntity user = (Invent.Models.Entity.User.UserEntity)HttpContext.Current.Session["UserEntity"];
+}
+@{
+    Html.RenderPartial("../Shared/PartialView/Product/_TopMenu");
+}
+<div class="body-section">
+    <div class="data-grid-section">
+        <div id="product-grid" class="grdstyle ag-theme-balham" style="height:420px;"></div>
+    </div>
+</div>
+<script src="~/assets/module_scripts/Products/product.js"></script>
+
+
