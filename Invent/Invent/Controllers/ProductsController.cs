@@ -26,5 +26,23 @@ namespace Invent.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public JsonResult GetListing(string isLinked, string isEnable, string sku, string fromDate, string toDate)
+        {
+            ProductModel objPro = new ProductModel();
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            return Json(objPro.GetListing(isLinked, isEnable, sku, fromDate, toDate, objUserEntity.UserID), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Inventory()
+        {
+            return View();
+        }
+        [HttpGet]
+        public JsonResult GetInventory()
+        {
+            ProductModel objPro = new ProductModel();
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            return Json(objPro.GetInventory(objUserEntity.UserID), JsonRequestBehavior.AllowGet);
+        }
     }
 }

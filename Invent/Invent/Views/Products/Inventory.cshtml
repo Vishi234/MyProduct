@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Inventory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    Html.RenderPartial("../Shared/PartialView/Product/_InventMenu");
+}
+<div class="body-section">
+    <div class="data-grid-section">
+        <div id="inventory-grid" class="grdstyle ag-theme-balham" style="height:600px;"></div>
+    </div>
+</div>
+<script src="~/assets/module_scripts/Products/inventory.js"></script>

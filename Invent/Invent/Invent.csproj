@@ -215,6 +215,8 @@
     <Content Include="assets\img\no-image.gif" />
     <Content Include="assets\img\user-img.png" />
     <Content Include="assets\module_scripts\Orders\orders.js" />
+    <Content Include="assets\module_scripts\Products\inventory.js" />
+    <Content Include="assets\module_scripts\Products\listing.js" />
     <Content Include="assets\module_scripts\Products\product.js" />
     <Content Include="assets\module_scripts\Setting\account.js" />
     <Content Include="assets\module_scripts\Setting\category.js" />
@@ -391,10 +393,13 @@
     <Content Include="Templates\CHANNEL_ITEM_MAPPING.csv" />
     <Content Include="Templates\LISTING_MASTER.csv" />
     <Content Include="Templates\PRODUCT_MASTER.csv" />
-    <Content Include="Views\Products\Manage.cshtml" />
+    <Content Include="Views\Products\Enabled.cshtml" />
     <Content Include="Views\Shared\PartialView\Product\_TopMenu.cshtml" />
     <Content Include="Views\Products\Listing.cshtml" />
+    <Content Include="Views\Products\Manage.cshtml" />
     <Content Include="Views\Shared\PartialView\Product\_ListingMenu.cshtml" />
+    <Content Include="Views\Products\Inventory.cshtml" />
+    <Content Include="Views\Shared\PartialView\Product\_InventMenu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

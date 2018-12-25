@@ -31,5 +31,36 @@ namespace Invent.Models.BAL.Product
 
             return Common.CommonModel.DATATABLETOJSON(dt);
         }
+        public string GetListing(string isLinked, string isEnable, string sku, string fromDate, string toDate, string userId)
+        {
+            DataSet ds = new DataSet();
+            SqlParameter[] sqlParameter = new SqlParameter[6];
+            sqlParameter[0] = new SqlParameter("@USER_ID", userId);
+            sqlParameter[1] = new SqlParameter("@SKU", sku);
+            sqlParameter[2] = new SqlParameter("@IS_ENABLE", Convert.ToChar(isEnable));
+            sqlParameter[3] = new SqlParameter("@IS_LINKED", Convert.ToChar(isLinked));
+            sqlParameter[4] = new SqlParameter("@FROM_DATE", fromDate);
+            sqlParameter[5] = new SqlParameter("@TO_DATE", toDate);
+            ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_GET_LISTING_DETAILS", sqlParameter);
+            DataTable dt = new DataTable();
+            if (ds != null)
+            {
+                dt = ds.Tables[0];
+            }
+            return Common.CommonModel.DATATABLETOJSON(dt);
+        }
+        public string GetInventory(string userId)
+        {
+            DataSet ds = new DataSet();
+            SqlParameter[] sqlParameter = new SqlParameter[1];
+            sqlParameter[0] = new SqlParameter("@USER_ID", userId);
+            ds = SqlHelper.ExecuteDataset(sqlconn, CommandType.StoredProcedure, "SP_GET_INVENTORY", sqlParameter);
+            DataTable dt = new DataTable();
+            if (ds != null)
+            {
+                dt = ds.Tables[0];
+            }
+            return Common.CommonModel.DATATABLETOJSON(dt);
+        }
     }
 }

@@ -190,13 +190,20 @@ function GridInitializer(colDef) {
         enableCellChangeFlash: true,
         refreshCells: true,
         enableColResize: true,
+        colResizeDefault: 'shift',
+        enableColResize: true,
         pagination: true,
         paginationPageSize: 20,
         paginationNumberFormatter: function (params) {
             return '[' + params.value.toLocaleString() + ']';
         },
         onGridReady: function (params) {
-            params.api.sizeColumnsToFit();
+            //var allColumnIds = [];
+            //gridOptions.columnApi.getAllColumns().forEach(function (column) {
+            //    allColumnIds.push(column.colId);
+            //});
+            //gridOptions.columnApi.autoSizeColumns(allColumnIds);
+            //params.api.sizeColumnsToFit();
             //setTimeout(function () {
             //    gridOptions.api.resetRowHeights();
             //}, 500);

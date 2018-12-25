@@ -1,10 +1,14 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Listing";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{
     Html.RenderPartial("../Shared/PartialView/Product/_ListingMenu");
 }
-
+<div class="body-section">
+    <div class="data-grid-section">
+        <div id="listing-grid" class="grdstyle ag-theme-balham" style="height:600px;"></div>
+    </div>
+</div>
+<script src="~/assets/module_scripts/Products/listing.js"></script>
 
