@@ -1825,27 +1825,140 @@ a {
         cursor: pointer;
     }
 
-.navigation-menu li a {
-    display: block;
-    padding: 15px;
-    font-size: 1em;
-    border-bottom: 1px solid #404854;
-    color: #fff;
-    transition: all 0.4s ease-in-out;
+.navigation-menu {
+    height: 480px;
+    overflow: auto;
+    margin-right: 2px;
 }
 
-    .navigation-menu li a:hover {
-        background: rgba(255,255,255,.08) !important;
-        cursor: pointer;
+    .navigation-menu::-webkit-scrollbar {
+        width: 5px;
     }
 
-    .navigation-menu li a svg {
-        margin-right: 5px;
+    .navigation-menu::-webkit-scrollbar-track {
+        border-radius: 10px;
+        padding: 10px;
+        display: none;
     }
+
+    .navigation-menu::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: rgba(255,255,255,.7);
+    }
+
+    .navigation-menu > ul > li {
+        margin-bottom: -10px;
+    }
+
+        .navigation-menu > ul > li > a {
+            display: block;
+            padding: 15px 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+            border-bottom: 1px solid #404854;
+            color: #fff;
+            transition: all 0.4s ease-in-out;
+            height: 60px;
+        }
+
+            .navigation-menu > ul > li > a > p {
+                line-height: 20px;
+                font-size: 12px;
+                margin: 0px;
+            }
+
+            .navigation-menu > ul > li > a:hover {
+                background: rgba(255,255,255,.08);
+                cursor: pointer;
+            }
+
+            .navigation-menu > ul > li > a svg {
+                margin-right: 5px;
+                float: right;
+                -moz-transition: all 0.4s linear;
+                -webkit-transition: all 0.4s linear;
+                transition: all 0.4s linear;
+            }
 
 .navigation-menu-active {
     background: rgba(255,255,255,.08) !important;
 }
+
+.down {
+}
+
+.click-remove {
+    border-bottom: 1px solid #19212B !important;
+    background: #19212B !important;
+    transition: all 0.4s ease-in-out;
+}
+
+
+    .click-remove > p {
+        display: none;
+    }
+
+    .click-remove > svg {
+        -moz-transform: rotate(180deg) !important;
+        -webkit-transform: rotate(180deg) !important;
+        transform: rotate(180deg) !important;
+    }
+
+.hm3 {
+    height: 90px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm4 {
+    height: 120px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm5 {
+    height: 150px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm6 {
+    height: 180px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.hm7 {
+    height: 210px !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.smenu {
+    background: #19212B;
+    margin-bottom: 10px;
+    display: block;
+    height: 0px;
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+}
+
+    .smenu > ul > li {
+        display: inline-block;
+        width: 100%;
+    }
+
+        .smenu > ul > li > a {
+            padding: 5px 10px;
+            display: block;
+            width: 100%;
+            font-size: 1.1em;
+            color: rgba(255,255,255,.7);
+            font-weight: 400;
+        }
+
+            .smenu > ul > li > a > svg {
+                margin-right: 10px;
+            }
+
+            .smenu > ul > li > a:hover {
+                background: rgba(255,255,255,.08) !important;
+            }
 
 .right-section {
     right: 0;

@@ -5,8 +5,8 @@ Inner Exception'sMWSClientCsRuntime.MwsException: Request is throttled
 MessageRequest is throttled
 StackTrace   at MWSClientCsRuntime.MwsConnection.Call[T](IMwsRequestType`1 type, IMwsObject requestData)
    at AmazonAPI.Orders.OrderClient.ListOrders(ListOrdersRequest request) in D:\AmazonAPI\AmazonAPI\AmazonAPI\Orders\OrderClient.cs:line 115
-   at Invent.Models.BAL.Order.AmazonChannelModel.GetAmazonOrders(String accessKey, String secretKey, String sellerId, String authToken, String marketId, String orderFromDate, String orderToDate, String updatedFromDate, String updateToDate, Int32 pageSize, List`1 status) in C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\Models\BAL\Order\AmazonChannelModel.cs:line 73
+   at Invent.Models.BAL.Order.AmazonChannelModel.GetAmazonOrders(String accessKey, String secretKey, String sellerId, String authToken, String marketId, String orderFromDate, String orderToDate, String updatedFromDate, String updateToDate, Int32 pageSize, List`1 status) in C:\Users\vishal.singh\Documents\GitHub\MyProduct\Invent\Invent\Models\BAL\Order\AmazonChannelModel.cs:line 73
 TargetSiteT Call[T](MWSClientCsRuntime.IMwsRequestType`1[T], MWSClientCsRuntime.IMwsObject)
-DateTime : 	12/26/2018 12:48:49 AM
+DateTime : 	12/26/2018 6:01:45 PM
 ================================end============================================= 
 

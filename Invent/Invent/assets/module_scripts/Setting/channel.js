@@ -4,10 +4,10 @@ var MyData;
 var year = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 columnDefs = [
-    { headerName: 'Channel', field: 'Ch_Prefix', width: 50, cellClass: 'grid-left', filterParams: { newRowsAction: 'keep' }, cellRenderer: ChannelIcon },
-    { headerName: 'Order Sync', field: 'OrderSync', width: 50, cellClass: 'grid-center', filterParams: { newRowsAction: 'keep' }, cellRenderer: OrderSyncStatus },
-    { headerName: 'Inventory Sync', field: 'InventorySync', width: 50, cellClass: 'grid-center', filterParams: { newRowsAction: 'keep' }, cellRenderer: InventorySyncStatus },
-    { headerName: 'API Status', field: 'ConnectingStatus', width: 50, cellClass: 'grid-center', filterParams: { newRowsAction: 'keep' }, cellRenderer: ApiStatus },
+    { headerName: 'Channel', field: 'Ch_Prefix', width: 300, cellClass: 'grid-left', filterParams: { newRowsAction: 'keep' }, cellRenderer: ChannelIcon },
+    { headerName: 'Order Sync', field: 'OrderSync', width: 300, cellClass: 'grid-center', filterParams: { newRowsAction: 'keep' }, cellRenderer: OrderSyncStatus },
+    { headerName: 'Inventory Sync', field: 'InventorySync', width: 300, cellClass: 'grid-center', filterParams: { newRowsAction: 'keep' }, cellRenderer: InventorySyncStatus },
+    { headerName: 'API Status', field: 'ConnectingStatus', width: 260, cellClass: 'grid-center', filterParams: { newRowsAction: 'keep' }, cellRenderer: ApiStatus },
 ];
 gridOptions = GridInitializer(columnDefs);
 function getParameterByName(name) {

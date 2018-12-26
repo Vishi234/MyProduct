@@ -101,14 +101,14 @@ function GetLocation(countryId, stateId) {
                 }
                 if (parseInt(countryId) > 0 && parseInt(stateId) > 0) {
                     $("#CitId").empty();
-                    var select = document.getElementById("CitId");
+                    var select = document.getElementById("CityId");
                     $.each(MyData, function (i, item) {
                         var option = document.createElement("option");
                         option.value = item.CityId
                         option.text = item.CityName
                         select.appendChild(option);
                     });
-                    $("#CitId")[0].sumo.reload();
+                    $("#CityId")[0].sumo.reload();
                 }
             }
         });

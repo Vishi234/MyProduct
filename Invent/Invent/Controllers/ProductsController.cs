@@ -44,5 +44,9 @@ namespace Invent.Controllers
             UserEntity objUserEntity = UserEntity.GetInstance();
             return Json(objPro.GetInventory(objUserEntity.UserID), JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Add()
+        {
+            return View();
+        }
     }
 }

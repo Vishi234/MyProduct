@@ -10,7 +10,7 @@ columnDefs = [
     { headerName: 'Shelf', field: 'SHELF', width: 250, cellClass: 'grid-left', filterParams: { newRowsAction: 'keep' } },
     { headerName: 'Type', field: 'TYPE', width: 200, cellClass: 'grid-right', filterParams: { newRowsAction: 'keep' } },
     { headerName: 'Total', field: 'TOTAL', width: 150, cellClass: 'grid-center', suppressFilter: true, cellRenderer: TotalBack },
-    { headerName: 'Avaiable', field: 'AVAILABLE', width: 150, cellClass: 'grid-center', suppressFilter: true },
+    { headerName: 'Available', field: 'AVAILABLE', width: 150, cellClass: 'grid-center', suppressFilter: true },
     { headerName: 'Block', field: 'BLOCKED_INVENTORY', width: 150, cellClass: 'grid-center', suppressFilter: true },
     { headerName: 'Size', field: 'SIZE', width: 150, cellClass: 'grid-center', suppressFilter: true },
     { headerName: 'Brand', field: 'BRAND', width: 150, cellClass: 'grid-center', suppressFilter: true },

@@ -338,6 +338,7 @@
     <Compile Include="Models\BAL\Setting\ChannelModel.cs" />
     <Compile Include="Models\BAL\Setting\ItemMasterModel.cs" />
     <Compile Include="Models\Entity\Common\LocationEntity.cs" />
+    <Compile Include="Models\Entity\Product\GeneralEntity.cs" />
     <Compile Include="Models\Entity\Setting\CategoryEntity.cs" />
     <Compile Include="Models\DAL\SQLHelper.cs" />
     <Compile Include="Models\Entity\Channel\OrderEntity.cs" />
@@ -400,6 +401,7 @@
     <Content Include="Views\Shared\PartialView\Product\_ListingMenu.cshtml" />
     <Content Include="Views\Products\Inventory.cshtml" />
     <Content Include="Views\Shared\PartialView\Product\_InventMenu.cshtml" />
+    <Content Include="Views\Products\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -4,11 +4,11 @@ var MyData;
 var year = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 columnDefs = [
     { headerName: '', field: '', width: 20, cellClass: 'grid-center', suppressFilter: true, cellRenderer: EditButton },
-    { headerName: 'Category #', field: 'CategoryId', width: 50, cellClass: 'grid-left', filterParams: { newRowsAction: 'keep' } },
-    { headerName: 'Category Name', field: 'Name', width: 50, cellClass: 'grid-lef', filterParams: { newRowsAction: 'keep' } },
-    { headerName: 'Code', field: 'Code', width: 50, cellClass: 'grid-left', filterParams: { newRowsAction: 'keep' } },
-    { headerName: 'Price Range', field: 'PriceRange', width: 50, cellClass: 'grid-right', filterParams: { newRowsAction: 'keep' } },
-    { headerName: 'Status', field: 'Status', width: 50, cellClass: 'grid-center', suppressFilter: true, cellRenderer: StatusRenderer },
+    { headerName: 'Category #', field: 'CategoryId', width: 250, cellClass: 'grid-left', filterParams: { newRowsAction: 'keep' } },
+    { headerName: 'Category Name', field: 'Name', width: 250, cellClass: 'grid-lef', filterParams: { newRowsAction: 'keep' } },
+    { headerName: 'Code', field: 'Code', width: 240, cellClass: 'grid-left', filterParams: { newRowsAction: 'keep' } },
+    { headerName: 'Price Range', field: 'PriceRange', width: 200, cellClass: 'grid-right', filterParams: { newRowsAction: 'keep' } },
+    { headerName: 'Status', field: 'Status', width: 200, cellClass: 'grid-center', suppressFilter: true, cellRenderer: StatusRenderer },
 ];
 gridOptions = GridInitializer(columnDefs);
 function ChangeFlag() {

@@ -27,12 +27,65 @@
         </div>
         <div class="navigation-menu">
             <ul>
-                <li><a href="@Url.Action("Index","Orders")"><i class="fa fa-shopping-cart"></i>Orders</a></li>
-                <li><a href="javascript:Void(0)"><i class="fa fa-box"></i>Batches</a></li>
-                <li><a href="javascript:Void(0)"><i class="fa fa-truck"></i>Shipments</a></li>
-                <li><a href="javascript:Void(0)"><i class="fas fa-retweet"></i>Returns</a></li>
-                <li><a href="javascript:Void(0)"><i class="fas fa-list-ul"></i>Listing</a></li>
-                <li><a href="@Url.Action("Account","Setting")"><i class="fa fa-cog"></i>Settings</a></li>
+                <li>
+                    <a href="javascript:void(0)">
+                        @*<i class="fa fa-shopping-cart"></i>*@
+                        Orders <i class="fa fa-angle-up"></i>
+                        <p class="sml-desc">Authentication,Database....</p>
+                    </a>
+                    <div class="smenu" menu-level="hm3">
+                        <ul>
+                            <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Authentication</a></li>
+                            <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Database</a></li>
+                            <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Storage</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        Products<i class="fa fa-angle-up"></i>
+                        <p class="sml-desc">Manage,Listing,Inventory....</p>
+                    </a>
+                    <div class="smenu" menu-level="hm3">
+                        <ul>
+                            <li><a href="@Url.Action("Products","Manage")"><i class="fa fa-adjust"></i>Manage</a></li>
+                            <li><a href="@Url.Action("Products","Listing")"><i class="fa fa-list-alt"></i>Listing</a></li>
+                            <li><a href="@Url.Action("Products","Inventory")"><i class="fa fa-shopping-cart"></i>Inventory</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        Products<i class="fa fa-angle-up"></i>
+                        <p class="sml-desc">Manage,Listing,Inventory....</p>
+                    </a>
+                    <div class="smenu" menu-level="hm3">
+                        <ul>
+                            <li><a href="@Url.Action("Manage","Products")"><i class="fa fa-adjust"></i>Manage</a></li>
+                            <li><a href="@Url.Action("Listing","Products")"><i class="fa fa-list-alt"></i>Listing</a></li>
+                            <li><a href="@Url.Action("Inventory","Products")"><i class="fa fa-shopping-cart"></i>Inventory</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        @*<i class="fa fa-cog"></i>*@
+
+                        Settings<i class="fa fa-angle-up"></i>
+                        <p class="sml-desc">Account,Category,Channel....</p>
+                    </a>
+                    <div class="smenu" menu-level="hm7">
+                        <ul>
+                            <li><a href="@Url.Action("Account","Setting")"><i class="fa fa-user"></i>Account</a></li>
+                            <li><a href="@Url.Action("Category","Setting")"><i class="fa fa-list-alt"></i>Category</a></li>
+                            <li><a href="@Url.Action("Channel","Setting")"><i class="fa fa-plug"></i>Channel</a></li>
+                            <li><a href="@Url.Action("Import","Setting")"><i class="fa fa-file-import"></i>Import</a></li>
+                            <li><a href="javascript:void(0)"><i class="fa fa-map-marker"></i>Location</a></li>
+                            <li><a href="javascript:void(0)"><i class="fa fa-bell"></i>Notification</a></li>
+                            <li><a href="javascript:void(0)"><i class="fa fa-location-arrow"></i>Pincode</a></li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
@@ -116,7 +169,6 @@
                 $(this).toggleClass("right-menu-active");
                 $(".top-sub-menu").toggleClass("show");
             })
-            //$('[data-toggle="tooltip"]').tooltip();
             $('#goobalDateFilter').daterangepicker({
                 opens: 'right',
                 locale: {
@@ -131,7 +183,20 @@
                 $(".top-menu li").find("a").removeClass("top-menu-active");
                 $(this).addClass("top-menu-active");
             });
-           
+            $(".navigation-menu > ul > li").click(function () {
+                if ($(this).find("a").first().hasClass("click-remove")) {
+                    var level = $(this).find(".smenu").attr("menu-level");
+                    $(this).find(".smenu").removeClass(level)
+                    $(this).find("a").first().removeClass("click-remove");
+                }
+                else {
+                    var level = $(this).find(".smenu").attr("menu-level");
+                    $(this).find(".smenu").addClass(level)
+                    $(this).find("a").first().addClass("click-remove");
+                }
+
+            })
+
         });
     </script>
 </body>
