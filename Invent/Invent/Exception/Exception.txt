@@ -7,6 +7,6 @@ StackTrace   at MWSClientCsRuntime.MwsConnection.Call[T](IMwsRequestType`1 type,
    at AmazonAPI.Orders.OrderClient.ListOrders(ListOrdersRequest request) in D:\AmazonAPI\AmazonAPI\AmazonAPI\Orders\OrderClient.cs:line 115
    at Invent.Models.BAL.Order.AmazonChannelModel.GetAmazonOrders(String accessKey, String secretKey, String sellerId, String authToken, String marketId, String orderFromDate, String orderToDate, String updatedFromDate, String updateToDate, Int32 pageSize, List`1 status) in C:\Users\HP\Documents\GitHub\MyProduct\Invent\Invent\Models\BAL\Order\AmazonChannelModel.cs:line 74
 TargetSiteT Call[T](MWSClientCsRuntime.IMwsRequestType`1[T], MWSClientCsRuntime.IMwsObject)
-DateTime : 	12/31/2018 12:13:16 AM
+DateTime : 	12/31/2018 12:18:10 AM
 ================================end============================================= 
 
