@@ -48,5 +48,19 @@ namespace Invent.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public JsonResult GetSKUs()
+        {
+            ProductModel objPro = new ProductModel();
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            return Json(objPro.GetSKUs(objUserEntity.UserID), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult LinkListing(string listingId, string systemSku)
+        {
+            ProductModel objPro = new ProductModel();
+            UserEntity objUserEntity = UserEntity.GetInstance();
+            return Json(objPro.LinkListing(listingId, systemSku, objUserEntity.UserID));
+        }
     }
 }

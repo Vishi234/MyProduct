@@ -1,18 +1,85 @@
 ﻿var columnDefs;
 var gridOptions;
 var MyData;
+var SkuData;
 var year = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 columnDefs = [
     { headerName: '', field: '', width: 53, cellClass: 'grid-center', suppressFilter: true, checkboxSelection: true, headerCheckboxSelection: true },
-    { headerName: 'Channel', field: 'CHANNEL_NAME', width: 100, cellClass: 'grid-left', filterParams: { newRowsAction: 'keep' }, cellRenderer: ChannelBack },
-    { headerName: 'Sku', field: 'SYSTEM_SKU', width: 250, cellClass: 'grid-lef', filterParams: { newRowsAction: 'keep' } },
-    { headerName: 'Channel Sku', field: 'CHANNEL_SKU', width: 250, cellClass: 'grid-left', filterParams: { newRowsAction: 'keep' } },
-    { headerName: 'Product ID', field: 'PRODUCT_ID', width: 200, cellClass: 'grid-right', filterParams: { newRowsAction: 'keep' } },
+    { headerName: 'Action', field: 'action', width: 100, cellClass: 'grid-center', hide: true, suppressFilter: true, cellRenderer: Action },
+    { headerName: 'Channel', field: 'CHANNEL_NAME', width: 100, cellClass: 'grid-center', filterParams: { newRowsAction: 'keep' }, cellRenderer: ChannelBack },
+    { headerName: 'Sku', field: 'SYSTEM_SKU', width: 250, cellClass: 'grid-center', filterParams: { newRowsAction: 'keep' } },
+    { headerName: 'Channel Sku', field: 'CHANNEL_SKU', width: 250, cellClass: 'grid-center', filterParams: { newRowsAction: 'keep' } },
+    { headerName: 'Product ID', field: 'PRODUCT_ID', width: 200, cellClass: 'grid-center', filterParams: { newRowsAction: 'keep' } },
     { headerName: 'Blocked Inventory', field: 'BLOCKED_INVENTORY', width: 150, cellClass: 'grid-center', suppressFilter: true },
     { headerName: 'Inventory Sync', field: 'INVENTORY_SYNC', width: 150, cellClass: 'grid-center', suppressFilter: true, cellRenderer: InventoryBack },
-    { headerName: 'Product Is Live', field: 'LIVE', width: 150, cellClass: 'grid-center', suppressFilter: true, cellRenderer: LiveBack }
+    { headerName: 'Product Is Live', field: 'LIVE', width: 130, cellClass: 'grid-center', suppressFilter: true, cellRenderer: LiveBack }
 ];
-gridOptions = GridInitializer(columnDefs);
+
+function Action(params) {
+    var html = '';
+    var data = JSON.stringify(params.data);
+    html = "<button type='submit' onclick='LinkNow(" + data + ")' class='btn btn-primary' style='padding: 3px 10px;font-size: 12px;margin-top: 1px;border-radius: 3px;'><i class='fa fa-plug'></i> | Link</button>"
+    return html;
+}
+function LinkNow(data) {
+    document.getElementById("lstId").innerHTML = data.PRODUCT_ID;
+    document.getElementById("lstNm").innerHTML = convert(data.PRODUCT_NAME);
+    document.getElementById("chnm").innerHTML = data.CHANNEL_NAME;
+    $("#product-link").modal("show");
+    $("#exlst").addClass("exlst-hide");
+    $("#linknow").attr("disabled");
+    $("#linknow").attr("key", data.LISTING_ID);
+    $(".select-default").find("span").html('Select Item to link <i class="fa fa-angle-down"></i>');
+    FetchSkus();
+}
+function convert(string) {
+    return string.replace(/&#(?:x([\da-f]+)|(\d+));/ig, function (_, hex, dec) {
+        return String.fromCharCode(dec || +('0x' + hex))
+    })
+}
+function LinkListing(id, sku) {
+    var obj = {
+        listingId: id,
+        systemSku: sku
+    };
+    $.ajax
+        ({
+            type: 'POST',
+            url: '/Products/LinkListing',
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (data) {
+                CallToast(data.ERROR_MSG, data.ERROR_FLAG);
+                $("#product-link").modal("hide");
+                FetchListing('0', '0', '', '', '');
+            }
+        })
+}
+
+function FetchSkus() {
+    $.get("/Products/GetSkus", function (data) {
+        SkuData = '';
+        SkuData = JSON.parse(data);
+        $(".select-item>ul").empty();
+        var html = '';
+        $.each(SkuData, function (i, item) {
+            html += "<li onclick='GetValue(this);' value=" + item.VARIANT_SKU + "><span>" + item.PRODUCT_NAME + "</span>";
+            html += "<p>(" + item.VARIANT_SKU + ")</p></li>";
+        });
+        $(".select-item>ul").append(html);
+    });
+}
+function GetValue(evt) {
+    var name = $(evt).find("span").text();
+    var sku = $(evt).find("p").text();
+    $(".select-default").find("span").html(sku.substring(1, sku.length - 1) + '<i class="fa fa-angle-down"></i>');
+    $(".select-default").removeClass("sd-active");
+    $(".select-item").removeClass("expand");
+    $("#exlst").removeClass("exlst-hide");
+    document.getElementById("s-lst").innerHTML = sku.substring(1, sku.length - 1);
+    document.getElementById("s-sku").innerHTML = convert(name);
+    $("#linknow").removeAttr("disabled");
+}
 function ChannelBack(params) {
     var html = '';
     if (params.data.CHANNEL_NAME == 'Flipkart') {
@@ -69,19 +136,30 @@ function TimeFormat(timeString) {
 document.addEventListener('DOMContentLoaded', function () {
     var allColumnIds = [];
     var gridDiv = document.querySelector('#listing-grid');
+    gridOptions = GridInitializer(columnDefs);
     new agGrid.Grid(gridDiv, gridOptions);
     FetchListing('1', '1', '', '', '');
 
     $(".ltm>ul>li>a").click(function () {
         if ($(this).attr("step") == "linked") {
+            columnDefs[1].hide = true;
+            gridOptions.api.setColumnDefs(columnDefs);
             FetchListing('1', '1', '', '', '');
+
         }
         else if ($(this).attr("step") == "unlinked") {
-            FetchListing('0', '1', '', '', '');
+            columnDefs[1].hide = false;
+            gridOptions.api.setColumnDefs(columnDefs);
+            FetchListing('0', '0', '', '', '');
         }
         else {
             FetchListing('1', '1', '', '', '');
         }
+    })
+    $("#linknow").click(function () {
+        var sysSku = document.getElementById("s-lst").innerText;
+        var id = $(this).attr("key");
+        LinkListing(id, sysSku);
     })
 });
 function FetchListing(isLinked, isEnable, sku, fromDate, toDate) {
