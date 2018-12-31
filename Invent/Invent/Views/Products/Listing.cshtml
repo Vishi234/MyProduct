@@ -10,5 +10,58 @@
         <div id="listing-grid" class="grdstyle ag-theme-balham" style="height:480px;"></div>
     </div>
 </div>
+<div class="modal custom fade" id="product-link">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="mdlTtl">Product Link</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="exlst">
+                    <div class="imgpre">
+                        <img src="~/assets/img/no-image.jpeg" />
+                    </div>
+                    <div class="des">
+                        <h4 id="lstId"></h4>
+                        <h5 id="lstNm"></h5>
+                    </div>
+                    <div class="smch">
+                        <h6 id="chnm"></h6>
+                    </div>
+                </div>
+                <div class="ddl-base">
+                    <span class="lbl">Select Item to link</span>
+                    <div class="select-base">
+                        <div class="select-default">
+                            <span>Select Item to link <i class="fa fa-angle-down"></i></span>
+                        </div>
+                        <div class="select-item">
+                            <input type="text" placeholder="Type something here..." />
+                            <ul></ul>
+                        </div>
+                    </div>
+                    @*<select id="skuList">
+                            <option>Select item</option>
+                        </select>*@
+                </div>
+
+                <div class="tmp" style="display: block;height: 102px;">
+                    <div class="exlst exlst-hide" id="exlst">
+                        <div class="imgpre">
+                            <img src="~/assets/img/no-image.jpeg" />
+                        </div>
+                        <div class="des">
+                            <h4 id="s-lst"></h4>
+                            <h5 id="s-sku"></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" id="linknow" disabled="disabled" class="btn btn-primary cst-btn">Link Now</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="~/assets/module_scripts/Products/listing.js"></script>
 

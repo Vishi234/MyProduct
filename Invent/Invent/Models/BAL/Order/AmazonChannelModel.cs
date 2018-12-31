@@ -36,7 +36,7 @@ namespace Invent.Models.BAL.Order
                 }
                 if (orderToDate != "")
                 {
-                    DateTime createdBefore = Convert.ToDateTime(orderToDate);
+                    DateTime createdBefore = Convert.ToDateTime(orderToDate).AddMinutes(-2);
                     request.CreatedBefore = createdBefore;
                 }
                 if (updatedFromDate != "")
@@ -68,6 +68,7 @@ namespace Invent.Models.BAL.Order
                 request.SellerOrderId = sellerOrderId;
                 decimal maxResultsPerPage = pageSize;
                 request.MaxResultsPerPage = maxResultsPerPage;
+                
                 List<string> tfmShipmentStatus = new List<string>();
                 request.TFMShipmentStatus = tfmShipmentStatus;
                 response = objCl.ListOrders(request);

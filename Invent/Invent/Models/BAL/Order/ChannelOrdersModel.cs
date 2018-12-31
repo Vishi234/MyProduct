@@ -51,12 +51,13 @@ namespace Invent.Models.BAL.Order
                                     var item = jsonOrder["ListOrderItemsResponse"]["ListOrderItemsResult"]["OrderItems"]["OrderItem"];
                                     order.OrderId = orderList[j]["AmazonOrderId"].ToString();
                                     order.ItemId = item["OrderItemId"].ToString();
-                                    order.Title = item["Title"].ToString();
+                                    order.Title = System.Text.RegularExpressions.Regex.Unescape(item["Title"].ToString());
                                     order.HSN = item["ASIN"].ToString();
                                     order.OrderDate = orderList[j]["PurchaseDate"].ToString();
                                     order.ShipDate = orderList[j]["LatestShipDate"].ToString();
                                     order.Quantity = item["QuantityOrdered"].ToString();
                                     order.SKU = item["SellerSKU"].ToString();
+                                    order.ListingId = item["SellerSKU"].ToString();
                                     if (orderList[j]["PaymentMethod"] != null)
                                     {
                                         order.PaymentType = orderList[j]["PaymentMethod"].ToString();

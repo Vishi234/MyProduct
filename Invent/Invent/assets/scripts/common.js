@@ -250,7 +250,31 @@ document.addEventListener('DOMContentLoaded', function () {
         else {
             $(this).find(".toggle-menu").css("display", "block");
         }
+    });
+    $(".select-default").click(function (i, item) {
+        if ($(this).hasClass("sd-active")) {
+            $(this).removeClass("sd-active");
+            $(".select-item").removeClass("expand");
+        }
+        else {
+            $(this).addClass("sd-active");
+            $(".select-item").addClass("expand");
+            $(".select-item").find("input").focus();
+        }
     })
+    $(".select-item").find("input").keyup(function () {
+        var filter = $(this).val();
+        $(".select-item>ul>li").each(function (index, value) {
+            currentName = $(value).text()
+            if (currentName.toUpperCase().indexOf(filter.toUpperCase()) > -1) {
+                $(value).show();
+            } else {
+                $(value).hide();
+            }
+
+        });
+    });
+    
 });
 
 function OnChannelSuccess(response) {
