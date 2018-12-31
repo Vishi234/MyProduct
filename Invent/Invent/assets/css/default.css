@@ -154,6 +154,11 @@ a {
     font-weight: 600;
 }
 
+.cstform .form-group {
+    width: 100% !important;
+    margin-left:0px!important;
+}
+
 .login-form .form-group:nth-child(2) {
     float: left;
     width: 48%;
@@ -2796,18 +2801,23 @@ a {
 }
 
 .ag-root ::-webkit-scrollbar {
-    width: 1em;
+    width: 8px;
+    height: 8px;
+
 }
 
 .ag-root ::-webkit-scrollbar-button {
-    background: #f4f4f4;
+    background: #fff;
     height: 1px;
+    width:10px;
 }
 
 .ag-root ::-webkit-scrollbar-track-piece {
-    background: #f4f4f4;
+    background: #fff;
 }
 
 .ag-root ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #d9d9d9;
+    border-radius: 4px;
+
 }
