@@ -11,8 +11,6 @@ namespace Invent.Controllers
     public class OrdersController : Controller
     {
         // GET: Orders
-        JavaScriptSerializer serializer;
-        UserEntity objUserEntity;
         public ActionResult Index()
         {
             return View();

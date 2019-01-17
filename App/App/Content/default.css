@@ -1,0 +1,373 @@
+﻿html {
+    -webkit-font-smoothing: antialiased;
+    min-height: 100%;
+}
+
+body {
+    color: #333;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    line-height: 1.42857;
+    overflow-x: hidden;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #121214;
+    font-weight: 200;
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+h1 {
+    font-size: 3.2em;
+}
+
+h2 {
+    font-size: 2.6em;
+}
+
+h3 {
+    font-size: 1.8em;
+}
+
+h4 {
+    font-size: 1.4em;
+}
+
+h5 {
+    font-size: 1em;
+}
+
+h6 {
+    font-size: 1em;
+}
+
+p {
+    color: #777;
+    line-height: 24px;
+}
+
+ol, ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.4s ease-in-out;
+    color: #0091ae;
+}
+
+    a:hover {
+        text-decoration: none;
+        color: #337ab7;
+        transition: all 0.4s ease-in-out;
+    }
+
+    a:focus {
+        text-decoration: none;
+    }
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.reg-base {
+    background: #f5f5f5;
+}
+
+.lhdr {
+    background-color: #fff;
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+    z-index: auto;
+    height: 50px;
+}
+
+.lbdy {
+}
+
+.login-base {
+    display: block;
+    width: 440px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    background: #ffffff;
+    border: 1px, solid, #cbcbcb;
+    -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.24);
+    -ms-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.24);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+
+.login-form h1 {
+    text-align: center;
+}
+
+.login-form p {
+    text-align: center;
+}
+
+.login-form .form-group p {
+    margin: 0px;
+    line-height: 20px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.cstform .form-group {
+    width: 100% !important;
+    margin-left: 0px !important;
+}
+
+.login-form .form-group:nth-child(2) {
+    float: left;
+    width: 48%;
+}
+
+.login-form .form-group:nth-child(3) {
+    float: left;
+    margin-left: 20px;
+    width: 47%;
+}
+
+.login-form .form-group:nth-child(4) label {
+    DISPLAY: inline-block;
+    FLOAT: LEFT;
+    /* MARGIN-TOP: 57PX; */
+}
+
+.login-form .check {
+    margin-bottom: 10px;
+}
+/* The check */
+.check {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 0px;
+    margin-top: -8px;
+    padding-right: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    .check span:nth-child(1) {
+        font-size: 13px;
+        margin-top: 5px;
+        float: left;
+    }
+
+    /* Hide the browser's default checkbox */
+    .check input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #fff;
+    border-color: #ccc;
+    border-radius: 0px;
+    border-style: solid;
+    border-width: 2px;
+}
+
+
+
+/* When the checkbox is checked, add a blue background */
+.check input:checked ~ .checkmark {
+    background-color: #fff;
+    border-color: #00a4bd;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.check input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.check .checkmark:after {
+    left: 3px;
+    top: 0px;
+    width: 5px;
+    height: 9px;
+    border: solid;
+    border-color: #00a4bd;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.frgtPass {
+    font-weight: 600;
+    border-bottom: 1px solid;
+    margin-top: -5px;
+}
+
+.orLabelBase {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.orLabel {
+    background: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+    z-index: 9999;
+}
+
+.orLabelBase hr {
+    margin: 0px;
+    margin-top: -10px;
+}
+
+.googleBtn span:nth-child(1) {
+    float: left;
+    background: #fff;
+    padding: 10px;
+    margin-left: -12px;
+    margin-top: -6px;
+    margin-bottom: -5px;
+    border-radius: 3px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.social-login {
+    text-align: center;
+}
+
+    .social-login > li {
+        display: inline-block;
+        margin-right: 15px;
+    }
+
+        .social-login > li > a {
+            display: block;
+            /* padding: 15px; */
+            /* border: 1px solid #ccc; */
+            border-radius: 50px;
+            font-size: 35px;
+        }
+
+        .social-login > li:nth-child(1) > a {
+            color: #E62E04;
+        }
+
+        .social-login > li:nth-child(2) > a {
+            color: #3C5A99;
+        }
+
+        .social-login > li:nth-child(3) > a {
+            color: #04A9F4;
+        }
+
+.form-control {
+    background: #fff;
+    border-color: rgb(203, 214, 226) rgb(203, 214, 226) rgb(203, 214, 226);
+    border-radius: 3px;
+    font-size: 12px;
+    height: 35px;
+    box-shadow: none;
+}
+
+    .form-control:focus {
+        border: solid 1px rgb(21, 137, 238);
+        box-shadow: 0 0 3px #0070d2;
+    }
+
+.lgnttl {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    .lgnttl > p {
+        font-size: 1.2em;
+    }
+
+.tpara {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+    .tpara > span:nth-child(1) {
+        font-size: 18px;
+        border-bottom: 2px solid #ea2330;
+        font-weight: 600;
+    }
+
+    .tpara > span:nth-child(2) {
+        font-weight: 600;
+        color: #808080;
+        margin-top: 10px;
+    }
+
+        .tpara > span:nth-child(2) a {
+            color: #4050ce !important;
+            font-weight: 700;
+        }
+
+.btn-success {
+    background: #ea2330;
+    color: #fff;
+    border: 1px solid #ea2330;
+    border-color: #ea2330;
+    border-radius: 0px;
+    -webkit-box-shadow: 0px 2px 2px 0px #cdcdcd;
+    -moz-box-shadow: 0px 2px 2px 0px #cdcdcd;
+    -ms-box-shadow: 0px 2px 2px 0px #cdcdcd;
+    box-shadow: 0px 2px 2px 0px #cdcdcd;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+    .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
+        background: #ea2330;
+        border-color: #ea2330;
+        outline: none;
+        box-shadow: 0px 2px 2px 0px #cdcdcd;
+    }
