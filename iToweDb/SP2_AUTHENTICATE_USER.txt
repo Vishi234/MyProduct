@@ -1,0 +1,148 @@
+create or replace PROCEDURE SP2_AUTHENTICATE_USER
+(
+    P_LOGINID            IN     VARCHAR2,
+    P_PASSWORD           IN     VARCHAR2,
+    P_RETRY_COUNT        IN     NUMBER, --0.3
+    P_USER_ID            OUT    NUMBER ,
+    P_LAST_LOGIN         OUT    DATE ,
+    P_ROLE_ID            OUT    VARCHAR2 ,
+    P_PASS_RESET_DATE    OUT    DATE ,
+    P_USERNAME           OUT    VARCHAR2 ,
+    P_CURR_SETTING       OUT    VARCHAR2 ,
+    P_VERIFY_FLAG        OUT    VARCHAR2,           --0.1
+    P_ERR_CODE           OUT    VARCHAR2,
+    P_DEFAULT_PAGE       OUT    VARCHAR2,
+    P_IMEI_NO            OUT    VARCHAR2, --0.2
+    P_EXPIRE_INFO_DATE   OUT    DATE --0.3
+)
+/**********************************************************************************************************
+    CREATED BY          :   Vinay Singh
+    REATED ON           :   12-DEC-2013
+    DESCRIPTION         :   To authenticate the user who is login to web portal.
+
+Modified By : Kalpana Sharma on 13th Jan 2014
+Purpose : 0.1 - To fix QC bug 17321(change datatype char to varchar2)
+
+Modified by : Dheeraj Paliwal on 04 Aug, 2016
+Puppose     : Check for version for Mobile.
+Version     : 0.2
+
+Modified by : Karishma Mithal on 19 Nov, 2016
+Puppose     : 1. To check whether account is locked.
+              2. To lock account in case of wrong password entry.
+              3. To check if account going to expired.
+Version     : 0.3
+
+Modified by : Viren Tyagi on 13 Apr, 2017
+Puppose     : To remove trunc(sysdate) from packge.
+Version     : --0.4
+************************************************************************************************************/
+AS
+
+V_PASSWORD          VARCHAR2(100); --0.3
+V_LOCKED            CHAR(1); --0.3
+V_LOGIN_ATTEMP      NUMBER(1) := PKG_CONFIG_DATA.FAILED_LOGIN_ATTEMPTS; --0.3
+V_PASS_LIFETIME     NUMBER(10):= PKG_CONFIG_DATA.PASSWORD_LIFE_TIME; --0.3
+V_SYS_TRUNC         DATE := TRUNC(SYSDATE);--PKG_CONFIG_DATA.SYS_DATE; --0.3 0.4
+
+BEGIN
+
+    P_VERIFY_FLAG := 'A';
+
+
+    BEGIN
+    --SUCCESS
+
+        SELECT USER_ID,LAST_LOGIN_TIME,PASS_RESET_DATE,IMEI_NO,PASSWORD,LAST_EXPIRE_INFO_DT,ACCOUNT_LOCKED --0.3
+          INTO P_USER_ID,P_LAST_LOGIN,P_PASS_RESET_DATE,P_IMEI_NO,V_PASSWORD,P_EXPIRE_INFO_DATE,V_LOCKED --0.3
+        FROM MST_USER_CREDENTIALS--1.0,0.2
+        WHERE UPPER(LOGIN_ID) = UPPER(P_LOGINID);
+        --AND (PASSWORD = P_PASSWORD OR P_PASSWORD = '#SWITCHLOOK#');
+
+        --Account is locked
+        IF V_LOCKED = 'Y' THEN --0.3
+
+            P_VERIFY_FLAG := 'L';
+            P_ERR_CODE:='1095';
+            RETURN;
+
+        END IF;
+
+        --Invalid password
+        IF V_PASSWORD <> P_PASSWORD THEN --0.3
+            P_VERIFY_FLAG := 'I';
+
+            --Login attemps ic case of wrong password.
+            IF V_LOGIN_ATTEMP <> 0 AND P_RETRY_COUNT + 1 >= V_LOGIN_ATTEMP THEN
+
+                  UPDATE MST_USER_CREDENTIALS SET ACCOUNT_LOCKED = 'Y' WHERE UPPER(LOGIN_ID) = UPPER(P_LOGINID);COMMIT;
+
+                  P_ERR_CODE:='1094';
+
+              ELSE
+
+                  P_ERR_CODE:='1093';
+
+            END IF;
+
+            RETURN;
+
+        END IF;
+
+    EXCEPTION
+    --FAILED
+        WHEN NO_DATA_FOUND THEN
+            P_VERIFY_FLAG := 'F';
+            P_ERR_CODE:='1014';
+            RETURN;
+
+    END;
+
+    --Login failed because user is suspended/deactivated.
+    BEGIN
+    --SUCCESS
+        SELECT FIRST_NAME|| DECODE (MIDDLE_NAME, NULL, '', ' ')|| MIDDLE_NAME|| ' '|| LAST_NAME,CURR_SETTING,DEFAULT_PAGE
+        INTO P_USERNAME,P_CURR_SETTING,P_DEFAULT_PAGE FROM MST_USER
+        WHERE USER_ID = P_USER_ID
+        AND V_SYS_TRUNC BETWEEN TRUNC(WEF_DATE) AND NVL(WET_DATE,V_SYS_TRUNC); --0.3
+
+    EXCEPTION
+    --FAILED
+        WHEN NO_DATA_FOUND THEN
+            P_VERIFY_FLAG := 'S';
+            P_ERR_CODE:='1013';
+            RETURN;
+    END;
+
+
+delete shubh_rnd;
+insert into shubh_rnd values('P_USER_ID' ||P_USER_ID);
+
+commit;
+    --- Login Successful but no rights given to user
+     BEGIN
+    --SUCCESS
+        SELECT  REGEXP_REPLACE((LISTAGG(ROLE_ID,',') WITHIN GROUP (ORDER BY NULL)), '([^,]*)(,\1)+($|,)', '\1\3') INTO P_ROLE_ID
+        FROM MST_USER_ROLE
+        WHERE USER_ID = P_USER_ID
+        AND TRUNC(SYSDATE) BETWEEN TRUNC(WEF_DATE) AND NVL(WET_DATE,TRUNC(SYSDATE))
+        GROUP BY ROLE_ID;
+
+    EXCEPTION
+    --FAILED
+         WHEN NO_DATA_FOUND THEN
+            P_VERIFY_FLAG := 'N';
+            P_ERR_CODE:='1015';
+            RETURN;
+    END;
+
+    -- Valid credentials but password is expired.
+    IF V_PASS_LIFETIME <> 0 AND P_PASS_RESET_DATE < V_SYS_TRUNC - V_PASS_LIFETIME THEN --0.3
+
+            P_VERIFY_FLAG := 'E';
+            P_ERR_CODE:='1052';
+            RETURN;
+
+    END IF;
+
+END;
