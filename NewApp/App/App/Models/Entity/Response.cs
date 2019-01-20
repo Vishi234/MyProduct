@@ -5,10 +5,20 @@ using System.Web;
 
 namespace App.Models.Entity
 {
-    public static class Response
+    public class Response
     {
-        public static string ERROR_MSG { get; set; }
-        public static string ERROR_FLAG { get; set; }
-        public static string ADD_PARAM { get; set; }
+        private static Response _instance;
+        protected Response()
+        {
+
+        }
+        public static Response GetInstance()
+        {
+            if (_instance == null) _instance = new Response();
+            return _instance;
+        }
+        public string ERROR_MSG { get; set; }
+        public string ERROR_FLAG { get; set; }
+        public string ADD_PARAM { get; set; }
     }
 }

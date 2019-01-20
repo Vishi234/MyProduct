@@ -1,0 +1,135 @@
+﻿@using App.Models.Entity
+@{
+    UserEntity user = (UserEntity)Session["UserEntity"];
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/bundles/css")
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/react")
+</head>
+<body>
+    <div class="sidebar">
+        <div class="lsec">
+
+        </div>
+        <div class="hsec">
+            <span><a href="@Url.Action("Overview","Dashboard")"><i class="fa fa-home"></i> Dashboard Overview</a></span>
+        </div>
+        <div class="navigation-menu">
+            <ul>
+                <li>
+                    <a href="javascript:void(0)">
+                        @*<i class="fa fa-shopping-cart"></i>*@
+                        Orders <i class="fa fa-angle-up"></i>
+                        <p class="sml-desc">Authentication,Database....</p>
+                    </a>
+                    <div class="smenu" menu-level="hm3">
+                        <ul>
+                            <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Authentication</a></li>
+                            <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Database</a></li>
+                            <li><a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i>Storage</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        Products<i class="fa fa-angle-up"></i>
+                        <p class="sml-desc">Manage,Listing,Inventory....</p>
+                    </a>
+                    <div class="smenu" menu-level="hm3">
+                        <ul>
+                            <li><a href="@Url.Action("Products","Manage")"><i class="fa fa-adjust"></i>Manage</a></li>
+                            <li><a href="@Url.Action("Products","Listing")"><i class="fa fa-list-alt"></i>Listing</a></li>
+                            <li><a href="@Url.Action("Products","Inventory")"><i class="fa fa-shopping-cart"></i>Inventory</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        Products<i class="fa fa-angle-up"></i>
+                        <p class="sml-desc">Manage,Listing,Inventory....</p>
+                    </a>
+                    <div class="smenu" menu-level="hm3">
+                        <ul>
+                            <li><a href="@Url.Action("Manage","Products")"><i class="fa fa-adjust"></i>Manage</a></li>
+                            <li><a href="@Url.Action("Listing","Products")"><i class="fa fa-list-alt"></i>Listing</a></li>
+                            <li><a href="@Url.Action("Inventory","Products")"><i class="fa fa-shopping-cart"></i>Inventory</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        Settings<i class="fa fa-angle-up"></i>
+                        <p class="sml-desc">Account,Category,Channel....</p>
+                    </a>
+                    <div class="smenu" menu-level="hm7">
+                        <ul>
+                            <li><a href="@Url.Action("Account","Setting")"><i class="fa fa-user"></i>Account</a></li>
+                            <li><a href="@Url.Action("Category","Setting")"><i class="fa fa-list-alt"></i>Category</a></li>
+                            <li><a href="@Url.Action("Channel","Setting")"><i class="fa fa-plug"></i>Channel</a></li>
+                            <li><a href="@Url.Action("Import","Setting")"><i class="fa fa-file-import"></i>Import</a></li>
+                            <li><a href="javascript:void(0)"><i class="fa fa-map-marker"></i>Location</a></li>
+                            <li><a href="javascript:void(0)"><i class="fa fa-bell"></i>Notification</a></li>
+                            <li><a href="javascript:void(0)"><i class="fa fa-location-arrow"></i>Pincode</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="right-section">
+        <div class="top-bar">
+            <div class="right-nav-menu">
+                <ul>
+                    <li><a href="javascript:void(0)"><i class="fa fa-question-circle"></i></a></li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-bell"></i>
+                            <span class="not-count">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="user-dtl"><i class="far fa-user-circle"></i> <span>@user.COMPANY_NAME<i class="fa fa-angle-down"></i></span></a>
+                        <div class="top-sub-menu">
+                            <div class="arrow_box"></div>
+                            <div class="top-sub-menu-inner">
+                                <div class="pro-base">
+                                    <div class="pro-img">
+                                        <img src="~/Images/user-img.png" />
+                                    </div>
+                                    <div class="pro-name">
+                                        <span class="pro-user-name">@user.FULL_NAME</span>
+                                        <span class="pro-user-email">@user.EMAIL_ADDRESS</span>
+                                        <span class="pro-user-setting"><a href="javascript:void(0)">Profile & Preferences</a></span>
+                                    </div>
+                                </div>
+                                <div class="pro-menu">
+                                    <ul>
+                                        <li><a href="javascript:void(0)">Account & Billing</a></li>
+                                        <li><a href="javascript:void(0)">Configuration</a></li>
+                                    </ul>
+                                </div>
+                                <div class="pro-footer">
+                                    <span class="pull-left"><a href="@Url.Action("Logout","Auth")">Sign out</a></span>
+                                    <span class="pull-right"><a href="javascript:void(0)">Privacy policy</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="right-content-section">
+            @RenderBody()
+        </div>
+        <footer></footer>
+    </div>
+
+</body>
+</html>

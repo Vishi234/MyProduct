@@ -17,6 +17,7 @@
             input.classList.remove('input-validation-error');
             input.nextSibling.classList.remove('field-validation-error');
             input.nextSibling.textContent = "";
+            return true;
         }
         //check data type // here I will show you email validation // we can add more and will later
         if (input.getAttribute('type') == "email" && input.value != "") {
@@ -30,6 +31,7 @@
                 input.classList.remove('input-validation-error');
                 input.nextSibling.classList.remove('field-validation-error');
                 input.nextSibling.textContent = "";
+                return true;
             }
         }
     },
@@ -47,11 +49,11 @@
         var inputField;
         if (this.props.type == 'textarea') {
             inputField = <textarea value={this.props.value} ref={this.props.name} name={this.props.name}
-                className='form-control' required={this.props.isrequired} onChange={this.handleChange} />
+                                   className='form-control' required={this.props.isrequired} onChange={this.handleChange} />
         }
         else {
             inputField = <input type={this.props.type} value={this.props.value} ref={this.props.name} name={this.props.name}
-                className='form-control' required={this.props.isrequired} onChange={this.handleChange} />
+                                className='form-control' required={this.props.isrequired} onChange={this.handleChange} />
         }
         return (
             <div className="form-group">
@@ -80,7 +82,7 @@ var LoginForm = React.createClass({
                 validForm = validForm && validField;
             }
         });
-        //after validation complete post to server 
+        //after validation complete post to server
         if (validForm) {
             var d = {
                 email: this.state.Email,
@@ -90,17 +92,21 @@ var LoginForm = React.createClass({
                 type: "POST",
                 url: this.props.urlPost,
                 data: d,
+                beforeSend: function () {
+                    $("#progress").show();
+                },
                 success: function (data) {
-                    //Will clear form here
-                    this.setState({
-                        Fullname: '',
-                        Email: '',
-                        Message: '',
-                        ServerMessage: data.message
-                    });
+                    $("#progress").hide();
+                    if (data.ERROR_FLAG == "S") {
+                        window.location.href = "/Dashboard/Overview";
+                    }
+                    else {
+                        CallToast(data.ERROR_MSG, data.ERROR_FLAG);
+                    }
                 }.bind(this),
                 error: function (e) {
                     console.log(e);
+                    $("#progress").hide();
                     alert('Error! Please try again');
                 }
             })
@@ -125,7 +131,7 @@ var LoginForm = React.createClass({
         })
     },
     render: function () {
-        //Render form 
+        //Render form
         return (
              <div>
                 <div className="lgnttl">
@@ -141,11 +147,11 @@ var LoginForm = React.createClass({
                         <form name="loginForm" noValidate onSubmit={this.handleSubmit}>
                             <div className="form-group">
                                 <MyInput type={'email'} value={this.state.Email} label={'Email Address'} name={'Email'} htmlFor={'Email'} isrequired={true}
-                                    onChange={this.onChangeEmail} className="form-control col-md-12" onComponentMounted={this.register} messageRequired={'Email Required'} messageEmail={'Invalid Email'} />
+                                         onChange={this.onChangeEmail} className="form-control col-md-12" onComponentMounted={this.register} messageRequired={'Email Required'} messageEmail={'Invalid Email'} />
                             </div>
                             <div className="form-group">
                                 <MyInput type={'password'} value={this.state.Password} label={'Password'} name={'Password'} htmlFor={'Password'} isrequired={true}
-                                    onChange={this.onChangePassword} className="form-control col-md-12" onComponentMounted={this.register} messageRequired={'Password required'} />
+                                         onChange={this.onChangePassword} className="form-control col-md-12" onComponentMounted={this.register} messageRequired={'Password required'} />
                             </div>
                             <div className="form-group">
                                 <label className="check pull-left">
@@ -161,7 +167,7 @@ var LoginForm = React.createClass({
                         </form>
                     </div>
                 </div>
-            </div>
+             </div>
         );
     }
 });

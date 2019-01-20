@@ -16,6 +16,10 @@ namespace App
                         "~/Scripts/jquery.validate.js",
                         "~/Scripts/jquery.validate.unobtrusive.js",
                         "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                        "~/Scripts/jquery.toast.min.js",
+                        "~/Scripts/common.js",
+                        "~/Scripts/jquery.sumoselect.min.js",
+                        "~/Scripts/custom.js",
                         "~/Scripts/fontawesome/all.js"));
             bundles.Add(new ScriptBundle("~/bundles/react").Include(
                          "~/Scripts/react.development.js",
@@ -29,7 +33,9 @@ namespace App
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/default.css",
-                      "~/Content/fontawesome-all.css"));
+                      "~/Content/fontawesome-all.css",
+                      "~/Content/jquery.toast.min.css",
+                      "~/Content/sumoselect.min.css"));
         }
     }
 }
