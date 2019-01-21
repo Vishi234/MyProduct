@@ -3,47 +3,6 @@
     ViewBag.Title = "Import";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-<div class="inside-top">
-    <div class="pull-left base-top">
-        <span class="pull-left">Import Configuration</span>
-    </div>
-</div>
-<div class="insidebody">
-    <ul>
-        <li>
-            <label class="col-lg-2 col-xs-12 col-sm-2">Select Import Type:*</label>
-            <div class="col-lg-10 col-xs-12 col-sm-10 col-md-10">
-                <select onchange="Import(this);" id="import">
-                    <option selected="selected">Select Import Type</option>
-                    <option value="PRODUCT_MASTER">Product</option>
-                    <option value="LISTING_MASTER">Listing</option>
-                    @*<option value="Category">Category</option>
-                        <option value="PRODUCT_MASTER">Product Mater</option>
-                        <option value="CHANNEL_ITEM_MAPPING">Channel Item Mapping</option>
-                        <option value="Adjustment">Inventory Adjustment</option>
-                        <option value="SalesOrders">Sales Orders</option>
-                        <option value="TaxConfig">Tax Configuration</option>
-                        <option value="UserImport">Users Import</option>*@
-                </select>
-            </div>
-        </li>
-        <li>
-            <label class="col-lg-2 col-xs-12 col-sm-2">Choose file:*</label>
-            <div class="col-lg-10 col-xs-12 col-sm-10 col-md-10">
-                <input type="file" id="importfile" />
-            </div>
-        </li>
-        <li>
-            <label class="col-lg-2 col-xs-12 col-sm-2"></label>
-            <div class="col-lg-10 col-xs-12 col-sm-10 col-md-10">
-                <a href="javascript:void(0)" class="btn btn-link" id="downloadCsv" download>Download CSV Format</a>
-            </div>
-        </li>
-        <li>
-            <label class="col-lg-2 col-xs-12 col-sm-2"></label>
-            <div class="col-lg-10 col-xs-12 col-sm-10 col-md-10">
-                <button type="submit" onclick="UploadFile(this);" class="btn btn-info"><span class="hide"><i class="fa fa-spinner"></i></span> Upload</button>
-            </div>
-        </li>
-    </ul>
-</div>
+<input type="hidden" id="downloadPath" value="@System.Configuration.ConfigurationManager.AppSettings["DownloadTemplate"]" />
+<div id="import-base"></div>
+<script src="@Url.Content("~/React/setting/import.jsx")"></script>

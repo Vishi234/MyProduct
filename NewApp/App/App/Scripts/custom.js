@@ -20,5 +20,5 @@
         $(this).toggleClass("right-menu-active");
         $(".top-sub-menu").toggleClass("show");
     });
-    $("select").SumoSelect({ search: true, searchText: 'Enter here.' });
+    //$("select").SumoSelect({ search: true, searchText: 'Enter here.' });
 })
