@@ -388,6 +388,14 @@ a {
     display: block;
 }
 
+.field-validation-success {
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: 500;
+    color: green !important;
+    display: block;
+}
+
 .rgbse {
     width: 800px;
     display: block;
@@ -890,15 +898,26 @@ a {
     padding: 35px 0px;
 }
 
-    .insidebody > form > ul > li {
-        display: inline-block;
-        width: 100%;
-        margin-bottom: 30px;
+    .insidebody > form {
+        margin-bottom: 0px;
     }
 
-        .insidebody > form > ul > li .btn-link {
-            padding: 0px;
-        }
+.custom-error {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.insidebody > form > ul > li {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+    .insidebody > form > ul > li .btn-link {
+        padding: 0px;
+    }
 
 .btn-info {
     font-size: 12px;
@@ -927,3 +946,14 @@ a {
     width: 100%;
     border-top: 2px solid #eeeeee;
 }
+
+.dwn {
+    float: left;
+    margin-top: 2px;
+}
+
+    .dwn a {
+        font-size: 11px;
+        font-weight: 600;
+        text-decoration: underline;
+    }

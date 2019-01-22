@@ -155,6 +155,7 @@
     <Content Include="Content\svg-with-js.min.css" />
     <Content Include="Content\v4-shims.css" />
     <Content Include="Content\v4-shims.min.css" />
+    <Content Include="Exception\Exception.txt" />
     <Content Include="Global.asax" />
     <Content Include="Images\loading.gif" />
     <Content Include="Images\login-bg.jpg" />
@@ -178,6 +179,7 @@
     <Content Include="Scripts\fontawesome\solid.min.js" />
     <Content Include="Scripts\fontawesome\v4-shims.js" />
     <Content Include="Scripts\fontawesome\v4-shims.min.js" />
+    <Content Include="Configuration\setting\import.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -207,6 +209,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BAL\Authorization\Authorization.cs" />
+    <Compile Include="Models\BAL\Channel\Product.cs" />
     <Compile Include="Models\BAL\Common\Common.cs" />
     <Compile Include="Models\DAL\SQLHelper.cs" />
     <Compile Include="Models\Entity\AuthEntity\RegisterEntity.cs" />
@@ -230,6 +233,7 @@
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Dashboard\Overview.cshtml" />
     <Content Include="Views\Setting\Import.cshtml" />
+    <Content Include="Templates\product.csv" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -254,6 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Files\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

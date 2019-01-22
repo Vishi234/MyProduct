@@ -6,22 +6,32 @@
                 value: '0',
                 selectedFile: null,
                 loaded: 0,
+                message: "",
             };
         this.handleselectedFile = this.handleselectedFile.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    handleselectedFile = event => {
+    handleselectedFile(event) {
         this.setState({
             selectedFile: event.target.files,
             loaded: 0,
         })
     }
     handleChange(event) {
+        if (event.target.value == "0") {
+            var path = $("#downloadPath").val();
+            $("#downloadCsv").attr("href", path + event.target.value + ".csv")
+        }
+        else {
+            $("#downloadCsv").removeAttr("href");
+        }
+        $(".custom-error").empty();
         this.setState({ value: event.target.value });
     }
 
     handleSubmit(event) {
+        var state_data = this.state;
         var file = this.state.selectedFile;
         if (this.state.value == "0") {
             CallToast("Please select import type to proceed", "F");
@@ -42,20 +52,57 @@
             }
 
         }
+        InlineLoading(event, 'Show');
         const data = new FormData()
         data.append('file', file[0], file[0].name)
         data.append('reportType', this.state.value);
         $.ajax({
             url: '/Setting/FileUpload',
             type: "POST",
-            contentType: false, // Not to set any content header  
-            processData: false, // Not to process data  
+            contentType: false, // Not to set any content header
+            processData: false, // Not to process data
             data: data,
-            async: true,
+            async: false,
             success: function (result) {
-                console.log(result);
+                if (result.ERROR_FLAG == undefined) {
+                    var MyData = result;
+                    if (MyData.length > 0) {
+                        if (MyData[0].FLAG == "F") {
+                            event.target.nextSibling.innerHTML = "<span class='field-validation-error'>" + MyData[0].MESSAGE + "</span>";
+                            //$("#data-grid").show();
+                            //gridOptions.api.setRowData(MyData);
+                            event.preventDefault();
+                            return false;
+                        }
+                        else {
+                            event.target.nextSibling.innerHTML = "<span class='field-validation-success'>" + MyData[0].MESSAGE + "</span>";
+                            //$("#importfile").val('');
+                            //$("#data-grid").hide();
+                            //gridOptions.api.setRowData(null);
+                            event.preventDefault();
+                            return false;
+                        }
+                    }
+                    else {
+                        $("#data-grid").hide();
+                    }
+                }
+                else {
+                    $("#data-grid").hide();
+                    if (result.ERROR_FLAG == "F") {
+                        event.target.nextSibling.innerHTML = "<span class='field-validation-error'>" + result.ERROR_MSG + "</span>";
+                        event.preventDefault();
+                        return false;
+                    }
+                    else {
+                        event.target.nextSibling.innerHTML = "<span class='field-validation-success'>" + result.ERROR_MSG + "</span>";
+                        event.preventDefault();
+                        return false;
+                    }
+                }
             },
             error: function (err) {
+                InlineLoading(event, 'Hide');
                 return false;
             }
         })
@@ -75,7 +122,7 @@
                             <li>
                                 <label className="col-lg-2 col-xs-12 col-sm-2">Select Import Type:*</label>
                                 <div className="col-lg-10 col-xs-12 col-sm-10 col-md-10">
-                                    <select value={this.state.value} onChange={this.handleChange.bind(this)} id="import">
+                                    <select value={this.state.value} onChange={this.handleChange} id="import">
                                         <option value="0">Select Import Type</option>
                                         <option value="product">Product</option>
                                         <option value="listing">Listing</option>
@@ -86,6 +133,7 @@
                                 <label className="col-lg-2 col-xs-12 col-sm-2">Choose file:*</label>
                                 <div className="col-lg-10 col-xs-12 col-sm-10 col-md-10">
                                     <input type="file" id="importfile" onChange={this.handleselectedFile} />
+                                    <span className="dwn"><a id="downloadCsv" download>Download Csv Format</a></span>
                                 </div>
                             </li>
                             <li>
@@ -96,7 +144,7 @@
                             </li>
                         </ul>
                     </form>
-                    <span className="pull-right"><a href="javascript:void(0)" download >Download Csv Format</a></span>
+                    <div className="custom-error"></div>
                     <hr />
                 </div>
             </div>

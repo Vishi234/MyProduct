@@ -1,6 +1,9 @@
-﻿using System;
+﻿using App.Models.Entity;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -9,6 +12,7 @@ using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Script.Serialization;
 
 namespace App.Models.BAL
 {
@@ -71,6 +75,103 @@ namespace App.Models.BAL
                 }
             }
             return ipAddress;
+        }
+        #endregion
+        public static string ReadJsonFile(string key, string path)
+        {
+            string file = HttpContext.Current.Server.MapPath("~/Configuration/" + path);
+            var fileData = System.IO.File.ReadAllText(file);
+            var json = JObject.Parse(fileData);
+            var columns = json[key];
+            return columns.ToString();
+        }
+        #region Excel to datatable and validation
+        public static Response CsvToDt(JArray Columns, string csvData)
+        {
+            int skipHeader = 0;
+            bool colMatch = true;
+            bool blankFile = false;
+            DataTable dt = new DataTable();
+            Response error = Response.GetInstance();
+            //Add Columns from json to datatable
+            for (int i = 0; i < Columns.Count - 1; i++)
+            {
+                dt.Columns.Add(Columns[i]["field"].ToString());
+            }
+            //End
+            foreach (string row in csvData.Split('\n'))
+            {
+                if (!string.IsNullOrEmpty(row))
+                {
+                    int i = 0;
+                    if (skipHeader == 0)
+                    {
+                        i = 0;
+                        foreach (string cell in row.Split(','))
+                        {
+                            i++;
+                        }
+                        if (i != dt.Columns.Count)
+                        {
+                            colMatch = false;
+                        }
+                    }
+                    if (colMatch == true)
+                    {
+                        if (skipHeader != 0)
+                        {
+                            dt.Rows.Add();
+                            i = 0;
+                            foreach (string cell in row.Split(','))
+                            {
+                                dt.Rows[dt.Rows.Count - 1][i] = cell;
+                                i++;
+                            }
+                        }
+                    }
+                }
+                skipHeader = 1;
+            }
+            if (dt.Rows.Count == 0)
+            {
+                blankFile = true;
+            }
+            if (colMatch == false)
+            {
+                error.ERROR_FLAG = "F";
+                error.ERROR_MSG = "Please check no. of columns in file.";
+
+            }
+            else if (blankFile == true)
+            {
+                error.ERROR_FLAG = "F";
+                error.ERROR_MSG = "File can not be blank.";
+            }
+            else
+            {
+                error.ERROR_FLAG = "S";
+                error.ERROR_MSG = "Uploaded Successfully.";
+                error.ADD_PARAM = Common.DATATABLETOJSON(dt);
+            }
+            return error;
+        }
+        #endregion
+        #region Datatable Serializer
+        public static string DATATABLETOJSON(DataTable table)
+        {
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            List<Dictionary<string, object>> parentRow = new List<Dictionary<string, object>>();
+            Dictionary<string, object> childRow;
+            foreach (DataRow row in table.Rows)
+            {
+                childRow = new Dictionary<string, object>();
+                foreach (DataColumn col in table.Columns)
+                {
+                    childRow.Add(col.ColumnName, row[col]);
+                }
+                parentRow.Add(childRow);
+            }
+            return jsSerializer.Serialize(parentRow);
         }
         #endregion
     }

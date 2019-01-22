@@ -1,11 +1,9 @@
 ===============================start==============================================
 Inner Exception's
-MessageColumn 'CONFIG_STATUS' does not belong to table Table.
-StackTrace   at System.Data.DataRow.GetDataColumn(String columnName)
-   at System.Data.DataRow.get_Item(String columnName)
-   at App.Models.BAL.Authorization.Authorization.Login(String email, String password, String ipAdd) in C:\Users\HP\Documents\GitHub\MyProduct\NewApp\App\App\Models\BAL\Authorization\Authorization.cs:line 91
-   at App.Controllers.AuthController.Login(String email, String password) in C:\Users\HP\Documents\GitHub\MyProduct\NewApp\App\App\Controllers\AuthController.cs:line 80
-TargetSiteSystem.Data.DataColumn GetDataColumn(System.String)
-DateTime : 	1/20/2019 3:32:36 PM
+MessageIndex was outside the bounds of the array.
+StackTrace   at App.Models.BAL.Channel.Product.BulkUpload(String userId, String jsonData) in C:\Users\HP\Documents\GitHub\MyProduct\NewApp\App\App\Models\BAL\Channel\Product.cs:line 60
+   at App.Controllers.SettingController.FileUpload(String reportType) in C:\Users\HP\Documents\GitHub\MyProduct\NewApp\App\App\Controllers\SettingController.cs:line 50
+TargetSiteSystem.Collections.Generic.List`1[System.Collections.Generic.Dictionary`2[System.String,System.Object]] BulkUpload(System.String, System.String)
+DateTime : 	1/22/2019 4:01:15 PM
 ================================end============================================= 
 

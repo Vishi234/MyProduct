@@ -1,0 +1,244 @@
+﻿{
+  "product": [
+    {
+      "headerName": "Variant SKU",
+      "field": "VARIANT_SKU",
+      "hide": false,
+      "export": true,
+      "width": 160
+    },
+    {
+      "headerName": "Product SKU",
+      "field": "PRODUCT_SKU",
+      "hide": false,
+      "export": true,
+      "width": 160
+    },
+    {
+      "headerName": "Product Name",
+      "field": "PRODUCT_NAME",
+      "hide": false,
+      "export": true,
+      "width": 150
+    },
+    {
+      "headerName": "Variant Name",
+      "field": "VARIANT_NAME",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Warehouse Location",
+      "field": "WAREHOUSE_LOCATION",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Inventory",
+      "field": "INVENTORY",
+      "hide": false,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Brand",
+      "field": "BRAND",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Category",
+      "field": "CATEGORY",
+      "hide": false,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Color",
+      "field": "COLOR",
+      "hide": true,
+      "export": true,
+      "width": 110
+    },
+    {
+      "headerName": "Mrp",
+      "field": "MRP",
+      "hide": true,
+      "export": true,
+      "width": 110
+    },
+    {
+      "headerName": "Cost",
+      "field": "COST",
+      "hide": true,
+      "export": true,
+      "width": 100
+    },
+    {
+      "headerName": "Size",
+      "field": "SIZE",
+      "hide": true,
+      "export": true,
+      "width": 100
+    },
+    {
+      "headerName": "Description",
+      "field": "DESCRIPTION",
+      "hide": false,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Image",
+      "field": "IMAGE_URL",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Height",
+      "field": "HEIGHT",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Width",
+      "field": "WIDTH",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Length",
+      "field": "LENGTH",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Weight",
+      "field": "WEIGHT",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Serial",
+      "field": "SERIAL",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Gst",
+      "field": "GST",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Hsn Code",
+      "field": "HSN_CODE",
+      "hide": false,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Tax",
+      "field": "TAX",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Enable",
+      "field": "ENABLE",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Link",
+      "field": "LINK",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Rejection Reason",
+      "field": "REJ_REASON",
+      "hide": false,
+      "export": true,
+      "width": 250
+    }
+  ],
+  "listing": [
+    {
+      "headerName": "Channel Name",
+      "field": "CHANNEL_NAME",
+      "hide": false,
+      "export": true,
+      "width": 160
+    },
+    {
+      "headerName": "System SKU",
+      "field": "SYSTEM_SKU",
+      "hide": false,
+      "export": true,
+      "width": 160
+    },
+    {
+      "headerName": "Channel SKU",
+      "field": "CHANNEL_SKU",
+      "hide": false,
+      "export": true,
+      "width": 160
+    },
+    {
+      "headerName": "Product Id",
+      "field": "PRODUCT_ID",
+      "hide": false,
+      "export": true,
+      "width": 150
+    },
+    {
+      "headerName": "Blocked Inventory",
+      "field": "BLOCKED_INVENTORY",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Inventory Sync",
+      "field": "INVENTORY_SYNC",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Live",
+      "field": "LIVE",
+      "hide": false,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Enabled",
+      "field": "ENABLED",
+      "hide": true,
+      "export": true,
+      "width": 140
+    },
+    {
+      "headerName": "Rejection Reason",
+      "field": "REJ_REASON",
+      "hide": false,
+      "export": true,
+      "width": 250
+    }
+  ]
+}
