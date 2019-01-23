@@ -35,11 +35,13 @@
         var file = this.state.selectedFile;
         if (this.state.value == "0") {
             CallToast("Please select import type to proceed", "F");
+            InlineLoading("upload", 'Hide');
             event.preventDefault();
             return false;
         }
         if (this.state.selectedFile == null) {
             CallToast("Pelase select file.", "F");
+            InlineLoading("upload", 'Hide');
             event.preventDefault();
             return false;
         }
@@ -47,65 +49,43 @@
             var extension = file[0].name.replace(/^.*\./, '');
             if (extension.toLowerCase() != "csv") {
                 CallToast("Only .CSV format allowed.", "F");
+                InlineLoading("upload", 'Hide');
                 event.preventDefault();
                 return false;
             }
 
         }
-        InlineLoading(event, 'Show');
         const data = new FormData()
         data.append('file', file[0], file[0].name)
         data.append('reportType', this.state.value);
-        $.ajax({
-            url: '/Setting/FileUpload',
-            type: "POST",
-            contentType: false, // Not to set any content header
-            processData: false, // Not to process data
-            data: data,
-            async: false,
-            success: function (result) {
-                if (result.ERROR_FLAG == undefined) {
-                    var MyData = result;
-                    if (MyData.length > 0) {
-                        if (MyData[0].FLAG == "F") {
-                            event.target.nextSibling.innerHTML = "<span class='field-validation-error'>" + MyData[0].MESSAGE + "</span>";
-                            //$("#data-grid").show();
-                            //gridOptions.api.setRowData(MyData);
-                            event.preventDefault();
-                            return false;
-                        }
-                        else {
-                            event.target.nextSibling.innerHTML = "<span class='field-validation-success'>" + MyData[0].MESSAGE + "</span>";
-                            //$("#importfile").val('');
-                            //$("#data-grid").hide();
-                            //gridOptions.api.setRowData(null);
-                            event.preventDefault();
-                            return false;
-                        }
-                    }
-                    else {
-                        $("#data-grid").hide();
-                    }
+        axios.post("/Setting/FileUpload", data, {
+            onUploadProgress: ProgressEvent => {
+                InlineLoading("upload", 'Show');
+            },
+        }).then(res => {
+            InlineLoading("upload", 'Hide');
+            var result = res.data[0];
+            var errordiv = document.getElementById("custom-error");
+            if (result.ERROR_FLAG == undefined) {
+                var MyData = result;
+                if (MyData.FLAG == "F") {
+                    errordiv.innerHTML = "<span class='field-validation-error'>" + MyData.MESSAGE + "</span>";
                 }
                 else {
-                    $("#data-grid").hide();
-                    if (result.ERROR_FLAG == "F") {
-                        event.target.nextSibling.innerHTML = "<span class='field-validation-error'>" + result.ERROR_MSG + "</span>";
-                        event.preventDefault();
-                        return false;
-                    }
-                    else {
-                        event.target.nextSibling.innerHTML = "<span class='field-validation-success'>" + result.ERROR_MSG + "</span>";
-                        event.preventDefault();
-                        return false;
-                    }
+                    errordiv.innerHTML = "<span class='field-validation-success'>" + MyData.MESSAGE + "</span>";
                 }
-            },
-            error: function (err) {
-                InlineLoading(event, 'Hide');
-                return false;
+            }
+            else {
+                $("#data-grid").hide();
+                if (result.ERROR_FLAG == "F") {
+                    errordiv.innerHTML = "<span class='field-validation-error'>" + result.ERROR_MSG + "</span>";
+                }
+                else {
+                    errordiv.innerHTML = "<span class='field-validation-success'>" + result.ERROR_MSG + "</span>";
+                }
             }
         })
+        event.preventDefault();
     }
 
     render() {
@@ -139,12 +119,12 @@
                             <li>
                                 <label className="col-lg-2 col-xs-12 col-sm-2"></label>
                                 <div className="col-lg-10 col-xs-12 col-sm-10 col-md-10">
-                                    <button type="submit" className="btn btn-info"><span className="hide"><i className="fa fa-spinner"></i></span> Upload</button>
+                                    <button type="submit" id="upload" className="btn btn-info"><span className="hide"><i className="fa fa-spinner"></i></span> Upload</button>
                                 </div>
                             </li>
                         </ul>
                     </form>
-                    <div className="custom-error"></div>
+                    <div className="custom-error" id="custom-error"></div>
                     <hr />
                 </div>
             </div>

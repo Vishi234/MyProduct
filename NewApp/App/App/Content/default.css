@@ -905,8 +905,18 @@ a {
 .custom-error {
     display: inline-block;
     width: 100%;
-    padding: 10px;
+    height: 25px;
     text-align: center;
+}
+
+    .custom-error .field-validation-error, .field-validation-success {
+        margin: 0px;
+    }
+
+.btn-info > .show {
+    float: left;
+    margin-right: 5px;
+    margin-top: 1px;
 }
 
 .insidebody > form > ul > li {
@@ -914,6 +924,10 @@ a {
     width: 100%;
     margin-bottom: 30px;
 }
+
+    .insidebody > form > ul > li:last-child {
+        margin-bottom: 0px;
+    }
 
     .insidebody > form > ul > li .btn-link {
         padding: 0px;
@@ -944,6 +958,7 @@ a {
 
 .insidebody hr {
     width: 100%;
+    margin: 0px;
     border-top: 2px solid #eeeeee;
 }
 

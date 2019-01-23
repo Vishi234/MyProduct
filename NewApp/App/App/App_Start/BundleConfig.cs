@@ -20,6 +20,7 @@ namespace App
                         "~/Scripts/common.js",
                         "~/Scripts/jquery.sumoselect.min.js",
                         "~/Scripts/custom.js",
+                        "~/Scripts/axios.min.js",
                         "~/Scripts/fontawesome/all.js"));
             bundles.Add(new ScriptBundle("~/bundles/react").Include(
                          "~/Scripts/react.development.js",

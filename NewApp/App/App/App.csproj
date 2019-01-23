@@ -163,6 +163,8 @@
     <Content Include="React\authorization\login.jsx" />
     <Content Include="React\authorization\register.jsx" />
     <Content Include="React\setting\import.jsx" />
+    <Content Include="Scripts\axios.js" />
+    <Content Include="Scripts\axios.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\common.js" />

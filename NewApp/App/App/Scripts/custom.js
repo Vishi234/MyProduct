@@ -23,16 +23,17 @@
     //$("select").SumoSelect({ search: true, searchText: 'Enter here.' });
 })
 function InlineLoading(evt, action) {
+    var a = document.getElementById(evt);
     if (action == "Show") {
-        $(evt).find("span").removeClass("hide");
-        $(evt).find("span").addClass("show");
-        $(evt).find("span>svg").addClass("fa-spin");
-        $(evt).attr("disabled", "disabled");
+        a.children[0].classList.remove("hide");
+        a.children[0].classList.add("show");
+        a.children[0].children[0].classList.add("fa-spin")
+        $("#" + evt).attr("disabled", "disabled");
     }
     else {
-        $(evt).find("span").removeClass("show");
-        $(evt).find("span").addClass("hide");
-        $(evt).find("svg").removeClass("fa-spin");
-        $(evt).removeAttr("disabled");
+        a.children[0].classList.remove("show");
+        a.children[0].classList.add("hide");
+        a.children[0].children[0].classList.remove("fa-spin")
+        $("#" + evt).removeAttr("disabled");
     }
 }
