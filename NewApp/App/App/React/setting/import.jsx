@@ -7,6 +7,8 @@
                 selectedFile: null,
                 loaded: 0,
                 message: "",
+                messageClass: "",
+                downloadPath: ""
             };
         this.handleselectedFile = this.handleselectedFile.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -17,39 +19,52 @@
             selectedFile: event.target.files,
             loaded: 0,
         })
+        this.setState.message = '';
+        $("#myGrid").empty();
     }
     handleChange(event) {
         if (event.target.value == "0") {
             var path = $("#downloadPath").val();
-            $("#downloadCsv").attr("href", path + event.target.value + ".csv")
+            this.setState.downloadPath = path + event.target.value + ".csv";
         }
         else {
-            $("#downloadCsv").removeAttr("href");
+            this.setState.downloadPath = "javascript:void(0)";
         }
-        $(".custom-error").empty();
+        this.setState.message = '';
+        $("#myGrid").empty();
         this.setState({ value: event.target.value });
     }
 
     handleSubmit(event) {
-        var state_data = this.state;
+        this.setState.message = '';
+        $("#myGrid").empty();
         var file = this.state.selectedFile;
         if (this.state.value == "0") {
-            CallToast("Please select import type to proceed", "F");
-            InlineLoading("upload", 'Hide');
+            this.setState
+                ({
+                    message: "Please select import type to proceed.",
+                    messageClass: 'field-validation-error'
+                })
             event.preventDefault();
             return false;
         }
         if (this.state.selectedFile == null) {
-            CallToast("Pelase select file.", "F");
-            InlineLoading("upload", 'Hide');
+            this.setState
+                ({
+                    message: "Please select file.",
+                    messageClass: 'field-validation-error'
+                })
             event.preventDefault();
             return false;
         }
         if (file.length > 0) {
             var extension = file[0].name.replace(/^.*\./, '');
             if (extension.toLowerCase() != "csv") {
-                CallToast("Only .CSV format allowed.", "F");
-                InlineLoading("upload", 'Hide');
+                this.setState
+                    ({
+                        message: "Only .CSV format allowed.",
+                        messageClass: 'field-validation-error'
+                    })
                 event.preventDefault();
                 return false;
             }
@@ -58,32 +73,72 @@
         const data = new FormData()
         data.append('file', file[0], file[0].name)
         data.append('reportType', this.state.value);
+
         axios.post("/Setting/FileUpload", data, {
             onUploadProgress: ProgressEvent => {
                 InlineLoading("upload", 'Show');
             },
         }).then(res => {
             InlineLoading("upload", 'Hide');
-            var result = res.data[0];
             var errordiv = document.getElementById("custom-error");
-            if (result.ERROR_FLAG == undefined) {
-                var MyData = result;
-                if (MyData.FLAG == "F") {
-                    errordiv.innerHTML = "<span class='field-validation-error'>" + MyData.MESSAGE + "</span>";
+            if (res.data[1] == undefined) {
+                var result = res.data[0];
+
+                if (result.ERROR_FLAG == undefined) {
+                    var MyData = result;
+                    if (MyData.FLAG == "F") {
+                        this.setState
+                            ({
+                                message: MyData.MESSAGE,
+                                messageClass: 'field-validation-error'
+                            })
+                    }
+                    else {
+                        this.setState
+                            ({
+                                message: MyData.MESSAGE,
+                                messageClass: 'field-validation-success'
+                            })
+                    }
                 }
                 else {
-                    errordiv.innerHTML = "<span class='field-validation-success'>" + MyData.MESSAGE + "</span>";
+                    if (result.ERROR_FLAG == "F") {
+                        this.setState
+                            ({
+                                message: MyData.ERROR_MSG,
+                                messageClass: 'field-validation-error'
+                            })
+                    }
+                    else {
+                        this.setState
+                            ({
+                                message: MyData.ERROR_MSG,
+                                messageClass: 'field-validation-success'
+                            })
+                    }
                 }
             }
             else {
-                $("#data-grid").hide();
-                if (result.ERROR_FLAG == "F") {
-                    errordiv.innerHTML = "<span class='field-validation-error'>" + result.ERROR_MSG + "</span>";
+                if (res.data[0].FLAG == "F") {
+                    this.setState
+                        ({
+                            message: res.data[0].MESSAGE,
+                            messageClass: 'field-validation-error'
+                        })
                 }
                 else {
-                    errordiv.innerHTML = "<span class='field-validation-success'>" + result.ERROR_MSG + "</span>";
+                    this.setState
+                        ({
+                            message: res.data[0].MESSAGE,
+                            messageClass: 'field-validation-success'
+                        })
                 }
+                var eGridDiv = document.querySelector('#myGrid');
+                new agGrid.Grid(eGridDiv, GridInitializer(DynamiColDef("setting", "import", this.state.value), res.data));
             }
+            this.setState.value = '0';
+            this.setState.selectedFile = null;
+
         })
         event.preventDefault();
     }
@@ -113,7 +168,7 @@
                                 <label className="col-lg-2 col-xs-12 col-sm-2">Choose file:*</label>
                                 <div className="col-lg-10 col-xs-12 col-sm-10 col-md-10">
                                     <input type="file" id="importfile" onChange={this.handleselectedFile} />
-                                    <span className="dwn"><a id="downloadCsv" download>Download Csv Format</a></span>
+                                    <span className="dwn"><a href={this.state.downloadPath} download>Download Csv Format</a></span>
                                 </div>
                             </li>
                             <li>
@@ -124,8 +179,9 @@
                             </li>
                         </ul>
                     </form>
-                    <div className="custom-error" id="custom-error"></div>
+                    <div className="custom-error" id="custom-error"><span className={this.state.messageClass}>{this.state.message}</span></div>
                     <hr />
+                    <div id="myGrid" className="ag-theme-balham" style={{ height: '300px', width: '100%', padding: '15px' }}></div>
                 </div>
             </div>
         );

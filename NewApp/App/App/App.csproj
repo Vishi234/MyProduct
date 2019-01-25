@@ -135,6 +135,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ag-grid-theme.css" />
+    <Content Include="Content\ag-grid.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\brands.css" />
@@ -163,6 +165,7 @@
     <Content Include="React\authorization\login.jsx" />
     <Content Include="React\authorization\register.jsx" />
     <Content Include="React\setting\import.jsx" />
+    <Content Include="Scripts\ag-grid.js" />
     <Content Include="Scripts\axios.js" />
     <Content Include="Scripts\axios.min.js" />
     <Content Include="Scripts\bootstrap.js" />

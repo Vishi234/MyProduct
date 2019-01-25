@@ -21,6 +21,7 @@ namespace App
                         "~/Scripts/jquery.sumoselect.min.js",
                         "~/Scripts/custom.js",
                         "~/Scripts/axios.min.js",
+                        "~/Scripts/ag-grid.js",
                         "~/Scripts/fontawesome/all.js"));
             bundles.Add(new ScriptBundle("~/bundles/react").Include(
                          "~/Scripts/react.development.js",
@@ -36,7 +37,9 @@ namespace App
                       "~/Content/default.css",
                       "~/Content/fontawesome-all.css",
                       "~/Content/jquery.toast.min.css",
-                      "~/Content/sumoselect.min.css"));
+                      "~/Content/sumoselect.min.css",
+                      "~/Content/ag-grid.css",
+                      "~/Content/ag-grid-theme.css"));
         }
     }
 }
