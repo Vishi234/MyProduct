@@ -1,0 +1,237 @@
+﻿@import "https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&display=swap";
+/* desktop css */
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #696e6e;
+    font-size: 14px;
+    letter-spacing: .1px;
+    overflow-x: hidden;
+    background-attachment: fixed;
+}
+
+p {
+    font-size: 16px;
+    line-height: 23px;
+}
+
+.fa {
+    display: grid;
+}
+
+img {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #808080;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    a:focus {
+        text-decoration: none;
+    }
+
+a, div, svg, path, circle, rect {
+    transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+}
+
+ul {
+    background: 0;
+    font-weight: inherit;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+}
+
+    ul li {
+        list-style: none;
+    }
+
+::-webkit-scrollbar {
+    width: 8px;
+    background: #323a45;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+}
+
+h2 {
+    font-size: 1.71em;
+    line-height: 1em;
+}
+
+.p_table > footer a, .search_button, .tabs_nav, h3 {
+    font-size: 1.4em;
+}
+
+h4 {
+    font-size: 1.25em;
+}
+
+h5 {
+    font-size: 1.15em;
+}
+
+h6 {
+    font-size: 1em;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, main, meter, nav, output, progress, section, source, video {
+    display: block;
+}
+
+mark, rp, rt, ruby, summary, time {
+    display: inline;
+}
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, command, datalist, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, font, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, keygen, label, legend, li, meter, nav, object, ol, output, p, pre, progress, q, s, samp, section, small, source, span, strike, strong, sub, sup, table, tbody, tdvideo, tfoot, th, thead, tr, tt, u, ul, var {
+    background: 0;
+    font-weight: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+}
+
+a {
+    text-decoration: none;
+    outline: 0 !important;
+    color: #007bff;
+}
+
+b, strong {
+    font-weight: 500 !important;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+q {
+    quotes: none;
+}
+
+table, table td {
+    padding: 0;
+    border: 0;
+    border-collapse: collapse;
+}
+
+img {
+    max-width: 100%;
+}
+
+button, input {
+    -webkit-appearance: none;
+    outline: 0;
+}
+
+    button::-moz-focus-inner {
+        border: 0;
+    }
+
+h1, h2, h3, h4, h5, h6 p {
+    background: 0;
+    font-weight: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.lgnbg {
+    background: url(../Images/login_bg.png) no-repeat #f4f4f4;
+    height: 100%;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    opacity: 0.9;
+    background-position: top;
+    border-radius: inherit;
+    position: absolute;
+    z-index: -1;
+}
+
+.lgnarea {
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: #fff 0 0 80px 30px;
+    width: 400px;
+    height: 400px;
+    display: block;
+    margin: 10% auto;
+    border-radius: 4px;
+    z-index: 0000;
+}
+
+.lgnform {
+    margin: 45px;
+}
+
+    .lgnform > ul > li {
+        display: block;
+        padding: 10px;
+    }
+
+        .lgnform > ul > li > .btn-primary {
+            width: 100%;
+        }
+
+        .lgnform > ul > li > span > a:hover {
+            text-decoration: underline;
+        }
+
+.input-validation-error {
+    border-color: #f2545b !important;
+    box-shadow: 0 0 0 1px #f2545b !important;
+}
+
+.field-validation-error {
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: 200;
+    color: #f2545b !important;
+    display: block;
+}
+
+.loading-center {
+    z-index: 1000;
+    margin: 15% auto;
+    padding: 10px;
+    width: 55px;
+    background-color: White;
+    border-radius: 2px;
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.4);
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
+
+    .loading-center img {
+        height: 35px;
+        width: 35px;
+    }

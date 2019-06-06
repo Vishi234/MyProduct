@@ -27,7 +27,7 @@ function DynamiColDef(module, file, node) {
     });
     return columnDef
 }
-function GridInitializer(colDef,rowdata) {
+function GridInitializer(colDef, rowdata) {
     var gridOptions = {
         columnDefs: colDef,
         enableSorting: true,
