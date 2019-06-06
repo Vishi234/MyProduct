@@ -13,7 +13,7 @@ namespace App
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery-3.3.1.slim.min.js",
-                        "~/Scripts/propper.min.js",
+                        "~/Scripts/popper.min.js",
                         "~/Scripts/bootstrap.min.js",
                         "~/Scripts/jquery.multiselect.filter.js",
                         "~/Scripts/jquery.multiselect.js",
