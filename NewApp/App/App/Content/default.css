@@ -381,11 +381,12 @@ a {
 }
 
 .field-validation-error {
-    font-size: 12px;
+    font-size: 10px;
     margin-top: 5px;
     font-weight: 500;
     color: #f2545b !important;
     display: block;
+    text-align: left;
 }
 
 .field-validation-success {
