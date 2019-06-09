@@ -163,3 +163,4 @@ C:\Users\HP\Documents\GitHub\MyProduct\Vishal\App\App\obj\Debug\App.Resource.Err
 C:\Users\HP\Documents\GitHub\MyProduct\Vishal\App\App\obj\Debug\App.csproj.GenerateResource.Cache
 C:\Users\HP\Documents\GitHub\MyProduct\Vishal\App\App\obj\Debug\App.dll
 C:\Users\HP\Documents\GitHub\MyProduct\Vishal\App\App\obj\Debug\App.pdb
+C:\Users\HP\Documents\GitHub\MyProduct\Vishal\App\App\obj\Debug\App.Resource.Labels.resources

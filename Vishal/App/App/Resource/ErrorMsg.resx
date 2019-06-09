@@ -117,8 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddressReq" xml:space="preserve">
+    <value>Please enter address.</value>
+  </data>
+  <data name="CityReq" xml:space="preserve">
+    <value>Please select city.</value>
+  </data>
+  <data name="CountryReq" xml:space="preserve">
+    <value>Please select country.</value>
+  </data>
+  <data name="CustomerNameReq" xml:space="preserve">
+    <value>Please enter customer name.</value>
+  </data>
+  <data name="EmailAddressReq" xml:space="preserve">
+    <value>Please enter email address.</value>
+  </data>
   <data name="PasswordReq" xml:space="preserve">
     <value>Please enter password.</value>
+  </data>
+  <data name="PhoneNoReq" xml:space="preserve">
+    <value>Please enter phone no.</value>
+  </data>
+  <data name="PincodeReq" xml:space="preserve">
+    <value>Please enter pincode.</value>
+  </data>
+  <data name="StateReq" xml:space="preserve">
+    <value>Please select state.</value>
   </data>
   <data name="UsernameReq" xml:space="preserve">
     <value>Please enter username.</value>

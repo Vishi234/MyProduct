@@ -1,12 +1,13 @@
 ﻿@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=greek-ext,latin-ext";
 /* desktop css */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif !important;
     color: #333;
     font-size: 12px;
     letter-spacing: .1px;
     overflow-x: hidden;
     background-attachment: fixed;
+    overflow: hidden;
 }
 
 p {
@@ -138,7 +139,6 @@ img {
 }
 
 button, input {
-    -webkit-appearance: none;
     outline: 0;
 }
 
@@ -221,6 +221,10 @@ h1, h2, h3, h4, h5, h6 p {
 
 .header {
     padding: 10px;
+    position: fixed;
+    width: 100%;
+    z-index: 9;
+    background: #fff;
 }
 
 .tleft > ul > li {
@@ -259,6 +263,7 @@ h1, h2, h3, h4, h5, h6 p {
         padding-right: 10px;
     }
 
+
     .tright > ul > li {
         display: block;
         float: left;
@@ -269,17 +274,19 @@ h1, h2, h3, h4, h5, h6 p {
             height: 20px;
             width: 20px;
             opacity: 0.6;
-            transition: all 0.4s ease-in-out;
         }
 
             .tright > ul > li > a > svg:hover {
-                opacity: 1;
+                fill: #448aff;
             }
 
 .dashmenu {
     background: #eee;
     display: inline-block;
     width: 100%;
+    position: fixed;
+    z-index: 99;
+    top: 43px;
 }
 
 .lsmenu {
@@ -287,7 +294,7 @@ h1, h2, h3, h4, h5, h6 p {
 }
 
     .lsmenu > ul > .menttl {
-        padding: 11px;
+        padding: 12px;
         width: 28%;
         font-size: 14px;
         background: #EF5E29;
@@ -295,11 +302,11 @@ h1, h2, h3, h4, h5, h6 p {
     }
 
 .menttl > svg {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
     fill: #fff;
     margin-right: 5px;
-    margin-top: -2px;
+    margin-top: -4px;
 }
 
 .lsmenu > ul > li {
@@ -307,10 +314,24 @@ h1, h2, h3, h4, h5, h6 p {
     float: left;
 }
 
+    .lsmenu > ul > li:nth-child(2) > a {
+        font-size: 14px;
+    }
+
+    .lsmenu > ul > li:not(:first-child) > a > svg {
+        margin-left: 7px;
+    }
+
+    .lsmenu > ul > li .brdact {
+        font-weight: 500;
+    }
+
     .lsmenu > ul > li > a {
         padding: 12px;
+        padding-right: 0px;
         display: block;
         color: #333;
+        font-weight: 300;
     }
 
 .rsmenu > ul > li {
@@ -319,14 +340,25 @@ h1, h2, h3, h4, h5, h6 p {
 }
 
 
-    .rsmenu > ul > li > a:hover {
+    .rsmenu > ul > li:last-child > a:hover {
         background: #448aff !important;
         color: #fff;
         transition: all 0.4s ease-in-out;
     }
 
-    .rsmenu > ul > li > a {
-        padding: 6px 15px;
+    .rsmenu > ul > li:not(:last-child) > a {
+        padding: 7px 15px;
+        display: block;
+        background: #fff;
+        color: #808080;
+        border: 1px solid #ccc !important;
+        margin: 6px;
+        float: left;
+        transition: all 0.4s ease-in-out;
+    }
+
+    .rsmenu > ul > li:last-child > a {
+        padding: 7px 15px;
         display: block;
         background: #fff;
         border: 1px solid #448aff;
@@ -335,7 +367,7 @@ h1, h2, h3, h4, h5, h6 p {
         transition: all 0.4s ease-in-out;
     }
 
-        .rsmenu > ul > li > a > i {
+        .rsmenu > ul > li:last-child > a > i {
             margin: 3px;
             margin-right: 0px;
         }
@@ -379,6 +411,7 @@ h1, h2, h3, h4, h5, h6 p {
     height: 100%;
     margin-top: -2px;
     width: 14%;
+    top: 91px;
 }
 
 
@@ -402,7 +435,6 @@ h1, h2, h3, h4, h5, h6 p {
 
 hr {
     background-color: #2F2727;
-    margin: 0px;
     background-image: url(images/radial_bg.png);
     background-position: center center;
     background-repeat: no-repeat;
@@ -437,37 +469,31 @@ hr {
 
 .panel-heading a {
     display: block;
+    font-size: 13px;
+    font-weight: 500;
     width: 100%;
     padding: 15px;
     color: rgba(255,255,255,0.8);
     transition: all 0.4s ease-in-out;
+    border-left: 2px solid transparent;
 }
+
+    .panel-heading a svg {
+        float: right;
+        margin-top: 2px;
+    }
 
     .panel-heading a:hover {
         color: #fff;
         transition: all 0.4s ease-in-out;
+        background: rgba(255,255,255,.08);
     }
 
-        .panel-heading a:hover svg {
-            fill: #fff;
-            transition: all 0.4s ease-in-out;
-        }
 
-    .panel-heading a > svg {
-        width: 22px;
-        height: 22px;
-        fill: rgba(255,255,255,0.8);
-        margin-right: 5px;
-        margin-top: -2px;
-    }
 
 panel-heading a:not([class]) {
     color: rgba(255,255,255,0.8);
 }
-
-    panel-heading a:not([class]) svg {
-        color: rgba(255,255,255,0.8);
-    }
 
 .panel-heading a[class="collapsed"] {
     color: rgba(255,255,255,0.8);
@@ -475,30 +501,38 @@ panel-heading a:not([class]) {
 
 .panel-heading a[class=''] {
     color: #fff;
+    background: #19212b;
+    border-left: 2px solid #EF5E29;
 }
 
     .panel-heading a[class=''] svg {
         fill: #fff;
     }
 
-.panel-heading a[class="collapsed"] svg {
-    fill: #fff;
-}
 
 
 .panel-body {
-    background: rgba(0,0,0,0.3);
+    background: #19212b;
+    border-left: 2px solid #EF5E29;
     /* margin: 5px; */
-    margin-top: -5px;
 }
 
     .panel-body li a {
         display: block;
         width: 100%;
-        padding: 7px;
+        font-weight: 500;
+        padding: 7px 15px;
         color: rgba(255,255,255,0.8);
         transition: all 0.4s ease-in-out;
     }
+
+        .panel-body li a > svg {
+            width: 15px;
+            height: 15px;
+            fill: rgba(255,255,255,0.8);
+            margin-right: 5px;
+            margin-top: -2px;
+        }
 
         .panel-body li a:hover {
             background: #263238;
@@ -512,4 +546,131 @@ panel-heading a:not([class]) {
 
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
     border-top-color: #EEEEEE;
+}
+
+.signlbl {
+    text-align: center;
+    width: 100%;
+    display: block;
+    font-size: 13px;
+}
+
+    .signlbl a {
+        text-decoration: underline;
+        font-weight: 500;
+    }
+
+.content-area {
+    width: 86%;
+    float: right;
+    margin-top: 89px;
+    height: 100%;
+}
+
+.area2 {
+    width: 60%;
+    margin: 20px auto;
+    box-shadow: none;
+}
+
+.area2-title {
+    display: inline-block;
+    width: 100%;
+}
+
+    .area2-title span:nth-child(1) {
+        font-size: 20px;
+    }
+
+        .area2-title span:nth-child(1) svg {
+            margin-right: 14px;
+            margin-top: 5px;
+        }
+
+    .area2-title span:nth-child(2) .btn-primary {
+        font-size: 12px;
+    }
+
+.area2-form ul li {
+    display: inline-block;
+    /* float: left; */
+    width: 33%;
+    margin-bottom: 10px;
+}
+
+    .area2-form ul li:nth-child(1) {
+        width: 100%;
+    }
+
+    .area2-form ul li:nth-child(8) {
+        width: 100%;
+    }
+
+    .area2-form ul li > label {
+        margin-bottom: 5px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+.devbody .loadingarea {
+    top: 0;
+}
+
+.areabody {
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.areaheader {
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+}
+
+.areabody li {
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+    .areabody li a {
+        display: block;
+        font-size: 12px;
+        padding: 10px;
+    }
+
+.devheader {
+    display: inline-block;
+    width: 100%;
+}
+
+    .devheader span {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+        .devheader span a {
+            font-weight: 500;
+            text-decoration: underline;
+        }
+
+
+
+.slider {
+    position: absolute;
+    width: 86%;
+    right: 0;
+    top: 89px;
+    transition: all 1s;
+}
+
+    .slider.close {
+        top: 100%;
+        height: 100%;
+    }
+
+#loader {
+    display: block;
 }

@@ -61,11 +61,83 @@ namespace App.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter address..
+        /// </summary>
+        public static string AddressReq {
+            get {
+                return ResourceManager.GetString("AddressReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select city..
+        /// </summary>
+        public static string CityReq {
+            get {
+                return ResourceManager.GetString("CityReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select country..
+        /// </summary>
+        public static string CountryReq {
+            get {
+                return ResourceManager.GetString("CountryReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter customer name..
+        /// </summary>
+        public static string CustomerNameReq {
+            get {
+                return ResourceManager.GetString("CustomerNameReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter email address..
+        /// </summary>
+        public static string EmailAddressReq {
+            get {
+                return ResourceManager.GetString("EmailAddressReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter password..
         /// </summary>
         public static string PasswordReq {
             get {
                 return ResourceManager.GetString("PasswordReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter phone no..
+        /// </summary>
+        public static string PhoneNoReq {
+            get {
+                return ResourceManager.GetString("PhoneNoReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter pincode..
+        /// </summary>
+        public static string PincodeReq {
+            get {
+                return ResourceManager.GetString("PincodeReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select state..
+        /// </summary>
+        public static string StateReq {
+            get {
+                return ResourceManager.GetString("StateReq", resourceCulture);
             }
         }
         

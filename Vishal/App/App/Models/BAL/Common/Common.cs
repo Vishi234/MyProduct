@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -33,5 +34,19 @@ namespace App.Models.BAL.Common
             return clearText;
         }
         #endregion
+
+        public static void WriteException(Exception e)
+        {
+            string logfileadd = ConfigurationManager.AppSettings["ExceptionLogFile"].ToString();
+            using (System.IO.StreamWriter writer = new System.IO.StreamWriter(logfileadd, true))
+            {
+
+                writer.WriteLine("Exception :" + e.ToString() + "\r\n");
+                writer.WriteLine("Time :" + DateTime.Now.ToString("dd-MMM-yyyy HH:mm:ss") + "\r\n");
+                writer.WriteLine("----------------------------------------------------------------------------------------------------------------------");
+                writer.Close();
+            }
+
+        }
     }
 }

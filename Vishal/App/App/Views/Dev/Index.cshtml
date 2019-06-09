@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_DevLayout.cshtml";
+}
+
+<div class="lgnarea devarea">
+    <div class="messagebox">
+        <p>@ViewBag.msg</p>
+    </div>
+    <div class="areaheader bg-primary">
+        Configuration Option
+    </div>
+    <div class="areabody">
+        <ul>
+            <li>
+                <a href="@Url.Action("RefreshGridSettings","Dev")" class="btn btn-info">
+                    Refresh Grid
+                </a>
+            </li>
+            <li>
+                <a href="#/New" id="newcustomer" class="btn btn-info">
+                    New Customer
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+

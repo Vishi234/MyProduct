@@ -13,16 +13,18 @@
 <body>
     <div class="lgnbg"></div>
     <div class="lgnarea">
+
         @using (Ajax.BeginForm("Login", new { Controller = "Auth" },
-                                                new AjaxOptions
-                                                {
-                                                    HttpMethod = "POST",
-                                                    OnSuccess = "OnSuccess",
-                                                    OnFailure = "OnFailure",
-                                                    LoadingElementId = "progress"
-                                                }))
+                                                            new AjaxOptions
+                                                            {
+                                                                HttpMethod = "POST",
+                                                                OnSuccess = "OnSuccess",
+                                                                OnFailure = "OnFailure",
+                                                                LoadingElementId = "progress"
+                                                            }))
         {
             <div class="lgnform">
+                @*<span class="signlbl">Don't you have an account? <a href="javascript:void(0)">Register</a></span>*@
                 <ul>
                     <li>
                         @Html.TextBoxFor(model => model.userName, new { @placeholder = "Username", @class = "form-control", })

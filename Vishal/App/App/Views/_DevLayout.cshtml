@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <div class="lgnbg"></div>
+    <div class="devheader">
+        <div class="container">
+            <span class="pull-right">You are logged In as <b>Vishal Singh</b> <a href="javascript:void(0)"><i class="fa fa-sign-out-alt"></i> Logout</a></span>
+        </div>
+    </div>
+    <div class="devbody">
+        <div id="content-area">
+
+        </div>
+        <div id="devrender">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

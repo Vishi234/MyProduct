@@ -1,0 +1,67 @@
+﻿@model App.Models.Entity.User.LoginEntity
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <div class="lgnbg"></div>
+    <div class="lgnarea">
+
+        @using (Ajax.BeginForm("Login", new { Controller = "Auth" },
+                                                                                new AjaxOptions
+                                                                                {
+                                                                                    HttpMethod = "POST",
+                                                                                    OnSuccess = "OnSuccess",
+                                                                                    OnFailure = "OnFailure",
+                                                                                    LoadingElementId = "progress"
+                                                                                }))
+        {
+            <div class="lgnform">
+                @*<span class="signlbl">Don't you have an account? <a href="javascript:void(0)">Register</a></span>*@
+                <ul>
+                    <li>
+                        @Html.TextBoxFor(model => model.userName, new { @placeholder = "Username", @class = "form-control", })
+                        @Html.ValidationMessageFor(model => model.userName)
+                    </li>
+                    <li>
+                        @Html.PasswordFor(model => model.password, new { @placeholder = "Password", @class = "form-control", })
+                        @Html.ValidationMessageFor(model => model.password)
+                    </li>
+                    <li>
+                        <input type="submit" class="btn btn-primary" value="Login" />
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+    <div id="progress" class="modal">
+        <div class="loading-center">
+            <img src="~/Images/loading.gif" class="centerimg" />
+        </div>
+    </div>
+    <script type="text/javascript">
+        function OnSuccess(response) {
+            CallToast(response.ERROR_MSG, response.ERROR_FLAG);
+            @*var addParam = response.ADD_PARAM;
+            if (response.ERROR_FLAG == "S") {
+                if (addParam.split("~")[1] != "" && addParam.split("~")[1] == "0") {
+                    window.location.href = "@Url.Action("Intro","Configuration")";
+                }
+                else {
+                    window.location.href = "@Url.Action("Index","Dashboard")";
+                }
+            }*@
+        }
+        function OnFailure(response) {
+            CallToast("Error occured while login.", "F");
+        }
+    </script>
+</body>
+</html>
