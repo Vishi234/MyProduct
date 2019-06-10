@@ -120,8 +120,23 @@
   <data name="AddressLbl" xml:space="preserve">
     <value>Address</value>
   </data>
+  <data name="BankAccountNoLbl" xml:space="preserve">
+    <value>Bank Account No</value>
+  </data>
+  <data name="BankNameLbl" xml:space="preserve">
+    <value>Bank Name</value>
+  </data>
+  <data name="BloodGroupLbl" xml:space="preserve">
+    <value>Blood Group</value>
+  </data>
+  <data name="BranchNameLbl" xml:space="preserve">
+    <value>Branch Name</value>
+  </data>
   <data name="CityLbl" xml:space="preserve">
     <value>City Name</value>
+  </data>
+  <data name="CollegeLbl" xml:space="preserve">
+    <value>College</value>
   </data>
   <data name="CountryLbl" xml:space="preserve">
     <value>Country Name</value>
@@ -129,17 +144,74 @@
   <data name="CustomerNameLbl" xml:space="preserve">
     <value>Customer Name</value>
   </data>
+  <data name="DeptLbl" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="DesignationLbl" xml:space="preserve">
+    <value>Designation</value>
+  </data>
+  <data name="DistrictLbl" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="DOBLbl" xml:space="preserve">
+    <value>Date Of Birth</value>
+  </data>
+  <data name="DOJLbl" xml:space="preserve">
+    <value>Date Of Joining</value>
+  </data>
+  <data name="DrivingLicenseLbl" xml:space="preserve">
+    <value>Driving License</value>
+  </data>
   <data name="EditLbl" xml:space="preserve">
     <value>Edit</value>
   </data>
   <data name="EmailLbl" xml:space="preserve">
     <value>Email Address</value>
   </data>
+  <data name="EmployeeNameLbl" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
+  <data name="EmpTypeLbl" xml:space="preserve">
+    <value>Employee Type</value>
+  </data>
+  <data name="EsiNoLbl" xml:space="preserve">
+    <value>ESI No.</value>
+  </data>
+  <data name="ExpLbl" xml:space="preserve">
+    <value>Experience</value>
+  </data>
+  <data name="FatherNameLbl" xml:space="preserve">
+    <value>Father Name</value>
+  </data>
   <data name="FaxLbl" xml:space="preserve">
     <value>Fax No.</value>
   </data>
+  <data name="GenderLbl" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="HouseNoLbl" xml:space="preserve">
+    <value>House No.</value>
+  </data>
+  <data name="IFSCLbl" xml:space="preserve">
+    <value>IFSC Code</value>
+  </data>
+  <data name="InstitutionLbl" xml:space="preserve">
+    <value>Institution Name</value>
+  </data>
+  <data name="JobTypeLbl" xml:space="preserve">
+    <value>Job Type</value>
+  </data>
+  <data name="MaritalStatusLbl" xml:space="preserve">
+    <value>Marital Status</value>
+  </data>
   <data name="MobileLbl" xml:space="preserve">
     <value>Mobile No</value>
+  </data>
+  <data name="PanNoLbl" xml:space="preserve">
+    <value>Pan No</value>
+  </data>
+  <data name="PercentageLbl" xml:space="preserve">
+    <value>Percentage</value>
   </data>
   <data name="PhoneLbl" xml:space="preserve">
     <value>Phone No</value>
@@ -147,13 +219,28 @@
   <data name="PincodeLbl" xml:space="preserve">
     <value>Pincode</value>
   </data>
+  <data name="QualificationLbl" xml:space="preserve">
+    <value>Qualification</value>
+  </data>
+  <data name="ReligionLbl" xml:space="preserve">
+    <value>Religion</value>
+  </data>
+  <data name="SpecializationLbl" xml:space="preserve">
+    <value>Specialization</value>
+  </data>
   <data name="StateLbl" xml:space="preserve">
     <value>State Name</value>
   </data>
   <data name="StatusLbl" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="TownLbl" xml:space="preserve">
+    <value>Town</value>
+  </data>
   <data name="WebsiteLbl" xml:space="preserve">
     <value>Website</value>
+  </data>
+  <data name="YearOfPassingLbl" xml:space="preserve">
+    <value>Year Of Passing</value>
   </data>
 </root>

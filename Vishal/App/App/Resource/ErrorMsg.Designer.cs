@@ -19,7 +19,7 @@ namespace App.Resource {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ErrorMsg {
@@ -70,11 +70,56 @@ namespace App.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter bank account no..
+        /// </summary>
+        public static string BankAccountNoReq {
+            get {
+                return ResourceManager.GetString("BankAccountNoReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select bank name..
+        /// </summary>
+        public static string BankNameReq {
+            get {
+                return ResourceManager.GetString("BankNameReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select blood group..
+        /// </summary>
+        public static string BloodGroupReq {
+            get {
+                return ResourceManager.GetString("BloodGroupReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select branch..
+        /// </summary>
+        public static string BranchNameReq {
+            get {
+                return ResourceManager.GetString("BranchNameReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select city..
         /// </summary>
         public static string CityReq {
             get {
                 return ResourceManager.GetString("CityReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter college name..
+        /// </summary>
+        public static string CollegeReq {
+            get {
+                return ResourceManager.GetString("CollegeReq", resourceCulture);
             }
         }
         
@@ -97,6 +142,60 @@ namespace App.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select department..
+        /// </summary>
+        public static string DeptReq {
+            get {
+                return ResourceManager.GetString("DeptReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select designation..
+        /// </summary>
+        public static string DesignationReq {
+            get {
+                return ResourceManager.GetString("DesignationReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter district..
+        /// </summary>
+        public static string DistrictReq {
+            get {
+                return ResourceManager.GetString("DistrictReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter date of birth..
+        /// </summary>
+        public static string DOBReq {
+            get {
+                return ResourceManager.GetString("DOBReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter date of joining..
+        /// </summary>
+        public static string DOJReq {
+            get {
+                return ResourceManager.GetString("DOJReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter driving license no..
+        /// </summary>
+        public static string DrivingLicenseReq {
+            get {
+                return ResourceManager.GetString("DrivingLicenseReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter email address..
         /// </summary>
         public static string EmailAddressReq {
@@ -106,11 +205,137 @@ namespace App.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter employee name..
+        /// </summary>
+        public static string EmployeeNameReq {
+            get {
+                return ResourceManager.GetString("EmployeeNameReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select employee type..
+        /// </summary>
+        public static string EmpTypeReq {
+            get {
+                return ResourceManager.GetString("EmpTypeReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter esi no..
+        /// </summary>
+        public static string EsiNoReq {
+            get {
+                return ResourceManager.GetString("EsiNoReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter experience..
+        /// </summary>
+        public static string ExpReq {
+            get {
+                return ResourceManager.GetString("ExpReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter father name..
+        /// </summary>
+        public static string FatherNameReq {
+            get {
+                return ResourceManager.GetString("FatherNameReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select gender..
+        /// </summary>
+        public static string GenderReq {
+            get {
+                return ResourceManager.GetString("GenderReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter house no..
+        /// </summary>
+        public static string HouseNoReq {
+            get {
+                return ResourceManager.GetString("HouseNoReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter ifsc code..
+        /// </summary>
+        public static string IFSCReq {
+            get {
+                return ResourceManager.GetString("IFSCReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter institution name..
+        /// </summary>
+        public static string InstitutionReq {
+            get {
+                return ResourceManager.GetString("InstitutionReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select job type..
+        /// </summary>
+        public static string JobTypeReq {
+            get {
+                return ResourceManager.GetString("JobTypeReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select marital status..
+        /// </summary>
+        public static string MaritalStatusReq {
+            get {
+                return ResourceManager.GetString("MaritalStatusReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter mobile no..
+        /// </summary>
+        public static string MobileNoReq {
+            get {
+                return ResourceManager.GetString("MobileNoReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter pan no..
+        /// </summary>
+        public static string PanNoReq {
+            get {
+                return ResourceManager.GetString("PanNoReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter password..
         /// </summary>
         public static string PasswordReq {
             get {
                 return ResourceManager.GetString("PasswordReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter perecentage..
+        /// </summary>
+        public static string PercentageReq {
+            get {
+                return ResourceManager.GetString("PercentageReq", resourceCulture);
             }
         }
         
@@ -133,6 +358,33 @@ namespace App.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter qualification..
+        /// </summary>
+        public static string QualificationReq {
+            get {
+                return ResourceManager.GetString("QualificationReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select religion..
+        /// </summary>
+        public static string ReligionReq {
+            get {
+                return ResourceManager.GetString("ReligionReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select sepcialization..
+        /// </summary>
+        public static string SpecializationReq {
+            get {
+                return ResourceManager.GetString("SpecializationReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select state..
         /// </summary>
         public static string StateReq {
@@ -142,11 +394,29 @@ namespace App.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter town..
+        /// </summary>
+        public static string TownReq {
+            get {
+                return ResourceManager.GetString("TownReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter username..
         /// </summary>
         public static string UsernameReq {
             get {
                 return ResourceManager.GetString("UsernameReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter year of passing..
+        /// </summary>
+        public static string YearOfPassingReq {
+            get {
+                return ResourceManager.GetString("YearOfPassingReq", resourceCulture);
             }
         }
     }

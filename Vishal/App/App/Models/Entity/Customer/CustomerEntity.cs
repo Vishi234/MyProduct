@@ -21,9 +21,10 @@ namespace App.Models.Entity.Customer
         }
         public int customerId { get; set; }
 
-        [Display(ResourceType = typeof(Labels), Name = "CustomerNameLbl")]
         [Required(ErrorMessageResourceType = typeof(ErrorMsg), ErrorMessageResourceName = "CustomerNameReq")]
+        [Display(ResourceType = typeof(Labels), Name = "CustomerNameLbl")]
         public string customerName { get; set; }
+
         [Required(ErrorMessageResourceType = typeof(ErrorMsg), ErrorMessageResourceName = "EmailAddressReq")]
         [Display(ResourceType = typeof(Labels), Name = "EmailLbl")]
         public string emailAddress { get; set; }

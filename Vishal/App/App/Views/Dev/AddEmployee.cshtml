@@ -1,0 +1,240 @@
+﻿@model App.Models.Entity.Employee.EmployeeEntity
+@Scripts.Render("~/Scripts/jquery.validate.js")
+@Scripts.Render("~/Scripts/jquery.validate.unobtrusive.js")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+<script type="text/javascript">
+    $(function () {
+        $("select").multiselect();
+
+    });
+    function OnSuccess(result) {
+        //if (result.flag == "S") {
+        //    window.location = '#/AddEmployee';
+        //}
+    }
+    function OnFailure(error) {
+        alert(error);
+    }
+</script>
+@if (this.ViewContext.FormContext == null)
+{
+    this.ViewContext.FormContext = new FormContext();
+}
+<div class="container">
+    <div class="row">
+        <div class="lgnarea area2">
+            @using (Ajax.BeginForm("SaveCustomer", new { Controller = "Dev" },
+                                                               new AjaxOptions
+                                                               {
+                                                                   HttpMethod = "POST",
+                                                                   OnSuccess = "OnSuccess",
+                                                                   OnFailure = "OnFailure",
+                                                                   LoadingElementId = "progress"
+                                                               }))
+            {
+                <div class="area2-title">
+                    <span class="float-left">
+                        <a href="#/Index">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                        Super Admin
+                        <text>Add atleast one employee who will manage other informations.</text>
+                    </span>
+                    <span class="float-right">
+                        <input type="submit" class="btn btn-info" value="Save & Continue" />
+                    </span>
+                </div>
+                <hr />
+                <div class="area2-form">
+                    <ul>
+                        <li>
+                            @Html.LabelFor(model => model.empName)
+                            @Html.TextBoxFor(model => model.empName, new { @tabindex = "1", @id = "empName", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.empName)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.fatherName)
+                            @Html.TextBoxFor(model => model.fatherName, new { @tabindex = "2", @id = "fatherName", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.fatherName)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.genderId)
+                            @Html.DropDownListFor(m => m.genderId, Model.genderList, "Please select", new { @id = "genderId", onchange = "GetStates(this,'StateId')" })
+                            @Html.ValidationMessageFor(model => model.genderId)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.dob)
+                            @Html.TextBoxFor(model => model.dob, new { @tabindex = "3", @id = "dob", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.dob)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.doj)
+                            @Html.TextBoxFor(model => model.doj, new { @tabindex = "4", @id = "doj", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.doj)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.empTypeId)
+                            @Html.DropDownListFor(m => m.empTypeId, Model.empTypeList, "Please select", new { @id = "empTypeId", onchange = "GetStates(this,'StateId')" })
+                            @Html.ValidationMessageFor(model => model.empTypeId)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.desigid)
+                            @Html.DropDownListFor(m => m.desigid, Model.desigList, "Please select", new { @id = "desigid", onchange = "GetStates(this,'StateId')" })
+                            @Html.ValidationMessageFor(model => model.desigid)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.exp)
+                            @Html.TextBoxFor(model => model.exp, new { @tabindex = "4", @id = "exp", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.exp)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.specializationId)
+                            @Html.DropDownListFor(m => m.specializationId, Model.specializationList, "Please select", new { @id = "specializationId", onchange = "GetStates(this,'StateId')" })
+                            @Html.ValidationMessageFor(model => model.specializationId)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.deptId)
+                            @Html.DropDownListFor(m => m.deptId, Model.deptList, "Please select", new { @id = "deptId", onchange = "GetStates(this,'StateId')" })
+                            @Html.ValidationMessageFor(model => model.deptId)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.jobTypeId)
+                            @Html.DropDownListFor(m => m.jobTypeId, Model.jobTypeList, "Please select", new { @id = "jobTypeId", onchange = "GetStates(this,'StateId')" })
+                            @Html.ValidationMessageFor(model => model.jobTypeId)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.marialStatusId)
+                            @Html.DropDownListFor(m => m.marialStatusId, Model.maritalStatusList, "Please select", new { @id = "marialStatusId", onchange = "GetStates(this,'StateId')" })
+                            @Html.ValidationMessageFor(model => model.marialStatusId)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.religionId)
+                            @Html.DropDownListFor(m => m.religionId, Model.religionList, "Please select", new { @id = "religionId", onchange = "GetStates(this,'StateId')" })
+                            @Html.ValidationMessageFor(model => model.religionId)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.bgId)
+                            @Html.DropDownListFor(m => m.bgId, Model.bgList, "Please select", new { @id = "bgId", onchange = "GetStates(this,'StateId')" })
+                            @Html.ValidationMessageFor(model => model.bgId)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.mobileNo)
+                            @Html.TextBoxFor(model => model.mobileNo, new { @tabindex = "4", @id = "mobileNo", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.mobileNo)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.institutionName)
+                            @Html.TextBoxFor(model => model.institutionName, new { @tabindex = "4", @id = "institutionName", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.institutionName)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.designation)
+                            @Html.TextBoxFor(model => model.designation, new { @tabindex = "4", @id = "designation", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.designation)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.phoneNo)
+                            @Html.TextAreaFor(model => model.phoneNo, new { @tabindex = "4", @id = "phoneNo", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.phoneNo)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.houseNo)
+                            @Html.TextBoxFor(model => model.houseNo, new { @tabindex = "4", @id = "houseNo", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.houseNo)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.town)
+                            @Html.TextBoxFor(model => model.town, new { @tabindex = "4", @id = "town", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.town)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.district)
+                            @Html.TextBoxFor(model => model.district, new { @tabindex = "4", @id = "district", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.district)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.countryId)
+                            @Html.DropDownListFor(m => m.countryId, Model.countryList, "Please select", new { @id = "countryId", onchange = "GetStates(this,'StateId')" })
+                            @Html.ValidationMessageFor(model => model.countryId)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.stateId)
+                            @Html.DropDownListFor(m => m.stateId, Model.stateList, "Please select", new { @id = "stateId", onchange = "GetStates(this,'StateId')" })
+                            @Html.ValidationMessageFor(model => model.stateId)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.cityId)
+                            @Html.DropDownListFor(m => m.cityId, Model.cityList, "Please select", new { @id = "cityId", onchange = "GetStates(this,'StateId')" })
+                            @Html.ValidationMessageFor(model => model.cityId)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.pincode)
+                            @Html.TextBoxFor(model => model.pincode, new { @tabindex = "4", @id = "pincode", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.pincode)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.qualification)
+                            @Html.TextBoxFor(model => model.qualification, new { @tabindex = "4", @id = "qualification", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.qualification)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.yearOfPassing)
+                            @Html.TextBoxFor(model => model.yearOfPassing, new { @tabindex = "4", @id = "yearOfPassing", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.yearOfPassing)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.college)
+                            @Html.TextBoxFor(model => model.college, new { @tabindex = "4", @id = "college", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.college)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.percentage)
+                            @Html.TextBoxFor(model => model.percentage, new { @tabindex = "4", @id = "percentage", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.percentage)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.panNo)
+                            @Html.TextBoxFor(model => model.panNo, new { @tabindex = "4", @id = "panNo", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.panNo)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.bankAccountNo)
+                            @Html.TextBoxFor(model => model.bankAccountNo, new { @tabindex = "4", @id = "bankAccountNo", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.bankAccountNo)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.pfNo)
+                            @Html.TextBoxFor(model => model.pfNo, new { @tabindex = "4", @id = "pfNo", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.pfNo)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.esiNo)
+                            @Html.TextBoxFor(model => model.esiNo, new { @tabindex = "4", @id = "esiNo", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.esiNo)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.drivingLicense)
+                            @Html.TextBoxFor(model => model.drivingLicense, new { @tabindex = "4", @id = "drivingLicense", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.drivingLicense)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.bankId)
+                            @Html.DropDownListFor(m => m.bankId, Model.bankNameList, "Please select", new { @id = "bankId", onchange = "GetStates(this,'StateId')" })
+                            @Html.ValidationMessageFor(model => model.bankId)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.branchId)
+                            @Html.DropDownListFor(m => m.branchId, Model.branchList, "Please select", new { @id = "branchId", onchange = "GetStates(this,'StateId')" })
+                            @Html.ValidationMessageFor(model => model.branchId)
+                        </li>
+                        <li>
+                            @Html.LabelFor(model => model.ifscCode)
+                            @Html.TextBoxFor(model => model.ifscCode, new { @tabindex = "4", @id = "ifscCode", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ifscCode)
+                        </li>
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -120,8 +120,23 @@
   <data name="AddressReq" xml:space="preserve">
     <value>Please enter address.</value>
   </data>
+  <data name="BankAccountNoReq" xml:space="preserve">
+    <value>Please enter bank account no.</value>
+  </data>
+  <data name="BankNameReq" xml:space="preserve">
+    <value>Please select bank name.</value>
+  </data>
+  <data name="BloodGroupReq" xml:space="preserve">
+    <value>Please select blood group.</value>
+  </data>
+  <data name="BranchNameReq" xml:space="preserve">
+    <value>Please select branch.</value>
+  </data>
   <data name="CityReq" xml:space="preserve">
     <value>Please select city.</value>
+  </data>
+  <data name="CollegeReq" xml:space="preserve">
+    <value>Please enter college name.</value>
   </data>
   <data name="CountryReq" xml:space="preserve">
     <value>Please select country.</value>
@@ -129,11 +144,71 @@
   <data name="CustomerNameReq" xml:space="preserve">
     <value>Please enter customer name.</value>
   </data>
+  <data name="DeptReq" xml:space="preserve">
+    <value>Please select department.</value>
+  </data>
+  <data name="DesignationReq" xml:space="preserve">
+    <value>Please select designation.</value>
+  </data>
+  <data name="DistrictReq" xml:space="preserve">
+    <value>Please enter district.</value>
+  </data>
+  <data name="DOBReq" xml:space="preserve">
+    <value>Please enter date of birth.</value>
+  </data>
+  <data name="DOJReq" xml:space="preserve">
+    <value>Please enter date of joining.</value>
+  </data>
+  <data name="DrivingLicenseReq" xml:space="preserve">
+    <value>Please enter driving license no.</value>
+  </data>
   <data name="EmailAddressReq" xml:space="preserve">
     <value>Please enter email address.</value>
   </data>
+  <data name="EmployeeNameReq" xml:space="preserve">
+    <value>Please enter employee name.</value>
+  </data>
+  <data name="EmpTypeReq" xml:space="preserve">
+    <value>Please select employee type.</value>
+  </data>
+  <data name="EsiNoReq" xml:space="preserve">
+    <value>Please enter esi no.</value>
+  </data>
+  <data name="ExpReq" xml:space="preserve">
+    <value>Please enter experience.</value>
+  </data>
+  <data name="FatherNameReq" xml:space="preserve">
+    <value>Please enter father name.</value>
+  </data>
+  <data name="GenderReq" xml:space="preserve">
+    <value>Please select gender.</value>
+  </data>
+  <data name="HouseNoReq" xml:space="preserve">
+    <value>Please enter house no.</value>
+  </data>
+  <data name="IFSCReq" xml:space="preserve">
+    <value>Please enter ifsc code.</value>
+  </data>
+  <data name="InstitutionReq" xml:space="preserve">
+    <value>Please enter institution name.</value>
+  </data>
+  <data name="JobTypeReq" xml:space="preserve">
+    <value>Please select job type.</value>
+  </data>
+  <data name="MaritalStatusReq" xml:space="preserve">
+    <value>Please select marital status.</value>
+  </data>
+  <data name="MobileNoReq" xml:space="preserve">
+    <value>Please enter mobile no.</value>
+  </data>
+  <data name="PanNoReq" xml:space="preserve">
+    <value>Please enter pan no.</value>
+  </data>
   <data name="PasswordReq" xml:space="preserve">
     <value>Please enter password.</value>
+  </data>
+  <data name="PercentageReq" xml:space="preserve">
+    <value>Please enter perecentage.</value>
   </data>
   <data name="PhoneNoReq" xml:space="preserve">
     <value>Please enter phone no.</value>
@@ -141,10 +216,25 @@
   <data name="PincodeReq" xml:space="preserve">
     <value>Please enter pincode.</value>
   </data>
+  <data name="QualificationReq" xml:space="preserve">
+    <value>Please enter qualification.</value>
+  </data>
+  <data name="ReligionReq" xml:space="preserve">
+    <value>Please select religion.</value>
+  </data>
+  <data name="SpecializationReq" xml:space="preserve">
+    <value>Please select sepcialization.</value>
+  </data>
   <data name="StateReq" xml:space="preserve">
     <value>Please select state.</value>
   </data>
+  <data name="TownReq" xml:space="preserve">
+    <value>Please enter town.</value>
+  </data>
   <data name="UsernameReq" xml:space="preserve">
     <value>Please enter username.</value>
+  </data>
+  <data name="YearOfPassingReq" xml:space="preserve">
+    <value>Please enter year of passing.</value>
   </data>
 </root>

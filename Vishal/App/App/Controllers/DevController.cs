@@ -1,6 +1,8 @@
 ﻿using App.Models.BAL.Common;
 using App.Models.BAL.Customer;
+using App.Models.Entity.Common;
 using App.Models.Entity.Customer;
+using App.Models.Entity.Employee;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +40,15 @@ namespace App.Controllers
             objCustomer.reportId = 1;
             objCustomer.operType = "A";
             objCustomer.userId = "admin";
-            return Json(objCustModel.SaveCustomer(objCustomer));
+            ResultEntity objResult = new ResultEntity();
+            objResult.flag = "S";
+            objResult.msg = "Success";
+            return Json(objResult);
+        }
+
+        public ActionResult AddEmployee()
+        {
+            return PartialView(new EmployeeEntity());
         }
     }
 }

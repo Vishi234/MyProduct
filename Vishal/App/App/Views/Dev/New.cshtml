@@ -1,14 +1,16 @@
 ﻿@model App.Models.Entity.Customer.CustomerEntity
-@Styles.Render("~/Scripts/jquery.validate.js")
-@Styles.Render("~/Scripts/jquery.validate.unobtrusive.js")
-@Styles.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+@Scripts.Render("~/Scripts/jquery.validate.js")
+@Scripts.Render("~/Scripts/jquery.validate.unobtrusive.js")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
 <script type="text/javascript">
     $(function () {
         $("select").multiselect();
 
     });
     function OnSuccess(result) {
-        alert(result);
+        if (result.flag == "S") {
+            window.location = '#/AddEmployee';
+        }
     }
     function OnFailure(error) {
         alert(error);

@@ -114,8 +114,15 @@ var routingApp = $.sammy("#devrender", function () {
         $.get("/Dev/New", function (data) {
             context.$element().html(data);
             HideLoading();
-        })
-    })
+        });
+    });
+    this.get("#/AddEmployee", function (context) {
+        ShowLoading();
+        $.get("/Dev/AddEmployee", function (data) {
+            context.$element().html(data);
+            HideLoading();
+        });
+    });
 });
 $(function () {
     routingApp.run(); // default routing page.

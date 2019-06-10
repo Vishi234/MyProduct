@@ -188,6 +188,7 @@
     <Compile Include="Models\DAL\SqlHelper.cs" />
     <Compile Include="Models\Entity\Common\ResultEntity.cs" />
     <Compile Include="Models\Entity\Customer\CustomerEntity.cs" />
+    <Compile Include="Models\Entity\Employee\EmployeeEntity.cs" />
     <Compile Include="Models\Entity\User\LoginEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource\ErrorMsg.Designer.cs">
@@ -220,6 +221,7 @@
     <Content Include="Views\_DevLayout.cshtml" />
     <Content Include="Views\Dev\Index.cshtml" />
     <Content Include="Views\Dev\New.cshtml" />
+    <Content Include="Views\Dev\AddEmployee.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -164,3 +164,4 @@ C:\Users\HP\Documents\GitHub\MyProduct\Vishal\App\App\obj\Debug\App.csproj.Gener
 C:\Users\HP\Documents\GitHub\MyProduct\Vishal\App\App\obj\Debug\App.dll
 C:\Users\HP\Documents\GitHub\MyProduct\Vishal\App\App\obj\Debug\App.pdb
 C:\Users\HP\Documents\GitHub\MyProduct\Vishal\App\App\obj\Debug\App.Resource.Labels.resources
+C:\Users\vishal.singh\Documents\GitHub\MyProduct\Vishal\App\App\obj\Debug\App.Resource.Labels.resources

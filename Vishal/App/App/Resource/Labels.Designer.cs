@@ -19,7 +19,7 @@ namespace App.Resource {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Labels {
@@ -70,11 +70,56 @@ namespace App.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bank Account No.
+        /// </summary>
+        public static string BankAccountNoLbl {
+            get {
+                return ResourceManager.GetString("BankAccountNoLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank Name.
+        /// </summary>
+        public static string BankNameLbl {
+            get {
+                return ResourceManager.GetString("BankNameLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blood Group.
+        /// </summary>
+        public static string BloodGroupLbl {
+            get {
+                return ResourceManager.GetString("BloodGroupLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch Name.
+        /// </summary>
+        public static string BranchNameLbl {
+            get {
+                return ResourceManager.GetString("BranchNameLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City Name.
         /// </summary>
         public static string CityLbl {
             get {
                 return ResourceManager.GetString("CityLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to College.
+        /// </summary>
+        public static string CollegeLbl {
+            get {
+                return ResourceManager.GetString("CollegeLbl", resourceCulture);
             }
         }
         
@@ -97,6 +142,60 @@ namespace App.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Department.
+        /// </summary>
+        public static string DeptLbl {
+            get {
+                return ResourceManager.GetString("DeptLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Designation.
+        /// </summary>
+        public static string DesignationLbl {
+            get {
+                return ResourceManager.GetString("DesignationLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to District.
+        /// </summary>
+        public static string DistrictLbl {
+            get {
+                return ResourceManager.GetString("DistrictLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Of Birth.
+        /// </summary>
+        public static string DOBLbl {
+            get {
+                return ResourceManager.GetString("DOBLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Of Joining.
+        /// </summary>
+        public static string DOJLbl {
+            get {
+                return ResourceManager.GetString("DOJLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Driving License.
+        /// </summary>
+        public static string DrivingLicenseLbl {
+            get {
+                return ResourceManager.GetString("DrivingLicenseLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string EditLbl {
@@ -115,6 +214,51 @@ namespace App.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee Name.
+        /// </summary>
+        public static string EmployeeNameLbl {
+            get {
+                return ResourceManager.GetString("EmployeeNameLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee Type.
+        /// </summary>
+        public static string EmpTypeLbl {
+            get {
+                return ResourceManager.GetString("EmpTypeLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ESI No..
+        /// </summary>
+        public static string EsiNoLbl {
+            get {
+                return ResourceManager.GetString("EsiNoLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience.
+        /// </summary>
+        public static string ExpLbl {
+            get {
+                return ResourceManager.GetString("ExpLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Father Name.
+        /// </summary>
+        public static string FatherNameLbl {
+            get {
+                return ResourceManager.GetString("FatherNameLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fax No..
         /// </summary>
         public static string FaxLbl {
@@ -124,11 +268,83 @@ namespace App.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        public static string GenderLbl {
+            get {
+                return ResourceManager.GetString("GenderLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to House No..
+        /// </summary>
+        public static string HouseNoLbl {
+            get {
+                return ResourceManager.GetString("HouseNoLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IFSC Code.
+        /// </summary>
+        public static string IFSCLbl {
+            get {
+                return ResourceManager.GetString("IFSCLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Institution Name.
+        /// </summary>
+        public static string InstitutionLbl {
+            get {
+                return ResourceManager.GetString("InstitutionLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Job Type.
+        /// </summary>
+        public static string JobTypeLbl {
+            get {
+                return ResourceManager.GetString("JobTypeLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marital Status.
+        /// </summary>
+        public static string MaritalStatusLbl {
+            get {
+                return ResourceManager.GetString("MaritalStatusLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mobile No.
         /// </summary>
         public static string MobileLbl {
             get {
                 return ResourceManager.GetString("MobileLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pan No.
+        /// </summary>
+        public static string PanNoLbl {
+            get {
+                return ResourceManager.GetString("PanNoLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Percentage.
+        /// </summary>
+        public static string PercentageLbl {
+            get {
+                return ResourceManager.GetString("PercentageLbl", resourceCulture);
             }
         }
         
@@ -151,6 +367,33 @@ namespace App.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Qualification.
+        /// </summary>
+        public static string QualificationLbl {
+            get {
+                return ResourceManager.GetString("QualificationLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Religion.
+        /// </summary>
+        public static string ReligionLbl {
+            get {
+                return ResourceManager.GetString("ReligionLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specialization.
+        /// </summary>
+        public static string SpecializationLbl {
+            get {
+                return ResourceManager.GetString("SpecializationLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to State Name.
         /// </summary>
         public static string StateLbl {
@@ -169,11 +412,29 @@ namespace App.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Town.
+        /// </summary>
+        public static string TownLbl {
+            get {
+                return ResourceManager.GetString("TownLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Website.
         /// </summary>
         public static string WebsiteLbl {
             get {
                 return ResourceManager.GetString("WebsiteLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year Of Passing.
+        /// </summary>
+        public static string YearOfPassingLbl {
+            get {
+                return ResourceManager.GetString("YearOfPassingLbl", resourceCulture);
             }
         }
     }

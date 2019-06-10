@@ -206,6 +206,10 @@ h1, h2, h3, h4, h5, h6 p {
             text-decoration: underline;
         }
 
+        .lgnform > ul > li > .form-control {
+            height: calc(1.5em + 0.85rem + 8px) !important;
+        }
+
 .input-validation-error {
     border-color: #f2545b !important;
     box-shadow: 0 0 0 1px #f2545b !important;
@@ -578,18 +582,27 @@ panel-heading a:not([class]) {
     width: 100%;
 }
 
-    .area2-title span:nth-child(1) {
-        font-size: 20px;
+.area2-title text {
+    display: block;
+    font-size: 12px;
+    margin-left: 35px;
+    /* color: #007bff; */
+    color: #808080;
+    font-weight:500;
+}
+
+.area2-title span:nth-child(1) {
+    font-size: 20px;
+}
+
+    .area2-title span:nth-child(1) svg {
+        margin-right: 14px;
+        margin-top: 5px;
     }
 
-        .area2-title span:nth-child(1) svg {
-            margin-right: 14px;
-            margin-top: 5px;
-        }
-
-    .area2-title span:nth-child(2) .btn-primary {
-        font-size: 12px;
-    }
+.area2-title span:nth-child(2) .btn-info {
+    font-size: 12px;
+}
 
 .area2-form ul li {
     display: inline-block;
