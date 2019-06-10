@@ -55,7 +55,9 @@ namespace App.Models.Entity.Employee
         public string desigid { get; set; }
         public string desigName { get; set; }
         public List<SelectListItem> desigList { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "ExpLbl")]
         public int exp { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "SpecializationLbl")]
         public string specializationId { get; set; }
         public string specializationName { get; set; }
         public List<SelectListItem> specializationList { get; set; }
@@ -79,14 +81,18 @@ namespace App.Models.Entity.Employee
         public string religionId { get; set; }
         public string religionName { get; set; }
         public List<SelectListItem> religionList { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "BloodGroupLbl")]
         public string bgId { get; set; }
         public string bgName { get; set; }
         public List<SelectListItem> bgList { get; set; }
         [Required(ErrorMessageResourceType = typeof(ErrorMsg), ErrorMessageResourceName = "MobileNoReq")]
         [Display(ResourceType = typeof(Labels), Name = "MobileLbl")]
         public string mobileNo { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "InstitutionLbl")]
         public string institutionName { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "DesignationLbl")]
         public string designation { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "PhoneLbl")]
         public string phoneNo { get; set; }
         [Required(ErrorMessageResourceType = typeof(ErrorMsg), ErrorMessageResourceName = "HouseNoReq")]
         [Display(ResourceType = typeof(Labels), Name = "HouseNoLbl")]
@@ -94,6 +100,7 @@ namespace App.Models.Entity.Employee
         [Required(ErrorMessageResourceType = typeof(ErrorMsg), ErrorMessageResourceName = "TownReq")]
         [Display(ResourceType = typeof(Labels), Name = "TownLbl")]
         public string town { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "DistrictLbl")]
         public string district { get; set; }
         [Required(ErrorMessageResourceType = typeof(ErrorMsg), ErrorMessageResourceName = "CountryReq")]
         [Display(ResourceType = typeof(Labels), Name = "CountryLbl")]
@@ -113,16 +120,24 @@ namespace App.Models.Entity.Employee
         [Required(ErrorMessageResourceType = typeof(ErrorMsg), ErrorMessageResourceName = "PincodeReq")]
         [Display(ResourceType = typeof(Labels), Name = "PincodeLbl")]
         public string pincode { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "QualificationLbl")]
         public string qualification { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "YearOfPassingLbl")]
         public string yearOfPassing { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "CollegeNameLbl")]
         public string college { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "PercentageLbl")]
         public string percentage { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "PanNoLbl")]
         public string panNo { get; set; }
         [Required(ErrorMessageResourceType = typeof(ErrorMsg), ErrorMessageResourceName = "BankAccountNoReq")]
         [Display(ResourceType = typeof(Labels), Name = "BankAccountNoLbl")]
         public string bankAccountNo { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "PfNoLbl")]
         public string pfNo { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "EsiNoLbl")]
         public string esiNo { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "DrivingLicenseLbl")]
         public string drivingLicense { get; set; }
         [Required(ErrorMessageResourceType = typeof(ErrorMsg), ErrorMessageResourceName = "BankNameReq")]
         [Display(ResourceType = typeof(Labels), Name = "BankNameLbl")]

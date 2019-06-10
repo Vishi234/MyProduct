@@ -243,4 +243,10 @@
   <data name="YearOfPassingLbl" xml:space="preserve">
     <value>Year Of Passing</value>
   </data>
+  <data name="CollegeNameLbl" xml:space="preserve">
+    <value>College Name</value>
+  </data>
+  <data name="PfNoLbl" xml:space="preserve">
+    <value>PF No.</value>
+  </data>
 </root>

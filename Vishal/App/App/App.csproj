@@ -150,6 +150,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\login_bg.png" />
+    <Content Include="Logs\ExceptionLog.txt" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\common.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -232,6 +233,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\fontawesome\" />
+    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resource\ErrorMsg.resx">
@@ -240,7 +242,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resource\Labels.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

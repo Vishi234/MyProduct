@@ -577,32 +577,53 @@ panel-heading a:not([class]) {
     box-shadow: none;
 }
 
+.area3 .area2-title:nth-child(1) {
+    position: fixed;
+    z-index: 999;
+    width: 73%;
+    top: 10%;
+    background: rgba(255,255,255,0.7);
+    /*box-shadow: rgb(255, 255, 255) 0px 0px 80px 30px;*/
+}
+
+.area3 .area3-form:nth-child(1) {
+    margin-top: 6%;
+}
+
 .area2-title {
     display: inline-block;
     width: 100%;
 }
 
-.area2-title text {
-    display: block;
-    font-size: 12px;
-    margin-left: 35px;
-    /* color: #007bff; */
-    color: #808080;
-    font-weight:500;
-}
-
-.area2-title span:nth-child(1) {
-    font-size: 20px;
-}
-
-    .area2-title span:nth-child(1) svg {
-        margin-right: 14px;
-        margin-top: 5px;
+    .area2-title hr {
+        display: block;
+        margin-top: 60px;
     }
 
-.area2-title span:nth-child(2) .btn-info {
-    font-size: 12px;
-}
+    .area2-title:nth-child(1) text {
+        margin-left: 35px;
+    }
+
+    .area2-title text {
+        display: block;
+        font-size: 12px;
+        /* color: #007bff; */
+        color: #808080;
+        font-weight: 500;
+    }
+
+    .area2-title span:nth-child(1) {
+        font-size: 20px;
+    }
+
+        .area2-title span:nth-child(1) svg {
+            margin-right: 14px;
+            margin-top: 5px;
+        }
+
+    .area2-title span:nth-child(2) .btn-info {
+        font-size: 12px;
+    }
 
 .area2-form ul li {
     display: inline-block;
@@ -625,8 +646,37 @@ panel-heading a:not([class]) {
         font-weight: 500;
     }
 
+.area3-form ul li {
+    display: inline-block;
+    /* float: left; */
+    width: 23%;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+    .area3-form ul li > label {
+        margin-bottom: 5px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+.area3 {
+    width: 100%;
+    margin: 5% auto;
+    box-shadow: none;
+    height: 100%;
+}
+
 .devbody .loadingarea {
     top: 0;
+}
+
+.devbodytop {
+    height: 100vh !important;
+}
+
+.devbody {
+    height: 100%;
 }
 
 .areabody {
@@ -654,9 +704,18 @@ panel-heading a:not([class]) {
         padding: 10px;
     }
 
+#devrender {
+    height: 95%;
+    margin-top: 6%;
+    overflow: auto;
+}
+
 .devheader {
     display: inline-block;
     width: 100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
 }
 
     .devheader span {
