@@ -1,0 +1,33 @@
+.mat-toolbar {
+  padding: 0px;
+}
+.mat-toolbar.mat-primary {
+  background: #24355c;
+  color: #fff;
+  
+  height: 48px;
+}
+.app-ttl .app-name {
+  display: block;
+  float: left;
+  padding: 8px;
+  width: 157px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+.app-ttl a {
+  display: block;
+  padding: 8px 15px;
+  float: left;
+  color: #fff;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+.mat-sidenav {
+  width: 220px;
+}
+.mat-drawer {
+  background-color: #24355c;
+  color: #fff;
+  border-right: none !important;
+}
+

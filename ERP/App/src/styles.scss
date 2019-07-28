@@ -1,0 +1,317 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$App-primary: mat-palette($mat-indigo);
+$App-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$App-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$App-theme: mat-light-theme($App-primary, $App-accent, $App-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($App-theme);
+
+/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: "Muli", sans-serif;
+  color: #666;
+  font-size: 12px;
+  letter-spacing: 0.1px;
+  background: #f7f7f7 !important;
+  overflow-x: hidden;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+p {
+  font-size: 14px;
+  line-height: 23px;
+}
+
+.fa {
+  display: grid;
+}
+
+img {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #808080;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:focus {
+  text-decoration: none;
+}
+
+a,
+div,
+svg,
+path,
+circle,
+rect {
+  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+}
+
+ul {
+  background: 0;
+  font-weight: inherit;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: top;
+}
+
+ul li {
+  list-style: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background: #eee;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f51b5;
+  border-radius: 4px;
+}
+
+h2 {
+  font-size: 1.71em;
+  line-height: 1em;
+}
+
+.p_table > footer a,
+.search_button,
+.tabs_nav,
+h3 {
+  font-size: 1.4em;
+}
+
+h4 {
+  font-size: 1.25em;
+}
+
+h5 {
+  font-size: 1.15em;
+}
+
+h6 {
+  font-size: 1em;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+article,
+aside,
+audio,
+canvas,
+command,
+datalist,
+details,
+embed,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+keygen,
+main,
+meter,
+nav,
+output,
+progress,
+section,
+source,
+video {
+  display: block;
+}
+
+mark,
+rp,
+rt,
+ruby,
+summary,
+time {
+  display: inline;
+}
+
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+command,
+datalist,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+font,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+keygen,
+label,
+legend,
+li,
+meter,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+progress,
+q,
+s,
+samp,
+section,
+small,
+source,
+span,
+strike,
+strong,
+sub,
+sup,
+table,
+tbody,
+tdvideo,
+tfoot,
+th,
+thead,
+tr,
+tt,
+u,
+ul,
+var {
+  background: 0;
+  font-weight: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: top;
+}
+
+a {
+  text-decoration: none;
+  outline: 0 !important;
+  color: #007bff;
+}
+
+b,
+strong {
+  font-weight: 500 !important;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+q {
+  quotes: none;
+}
+
+table,
+table td {
+  padding: 0;
+  border: 0;
+  border-collapse: collapse;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input {
+  outline: 0;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 p {
+  background: 0;
+  font-weight: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: top;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
