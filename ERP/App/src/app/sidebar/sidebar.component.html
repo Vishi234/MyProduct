@@ -1,0 +1,23 @@
+<mat-drawer-container class="container" autosize [class.is-mobile]="mobileQuery.matches">
+    <mat-drawer #drawer class="example-sidenav" [mode]="mobileQuery.matches ? 'over' : 'side'"
+        [opened]="mobileQuery.matches ? 'false' : 'true'">
+        <p>Auto-resizing sidenav</p>
+        <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+        <button (click)="showFiller = !showFiller" mat-raised-button>
+            Toggle extra text
+        </button>
+    </mat-drawer>
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <button type="button" mat-button (click)="drawer.toggle()">
+                <i class="material-icons">
+                    menu
+                </i>
+            </button>
+            <span>Third Line</span>
+            <span class="example-spacer"></span>
+            <mat-icon aria-hidden="false" aria-label="heart icon">favorite</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="delete icon">delete</mat-icon>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</mat-drawer-container>
