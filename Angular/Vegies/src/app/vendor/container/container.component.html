@@ -2,16 +2,28 @@
     <mat-toolbar color="primary" class="toolbar">
         <div class="container-fluid">
             <div class="app-ttl mr-auto">
-                <h1 class="app-name">VEGIES</h1>
                 <a href="javascript:void(0)" (click)="snav.toggle()"><i class="fas fa-bars"></i></a>
+                <h1 class="app-name">VEGIES</h1>
             </div>
             <div class="app-top-menu ml-auto">
-
+                <div class="btn-group" mdbDropdown>
+                    <a mdbBtn floating="true" size="lg" mdbDropdownToggle
+                        classInside="dropdown-toggle" class="usermenu" mdbWavesEffect>
+                        <mdb-icon fas icon="bolt"></mdb-icon>
+                    </a>
+                    <div class="dropdown-menu dropdown-primary dropdown-menu-left">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="divider dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                </div>
             </div>
         </div>
     </mat-toolbar>
     <mat-sidenav-container class="nav-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
-        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+        <mat-sidenav [opened]="mobileQuery.matches ? 'false' : 'true'" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
             fixedTopGap="48">
             <mat-accordion>
                 <mat-expansion-panel>
@@ -23,7 +35,14 @@
                             Type your name and age
                         </mat-panel-description>
                     </mat-expansion-panel-header>
-                    
+
+                    <mat-form-field>
+                        <input matInput placeholder="First name">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput placeholder="Age">
+                    </mat-form-field>
                 </mat-expansion-panel>
                 <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>

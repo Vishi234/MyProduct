@@ -1,5 +1,6 @@
 .mat-toolbar {
   padding: 0px;
+  font: inherit;
 }
 .mat-toolbar.mat-primary {
   background: #24355c;
@@ -21,9 +22,11 @@
 }
 .app-ttl a {
   display: block;
-  padding: 8px 15px;
+  padding: 11px 15px;
   float: left;
   color: #fff;
+  padding-left: 0px;
+  font-size: 20px;
 }
 .mat-sidenav {
   width: 220px;
@@ -44,7 +47,7 @@
 .mat-expansion-panel-header {
   padding: 0 13px;
   font-family: inherit;
-  border-bottom: 1px solid  #2b3f6e;
+  border-bottom: 1px solid #2b3f6e;
 }
 .mat-content {
   display: inline-block;
@@ -65,4 +68,16 @@
   opacity: 0.5;
   font-size: 10px;
 }
-
+.app-top-menu {
+  float: right;
+  padding: 4px;
+}
+.usermenu {
+  border-radius: 2.3rem;
+  background: #dc3545;
+}
+.dropdown-menu-left {
+  right: 0;
+  left: -131px;
+  top: 43px;
+}
