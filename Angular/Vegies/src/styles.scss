@@ -1,0 +1,118 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Muli", sans-serif !important;
+  font: 500 14px "Muli", sans-serif !important;
+}
+.btn {
+  text-transform: none;
+}
+img {
+  height: 100%;
+  min-width: 100%;
+}
+
+.navbar {
+  min-height: 30px;
+  background-color: #24355c !important;
+}
+
+.navbar-brand {
+  padding: 0 15px;
+  height: 45px;
+  line-height: 45px !important;
+}
+
+.navbar-toggle {
+  margin-top: 16px;
+  padding: 9px 10px !important;
+}
+.navbar-nav > li:last-child > a {
+  background: #dc3545;
+}
+.slider .carousel-inner {
+  max-height: 500px !important;
+}
+.slider .carousel-item {
+  height: 100% !important;
+}
+.slider .view {
+  height: 100%;
+}
+.mat-elevation-z8 {
+  // box-shadow: none;
+  width: 100%;
+}
+
+.loginform .card {
+  background-color: rgba(36, 53, 92, 0.5) !important;
+  top: 10%;
+  color: #fff !important;
+}
+.loginform .card-header {
+  background-color: transparent;
+  border: none;
+  padding: 20px !important;
+  height: 80px;
+}
+.loginform .card-header h1 {
+  font-size: 30px !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  opacity: 0.8;
+}
+.loginform p {
+  letter-spacing: 1px;
+  color: #fff;
+  opacity: 0.8;
+  font-weight: 600 !important;
+}
+.loginform .md-form label {
+  color: #fff;
+  opacity: 0.5;
+}
+.loginform .md-form input {
+  border-bottom: 1px solid #fff;
+}
+.loginform .form-control {
+  color: #fff !important;
+  opacity: 0.8;
+}
+.loginform .form-check-label {
+  color: #fff;
+  opacity: 0.7;
+}
+.loginform .md-form {
+  margin-bottom: 3rem;
+}
+.mat-dialog-container {
+  padding: 0px !important;
+  border-radius: 0px !important;
+}
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+.mat-drawer-inner-container .mat-expansion-panel {
+  border-radius: 0px!important;
+  box-shadow: none!important;
+  background: transparent!important;
+  color: #fff!important;
+  font-family: inherit;
+}
+@media (min-width: 992px) {
+  .navbar-nav > li > a {
+    line-height: 24px !important;
+    padding: 18px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-nav > li > a {
+    line-height: 24px !important;
+    padding: 10px 15px !important;
+  }
+}

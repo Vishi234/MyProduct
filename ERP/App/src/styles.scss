@@ -24,10 +24,10 @@ $App-theme: mat-light-theme($App-primary, $App-accent, $App-warn);
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($App-theme);
-@import "https://fonts.googleapis.com/css?family=Muli:200,300,400,600,700&display=swap";
-@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+/* You can add global styles to this file, and also import other style files */
 body {
-  font-family: "Muli", sans-serif !important;
+  font-family: "Muli", sans-serif;
   color: #666;
   font-size: 12px;
   letter-spacing: 0.1px;

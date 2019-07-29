@@ -1,0 +1,64 @@
+<div class="login-base">
+    <div class="loginform">
+        <mdb-card>
+            <mdb-card-header class="white-text text-center py-4">
+                <h1 class="text-center">Vegies</h1>
+                <p>Enter valid credentials below</p>
+                <hr />
+            </mdb-card-header>
+            <mdb-card-body class="px-lg-5 pt-0">
+
+                <!-- Form -->
+                <form class="text-center">
+                    <div class="md-form">
+                        <input mdbInput mdbValidate name="organisationName" [(ngModel)]="organisationNameText"
+                            #organisationName="ngModel" required autocomplete="off" type="text" autocomplete="off"
+                            id="organisationName" class="form-control">
+                        <label for="organisationName">Organisation Name</label>
+                        <mdb-error
+                            *ngIf="organisationName.invalid && (organisationName.dirty || organisationName.touched)">
+                            Input invalid</mdb-error>
+                        <mdb-success
+                            *ngIf="organisationName.valid && (organisationName.dirty || organisationName.touched)">Input
+                            valid</mdb-success>
+                    </div>
+                    <div class="md-form">
+                        <input mdbInput mdbValidate name="fullName" [(ngModel)]="fullNameText"
+                            #fullName="ngModel" required autocomplete="off" type="text" autocomplete="off"
+                            id="fullName" class="form-control">
+                        <label for="fullName">Full Name</label>
+                        <mdb-error *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)">Input invalid
+                        </mdb-error>
+                        <mdb-success *ngIf="fullName.valid && (fullName.dirty || fullName.touched)">Input valid
+                        </mdb-success>
+                    </div>
+                    <div class="md-form">
+                            <input mdbInput mdbValidate name="email" [(ngModel)]="emailText"
+                            #email="ngModel" required autocomplete="off" type="email" pattern="[^ @]*@[^ @]*" autocomplete="off"
+                            id="email" class="form-control">
+                        <label for="email">E-Mail</label>
+                        <mdb-error *ngIf="email.invalid && (email.dirty || email.touched)">Input invalid
+                        </mdb-error>
+                        <mdb-success *ngIf="email.valid && (email.dirty || email.touched)">Input valid
+                        </mdb-success>
+                    </div>
+                    <div class="md-form">
+                            <input mdbInput mdbValidate name="mobileNo" [(ngModel)]="mobileNoText"
+                            #mobileNo="ngModel" required autocomplete="off" type="text" autocomplete="off"
+                            id="mobileNo" class="form-control">
+                        <label for="mobileNo">Mobile No.</label>
+                        <mdb-error *ngIf="mobileNo.invalid && (mobileNo.dirty || mobileNo.touched)">Input invalid
+                        </mdb-error>
+                        <mdb-success *ngIf="mobileNo.valid && (mobileNo.dirty || mobileNo.touched)">Input valid
+                        </mdb-success>
+                    </div>
+                    <button mdbBtn type="button" color="danger" class="my-4 waves-effect z-depth-0" rounded="true"
+                        block="true" mdbWavesEffect type="submit">Sign in</button>
+                    <p>Already have an account?
+                        <a href="/login/">Login</a>
+                    </p>
+                </form>
+            </mdb-card-body>
+        </mdb-card>
+    </div>
+</div>
