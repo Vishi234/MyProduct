@@ -4,23 +4,26 @@
 .mat-toolbar.mat-primary {
   background: #24355c;
   color: #fff;
-  
+  position: fixed;
+  z-index: 999;
+
   height: 48px;
 }
 .app-ttl .app-name {
   display: block;
   float: left;
-  padding: 8px;
+  padding: 8px 0px;
   width: 157px;
-  font-weight: 400;
-  letter-spacing: 1px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  opacity: 0.8;
 }
 .app-ttl a {
   display: block;
   padding: 8px 15px;
   float: left;
   color: #fff;
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 .mat-sidenav {
   width: 220px;
@@ -29,5 +32,37 @@
   background-color: #24355c;
   color: #fff;
   border-right: none !important;
+  position: fixed;
+  top: 48px;
+}
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled="true"]) .mat-expansion-panel-header:hover {
+  background: transparent;
+}
+.nav-sidenav-container .mat-drawer-inner-container {
+  margin-top: 25px;
+}
+.mat-expansion-panel-header {
+  padding: 0 13px;
+  font-family: inherit;
+  border-bottom: 1px solid  #2b3f6e;
+}
+.mat-content {
+  display: inline-block;
+}
+.mat-expansion-panel-header-title {
+  display: inline-block;
+  flex-grow: 1;
+  margin-right: 0px;
+  width: 100%;
+  color: #fff;
+  opacity: 0.8;
+  font-weight: 400;
+}
+.mat-expansion-panel-header-description {
+  display: block;
+  width: 100%;
+  color: #fff;
+  opacity: 0.5;
+  font-size: 10px;
 }
 

@@ -97,11 +97,20 @@ img {
   background: rgba(0, 0, 0, 0.8);
 }
 .mat-drawer-inner-container .mat-expansion-panel {
-  border-radius: 0px!important;
-  box-shadow: none!important;
-  background: transparent!important;
-  color: #fff!important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  color: #fff !important;
   font-family: inherit;
+}
+.mat-drawer .mat-content {
+  display: inline-block;
+}
+.mat-drawer .mat-expansion-indicator::after {
+  color: #dc3545;
+}
+.mat-drawer .mat-expanded {
+  border-bottom: none!important;
 }
 @media (min-width: 992px) {
   .navbar-nav > li > a {

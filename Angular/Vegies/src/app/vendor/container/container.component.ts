@@ -8,7 +8,7 @@ import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 })
 export class VendorContainerComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
-  panelOpenState = false;
+  panelOpenState = true;
   fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
 
   fillerContent = Array.from({ length: 50 }, () =>
