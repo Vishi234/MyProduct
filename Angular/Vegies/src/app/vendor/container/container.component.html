@@ -1,67 +1,85 @@
-<div [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="primary" class="toolbar">
-        <div class="container-fluid">
-            <div class="app-ttl mr-auto">
-                <a href="javascript:void(0)" (click)="snav.toggle()"><i class="fas fa-bars"></i></a>
-                <h1 class="app-name">VEGIES</h1>
-            </div>
-            <div class="app-top-menu ml-auto">
-                <div class="btn-group" mdbDropdown>
-                    <a mdbBtn floating="true" size="lg" mdbDropdownToggle
-                        classInside="dropdown-toggle" class="usermenu" mdbWavesEffect>
-                        <mdb-icon fas icon="bolt"></mdb-icon>
-                    </a>
-                    <div class="dropdown-menu dropdown-primary dropdown-menu-left">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="divider dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
+<div class="content-base">
+    <div [class.example-is-mobile]="mobileQuery.matches">
+        <mat-toolbar color="primary" class="toolbar">
+            <div class="container-fluid">
+                <div class="app-ttl mr-auto">
+                    <a href="javascript:void(0)" (click)="snav.toggle()"><i class="fas fa-bars"></i></a>
+                    <h1 class="app-name">VEGIES</h1>
+                </div>
+                <div class="app-top-menu ml-auto">
+                    <div class="btn-group" mdbDropdown>
+                        <a mdbBtn floating="true" size="lg" mdbDropdownToggle classInside="dropdown-toggle"
+                            mdbWavesEffect>
+                            <span class="usermenu">
+                                <i class="fas fa-user-circle"></i>
+                            </span>
+                            <span class="userInfo">
+                                Vishal Singh
+                                <p>Manager</p>
+                            </span>
+                            <span class="userDown">
+                                <i class="fas fa-caret-down"></i>
+                            </span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-primary dropdown-menu-left">
+                            <a class="dropdown-item" href="#"><i class="fas fa-address-book"></i> My Account</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-key"></i> Change Password</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-sliders-h"></i> Setting</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-envelope"></i> Message</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </mat-toolbar>
-    <mat-sidenav-container class="nav-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
-        <mat-sidenav [opened]="mobileQuery.matches ? 'false' : 'true'" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-            fixedTopGap="48">
-            <mat-accordion>
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Personal data
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Type your name and age
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
+        </mat-toolbar>
+        <mat-sidenav-container class="nav-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+            <mat-sidenav [opened]="mobileQuery.matches ? 'false' : 'true'" #snav
+                [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="48">
+                <!-- <div class="nav-ttl">
+                            Main Navigation
+                        </div> -->
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Personal data
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Type your name and age
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
 
-                    <mat-form-field>
-                        <input matInput placeholder="First name">
-                    </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="First name">
+                        </mat-form-field>
 
-                    <mat-form-field>
-                        <input matInput placeholder="Age">
-                    </mat-form-field>
-                </mat-expansion-panel>
-                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Self aware panel
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Currently I am {{panelOpenState ? 'open' : 'closed'}}
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <p>I'm visible because I am open</p>
-                </mat-expansion-panel>
-            </mat-accordion>
+                        <mat-form-field>
+                            <input matInput placeholder="Age">
+                        </mat-form-field>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Self aware panel
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>I'm visible because I am open</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
 
-        </mat-sidenav>
+            </mat-sidenav>
 
-        <mat-sidenav-content>
-            <p *ngFor="let content of fillerContent">{{content}}</p>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+            <mat-sidenav-content>
+                <div class="container-fluid">
+                    <div class="content-sec">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
 </div>
-<app-dashboard></app-dashboard>

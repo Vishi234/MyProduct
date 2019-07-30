@@ -13,8 +13,7 @@
 .app-ttl .app-name {
   display: block;
   float: left;
-  padding: 8px 0px;
-  width: 157px;
+  padding: 11px 0px;
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -22,7 +21,7 @@
 }
 .app-ttl a {
   display: block;
-  padding: 11px 15px;
+  padding: 14px 15px;
   float: left;
   color: #fff;
   padding-left: 0px;
@@ -70,14 +69,42 @@
 }
 .app-top-menu {
   float: right;
-  padding: 4px;
+  padding: 0px;
+}
+.app-top-menu .btn-group a {
+  padding: 0px;
 }
 .usermenu {
   border-radius: 2.3rem;
-  background: #dc3545;
+  background: transparent;
+  padding: 0px;
+  font-size: 36px;
+  opacity: 0.8;
+  float: left;
+}
+.userInfo {
+  float: left;
+  font-size: 14px;
+  padding: 9px;
+}
+.userInfo p {
+  margin: 0px;
+  line-height: 11px;
+  font-size: 12px;
+}
+.userDown {
+  float: right;
+  padding: 14px 3px;
+  font-size: 16px;
 }
 .dropdown-menu-left {
   right: 0;
-  left: -131px;
-  top: 43px;
+  left: -20px;
+  top: 52px;
+  padding: 0px;
 }
+.dropdown-item {
+  padding: 0.5rem 1rem !important;
+  color: #666;
+}
+

@@ -6,6 +6,7 @@ import {
   MatSelectModule, MatIconModule, MatPaginator, MatTableModule, MatTooltipModule, MatMenuModule, MatToolbarModule, MatButtonToggleModule,
   MatTabsModule, MatSidenavModule, MatOptionModule
 } from '@angular/material';
+import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MDBBootstrapModule, IconsModule, CheckboxModule } from 'angular-bootstrap-md';
 import {NgUikitModule} from 'ng-uikit';
@@ -53,7 +54,8 @@ import{VendorContainerComponent} from './vendor/container/container.component'
     MatOptionModule,
     MatSelectModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    DateRangePickerModule
   ],
   providers: [],
   bootstrap: [AppComponent],
