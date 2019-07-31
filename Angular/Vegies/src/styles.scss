@@ -178,6 +178,14 @@ ul li {
   border-radius: 4px;
   color: #da624a !important;
 }
+.e-grid {
+  font-family: inherit;
+}
+.e-grid .e-headercelldiv {
+  font-size: 13px;
+  font-weight: 700;
+  color: #666;
+}
 @media (min-width: 992px) {
   .navbar-nav > li > a {
     line-height: 24px !important;

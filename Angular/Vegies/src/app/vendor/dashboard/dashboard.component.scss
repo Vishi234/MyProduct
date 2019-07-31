@@ -154,6 +154,11 @@
   width: 97%;
   height: auto;
 }
+@media only screen and (min-width: 1224px) {
+  .values-top > ul > li > a {
+    width: 260px;
+  }
+}
 @media (max-width: 768px) {
   .values-top > ul > li {
     width: 100%;
