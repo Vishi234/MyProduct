@@ -1,15 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {
-  MatFormFieldModule, MatCardModule, MatSlideToggleModule, MatInputModule, MatListModule, MatStepperModule,
-  MatExpansionModule, MatDialogModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatCheckboxModule, MatButtonModule,
-  MatSelectModule, MatIconModule, MatPaginator, MatTableModule, MatTooltipModule, MatMenuModule, MatToolbarModule, MatButtonToggleModule,
-  MatTabsModule, MatSidenavModule, MatOptionModule
+  MatFormFieldModule, MatInputModule, MatListModule,MatExpansionModule, MatDialogModule,
+  MatSelectModule, MatIconModule, MatToolbarModule,MatSidenavModule, MatOptionModule,MatButtonToggleModule
 } from '@angular/material';
+
 import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { GridModule} from '@syncfusion/ej2-angular-grids';
+import { PageService, SortService, FilterService, GroupService } from '@syncfusion/ej2-angular-grids';
+import { CheckBoxModule } from '@syncfusion/ej2-angular-buttons';
+
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MDBBootstrapModule, IconsModule, CheckboxModule } from 'angular-bootstrap-md';
-import {NgUikitModule} from 'ng-uikit';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,7 +23,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DashboardComponent } from './vendor/dashboard/dashboard.component';
-import{VendorContainerComponent} from './vendor/container/container.component'
+import{VendorContainerComponent} from './vendor/container/container.component';
+import { ConfigurationComponent } from './vendor/configuration/configuration.component'
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import{VendorContainerComponent} from './vendor/container/container.component'
     RegisterComponent,
     ForgotPasswordComponent,
     DashboardComponent,
-    VendorContainerComponent
+    VendorContainerComponent,
+    ConfigurationComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,6 @@ import{VendorContainerComponent} from './vendor/container/container.component'
     CheckboxModule,
     FormsModule,
     ReactiveFormsModule,
-    NgUikitModule,
     MatDialogModule,
     MatListModule,
     MatFormFieldModule,
@@ -55,10 +59,14 @@ import{VendorContainerComponent} from './vendor/container/container.component'
     MatSelectModule,
     MatIconModule,
     MatExpansionModule,
-    DateRangePickerModule
+    DateRangePickerModule,
+    GridModule,
+    CheckBoxModule,
+    Ng2CarouselamosModule,
+    MatButtonToggleModule
   ],
-  providers: [],
+  providers: [PageService, SortService, FilterService, GroupService],
   bootstrap: [AppComponent],
-  entryComponents:[ForgotPasswordComponent]
+  entryComponents:[ForgotPasswordComponent,ConfigurationComponent]
 })
 export class AppModule { }

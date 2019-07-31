@@ -1,0 +1,58 @@
+<div class="modalbase">
+    <div class="modal-header">
+        <span class="title pull-left">
+            Configuration
+        </span>
+        <span class="pull-right close">
+            <a href="javbascript:void(0)" (click)="closeModal();">
+                <i class="fas fa-times"></i>
+            </a>
+        </span>
+    </div>
+    <div class="modal-body">
+        <div id="container" class="owl-carousel">
+            <div ng2-carouselamos class="slides-wrapper" [items]="items" [width]="900" [$prev]="prev" [$next]="next"
+                [$item]="item">
+            </div>
+            <ng-template #prev>
+                <img src="../../../assets/arrow-left.png" id="prev">
+            </ng-template>
+            <ng-template #next>
+                <img src="../../../assets/arrow-right.png" id="next">
+            </ng-template>
+            <ng-template #item let-item let-i="index">
+                <div class="items">
+                    <div class="item-img">
+                        <img src="{{item.image}}">
+                    </div>
+                    <div class="item-content">
+                        <h2>{{item.name}}</h2>
+                        <span class="unit">{{item.unit}}</span>
+                        <div class="price"><span class="op">{{item.oldPrice}}</span> {{item.newPrice}}</div>
+                        <hr />
+
+                        <mat-button-toggle-group multiple="true" appearance="legacy"
+                            (change)="onValChange(item.id,$event.value)" name="fontStyle" aria-label="Font Style">
+                            <mat-button-toggle value="0">
+                                <label id="lblName{{item.id}}">
+                                    Select Item
+                                </label>
+                            </mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+        <div class="proselected" id="proselected" (click)="inreaseHeight();" [ngClass]="toggle ? 'proheight' : ''">
+            <div class="proheader">
+                <span class="pull-left">Product Selected</span>
+                <span class="pull-right">4 Selected</span>
+            </div>
+            <div class="procontent">
+                <ul>
+                    <li><img src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" /></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

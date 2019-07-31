@@ -15,11 +15,191 @@
 </div>
 <div class="chart-values p-4">
     <div class="row clearfix">
-        <div class="col-lg-6 col-xs-12 col-md-6 col-sm-6">
-            <div class="card">
-                <div class="body">
-                    <div class="row text-center">
-                        
+        <div class="col-lg-8 col-xs-12 col-md-8 col-sm-8">
+            <div class="row">
+                <div class="values-top">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <span class="ttl">Total Items</span>
+                                <span class="icon"><i class="fas fa-clipboard-list"></i></span>
+                                <span class="digit">275</span>
+                                <span class="angle"><i class="fas fa-angle-down"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <span class="ttl">Daily Need Item(Avg.)</span>
+                                <span class="icon"><i class="fas fa-chart-line"></i></span>
+                                <span class="digit">100</span>
+                                <span class="angle"><i class="fas fa-angle-down"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <span class="ttl">Total Expense(Avg.)</span>
+                                <span class="icon"><i class="fas fa-dollar-sign"></i></span>
+                                <span class="digit">200</span>
+                                <span class="angle"><i class="fas fa-angle-down"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="item-list checklist">
+                    <div class="ttl">
+                        <span>Checklist Items</span>
+                        <span>
+                            <div class="btn-group" mdbDropdown>
+                                <mdb-badge color="red" mdbDropdownToggle classInside="dropdown-toggle"
+                                    class="waves-effect" mdbWavesEffect>Action
+                                </mdb-badge>
+                                <div class="dropdown-menu dropdown-menu-left">
+                                    <a class="dropdown-item" href="#">Add New Item</a>
+                                    <a class="dropdown-item" href="#">Send Requirement</a>
+                                    <a class="dropdown-item" href="#">Remove Item</a>
+                                    <a class="dropdown-item" href="#">Help</a>
+                                    <div class="divider dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Raise Ticket</a>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="checklist-grid">
+                        <ejs-grid [dataSource]='data' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+                            [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
+                            <e-columns>
+                                <e-column field='Verified' editType='booleanedit' width=60 type="boolean">
+                                    <ng-template #template let-data>
+                                        <div>
+                                            <ejs-checkbox></ejs-checkbox>
+                                        </div>
+                                    </ng-template>
+                                </e-column>
+                                <e-column field='OrderID' headerText='Order ID' textAlign='Right' width='120'>
+                                    <!-- <ng-template #template let-clientData>
+                                        <img src="assets/images/delete-icon.svg" class="edit-delete-img" id="img1"
+                                            (click)="onClickDelete(clientData)">
+                                        <img src="assets/images/pencil-icon.svg" class="edit-delete-img" id="img1"
+                                            (click)="onClickEdit(clientData)">
+                                    </ng-template> -->
+                                </e-column>
+                                <e-column field='CustomerID' headerText='Customer ID' width='120'></e-column>
+                                <e-column field='Freight' textAlign='Right' format='c2' width='120'></e-column>
+                                <e-column field='ShipCountry' headerText='Ship Country' width='140'></e-column>
+                            </e-columns>
+                        </ejs-grid>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-4 col-xs-12 col-md-4 col-sm-4">
+            <div class="row">
+                <div class="item-list">
+                    <div class="ttl">
+                        <span>Items</span>
+                        <span>
+                            <div class="btn-group" mdbDropdown>
+                                <mdb-badge color="red" mdbDropdownToggle classInside="dropdown-toggle"
+                                    class="waves-effect" mdbWavesEffect>Action
+                                </mdb-badge>
+                                <div class="dropdown-menu dropdown-menu-left">
+                                    <a class="dropdown-item" href="#">Add New Item</a>
+                                    <a class="dropdown-item" href="#">Send Requirement</a>
+                                    <a class="dropdown-item" href="#">Remove Item</a>
+                                    <a class="dropdown-item" href="#">Help</a>
+                                    <div class="divider dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Raise Ticket</a>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="items">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <span><i class="fas fa-user-astronaut"></i></span>
+                                    <span>
+                                        Fruits & Vegetables
+                                        <p>content goes here</p>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <span><i class="fas fa-user-astronaut"></i></span>
+                                    <span>
+                                        Fruits & Vegetables
+                                        <p>content goes here</p>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <span><i class="fas fa-user-astronaut"></i></span>
+                                    <span>
+                                        Fruits & Vegetables
+                                        <p>content goes here</p>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <span><i class="fas fa-user-astronaut"></i></span>
+                                    <span>
+                                        Fruits & Vegetables
+                                        <p>content goes here</p>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <span><i class="fas fa-user-astronaut"></i></span>
+                                    <span>
+                                        Fruits & Vegetables
+                                        <p>content goes here</p>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <span><i class="fas fa-user-astronaut"></i></span>
+                                    <span>
+                                        Fruits & Vegetables
+                                        <p>content goes here</p>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <span><i class="fas fa-user-astronaut"></i></span>
+                                    <span>
+                                        Fruits & Vegetables
+                                        <p>content goes here</p>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <span><i class="fas fa-user-astronaut"></i></span>
+                                    <span>
+                                        Fruits & Vegetables
+                                        <p>content goes here</p>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <span><i class="fas fa-user-astronaut"></i></span>
+                                    <span>
+                                        Fruits & Vegetables
+                                        <p>content goes here</p>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

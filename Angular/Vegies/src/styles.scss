@@ -15,7 +15,25 @@ img {
   height: 100%;
   min-width: 100%;
 }
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+ul {
+  background: 0;
+  font-weight: inherit;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: top;
+}
 
+ul li {
+  list-style: none;
+}
 .navbar {
   min-height: 30px;
   background-color: #24355c !important;
@@ -118,6 +136,10 @@ img {
 .content-ttl {
   display: inline-block;
   width: 100%;
+  box-shadow: 0 0.46875rem 2.1875rem rgba(31, 10, 6, 0.03), 0 0.9375rem 1.40625rem rgba(31, 10, 6, 0.03),
+    0 0.25rem 0.53125rem rgba(31, 10, 6, 0.05), 0 0.125rem 0.1875rem rgba(31, 10, 6, 0.03);
+  background: #fff;
+  padding: 25px;
 }
 .panel-name {
   display: block;
@@ -141,30 +163,44 @@ img {
 .panel-name span:nth-child(2) p {
   font-size: 12px;
   color: #666;
+  margin-bottom: 0px;
 }
 .panel-filter {
   display: block;
   float: right;
-  width: 16%;
+  width: 20%;
+}
+.item-list .ttl span:nth-child(2) .badge .dropdown-toggle {
+  font-size: 12px;
+  font-weight: 700;
+  display: block;
+  padding: 2px;
+  border-radius: 4px;
+  color: #da624a !important;
 }
 @media (min-width: 992px) {
   .navbar-nav > li > a {
     line-height: 24px !important;
     padding: 18px !important;
   }
-  
 }
-
 @media (max-width: 768px) {
   .navbar-nav > li > a {
     line-height: 24px !important;
     padding: 10px 15px !important;
   }
   .content-sec {
-    padding-top: 17%;
+    padding-top: 20%;
   }
   .panel-filter {
     float: none;
     width: 100%;
+    margin-top: 19px;
+    display: inline-block;
+  }
+  .content-ttl {
+    box-shadow: none;
+    padding: 0;
+    background: transparent;
   }
 }
